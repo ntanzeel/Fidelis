@@ -15,7 +15,6 @@
             <link href="{{ asset('assets/css/frameworks/bootstrap/3.3.7.min.css') }}" rel="stylesheet">
             <link href="{{ asset('assets/css/layouts/default/app.css') }}" rel="stylesheet">
         @endpush
-
         @stack('stylesheets')
 
         <!-- Scripts -->
