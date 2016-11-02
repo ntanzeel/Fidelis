@@ -15,9 +15,17 @@ class CreateCategoryTagPivot extends Migration
     {
         Schema::create('category_tag', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cateogry_id');
-            $table->integer('tag_id');
+            $table->integer('category_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
+            $table->boolean('root');
             $table->timestamps();
+            $table->softDeletes();
+
+            /*
+             * Foreign keys
+             */
+            $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

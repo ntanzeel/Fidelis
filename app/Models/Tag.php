@@ -17,7 +17,7 @@ class Tag extends Model {
         'deleted_at',
     ];
 
-    public function category() {
-        $this->belongsToMany('');
+    public function categories() {
+        $this->belongsToMany('App\Models\Category')->withPivot('root, deleted_at')->withTimestamps();
     }
 }

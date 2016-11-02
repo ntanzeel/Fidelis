@@ -9,7 +9,15 @@ class Category extends Model {
 
     use SoftDeletes;
 
+    protected $fillable = [
+        'name', 'description',
+    ];
+
     protected $dates = [
         'deleted_at',
     ];
+
+    public function tags(){
+        $this->belongsToMany('App\Models\Tag')->withPivot('root, deleted_at')->withTimestamps();
+    }
 }
