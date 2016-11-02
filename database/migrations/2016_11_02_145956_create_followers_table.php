@@ -18,6 +18,12 @@ class CreateFollowersTable extends Migration {
             $table->integer('following_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+
+            /*
+             * Foreign key constraints
+             */
+            $table->foreign('follower_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('following_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
