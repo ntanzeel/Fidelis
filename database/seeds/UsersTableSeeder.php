@@ -13,13 +13,15 @@ class UsersTableSeeder extends Seeder {
         App\Models\User::create([
             'name'      => 'Naqash Tanzeel',
             'email'     => 'n.tanzeel@hotmail.co.uk',
-            'password'  => bcrypt('123456')
+            'password'  => bcrypt('123456'),
+            'dob'       => \Carbon\Carbon::create(1994, 11, 9),
         ]);
 
         App\Models\User::create([
             'name'      => 'Ishe Gambe',
             'email'     => 'ishegambe@yahoo.co.uk',
-            'password'  => bcrypt('rubberducky')
+            'password'  => bcrypt('rubberducky'),
+            'dob'       => \Carbon\Carbon::create(1995, 2, 14),
         ]);
     }
 }

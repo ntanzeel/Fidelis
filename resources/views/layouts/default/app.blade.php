@@ -10,6 +10,12 @@
 
         <title>{{ config('app.name') }}</title>
 
+        <!-- Fonts -->
+        @push('fonts')
+            <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        @endpush
+        @stack('fonts')
+
         <!-- Styles -->
         @push('stylesheets')
             <link href="{{ asset('assets/css/frameworks/bootstrap/3.3.7.min.css') }}" rel="stylesheet">
@@ -24,7 +30,9 @@
     </head>
     <body>
         <div id="app">
-            @include('layouts.default.partials.header')
+            @section('header')
+                @include('layouts.default.partials.header')
+            @show
 
             @section('container')
                 <div class="container-fluid">
@@ -34,6 +42,9 @@
                         </div>
                     </div>
                 </div>
+            @show
+
+            @section('footer')
             @show
         </div>
 
