@@ -18,6 +18,10 @@ class Category extends Model {
     ];
 
     public function tags(){
-        $this->belongsToMany('App\Models\Tag')->withPivot('root, deleted_at')->withTimestamps();
+        return $this->belongsToMany('App\Models\Tag')
+            ->whereNull('category_tag.deleted_at')
+            ->withPivot(['root', 'deleted_at'])
+            ->withTimestamps()
+            ->orderBy('category_tag.root', 'DESC');
     }
 }
