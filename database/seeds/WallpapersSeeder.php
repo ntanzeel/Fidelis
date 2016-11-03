@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class WallpapersTableSeeder extends Seeder {
+class WallpapersSeeder extends Seeder {
 
     /**
      * Run the database seeds.
