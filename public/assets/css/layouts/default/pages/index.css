@@ -1,0 +1,90 @@
+.welcome {
+    color: #FFF;
+    display: flex;
+    height: 100vh;
+    padding: 15px;
+    font-weight: 100;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background: no-repeat center center;
+    transition: background 0.5s linear;
+}
+
+.welcome > .content {
+    text-align: center;
+}
+
+.welcome > .content > .title {
+    font-size: 84px;
+    margin: 0 0 20px;
+}
+
+.welcome > .content > blockquote {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-style: italic;
+    max-width: 500px;
+    margin: 0;
+    padding: 10px 40px;
+    position: relative;
+    border-left: none;
+}
+
+.welcome > .content > blockquote:before,
+.welcome > .content > blockquote:after {
+    display: block;
+    font-size: 48px;
+    position: absolute;
+}
+
+.welcome > .content > blockquote:before {
+    left: 0;
+    top: -10px;
+    content: "\201C";
+}
+
+.welcome > .content > blockquote:after {
+    right: 5px;
+    bottom: -10px;
+    content: "\201D";
+}
+
+.welcome > .content > blockquote > cite {
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+}
+
+.welcome > .content > blockquote > cite:before {
+    content: "\2014 \2009";
+}
+
+.home-nav {
+    top: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.home-nav > a,
+.home-nav > a:hover,
+.home-nav > a:active,
+.home-nav > a:visited {
+    color: #FFF;
+    font-size: 12px;
+    padding: 10px 25px;
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: .1rem;
+    margin: 15px 15px 0 0;
+    border-radius: 4px;
+    border: 1px solid #E74C3C;
+}
+
+.home-nav > a:hover {
+    color: #E74C3C;
+    border-color: #FFF;
+    background-color: #FFF;
+}
