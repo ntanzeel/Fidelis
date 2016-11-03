@@ -16,7 +16,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','dob'
+        'name', 'email', 'password', 'dob'
     ];
 
     /**
@@ -31,4 +31,8 @@ class User extends Authenticatable {
     protected $dates = [
         'deleted_at', 'dob',
     ];
+
+    public function followers() {
+        return $this->hasMany('App\Models\Follower');
+    }
 }

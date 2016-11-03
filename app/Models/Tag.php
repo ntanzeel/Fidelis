@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model {
+class Tag extends Model {
 
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'description',
+        'text',
     ];
 
     protected $dates = [
         'deleted_at',
     ];
 
-    public function tags(){
-        return $this->belongsToMany('App\Models\Tag')
+    public function categories() {
+        return $this->belongsToMany('App\Models\Category')
             ->whereNull('category_tag.deleted_at')
             ->withPivot(['root', 'deleted_at'])
             ->withTimestamps()
