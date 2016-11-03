@@ -12,16 +12,6 @@
 */
 
 /*
- * Pages
- */
-Route::group(['as' => 'pages.'], function() {
-    Route::get('/', [
-        'as'    => 'index',
-        'uses'  => 'PagesController@index'
-    ]);
-});
-
-/*
  * Authentication
  */
 Route::group(['as' => 'auth.'], function() {
@@ -36,7 +26,7 @@ Route::group(['as' => 'auth.'], function() {
 
     Route::post('login', [
         'as'    => 'login',
-        'uses'  => 'Auth\Auth\LoginController@login'
+        'uses'  => 'Auth\LoginController@login'
     ]);
 
     /*
@@ -83,4 +73,38 @@ Route::group(['as' => 'auth.'], function() {
     ]);
 });
 
-Route::get('home', 'HomeController@index');
+/*
+ * Pages
+ */
+Route::group(['as' => 'pages.'], function() {
+    Route::get('/', [
+        'as'    => 'index',
+        'uses'  => 'PagesController@index'
+    ]);
+});
+
+/*
+ * Home
+ */
+Route::group(['as' => 'home.'], function() {
+    Route::get('home', [
+        'as'    => 'index',
+        'uses'  => 'HomeController@index'
+    ]);
+});
+
+/*
+ * Discover
+ */
+
+Route::group(['as' => 'discover.'], function() {
+    Route::get('discover', [
+        'as'    => 'index',
+        'uses'  => 'DiscoverController@index'
+    ]);
+
+    Route::get('discover/{category}', [
+        'as'    => 'category',
+        'uses'  => 'DiscoverController@category'
+    ]);
+});

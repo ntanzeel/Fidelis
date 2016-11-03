@@ -32,7 +32,7 @@
     <body>
         <div id="app">
             @section('header')
-                @include('layouts.default.partials.header')
+                @include('layouts.default.partials.header', compact('categories'))
             @show
 
             @section('container')
