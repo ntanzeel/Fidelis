@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(WallpapersSeeder::class);
         $this->call(QuotesSeeder::class);
         $this->call(CategoriesSeeder::class);
+        $this->call(CommentsSeeder::class);
+        $this->call(PostsSeeder::class);
     }
 }
