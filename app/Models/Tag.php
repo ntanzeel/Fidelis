@@ -24,4 +24,11 @@ class Tag extends Model {
             ->withTimestamps()
             ->orderBy('category_tag.root', 'DESC');
     }
+
+    public function posts() {
+        return $this->belongsToMany('App\Models\Post')
+            ->whereNull('post_tag.deleted_at')
+            ->withPivot(['deleted_at'])
+            ->withTimestamps();
+    }
 }
