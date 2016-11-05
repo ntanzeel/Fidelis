@@ -17,55 +17,34 @@
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                &nbsp;<li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Discover <span class="caret"></span>
-                    </a>
-
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="{{ route('discover.index') }}">Personalised</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        @foreach($categories as $category)
-                            <li>
-                                <a href="{{ route('discover.category', [$category->name]) }}">{{ $category->name }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <li><a href="{{ route('auth.login') }}">Login</a></li>
-                    <li><a href="{{ route('auth.register') }}">Register</a></li>
-                @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('auth.logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    Logout
+            @foreach($navigation as $nav)
+                <ul class="nav navbar-nav {{ 'navbar-' . $nav->type }}">
+                    @foreach($nav->links as $link)
+                        @if($link->dropdown)
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ $link->title }} <span class="caret"></span>
                                 </a>
 
-                                <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
+                                <ul class="dropdown-menu" role="menu">
+                                    @foreach($link->dropdown as $dropdown)
+                                        <li class="{{ $dropdown->active ? 'active' : '' }}">
+                                            <a href="{{ route($dropdown->route->name, $dropdown->route->params) }}">{{ $dropdown->title }}</a>
+                                        </li>
+                                        @if($dropdown->divider)
+                                            <li role="separator" class="divider"></li>
+                                        @endif
+                                    @endforeach
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
-                @endif
-            </ul>
+                        @else
+                            <li class="{{ $link->active ? 'active' : '' }}">
+                                <a href="{{ route($link->route->name, $link->route->params) }}">{{ $link->title }}</a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            @endforeach
         </div>
     </div>
 </nav>

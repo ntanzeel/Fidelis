@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: center;
     background-size: cover;
+    text-shadow: #000 0 0 1px;
     background: no-repeat center center;
     transition: background 0.5s linear;
 }
@@ -80,11 +81,10 @@
     letter-spacing: .1rem;
     margin: 15px 15px 0 0;
     border-radius: 4px;
-    border: 1px solid #E74C3C;
+    background-color: #FF6631;
 }
 
 .home-nav > a:hover {
-    color: #E74C3C;
-    border-color: #FFF;
+    color: #FF4C32;
     background-color: #FFF;
 }

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 class DiscoverController extends Controller {
 
     public function index() {
-        return 'Discover Home';
+        return view('home.index');
     }
 
     public function category($category) {
-        return 'Discover ' . $category;
+        return view('home.index');
     }
 }

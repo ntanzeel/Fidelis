@@ -1,0 +1,26 @@
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover {
+    color: #FF6631;
+}
+
+.navbar-nav > li > a {
+    padding-bottom: 10px;
+    border-bottom: 4px solid transparent;
+    transition: all 0.15s ease-in-out;
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
+    color: #FF6631;
+    background-color: #F9F9F9;
+    border-bottom-color: #FF6631;
+}
