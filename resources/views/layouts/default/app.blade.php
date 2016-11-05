@@ -37,7 +37,7 @@
             @show
 
             @section('container')
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <div lang="col-sm-12">
                             @yield('content')
