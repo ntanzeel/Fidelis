@@ -51,6 +51,7 @@ class LayoutComposer {
         if (Auth::user()) {
             $navigation->links[] = (Object) [
                 'title'     => 'Home',
+                'icon'      => 'home',
                 'route'     => (Object) [
                     'name'      => 'home.index',
                     'params'    => []
@@ -62,6 +63,7 @@ class LayoutComposer {
 
         $navigation->links[] = (Object) [
             'title'     => 'Discover',
+            'icon'      => 'fire',
             'route'     => (Object) [
                 'name'      => 'discover.index',
                 'params'    => []
@@ -102,6 +104,15 @@ class LayoutComposer {
             ]
         ] : [
             (Object) [
+                'title'     => 'Notifications',
+                'icon'      => 'bell',
+                'route'     => (Object) [
+                    'name'      => 'notifications.index',
+                    'params'    => []
+                ],
+                'active'    => false,
+                'dropdown'  => false
+            ], (Object) [
                 'title'     => Auth::user()->name,
                 'route'     => false,
                 'active'    => false,

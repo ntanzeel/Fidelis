@@ -39,7 +39,12 @@
                             </li>
                         @else
                             <li class="{{ $link->active ? 'active' : '' }}">
-                                <a href="{{ route($link->route->name, $link->route->params) }}">{{ $link->title }}</a>
+                                <a href="{{ route($link->route->name, $link->route->params) }}">
+                                    @if(isset($link->icon))
+                                        <i class="fa fa-{{ $link->icon }}" aria-hidden="true"></i>
+                                    @endif
+                                    {{ $link->title }}
+                                </a>
                             </li>
                         @endif
                     @endforeach

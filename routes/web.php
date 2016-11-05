@@ -96,7 +96,6 @@ Route::group(['as' => 'home.'], function() {
 /*
  * Discover
  */
-
 Route::group(['as' => 'discover.'], function() {
     Route::get('discover', [
         'as'    => 'index',
@@ -106,5 +105,15 @@ Route::group(['as' => 'discover.'], function() {
     Route::get('discover/{category}', [
         'as'    => 'category',
         'uses'  => 'DiscoverController@category'
+    ]);
+});
+
+/*
+ * Notifications
+ */
+Route::group(['as' => 'notifications.'], function() {
+    Route::get('notifications', [
+        'as'    => 'index',
+        'uses'  => 'NotificationsController@index'
     ]);
 });
