@@ -14,7 +14,7 @@ class AddCoverPhotoToUsersTable extends Migration
     public function up()
     {
         Schema::table('Users', function (Blueprint $table) {
-            $table->text('path');
+            $table->text('cover');
         });
     }
 
@@ -26,7 +26,7 @@ class AddCoverPhotoToUsersTable extends Migration
     public function down()
     {
         Schema::table('Users', function (Blueprint $table) {
-            $table->dropColumn('path');
+            $table->dropColumn('cover');
         });
     }
 }
