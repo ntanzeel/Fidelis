@@ -1,9 +1,5 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
-@push('stylesheets')
-    <link href="{{ asset('assets/css/layouts/default/pages/index.css') }}" rel="stylesheet">
-@endpush
-
 @section('header')
 @stop
 

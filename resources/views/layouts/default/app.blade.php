@@ -17,11 +17,19 @@
         @stack('fonts')
 
         <!-- Styles -->
+        @push('frameworks.stylesheets')
+        <link href="{{ asset('assets/css/frameworks/bootstrap/3.3.7.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/frameworks/font-awesome/css/4.7.0.min.css') }}" rel="stylesheet">
+        @endpush
+        @stack('frameworks.stylesheets')
+
         @push('stylesheets')
-            <link href="{{ asset('assets/css/frameworks/bootstrap/3.3.7.min.css') }}" rel="stylesheet">
-            <link href="{{ asset('assets/css/frameworks/font-awesome/css/4.7.0.min.css') }}" rel="stylesheet">
-            <link href="{{ asset('assets/css/global/app.css') }}" rel="stylesheet">
+            <!-- Layout -->
             <link href="{{ asset('assets/css/layouts/default/app.css') }}" rel="stylesheet">
+            @foreach($stylesheets as $key => $stylesheet)
+                <!--{{ $key }}-->
+                <link href="{{ asset($stylesheet) }}" rel="stylesheet">
+            @endforeach
         @endpush
         @stack('stylesheets')
 

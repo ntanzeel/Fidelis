@@ -21,7 +21,7 @@ Route::group(['as' => 'auth.'], function() {
      */
     Route::get('login', [
         'as'    => 'login',
-        'uses'  => 'Auth\LoginController@showLoginForm'
+        'uses'  => 'Auth\LoginController@index'
     ]);
 
     Route::post('login', [
@@ -42,7 +42,7 @@ Route::group(['as' => 'auth.'], function() {
      */
     Route::get('register', [
         'as'    => 'register',
-        'uses'  => 'Auth\RegisterController@showRegistrationForm'
+        'uses'  => 'Auth\RegisterController@index'
     ]);
 
     Route::post('register', [
@@ -55,21 +55,21 @@ Route::group(['as' => 'auth.'], function() {
      */
     Route::get('password/reset', [
         'as'    => 'password.request',
-        'uses'  => 'Auth\ForgotPasswordController@showLinkRequestForm'
+        'uses'  => 'Auth\Password\ForgotController@index'
     ]);
 
     Route::post('password/email', [
         'as'    => 'password.email',
-        'uses'  => 'Auth\ForgotPasswordController@sendResetLinkEmail'
+        'uses'  => 'Auth\Password\ForgotController@sendResetLinkEmail'
     ]);
 
     Route::get('password/reset/{token}', [
         'as'    => 'password.change',
-        'uses'  => 'Auth\ResetPasswordController@showResetForm'
+        'uses'  => 'Auth\Password\ResetController@index'
     ]);
     Route::post('password/reset', [
         'as'    => 'password.reset',
-        'uses'  => 'Auth\ResetPasswordController@reset'
+        'uses'  => 'Auth\Password\ResetController@reset'
     ]);
 });
 

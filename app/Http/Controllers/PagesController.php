@@ -8,7 +8,7 @@ use App\Models\Wallpaper;
 class PagesController extends Controller {
 
     public function __construct() {
-
+        $this->middleware('guest')->only('index');
     }
 
     public function index() {

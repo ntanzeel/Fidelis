@@ -2,7 +2,6 @@
 
 namespace App\Http\Composers;
 
-use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +10,9 @@ class LayoutComposer {
 
     private $request;
 
-    private $categories;
+    private $publicPath;
+
+    private $layoutPath;
 
     /**
      * LayoutComposer constructor.
@@ -19,7 +20,8 @@ class LayoutComposer {
      */
     public function __construct(Request $request) {
         $this->request = $request;
-        $this->categories = Category::orderBy('name')->get();
+        $this->publicPath = public_path();
+        $this->layoutPath = '/' . str_replace('.', '/', config('view.layout'));
     }
 
     /**
@@ -27,6 +29,25 @@ class LayoutComposer {
      */
     public function compose(View $view) {
         $view->with('navigation', $this->getNavigation());
+        $view->with('stylesheets', $this->getStyles());
+    }
+
+    public function getStyles() {
+        list($controller, $action) = explode('@', $this->request->route()->getActionName());
+        $controller = strtolower(substr(str_replace('\\', '/', $controller), 20, strlen($controller) - 30));
+
+        $stylesheets = [
+            'Controller'    => '/assets/css' . $this->layoutPath . $controller . '/_shared.css',
+            'View'          => '/assets/css' . $this->layoutPath . $controller . '/' . $action . '.css'
+        ];
+
+        foreach ($stylesheets as $key => $stylesheet) {
+            if (!file_exists($this->publicPath . $stylesheet)) {
+                unset($stylesheets[$key]);
+            }
+        }
+
+        return $stylesheets;
     }
 
     /**
@@ -48,28 +69,26 @@ class LayoutComposer {
             'links' => []
         ];
 
-        if (Auth::user()) {
-            $navigation->links[] = (Object) [
-                'title'     => 'Home',
-                'icon'      => 'home',
-                'route'     => (Object) [
-                    'name'      => 'home.index',
-                    'params'    => []
-                ],
-                'active'    => false,
-                'dropdown'  => false
-            ];
-        }
-
-        $navigation->links[] = (Object) [
-            'title'     => 'Discover',
-            'icon'      => 'fire',
+        $navigation->links = [
+            (Object) [
+            'title'     => 'Home',
+            'icon'      => 'home',
             'route'     => (Object) [
-                'name'      => 'discover.index',
+                'name'      => Auth::user() ? 'home.index' : 'pages.index',
                 'params'    => []
             ],
             'active'    => false,
             'dropdown'  => false
+            ], (Object) [
+                'title'     => 'Discover',
+                'icon'      => 'fire',
+                'route'     => (Object) [
+                    'name'      => 'discover.index',
+                    'params'    => []
+                ],
+                'active'    => false,
+                'dropdown'  => false
+            ]
         ];
 
         return $navigation;
@@ -132,38 +151,6 @@ class LayoutComposer {
         ];
 
         return $navigation;
-    }
-
-    private function getCategories() {
-        $categories = [];
-
-        if (Auth::user()) {
-            $categories[] = (Object) [
-                'title'     => 'Subscribed',
-                'route'     => (Object) [
-                    'name'      => 'discover.index',
-                    'params'    => []
-                ],
-                'active'    => false,
-                'dropdown'  => false,
-                'divider'   => true
-            ];
-        }
-
-        foreach ($this->categories as $category) {
-            $categories[] = (Object) [
-                'title'     => $category->name,
-                'route'     => (Object) [
-                    'name'      => 'discover.category',
-                    'params'    => [$category->name]
-                ],
-                'active'    => false,
-                'dropdown'  => false,
-                'divider'   => false
-            ];
-        }
-
-        return $categories;
     }
 
     /**

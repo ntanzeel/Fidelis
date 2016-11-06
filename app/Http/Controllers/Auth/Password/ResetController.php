@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Password;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 
-class ResetPasswordController extends Controller
-{
+class ResetController extends Controller {
+
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -23,10 +24,23 @@ class ResetPasswordController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest');
+    }
+
+    /**
+     * Display the password reset view for the given token.
+     *
+     * If no token is present, display the link request form.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  string|null $token
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(Request $request, $token = null) {
+        return view('auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
     }
 }
