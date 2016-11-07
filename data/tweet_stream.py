@@ -17,9 +17,11 @@ class TweetStreamListener(StreamListener):
     #When a new Tweet is posted
     def on_status(self, data):
         data = data._json
-        print data
-        with open('tweets.json','a') as f:
-            f.write(json.dumps(data)+'\n')
+	#If tweet is not a retweet
+	if not data['retweeted'] and "RT @" not in data['text']:
+        	print data
+        	with open('tweets.json','a') as f:
+            		f.write(json.dumps(data)+'\n')
 
     def on_error(self, status):
         print status
