@@ -19,4 +19,6 @@ class DiscoverController extends Controller {
     public function category($category) {
         return view('discover.category')->with('categories', $this->categories)->with('category', $category);
     }
+
+
 }
