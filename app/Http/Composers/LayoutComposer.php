@@ -51,10 +51,10 @@ class LayoutComposer {
     }
 
     /**
-     * @return array
+     * @return object
      */
     private function getNavigation() {
-        return $this->setActive([
+        return (Object) $this->setActive([
             'app'   => $this->appNavigation(),
             'user'  => $this->userNavigation()
         ]);
@@ -131,22 +131,6 @@ class LayoutComposer {
                 ],
                 'active'    => false,
                 'dropdown'  => false
-            ], (Object) [
-                'title'     => Auth::user()->name,
-                'route'     => false,
-                'active'    => false,
-                'dropdown'  => [
-                    (Object) [
-                        'title'     => 'Log out',
-                        'route'     => (Object) [
-                            'name'      => 'auth.logout',
-                            'params'    => []
-                        ],
-                        'active'    => false,
-                        'dropdown'  => false,
-                        'divider'   => false
-                    ]
-                ]
             ]
         ];
 

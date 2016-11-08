@@ -3,7 +3,8 @@
         <div class="navbar-header">
 
             <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#app-navbar-collapse">
                 <span class="sr-only">Toggle Navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -12,44 +13,33 @@
 
             {{--<!-- Branding Image -->--}}
             {{--<a class="navbar-brand" href="{{ route('pages.index') }}">--}}
-                {{--{{ config('app.name') }}--}}
+            {{--{{ config('app.name') }}--}}
             {{--</a>--}}
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            @foreach($navigation as $nav)
-                <ul class="nav navbar-nav {{ 'navbar-' . $nav->type }}">
-                    @foreach($nav->links as $link)
-                        @if($link->dropdown)
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ $link->title }} <span class="caret"></span>
-                                </a>
+            <ul class="nav navbar-nav navbar-left">
+                @include('layouts.default.partials.nav', ['nav' => $navigation->app])
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @include('layouts.default.partials.nav', ['nav' => $navigation->user])
 
-                                <ul class="dropdown-menu" role="menu">
-                                    @foreach($link->dropdown as $dropdown)
-                                        <li class="{{ $dropdown->active ? 'active' : '' }}">
-                                            <a href="{{ route($dropdown->route->name, $dropdown->route->params) }}">{{ $dropdown->title }}</a>
-                                        </li>
-                                        @if($dropdown->divider)
-                                            <li role="separator" class="divider"></li>
-                                        @endif
-                                    @endforeach
-                                </ul>
+                @if (Auth::user())
+                    <li class="dropdown profile-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">
+                            <span class="sr-only">{{ Auth::user()->name }}</span>
+                            <img src="https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png"
+                                 width="38px" height="38px" />
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('auth.logout') }}">Log out</a>
                             </li>
-                        @else
-                            <li class="{{ $link->active ? 'active' : '' }}">
-                                <a href="{{ route($link->route->name, $link->route->params) }}">
-                                    @if(isset($link->icon))
-                                        <i class="fa fa-{{ $link->icon }}" aria-hidden="true"></i>
-                                    @endif
-                                    {{ $link->title }}
-                                </a>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
-            @endforeach
+                        </ul>
+                    </li>
+                @endif
+            </ul>
         </div>
     </div>
 </nav>
