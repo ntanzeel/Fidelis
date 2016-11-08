@@ -33,6 +33,10 @@ class User extends Authenticatable {
     ];
 
     public function followers() {
-        return $this->hasMany('App\Models\Follower');
+        return $this->hasMany('App\Models\Follower', 'following_id');
+    }
+
+    public function following() {
+        return $this->hasMany('App\Models\Follower', 'follower_id');
     }
 }
