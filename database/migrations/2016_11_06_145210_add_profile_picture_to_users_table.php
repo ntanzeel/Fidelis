@@ -12,7 +12,7 @@ class AddProfilePictureToUsersTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::table('Users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->text('photo');
         });
     }
@@ -23,7 +23,7 @@ class AddProfilePictureToUsersTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::table('Users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('photo');
         });
     }

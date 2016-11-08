@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-3 hidden-sm hidden-xs">
             @include('home.partials.profile')
-            @include('home.partials.users')
+            @widget('users')
         </div>
         <div class="col-md-6 col-sm-12">
             <div class="panel panel-default">
