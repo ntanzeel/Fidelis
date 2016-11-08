@@ -11,6 +11,11 @@ class NotificationsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        App\Models\User::create([
+            'from_id' => 1,
+            'to_id' => 2,
+            'comment_id' => 1,
+            'notification' => 'I agree.'
+        ]);
     }
 }
