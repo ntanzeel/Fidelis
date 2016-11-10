@@ -42,16 +42,17 @@
             @section('header')
                 @include('layouts.default.partials.header', compact('navigation', 'categories'))
             @show
-
-            @section('container')
-                <div class="container">
-                    <div class="row">
-                        <div lang="col-sm-12">
-                            @yield('content')
+            <div class="page-container">
+                @section('container')
+                    <div class="container">
+                        <div class="row">
+                            <div lang="col-sm-12">
+                                @yield('content')
+                            </div>
                         </div>
                     </div>
-                </div>
-            @show
+                @show
+            </div>
 
             @section('footer')
             @show

@@ -1,6 +1,10 @@
 /*
  * Default Overrides
  */
+body {
+    padding-top: 71px;
+}
+
 a, a:hover, a:visited, a:focus {
     color: #636b6f;
 }
@@ -20,6 +24,10 @@ a, a:hover, a:visited, a:focus {
 /*
  * Header & Navigation
  */
+.navbar {
+    margin-bottom: 0;
+}
+
 .navbar-default .navbar-brand,
 .navbar-default .navbar-brand:hover {
     color: #FF6631;

@@ -10,11 +10,6 @@
     border-radius: 4px 4px 0 0;
 }
 
-.profile-widget .profile-name {
-    font-size: 16px;
-    font-weight: bold;
-}
-
 .profile-widget .profile-photo {
     top: -36px;
     width: 72px;
@@ -37,6 +32,16 @@
     position: absolute;
     left: 97px;
     top: 5px;
+    line-height: 1;
+}
+
+.profile-widget .profile-about > a {
+    display: block;
+}
+
+.profile-widget .profile-name {
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .profile-widget .statistics-list {

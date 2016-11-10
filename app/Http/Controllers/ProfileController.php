@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 class ProfileController extends Controller {
 
     public function index() {
-        return view('profile.view');
+        return redirect()->route('profile.view', [Auth::user()->username]);
     }
 
     public function view($username) {
-        return view('profile.view');
+        $user = User::where('username', $username)->first();
+        return view('profile.view', compact('user'));
     }
 
     public function followers($username) {
-        return view('profile.view');
+        $user = User::where('username', $username)->first();
+        return view('profile.followers', compact('user'));
     }
 
     public function following($username) {
-        return view('profile.view');
+        $user = User::where('username', $username)->first();
+        return view('profile.following', compact('user'));
     }
 }
