@@ -29,7 +29,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-expanded="false">
                             <span class="sr-only">{{ Auth::user()->name }}</span>
-                            <img src="https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png"
+                            <img src="{{ Auth::user()->photo }}"
                                  width="38px" height="38px" />
                         </a>
                         <ul class="dropdown-menu" role="menu">
