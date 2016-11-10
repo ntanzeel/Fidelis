@@ -13,27 +13,27 @@ class VotesSeeder extends Seeder
     public function run()
     {
         //
-		$post = Vote::create([
+		$vote = Vote::create([
             'user_id' => 1,
 			'comment_id' => 3,
 			'type' => 'like'
         ]);
-		$post = Vote::create([
+		$vote = Vote::create([
             'user_id' => 2,
 			'comment_id' => 3,
 			'type' => 'dislike'
         ]);
-		$post = Vote::create([
+		$vote = Vote::create([
             'user_id' => 2,
 			'comment_id' => 4,
 			'type' => 'like'
         ]);
-		$post = Vote::create([
+		$vote = Vote::create([
             'user_id' => 4,
 			'comment_id' => 1,
 			'type' => 'like'
         ]);
-		$post = Vote::create([
+		$vote = Vote::create([
             'user_id' => 3,
 			'comment_id' => 2,
 			'type' => 'dislike'
