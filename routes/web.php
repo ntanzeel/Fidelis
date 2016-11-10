@@ -117,3 +117,29 @@ Route::group(['as' => 'notifications.'], function() {
         'uses'  => 'NotificationsController@index'
     ]);
 });
+
+/*
+ * User
+ */
+
+Route::group(['as' => 'profile.'], function() {
+    Route::get('p/me', [
+        'as'    => 'index',
+        'uses'  => 'ProfileController@index'
+    ]);
+
+    Route::get('p/{username}', [
+        'as'    => 'view',
+        'uses'  => 'ProfileController@index'
+    ]);
+
+    Route::get('p/{username}/followers', [
+        'as'    => 'view',
+        'uses'  => 'ProfileController@index'
+    ]);
+
+    Route::get('p/{username}/following', [
+        'as'    => 'view',
+        'uses'  => 'ProfileController@index'
+    ]);
+});

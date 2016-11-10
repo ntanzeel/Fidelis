@@ -1,9 +1,13 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
+@push('stylesheets')
+    <link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
     <div class="row">
         <div class="col-md-3 hidden-sm hidden-xs">
-            @include('home.partials.profile')
+            @widget('profile')
             @widget('users')
         </div>
         <div class="col-md-6 col-sm-12">
@@ -25,7 +29,7 @@
             </div>
         </div>
         <div class="col-md-3 hidden-sm hidden-xs">
-            @include('home.partials.trends')
+            @widget('trending')
         </div>
     </div>
 @endsection

@@ -1,9 +1,21 @@
 /*
+ * Default Overrides
+ */
+a, a:hover, a:visited, a:focus {
+    color: #636b6f;
+}
+
+
+/*
  * Components
  */
-
 .btn-primary {
+
 }
+
+/*
+ * Helper Classes
+ */
 
 /*
  * Header & Navigation
@@ -95,4 +107,12 @@
     border-bottom: 6px solid #ffffff;
     border-left: 6px solid transparent;
     content: '';
+}
+
+.widget {
+
+}
+
+.widget-body {
+    position: relative;
 }

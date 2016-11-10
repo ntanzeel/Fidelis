@@ -1,0 +1,87 @@
+.profile-widget .widget-body {
+    padding-top: 46px;
+}
+
+.profile-widget .profile-cover {
+    height: 100px;
+    display: block;
+    background-size: 100% 100%;
+    border-bottom: 1px solid #D3E0E9;
+    border-radius: 4px 4px 0 0;
+}
+
+.profile-widget .profile-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile-widget .profile-photo {
+    top: -36px;
+    width: 72px;
+    height: 72px;
+    display: block;
+    position: absolute;
+    border-radius: 36px;
+    overflow: hidden;
+    background: #FFF;
+    border: 1px solid #D3E0E9;
+}
+
+.profile-widget .profile-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-widget .profile-about {
+    position: absolute;
+    left: 97px;
+    top: 5px;
+}
+
+.profile-widget .statistics-list {
+    display: table;
+    margin: 0;
+}
+
+.profile-widget .statistics-list > li {
+    display: table-cell;
+    width: 1%;
+}
+
+.profile-widget .statistics-list > li {
+    display: table-cell;
+    width: 1%;
+}
+
+.profile-widget .statistics-list > li .stat-link,
+.profile-widget .statistics-list > li .stat-label,
+.profile-widget .statistics-list > li .stat-value {
+    display: block;
+    overflow: hidden;
+}
+
+.profile-widget .statistics-list > li .stat-link {
+    color: #999;
+    transition: all 0.15s ease-in-out;
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+}
+
+.profile-widget .statistics-list > li .stat-link:hover {
+    color: #FF6631;
+    text-decoration: none;
+}
+
+.profile-widget .statistics-list > li .stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.profile-widget .statistics-list > li .stat-value {
+    font-size: 18px;
+    font-weight: 500;
+    padding-top: 3px;
+    color: #FF6631;
+}
