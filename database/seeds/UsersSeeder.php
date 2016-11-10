@@ -11,14 +11,14 @@ class UsersSeeder extends Seeder {
      */
     public function run() {
         App\Models\User::create([
-            'name' => 'Naqash Tanzeel',
-            'email' => 'n.tanzeel@hotmail.co.uk',
-            'password' => bcrypt('123456'),
-            'dob' => \Carbon\Carbon::create(1994, 11, 9),
-            'reputation' => 0,
-            'photo' => 'https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png',
-            'cover' => 'http://www.sawyoo.com/postpic/2009/06/blank-youtube-channel-art-template_699121.jpg',
-            'is_private' => False,
+            'name'          => 'Naqash Tanzeel',
+            'email'         => 'n.tanzeel@hotmail.co.uk',
+            'password'      => bcrypt('123456'),
+            'dob'           => \Carbon\Carbon::create(1994, 11, 9),
+            'reputation'    => 0,
+            'photo'         => 'https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png',
+            'cover'         => 'http://www.sawyoo.com/postpic/2009/06/blank-youtube-channel-art-template_699121.jpg',
+            'is_private'    => False,
         ]);
 
         App\Models\User::create([

@@ -1,127 +1,127 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Database\Seeder;
 
 class CategoriesSeeder extends Seeder {
 
     protected $data = [
         [
-            'name'          => 'Travel',
-            'description'   => 'Latest travel news from around the world.',
-            'tags'          => [
+            'name'        => 'Travel',
+            'description' => 'Latest travel news from around the world.',
+            'tags'        => [
                 [
-                    'text'  => 'Travel',
-                    'root'  => true
-                ]
-            ]
-        ], [
-            'name'          => 'Politics',
-            'description'   => 'They say you should not talk about religion or politics in mixed company, and yet, that\'s exactly what people want to talk about.',
-            'tags'          => [
-                [
-                    'text'  => 'Politics',
-                    'root'  => true
-                ], [
-                    'text'  => 'Brexit',
-                    'root'  => false
-                ], [
-                    'text'  => 'Article50',
-                    'root'  => false
-                ], [
-                    'text'  => 'Parliament',
-                    'root'  => false
-                ], [
-                    'text'  => 'ElectionDay',
-                    'root'  => false
-                ], [
-                    'text'  => 'Election2016',
-                    'root'  => false
+                    'text' => 'Travel',
+                    'root' => true,
                 ],
-            ]
+            ],
         ], [
-            'name'          => 'Home',
-            'description'   => 'Stay up to date with home and garden trends.',
-            'tags'          => [
+            'name'        => 'Politics',
+            'description' => 'They say you should not talk about religion or politics in mixed company, and yet, that\'s exactly what people want to talk about.',
+            'tags'        => [
                 [
-                    'text'  => 'Home',
-                    'root'  => true
-                ]
-            ]
+                    'text' => 'Politics',
+                    'root' => true,
+                ], [
+                    'text' => 'Brexit',
+                    'root' => false,
+                ], [
+                    'text' => 'Article50',
+                    'root' => false,
+                ], [
+                    'text' => 'Parliament',
+                    'root' => false,
+                ], [
+                    'text' => 'ElectionDay',
+                    'root' => false,
+                ], [
+                    'text' => 'Election2016',
+                    'root' => false,
+                ],
+            ],
         ], [
-            'name'          => 'Sports',
-            'description'   => 'Stay up to date with the latest sports.',
-            'tags'          => [
+            'name'        => 'Home',
+            'description' => 'Stay up to date with home and garden trends.',
+            'tags'        => [
                 [
-                    'text'  => 'Sports',
-                    'root'  => true
-                ]
-            ]
+                    'text' => 'Home',
+                    'root' => true,
+                ],
+            ],
         ], [
-            'name'          => 'Food',
-            'description'   => 'When it comes to food and wine, the first rule to remember is that there are no rules.',
-            'tags'          => [
+            'name'        => 'Sports',
+            'description' => 'Stay up to date with the latest sports.',
+            'tags'        => [
                 [
-                    'text'  => 'Food',
-                    'root'  => true
-                ]
-            ]
+                    'text' => 'Sports',
+                    'root' => true,
+                ],
+            ],
         ], [
-            'name'          => 'Health',
-            'description'   => 'Discuss all kinds of health related issues.',
-            'tags'          => [
+            'name'        => 'Food',
+            'description' => 'When it comes to food and wine, the first rule to remember is that there are no rules.',
+            'tags'        => [
                 [
-                    'text'  => 'Health',
-                    'root'  => true
-                ]
-            ]
+                    'text' => 'Food',
+                    'root' => true,
+                ],
+            ],
         ], [
-            'name'          => 'Finance',
-            'description'   => 'This is a degree for those interested in learning how the banking and finance systems work.',
-            'tags'          => [
+            'name'        => 'Health',
+            'description' => 'Discuss all kinds of health related issues.',
+            'tags'        => [
                 [
-                    'text'  => 'Finance',
-                    'root'  => true
-                ]
-            ]
+                    'text' => 'Health',
+                    'root' => true,
+                ],
+            ],
         ], [
-            'name'          => 'Fashion',
-            'description'   => 'Jewelry and clothing fashions vary with the season.',
-            'tags'          => [
+            'name'        => 'Finance',
+            'description' => 'This is a degree for those interested in learning how the banking and finance systems work.',
+            'tags'        => [
                 [
-                    'text'  => 'Fashion',
-                    'root'  => true
-                ]
-            ]
+                    'text' => 'Finance',
+                    'root' => true,
+                ],
+            ],
         ], [
-            'name'          => 'Fine Arts',
-            'description'   => 'From 2011, all students will complete a three-year degree, either in fine arts or music.',
-            'tags'          => [
+            'name'        => 'Fashion',
+            'description' => 'Jewelry and clothing fashions vary with the season.',
+            'tags'        => [
                 [
-                    'text'  => 'Fine Arts',
-                    'root'  => true
-                ]
-            ]
+                    'text' => 'Fashion',
+                    'root' => true,
+                ],
+            ],
         ], [
-            'name'          => 'Education',
-            'description'   => 'Education news on the VCE, universities, TAFE and other higher education options in the world.',
-            'tags'          => [
+            'name'        => 'Fine Arts',
+            'description' => 'From 2011, all students will complete a three-year degree, either in fine arts or music.',
+            'tags'        => [
                 [
-                    'text'  => 'Education',
-                    'root'  => true
-                ]
-            ]
+                    'text' => 'Fine Arts',
+                    'root' => true,
+                ],
+            ],
         ], [
-            'name'          => 'Miscellaneous',
-            'description'   => 'Regimes, rulers and miscellaneous radicals have come and gone.',
-            'tags'          => [
+            'name'        => 'Education',
+            'description' => 'Education news on the VCE, universities, TAFE and other higher education options in the world.',
+            'tags'        => [
                 [
-                    'text'  => 'Miscellaneous',
-                    'root'  => true
-                ]
-            ]
-        ]
+                    'text' => 'Education',
+                    'root' => true,
+                ],
+            ],
+        ], [
+            'name'        => 'Miscellaneous',
+            'description' => 'Regimes, rulers and miscellaneous radicals have come and gone.',
+            'tags'        => [
+                [
+                    'text' => 'Miscellaneous',
+                    'root' => true,
+                ],
+            ],
+        ],
     ];
 
     /**
@@ -132,13 +132,13 @@ class CategoriesSeeder extends Seeder {
     public function run() {
         foreach ($this->data as $cat) {
             $category = Category::create([
-                'name'          => $cat['name'],
-                'description'   =>$cat['description']
+                'name'        => $cat['name'],
+                'description' => $cat['description'],
             ]);
 
             foreach ($cat['tags'] as $t) {
                 $tag = Tag::create([
-                    'text'  => $t['text']
+                    'text' => $t['text'],
                 ]);
 
                 $category->tags()->attach($tag->id, ['root' => $t['root']]);
