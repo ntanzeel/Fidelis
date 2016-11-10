@@ -16,6 +16,7 @@ class CreateFollowersTable extends Migration {
             $table->increments('id');
             $table->integer('follower_id')->unsigned();
             $table->integer('following_id')->unsigned();
+            $table->boolean('approved');
             $table->timestamps();
             $table->softDeletes();
 

@@ -35,14 +35,14 @@ class User extends Authenticatable {
     public function followers() {
         return $this->belongsToMany('App\Models\User', 'followers', 'following_id', 'follower_id')
             ->whereNull('followers.deleted_at')
-            ->withPivot(['deleted_at'])
+            ->withPivot(['mutual', 'approved', 'deleted_at'])
             ->withTimestamps();
     }
 
     public function following() {
         return $this->belongsToMany('App\Models\User', 'followers', 'follower_id', 'following_id')
             ->whereNull('followers.deleted_at')
-            ->withPivot(['deleted_at'])
+            ->withPivot(['mutual', 'approved', 'deleted_at'])
             ->withTimestamps();
     }
 }
