@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Database\Seeder;
 
 class PostsSeeder extends Seeder {
 
@@ -15,20 +15,20 @@ class PostsSeeder extends Seeder {
     protected $data = [
         [
             'user_id' => 1,
-            'tags' => ['Politics'],
+            'tags'    => ['Politics'],
         ],
         [
             'user_id' => 1,
-            'tags' => ['Sports', 'Politics'],
+            'tags'    => ['Sports', 'Politics'],
         ],
         [
             'user_id' => 2,
-            'tags' => ['Fashion'],
+            'tags'    => ['Fashion'],
         ],
         [
             'user_id' => 3,
-            'tags' => ['Sports'],
-        ]
+            'tags'    => ['Sports'],
+        ],
     ];
 
     public function run() {

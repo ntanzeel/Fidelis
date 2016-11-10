@@ -17,7 +17,7 @@ class Category extends Model {
         'deleted_at',
     ];
 
-    public function tags(){
+    public function tags() {
         return $this->belongsToMany('App\Models\Tag')
             ->whereNull('category_tag.deleted_at')
             ->withPivot(['root', 'deleted_at'])

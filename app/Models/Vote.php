@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Vote extends Model
-{
-    //
-	use SoftDeletes;
+class Vote extends Model {
+
+    use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'comment_id', 'type'
+        'user_id', 'comment_id', 'type',
     ];
 
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
     ];
 }

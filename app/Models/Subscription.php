@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Subscription extends Model
-{
+class Subscription extends Model {
+
     use SoftDeletes;
 
     protected $fillable = [
@@ -14,6 +14,6 @@ class Subscription extends Model
     ];
 
     protected $dates = [
-        'deleted_at'
+        'deleted_at',
     ];
 }
