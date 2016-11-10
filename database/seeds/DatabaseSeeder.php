@@ -17,5 +17,9 @@ class DatabaseSeeder extends Seeder {
         $this->call(CommentsSeeder::class);
         $this->call(PostsSeeder::class);
         $this->call(NotificationsSeeder::class);
+		$this->call(FollowersSeeder::class);
+		$this->call(ImagesSeeder::class);
+		$this->call(SubscriptionsSeeder::class);
+		$this->call(VotesSeeder::class);
     }
 }
