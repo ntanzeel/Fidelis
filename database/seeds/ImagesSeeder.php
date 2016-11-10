@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Image;
 
-class ImageSeeder extends Seeder
+class ImagesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
