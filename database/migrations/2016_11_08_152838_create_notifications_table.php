@@ -18,6 +18,7 @@ class CreateNotificationsTable extends Migration {
             $table->integer('to_id');
             $table->integer('comment_id');
             $table->text('notification');
+            $table->boolean('read');
             $table->timestamps();
             $table->softDeletes();
         });

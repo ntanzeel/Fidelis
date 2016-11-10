@@ -10,7 +10,7 @@ class Notification extends Model {
     use SoftDeletes;
 
     protected $fillable = [
-        'from_id', 'to_id', 'comment_id', 'notification',
+        'from_id', 'to_id', 'comment_id', 'notification', 'read',
     ];
 
     protected $dates = [

@@ -15,6 +15,7 @@ class NotificationsSeeder extends Seeder {
             'to_id'        => 2,
             'comment_id'   => 1,
             'notification' => 'I agree.',
+            'read'         => false,
         ]);
     }
 }
