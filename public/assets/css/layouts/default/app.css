@@ -89,7 +89,7 @@
 .dropdown-menu:after {
     position: absolute;
     top: -6px;
-    left: 25px;
+    right: 25px;
     display: inline-block;
     border-right: 6px solid transparent;
     border-bottom: 6px solid #ffffff;
