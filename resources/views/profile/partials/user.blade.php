@@ -12,6 +12,9 @@
                 &commat;{{ $user->username }}
             </a>
         </div>
+        <p class="profile-status">
+            <button class="btn btn-primary btn-block">Follow</button>
+        </p>
         <div class="profile-statistics">
             <ul class="list-unstyled statistics-list">
                 <li>

@@ -16,7 +16,7 @@ class CreateVotesTable extends Migration {
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('comment_id');
-            $table->string('type');
+            $table->integer('type');
             $table->timestamps();
             $table->softDeletes();
 
