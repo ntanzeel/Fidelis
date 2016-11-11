@@ -4,7 +4,7 @@
         <ul class="nav nav-pills nav-stacked">
             @if(Auth::user())
                 <li role="presentation">
-                    <a href="{{ route('discover.index') }}">Subscribed</a>
+                    <a class="{{ $active == "Subscribed" ? 'active' : '' }}" href="{{ route('discover.index') }}">Subscribed</a>
                 </li>
             @endif
             @foreach($categories as $category)
