@@ -97,7 +97,7 @@ a, a:hover, a:visited, a:focus {
 .nav-stacked a.active,
 .nav-stacked a:hover,
 .nav-stacked a:focus {
-    border-left: 4px solid #FF6631;
+    color: #FF6631;
 }
 
 .page-title {
