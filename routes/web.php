@@ -123,22 +123,22 @@ Route::group(['as' => 'notifications.'], function() {
  */
 
 Route::group(['as' => 'profile.'], function() {
-    Route::get('p/me', [
+    Route::get('@me', [
         'as'    => 'index',
         'uses'  => 'ProfileController@index'
     ]);
 
-    Route::get('p/{username}', [
+    Route::get('@{username}', [
         'as'    => 'view',
         'uses'  => 'ProfileController@view'
     ]);
 
-    Route::get('p/{username}/followers', [
+    Route::get('@{username}/followers', [
         'as'    => 'followers',
         'uses'  => 'ProfileController@followers'
     ]);
 
-    Route::get('p/{username}/following', [
+    Route::get('@{username}/following', [
         'as'    => 'following',
         'uses'  => 'ProfileController@following'
     ]);
