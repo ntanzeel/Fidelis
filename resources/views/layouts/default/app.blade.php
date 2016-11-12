@@ -62,6 +62,7 @@
         @push('scripts')
             <script src="{{ asset('assets/js/frameworks/jquery/3.1.1.min.js') }}"></script>
             <script src="{{ asset('assets/js/frameworks/bootstrap/3.3.7.min.js') }}"></script>
+            <script src="{{ asset('assets/js/layouts/default/discover/_shared.js') }}"></script>
         @endpush
         @stack('scripts')
     </body>

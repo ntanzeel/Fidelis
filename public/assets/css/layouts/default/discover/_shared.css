@@ -33,6 +33,7 @@ a.btn-subscribe {
     padding:10px;
     border-radius:4px;
     font-size:12pt;
+    border-color: #d3e0e9;
 }
 
 a.btn-subscribe:focus,
