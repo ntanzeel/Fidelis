@@ -70,6 +70,7 @@ class FollowersSeeder extends Seeder {
         Follower::create([
             'follower_id'  => 3,
             'following_id' => 4,
+            'mutual'       => 1,
             'approved'     => 1,
         ]);
 

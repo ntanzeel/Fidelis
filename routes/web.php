@@ -14,107 +14,117 @@
 /*
  * Authentication
  */
-Route::group(['as' => 'auth.'], function() {
+Route::group(['as' => 'auth.'], function () {
 
     /*
      * Login Routes
      */
     Route::get('login', [
-        'as'    => 'login',
-        'uses'  => 'Auth\LoginController@index'
+        'as'   => 'login',
+        'uses' => 'Auth\LoginController@index',
     ]);
 
     Route::post('login', [
-        'as'    => 'login',
-        'uses'  => 'Auth\LoginController@login'
+        'as'   => 'login',
+        'uses' => 'Auth\LoginController@login',
     ]);
 
     /*
      * Logout Routes
      */
     Route::get('logout', [
-        'as'    => 'logout',
-        'uses'  => 'Auth\LoginController@logout'
+        'as'   => 'logout',
+        'uses' => 'Auth\LoginController@logout',
     ]);
 
     /*
      * Registration Routes
      */
     Route::get('register', [
-        'as'    => 'register',
-        'uses'  => 'Auth\RegisterController@index'
+        'as'   => 'register',
+        'uses' => 'Auth\RegisterController@index',
     ]);
 
     Route::post('register', [
-        'as'    => 'register',
-        'uses'  => 'Auth\RegisterController@register'
+        'as'   => 'register',
+        'uses' => 'Auth\RegisterController@register',
     ]);
 
     /*
      * Password Reset Routes
      */
     Route::get('password/reset', [
-        'as'    => 'password.request',
-        'uses'  => 'Auth\Password\ForgotController@index'
+        'as'   => 'password.request',
+        'uses' => 'Auth\Password\ForgotController@index',
     ]);
 
     Route::post('password/email', [
-        'as'    => 'password.email',
-        'uses'  => 'Auth\Password\ForgotController@sendResetLinkEmail'
+        'as'   => 'password.email',
+        'uses' => 'Auth\Password\ForgotController@sendResetLinkEmail',
     ]);
 
     Route::get('password/reset/{token}', [
-        'as'    => 'password.change',
-        'uses'  => 'Auth\Password\ResetController@index'
+        'as'   => 'password.change',
+        'uses' => 'Auth\Password\ResetController@index',
     ]);
     Route::post('password/reset', [
-        'as'    => 'password.reset',
-        'uses'  => 'Auth\Password\ResetController@reset'
+        'as'   => 'password.reset',
+        'uses' => 'Auth\Password\ResetController@reset',
     ]);
 });
 
 /*
  * Pages
  */
-Route::group(['as' => 'pages.'], function() {
+Route::group(['as' => 'pages.'], function () {
     Route::get('/', [
-        'as'    => 'index',
-        'uses'  => 'PagesController@index'
+        'as'   => 'index',
+        'uses' => 'PagesController@index',
     ]);
 });
 
 /*
  * Home
  */
-Route::group(['as' => 'home.'], function() {
+Route::group(['as' => 'home.'], function () {
     Route::get('home', [
-        'as'    => 'index',
-        'uses'  => 'HomeController@index'
+        'as'   => 'index',
+        'uses' => 'HomeController@index',
     ]);
 });
 
 /*
  * Discover
  */
-Route::group(['as' => 'discover.'], function() {
+Route::group(['as' => 'discover.'], function () {
     Route::get('discover', [
-        'as'    => 'index',
-        'uses'  => 'DiscoverController@index'
+        'as'   => 'index',
+        'uses' => 'DiscoverController@index',
     ]);
 
     Route::get('discover/{category}', [
-        'as'    => 'category',
-        'uses'  => 'DiscoverController@category'
+        'as'   => 'category',
+        'uses' => 'DiscoverController@category',
     ]);
 });
 
 /*
  * Notifications
  */
-Route::group(['as' => 'notifications.'], function() {
+Route::group(['as' => 'notifications.'], function () {
     Route::get('notifications', [
-        'as'    => 'index',
-        'uses'  => 'NotificationsController@index'
+        'as'   => 'index',
+        'uses' => 'NotificationsController@index',
+    ]);
+});
+
+/*
+ * Posts
+ */
+Route::group(['as' => 'posts.'], function () {
+    Route::post('post', [
+        'as'   => 'store',
+        'uses' => 'PostsController@store',
     ]);
 });
 
@@ -122,24 +132,24 @@ Route::group(['as' => 'notifications.'], function() {
  * User
  */
 
-Route::group(['as' => 'profile.'], function() {
+Route::group(['as' => 'profile.'], function () {
     Route::get('@me', [
-        'as'    => 'index',
-        'uses'  => 'ProfileController@index'
+        'as'   => 'index',
+        'uses' => 'ProfileController@index',
     ]);
 
     Route::get('@{username}', [
-        'as'    => 'view',
-        'uses'  => 'ProfileController@view'
+        'as'   => 'view',
+        'uses' => 'ProfileController@view',
     ]);
 
     Route::get('@{username}/followers', [
-        'as'    => 'followers',
-        'uses'  => 'ProfileController@followers'
+        'as'   => 'followers',
+        'uses' => 'ProfileController@followers',
     ]);
 
     Route::get('@{username}/following', [
-        'as'    => 'following',
-        'uses'  => 'ProfileController@following'
+        'as'   => 'following',
+        'uses' => 'ProfileController@following',
     ]);
 });

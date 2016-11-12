@@ -13,7 +13,7 @@ class AddMutualToFollowersTable extends Migration {
      */
     public function up() {
         Schema::table('followers', function (Blueprint $table) {
-            $table->integer('mutual');
+            $table->boolean('mutual');
         });
     }
 
@@ -23,7 +23,6 @@ class AddMutualToFollowersTable extends Migration {
      * @return void
      */
     public function down() {
-        //
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('mutual');
         });

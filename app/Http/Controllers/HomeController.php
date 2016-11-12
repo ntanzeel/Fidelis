@@ -19,6 +19,8 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('home.index');
+        $posts = Auth::user()->posts;
+//        dd($posts[0]->comments);
+        return view('home.index', compact('posts'));
     }
 }

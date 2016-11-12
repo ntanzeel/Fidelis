@@ -45,4 +45,8 @@ class User extends Authenticatable {
             ->withPivot(['mutual', 'approved', 'deleted_at'])
             ->withTimestamps();
     }
+
+    public function posts() {
+        return $this->hasMany('App\Models\Post');
+    }
 }
