@@ -29,5 +29,20 @@ class SubscriptionsSeeder extends Seeder {
             'user_id'   => 3,
             'tag_id'    => 2
         ]);
+
+        App\Models\Subscription::create([
+            'user_id'   => 4,
+            'tag_id'    => 1
+        ]);
+
+        App\Models\Subscription::create([
+            'user_id'   => 4,
+            'tag_id'    => 2
+        ]);
+
+        App\Models\Subscription::create([
+            'user_id'   => 4,
+            'tag_id'    => 3
+        ]);
     }
 }

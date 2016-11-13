@@ -23,7 +23,51 @@ body {
     color: #FF6631;
     background-color: #FFFFFF;
     border-color: #d3e0e9;
+    margin: 17px;
+    position: absolute;
+    right: 15px;
+}
+
+.discover-header a.btn-manage {
+    color: #FF6631;
+    background-color: #FFFFFF;
+    border-color: #d3e0e9;
     margin: 17px 0;
     position: absolute;
     right: 15px;
+}
+
+.discover-header a:focus,
+.discover-header a:hover {
+    background-color: #eee;
+}
+
+.list-subscription {
+    list-style-type: none;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.list-subscription:hover {
+    background-color: #eee;
+}
+
+a.btn-unsubscribe {
+    color: #FFFFFF;
+    position: relative;
+    top: -7px;
+    padding: 7px;
+    border-radius: 4px;
+    float: right;
+    background-color: #FF6631;
+}
+
+a.btn-unsubscribe:hover,
+a.btn-unsubscribe:focus,
+a.btn-unsubscribe:active {
+    color: #FF6631;
+    background-color: #FFFFFF;
+    border: 1px solid #FF6631;
+    text-decoration: none;
 }

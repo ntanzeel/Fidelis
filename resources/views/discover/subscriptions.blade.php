@@ -5,8 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    Subscribed
-                    <a role="button" class="btn btn-default btn-manage pull-right" href={{ route('discover.subscriptions') }}>Manage</a>
+                    My Subscriptions
                 </div>
             </div>
         </div>
@@ -14,12 +13,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                @include('discover.partials.sidebar', ['categories' => $categories, 'active' => "Subscribed"])
+                @include('discover.partials.sidebar', ['categories' => $categories, 'active' => ""])
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        Post
+                        @foreach($subscriptions as $subscription)
+                            <li class='list-subscription'>
+                                {{ $subscription }} <a class='btn-unsubscribe' href="#">Unsubscribe</a>
+                            </li>
+                        @endforeach
                     </div>
                 </div>
             </div>

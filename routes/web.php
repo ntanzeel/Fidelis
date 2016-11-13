@@ -102,6 +102,11 @@ Route::group(['as' => 'discover.'], function () {
         'uses' => 'DiscoverController@index',
     ]);
 
+    Route::get('discover/subscriptions', [
+        'as' => 'subscriptions',
+        'uses' => 'DiscoverController@subscriptions'
+    ]);
+
     Route::get('discover/{category}', [
         'as'   => 'category',
         'uses' => 'DiscoverController@category',

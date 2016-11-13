@@ -23,7 +23,7 @@ class AddMutualToFollowersTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('followers', function (Blueprint $table) {
             $table->dropColumn('mutual');
         });
     }
