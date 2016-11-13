@@ -49,4 +49,14 @@ class User extends Authenticatable {
     public function posts() {
         return $this->hasMany('App\Models\Post');
     }
+
+    public function notifications() {
+        return $this->hasMany('App\Models\Notification', 'to_id');
+    }
+
+    /*Function to return the number of notifications for a user
+    public function numOfNotifications() {
+        return count($this->hasMany('App\Models\Notification', 'to_id')->where('read', 0));
+    }
+    */
 }

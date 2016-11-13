@@ -16,4 +16,17 @@ class Notification extends Model {
     protected $dates = [
         'deleted_at',
     ];
+
+    public function from() {
+        return $this->belongsTo('App\Models\User', 'from_id');
+    }
+
+    public function to() {
+        return $this->belongsTo('App\Models\User', 'to_id');
+    }
+
+    public function comment() {
+        return $this->belongsTo('App\Models\Comment');
+//            ->where('root', false);
+    }
 }
