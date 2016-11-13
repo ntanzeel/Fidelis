@@ -36,7 +36,7 @@ class CommentsSeeder extends Seeder {
 
         App\Models\Comment::create([
             'user_id'    => 1,
-            'post_id'    => 1,
+            'post_id'    => 4,
             'text'    => 'I agree, they should have stuck with Van Gaal for a while longer',
             'reputation' => 2,
             'root'       => false,
