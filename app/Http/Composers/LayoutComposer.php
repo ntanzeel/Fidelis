@@ -30,6 +30,7 @@ class LayoutComposer {
     public function compose(View $view) {
         $view->with('navigation', $this->getNavigation());
         $view->with('stylesheets', $this->getStyles());
+        $view->with('scripts', $this->getScripts());
     }
 
     public function getStyles() {
@@ -48,6 +49,24 @@ class LayoutComposer {
         }
 
         return $stylesheets;
+    }
+
+    public function getScripts() {
+        list($controller, $action) = explode('@', $this->request->route()->getActionName());
+        $controller = strtolower(substr(str_replace('\\', '/', $controller), 20, strlen($controller) - 30));
+
+        $scripts = [
+            'Controller'    => '/assets/js' . $this->layoutPath . $controller . '/_shared.js',
+            'View'          => '/assets/css' . $this->layoutPath . $controller . '/' . $action . '.js'
+        ];
+
+        foreach ($scripts as $key => $script) {
+            if (!file_exists($this->publicPath . $script)) {
+                unset($scripts[$key]);
+            }
+        }
+
+        return $scripts;
     }
 
     /**

@@ -16,18 +16,21 @@
         @endpush
         @stack('fonts')
 
-        <!-- Styles -->
+        <!-- Framework Stylesheets -->
         @push('frameworks.stylesheets')
             <link href="{{ asset('assets/css/frameworks/bootstrap/3.3.7.min.css') }}" rel="stylesheet">
             <link href="{{ asset('assets/css/frameworks/font-awesome/css/4.7.0.min.css') }}" rel="stylesheet">
         @endpush
         @stack('frameworks.stylesheets')
 
-        @stack('stylesheets')
-
-        <!-- Layout -->
+        <!-- App Stylesheets -->
         <link href="{{ asset('assets/css/layouts/default/app.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/layouts/default/helpers.css') }}" rel="stylesheet">
+
+        <!-- Forced Stylesheets -->
+        @stack('stylesheets')
+
+        <!-- Local Stylesheets
         @foreach($stylesheets as $key => $stylesheet)
             <!--{{ $key }}-->
             <link href="{{ asset($stylesheet) }}" rel="stylesheet">
@@ -59,12 +62,23 @@
             @show
         </div>
 
-        <!-- Scripts -->
-        @push('scripts')
+        <!-- Framework Scripts -->
+        @push('frameworks.scripts')
             <script src="{{ asset('assets/js/frameworks/jquery/3.1.1.min.js') }}"></script>
             <script src="{{ asset('assets/js/frameworks/bootstrap/3.3.7.min.js') }}"></script>
-            <script src="{{ asset('assets/js/layouts/default/discover/_shared.js') }}"></script>
         @endpush
+        @stack('frameworks.scripts')
+
+        <!-- App Scripts -->
+        <script src="{{ asset('assets/js/layouts/default/app.js') }}"></script>
+
+        <!-- Forced Scripts -->
         @stack('scripts')
+
+        <!-- Local Scripts -->
+        @foreach($scripts as $key => $script)
+            <!--{{ $key }}-->
+            <script src="{{ asset($script) }}" rel="stylesheet"></script>
+        @endforeach
     </body>
 </html>
