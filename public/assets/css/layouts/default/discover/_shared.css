@@ -11,33 +11,19 @@ body {
 .discover-header {
     background: #FF6631;
     margin-bottom: 20px;
+    padding: 15px;
     border-bottom: 1px solid #D3E0E9;
-    height: 70px;
-    text-align: center;
+    height: 100px;
     color: #FFFFFF;
     font-size: 20pt;
     line-height: 70px;
 }
 
-.subscribe {
-    position:relative;
-    top: -67px;
-    text-align: right;
-    height:0px;
-    padding-right:35px;
-}
-
-a.btn-subscribe {
+.discover-header a.btn-subscribe {
     color: #FF6631;
     background-color: #FFFFFF;
-    padding:10px;
-    border-radius:4px;
-    font-size:12pt;
     border-color: #d3e0e9;
-}
-
-a.btn-subscribe:focus,
-a.btn-subscribe:hover {
-    background-color: #eee;
-    text-decoration:none;
+    margin: 17px 0;
+    position: absolute;
+    right: 15px;
 }

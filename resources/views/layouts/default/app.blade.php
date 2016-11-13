@@ -50,7 +50,7 @@
                 @section('container')
                     <div class="container">
                         <div class="row">
-                            <div lang="col-sm-12">
+                            <div class="col-md-12">
                                 @yield('content')
                             </div>
                         </div>
