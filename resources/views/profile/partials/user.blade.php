@@ -13,7 +13,11 @@
             </a>
         </div>
         <p class="profile-status">
-            <button class="btn btn-primary btn-block">Follow</button>
+            @if ($user->pivot->follower_id == Auth::user()->id || $user->pivot->mutual)
+                <button class="btn btn-block btn-danger">Remove</button>
+            @else
+                <button class="btn btn-block btn-primary">Follow</button>
+            @endif
         </p>
         <div class="profile-statistics">
             <ul class="list-unstyled statistics-list">
