@@ -26,7 +26,7 @@
 
         <!-- App Stylesheets -->
         <link href="{{ asset('assets/css/layouts/default/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/layouts/default/helpers.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/layouts/default/_shared.css') }}" rel="stylesheet">
 
         <!-- Forced Stylesheets -->
         @stack('stylesheets')
