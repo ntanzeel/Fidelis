@@ -14,4 +14,11 @@ $(document).ready(function(){
         }
     });
 
+    $('.btn-unsubscribe').click(function(){
+        if ($('.btn-unsubscribe').length == 1){
+            $(this).parent().parent().prepend("You have no subscriptions");
+        }
+        $(this).parent().remove();
+    });
+
 });

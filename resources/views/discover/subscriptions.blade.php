@@ -18,11 +18,13 @@
             <div class="col-md-6 col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
+                        <ul class="list-subscription">
                         @foreach($subscriptions as $subscription)
-                            <li class='list-subscription'>
-                                {{ $subscription }} <a class='btn-unsubscribe' href="#">Unsubscribe</a>
+                            <li class='item-subscription'>
+                                {{ $subscription->tag->text }} <a class='btn-unsubscribe' href="#">Unsubscribe</a>
                             </li>
                         @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>

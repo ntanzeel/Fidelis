@@ -16,4 +16,8 @@ class Subscription extends Model {
     protected $dates = [
         'deleted_at',
     ];
+
+    public function tag() {
+        return $this->hasOne('App\Models\Tag', 'id');
+    }
 }

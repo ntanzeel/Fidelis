@@ -43,20 +43,25 @@ body {
 }
 
 .list-subscription {
+    margin: 0px;
+    padding: 0px;
+}
+
+.item-subscription {
     list-style-type: none;
     padding: 10px;
     text-decoration: none;
     border-radius: 4px;
 }
 
-.list-subscription:hover {
+.item-subscription:hover {
     background-color: #eee;
 }
 
 a.btn-unsubscribe {
     color: #FFFFFF;
     position: relative;
-    top: -7px;
+    top: -8px;
     padding: 7px;
     border-radius: 4px;
     float: right;

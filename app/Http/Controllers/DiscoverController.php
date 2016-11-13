@@ -12,8 +12,14 @@ class DiscoverController extends Controller {
     private $subscriptions;
 
     public function __construct() {
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+        }
+        else {
+            $id = 1;
+        }
         $this->categories = Category::orderBy('name')->get();
-        $this->subscriptions = ['#brexit'];
+        $this->subscriptions = Subscription::where('user_id', $id)->orderBy('id','desc')->get();
     }
 
     public function index() {
