@@ -1,16 +1,4 @@
 /*
- * Default Overrides
- */
-body {
-    line-height: 1;
-    padding-top: 71px;
-}
-
-a, a:hover, a:visited, a:focus {
-    color: #636b6f;
-}
-
-/*
  * Header & Navigation
  */
 .navbar {
@@ -84,7 +72,7 @@ a, a:hover, a:visited, a:focus {
     border-radius: 4px;
 }
 
-.dropdown-menu:before {
+.navbar-default .navbar-nav .dropdown-menu:before {
     position: absolute;
     top: -7px;
     right: 24px;
@@ -95,7 +83,7 @@ a, a:hover, a:visited, a:focus {
     content: '';
 }
 
-.dropdown-menu:after {
+.navbar-default .navbar-nav  .dropdown-menu:after {
     position: absolute;
     top: -6px;
     right: 25px;
