@@ -13,14 +13,10 @@
         <div class="col-md-6 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    @include('posts.partials.createForm')
+                    @include('posts.partials.create')
                 </div>
-                <div class="panel-body text-center">
-                    @foreach($posts as $post)
-                        <p>
-                            {!! $post->content->htmlText() !!}
-                        </p>
-                    @endforeach
+                <div class="panel-body" style="padding: 0">
+                    @include('posts.partials.feed', compact('posts'))
                 </div>
             </div>
         </div>

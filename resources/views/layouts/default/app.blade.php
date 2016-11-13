@@ -27,6 +27,7 @@
 
         <!-- Layout -->
         <link href="{{ asset('assets/css/layouts/default/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/layouts/default/helpers.css') }}" rel="stylesheet">
         @foreach($stylesheets as $key => $stylesheet)
             <!--{{ $key }}-->
             <link href="{{ asset($stylesheet) }}" rel="stylesheet">

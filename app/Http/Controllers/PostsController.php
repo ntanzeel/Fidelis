@@ -25,6 +25,8 @@ class PostsController extends Controller {
         foreach ($tags as $tag) {
             $post->tags()->attach(Tag::firstOrCreate(['text' => $tag]));
         }
+
+        return redirect()->route('home.index');
     }
 
 }

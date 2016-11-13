@@ -10,17 +10,6 @@ a, a:hover, a:visited, a:focus {
 }
 
 /*
- * Components
- */
-.btn-primary {
-
-}
-
-/*
- * Helper Classes
- */
-
-/*
  * Header & Navigation
  */
 .navbar {
@@ -127,12 +116,4 @@ a, a:hover, a:visited, a:focus {
     border-bottom: 6px solid #ffffff;
     border-left: 6px solid transparent;
     content: '';
-}
-
-.widget {
-
-}
-
-.widget-body {
-    position: relative;
 }
