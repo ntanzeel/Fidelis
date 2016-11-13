@@ -6,7 +6,21 @@
 }
 
 .color.dark {
-    color: #333
+    color: #333;
+}
+
+/*
+ * Buttons
+ */
+.btn-orange {
+    color: #FF6631;
+    background-color: #FFF;
+    border: 1px solid #FF6631;
+}
+
+.btn-orange:hover {
+    color: #FFF;
+    background-color: #FF6631;
 }
 
 /*
@@ -33,11 +47,19 @@
  */
 .post-list > li {
     margin: 0;
-    padding: 15px;
 }
 
 .post-list > li:not(:last-child) {
     border-bottom: 1px solid #D3E0E9;
+}
+
+.post-list > li > .post {
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+.post-list > li > .post:hover {
+    background-color: #F5F5F5;
 }
 
 .post .post-header > a.author {
@@ -56,6 +78,37 @@
 
 }
 
-.post-footer {
+.post .post-body .hash-tag {
+    color: #FF6631;
+}
+
+.post .post-footer {
     margin-top: 10px;
+}
+
+.post .action-list a.action {
+    padding: 5px;
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 14px;
+}
+
+.post .action-list a.action > i.fa {
+    margin-right: 5px;
+}
+
+.post .action.action-like.active,
+.post .action.action-like:hover {
+    color: #e81c4f;
+}
+
+.post .action.action-comment.active,
+.post .action.action-comment:hover {
+    color: #08AD93;
+}
+
+.post .action.action-flag.active,
+.post .action.action-flag:hover {
+    color: #AD441A;
 }

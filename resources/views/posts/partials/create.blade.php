@@ -1,4 +1,4 @@
-<form class="ajax" method="post" action="{{ route('posts.store') }}">
+<form class="ajax post-form" method="post" action="{{ route('posts.store') }}">
     {{ csrf_field() }}
 
     <div class="form-group">
@@ -6,6 +6,6 @@
         <textarea class="form-control" id="text" name="text" placeholder="What are you thinking?"></textarea>
     </div>
     <div class="text-right">
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-orange">Submit</button>
     </div>
 </form>

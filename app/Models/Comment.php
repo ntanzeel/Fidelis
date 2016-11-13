@@ -26,7 +26,7 @@ class Comment extends Model {
 
     public function htmlText() {
         return preg_replace_callback('/#(\w+)/', function($matches) {
-            return '<a href="' . route('discover.category', [$matches[1]]) . '">' . $matches[0] . '</a>';
+            return '<a class="hash-tag" href="' . route('discover.category', [$matches[1]]) . '">' . $matches[0] . '</a>';
         }, $this->text);
     }
 }

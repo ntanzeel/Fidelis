@@ -8,7 +8,7 @@ a, a:hover, a:visited, a:focus {
 }
 
 /*
- * Widget
+ * Panel
  */
 .panel {
 
@@ -20,4 +20,73 @@ a, a:hover, a:visited, a:focus {
 
 .panel-body {
     position: relative;
+}
+
+/*
+ * Buttons
+ */
+.btn {
+    transition: all 0.15s ease-in-out;
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+}
+
+.btn:active {
+    box-shadow: none;
+}
+
+.btn-primary {
+    color: #337ab7;
+    background-color: #FFF;
+    border: 1px solid #337ab7;
+}
+
+.btn-primary:hover {
+    color: #FFF;
+    background-color: #337ab7;
+}
+
+.btn-success {
+    color: #5cb85c;
+    background-color: #FFF;
+    border: 1px solid #5cb85c;
+}
+
+.btn-primary:hover {
+    color: #FFF;
+    background-color: #5cb85c;
+}
+
+.btn-info {
+    color: #5bc0de;
+    background-color: #FFF;
+    border: 1px solid #5bc0de;
+}
+
+.btn-info:hover {
+    color: #FFF;
+    background-color: #5bc0de;
+}
+
+.btn-warning {
+    color: #f0ad4e;
+    background-color: #FFF;
+    border: 1px solid #f0ad4e;
+}
+
+.btn-warning:hover {
+    color: #FFF;
+    background-color: #f0ad4e;
+}
+
+.btn-danger {
+    color: #d9534f;
+    background-color: #FFF;
+    border: 1px solid #d9534f;
+}
+
+.btn-danger:hover {
+    color: #FFF;
+    background-color: #d9534f;
 }

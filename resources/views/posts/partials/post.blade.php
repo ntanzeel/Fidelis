@@ -15,8 +15,18 @@
         <div class="post-body">
             {!! $post->content->htmlText() !!}
         </div>
-        <div class="post-footer small">
-            X Likes, X Comments
+        <div class="post-footer">
+            <ul class="list-inline list-unstyled action-list">
+                <li>
+                    <a role="button" class="action action-like"><i class="fa fa-heart"></i> {{ $post->content->reputation }}</a>
+                </li>
+                <li>
+                    <a role="button" class="action action-comment"><i class="fa fa-comment"></i> {{ $post->content->reputation }}</a>
+                </li>
+                <li class="pull-right">
+                    <a role="button" class="action action-flag"><i class="fa fa-flag"></i></a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
