@@ -1,0 +1,61 @@
+/*
+ * Colors
+ */
+.color.light {
+    color: #999;
+}
+
+.color.dark {
+    color: #333
+}
+
+/*
+ * Users
+ */
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+}
+
+.full-name {
+    color: #333;
+    font-weight: bold;
+}
+
+.username {
+    color: #999;
+    font-size: 13px;
+}
+
+/*
+ * Posts
+ */
+.post-list > li {
+    margin: 0;
+    padding: 15px;
+}
+
+.post-list > li:not(:last-child) {
+    border-bottom: 1px solid #D3E0E9;
+}
+
+.post .post-header > a.author {
+    text-decoration: none;
+}
+
+.post .post-header > a.author:hover > .full-name {
+    text-decoration: underline;
+}
+
+.post .post-header .time::before {
+    content: "\2014";
+}
+
+.post .post-body {
+
+}
+
+.post-footer {
+    margin-top: 10px;
+}

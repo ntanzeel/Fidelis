@@ -1,0 +1,23 @@
+body {
+    line-height: 1;
+    padding-top: 71px;
+}
+
+a, a:hover, a:visited, a:focus {
+    color: #636b6f;
+}
+
+/*
+ * Widget
+ */
+.panel {
+
+}
+
+.panel .panel-heading {
+    line-height: 1.6;
+}
+
+.panel-body {
+    position: relative;
+}

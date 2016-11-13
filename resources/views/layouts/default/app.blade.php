@@ -19,13 +19,14 @@
         <!-- Framework Stylesheets -->
         @push('frameworks.stylesheets')
             <link href="{{ asset('assets/css/frameworks/bootstrap/3.3.7.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('assets/css/frameworks/bootstrap/override.css') }}" rel="stylesheet">
             <link href="{{ asset('assets/css/frameworks/font-awesome/css/4.7.0.min.css') }}" rel="stylesheet">
         @endpush
         @stack('frameworks.stylesheets')
 
         <!-- App Stylesheets -->
         <link href="{{ asset('assets/css/layouts/default/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/layouts/default/helpers.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/layouts/default/_shared.css') }}" rel="stylesheet">
 
         <!-- Forced Stylesheets -->
         @stack('stylesheets')
@@ -78,7 +79,7 @@
         <!-- Local Scripts -->
         @foreach($scripts as $key => $script)
             <!--{{ $key }}-->
-            <script src="{{ asset($script) }}" rel="stylesheet"></script>
+            <script src="{{ asset($script) }}"></script>
         @endforeach
     </body>
 </html>
