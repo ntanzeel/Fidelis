@@ -59,20 +59,20 @@ body {
 }
 
 a.btn-unsubscribe {
-    color: #FFFFFF;
     position: relative;
     top: -8px;
     padding: 7px;
     border-radius: 4px;
     float: right;
-    background-color: #FF6631;
+    color: #FF6631;
+    background-color: #FFFFFF;
+    border: 1px solid #FF6631;
 }
 
 a.btn-unsubscribe:hover,
 a.btn-unsubscribe:focus,
 a.btn-unsubscribe:active {
-    color: #FF6631;
-    background-color: #FFFFFF;
-    border: 1px solid #FF6631;
+    color: #FFFFFF;
+    background-color: #FF6631;
     text-decoration: none;
 }
