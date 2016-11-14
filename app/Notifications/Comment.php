@@ -10,11 +10,15 @@ class Comment extends Notification {
 
     use Queueable;
 
+    private $comment;
+
     /**
      * Create a new notification instance.
+     *
+     * @param $comment
      */
-    public function __construct() {
-        //
+    public function __construct($comment) {
+        $this->comment = $comment;
     }
 
     /**
@@ -48,7 +52,7 @@ class Comment extends Notification {
      */
     public function toArray($notifiable) {
         return [
-            //
+            'from' => $this->comment->user_id,
         ];
     }
 }

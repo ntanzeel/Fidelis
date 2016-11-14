@@ -10,11 +10,15 @@ class Vote extends Notification {
 
     use Queueable;
 
+    private $vote;
+
     /**
      * Create a new notification instance.
+     *
+     * @param $vote
      */
-    public function __construct() {
-        //
+    public function __construct($vote) {
+        $this->vote = $vote;
     }
 
     /**
@@ -48,7 +52,7 @@ class Vote extends Notification {
      */
     public function toArray($notifiable) {
         return [
-            //
+            'from' => $this->vote->user_id,
         ];
     }
 }
