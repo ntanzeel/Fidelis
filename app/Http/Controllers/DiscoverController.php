@@ -21,10 +21,9 @@ class DiscoverController extends Controller {
 
     public function category($category) {
         if (Auth::check()) {
-            $tag = (Tag::where('text',$category)->first())->id;
+            $tag = (Tag::where('text', $category)->first())->id;
             $subscribed = (Subscription::where('user_id', Auth::user()->id)->where('tag_id', $tag)->first() !== null);
-        }
-        else {
+        } else {
             $tag = [];
             $subscribed = [];
         }
@@ -36,8 +35,7 @@ class DiscoverController extends Controller {
             $id = Auth::user()->id;
             $subscriptions = Subscription::where('user_id', $id)->orderBy('id', 'desc')->get();
             return view('discover.subscriptions')->with('categories', $this->categories)->with('subscriptions', $subscriptions);
-        }
-        else {
+        } else {
             return view('auth.login.index');
         }
     }

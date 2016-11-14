@@ -20,12 +20,12 @@ Route::group(['as' => 'auth.'], function () {
      * Login Routes
      */
     Route::get('login', [
-        'as' => 'login',
+        'as'   => 'login',
         'uses' => 'Auth\LoginController@index',
     ]);
 
     Route::post('login', [
-        'as' => 'login',
+        'as'   => 'login',
         'uses' => 'Auth\LoginController@login',
     ]);
 
@@ -33,7 +33,7 @@ Route::group(['as' => 'auth.'], function () {
      * Logout Routes
      */
     Route::get('logout', [
-        'as' => 'logout',
+        'as'   => 'logout',
         'uses' => 'Auth\LoginController@logout',
     ]);
 
@@ -41,12 +41,12 @@ Route::group(['as' => 'auth.'], function () {
      * Registration Routes
      */
     Route::get('register', [
-        'as' => 'register',
+        'as'   => 'register',
         'uses' => 'Auth\RegisterController@index',
     ]);
 
     Route::post('register', [
-        'as' => 'register',
+        'as'   => 'register',
         'uses' => 'Auth\RegisterController@register',
     ]);
 
@@ -54,21 +54,21 @@ Route::group(['as' => 'auth.'], function () {
      * Password Reset Routes
      */
     Route::get('password/reset', [
-        'as' => 'password.request',
+        'as'   => 'password.request',
         'uses' => 'Auth\Password\ForgotController@index',
     ]);
 
     Route::post('password/email', [
-        'as' => 'password.email',
+        'as'   => 'password.email',
         'uses' => 'Auth\Password\ForgotController@sendResetLinkEmail',
     ]);
 
     Route::get('password/reset/{token}', [
-        'as' => 'password.change',
+        'as'   => 'password.change',
         'uses' => 'Auth\Password\ResetController@index',
     ]);
     Route::post('password/reset', [
-        'as' => 'password.reset',
+        'as'   => 'password.reset',
         'uses' => 'Auth\Password\ResetController@reset',
     ]);
 });
@@ -78,7 +78,7 @@ Route::group(['as' => 'auth.'], function () {
  */
 Route::group(['as' => 'pages.'], function () {
     Route::get('/', [
-        'as' => 'index',
+        'as'   => 'index',
         'uses' => 'PagesController@index',
     ]);
 });
@@ -88,7 +88,7 @@ Route::group(['as' => 'pages.'], function () {
  */
 Route::group(['as' => 'home.'], function () {
     Route::get('home', [
-        'as' => 'index',
+        'as'   => 'index',
         'uses' => 'HomeController@index',
     ]);
 });
@@ -98,17 +98,17 @@ Route::group(['as' => 'home.'], function () {
  */
 Route::group(['as' => 'discover.'], function () {
     Route::get('discover', [
-        'as' => 'index',
+        'as'   => 'index',
         'uses' => 'DiscoverController@index',
     ]);
 
     Route::get('discover/subscriptions', [
-        'as' => 'subscriptions',
-        'uses' => 'DiscoverController@subscriptions'
+        'as'   => 'subscriptions',
+        'uses' => 'DiscoverController@subscriptions',
     ]);
 
     Route::get('discover/{category}', [
-        'as' => 'category',
+        'as'   => 'category',
         'uses' => 'DiscoverController@category',
     ]);
 });
@@ -118,7 +118,7 @@ Route::group(['as' => 'discover.'], function () {
  */
 Route::group(['as' => 'notifications.'], function () {
     Route::get('notifications', [
-        'as' => 'index',
+        'as'   => 'index',
         'uses' => 'NotificationsController@index',
     ]);
 });
@@ -128,7 +128,7 @@ Route::group(['as' => 'notifications.'], function () {
  */
 Route::group(['as' => 'posts.'], function () {
     Route::post('post', [
-        'as' => 'store',
+        'as'   => 'store',
         'uses' => 'PostsController@store',
     ]);
 });
@@ -139,22 +139,22 @@ Route::group(['as' => 'posts.'], function () {
 
 Route::group(['as' => 'profile.'], function () {
     Route::get('@me', [
-        'as' => 'index',
+        'as'   => 'index',
         'uses' => 'ProfileController@index',
     ]);
 
     Route::get('@{username}', [
-        'as' => 'view',
+        'as'   => 'view',
         'uses' => 'ProfileController@view',
     ]);
 
     Route::get('@{username}/followers', [
-        'as' => 'followers',
+        'as'   => 'followers',
         'uses' => 'ProfileController@followers',
     ]);
 
     Route::get('@{username}/following', [
-        'as' => 'following',
+        'as'   => 'following',
         'uses' => 'ProfileController@following',
     ]);
 });
@@ -165,12 +165,12 @@ Route::group(['as' => 'profile.'], function () {
 
 Route::group(['as' => 'subscriptions.'], function () {
     Route::post('subscribe', [
-        'as' => 'subscribe',
+        'as'   => 'subscribe',
         'uses' => 'SubscriptionsController@subscribe',
     ]);
 
     Route::post('unsubscribe', [
-        'as' => 'unsubscribe',
+        'as'   => 'unsubscribe',
         'uses' => 'SubscriptionsController@unsubscribe',
     ]);
 });

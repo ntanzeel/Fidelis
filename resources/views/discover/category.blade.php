@@ -7,13 +7,13 @@
                 <div class="col-md-12 text-center">
                     {{ $category }}
                     @if(Auth::user())
-                    <a role="button" id='{{ $tag }}' class="btn btn-default btn-subscribe pull-right" href="#">
-                        @if($subscribed)
-                            Unsubscribe
-                        @else
-                            Subscribe
-                        @endif
-                    </a>
+                        <a role="button" id='{{ $tag }}' class="btn btn-default btn-subscribe pull-right" href="#">
+                            @if($subscribed)
+                                Unsubscribe
+                            @else
+                                Subscribe
+                            @endif
+                        </a>
                     @endif
                 </div>
             </div>
