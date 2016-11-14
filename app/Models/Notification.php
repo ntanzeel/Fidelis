@@ -24,23 +24,27 @@ class Notification extends DatabaseNotification {
 
     public function from() {
         return $this->exists ?
-            User::find('id', $this->data['from']) : false;
+            User::find($this->data['from']) : false;
     }
 
     public function regarding() {
         if ($this->exists) {
-            switch($this->type) {
+            switch ($this->type) {
                 case Notifications\Mention::class:
                 case Notifications\Comment::class:
                 case Notifications\Vote::class:
-                    return Comment::find('id', $this->data['regarding']);
+                    return Comment::find($this->data['regarding']);
 
                 case Notifications\Follow::class:
-                    return User::find('id', $this->data['regarding']);
+                    return User::find($this->data['regarding']);
             }
         }
 
         return false;
     }
 
+    public function isType($type) {
+        $components = explode('\\', $this->type);
+        return $this->exists ? end($components) == ucfirst($type) : false;
+    }
 }
