@@ -21,7 +21,7 @@
                         <ul class="list-subscription">
                         @foreach($subscriptions as $subscription)
                             <li class='item-subscription'>
-                                {{ $subscription->tag->text }} <a class='btn-unsubscribe' href="#">Unsubscribe</a>
+                                {{ $subscription->tag->text }} <a id='{{ $subscription->tag_id }}' class='btn-unsubscribe' href="#">Unsubscribe</a>
                             </li>
                         @endforeach
                         </ul>
@@ -33,4 +33,8 @@
             </div>
         </div>
     </div>
+    <script>
+        var token = "{{ csrf_token() }}";
+        var unsubscribeUrl = "{{ route('subscriptions.unsubscribe') }}";
+    </script>
 @stop

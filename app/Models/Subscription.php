@@ -18,6 +18,6 @@ class Subscription extends Model {
     ];
 
     public function tag() {
-        return $this->hasOne('App\Models\Tag', 'id');
+        return $this->belongsTo('App\Models\Tag', 'tag_id');
     }
 }
