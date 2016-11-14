@@ -52,7 +52,8 @@ class Comment extends Notification {
      */
     public function toArray($notifiable) {
         return [
-            'from' => $this->comment->user_id,
+            'regarding' => $this->comment->id,
+            'from'      => $this->comment->user_id,
         ];
     }
 }
