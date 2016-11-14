@@ -20,24 +20,15 @@ class DiscoverController extends Controller {
     }
 
     public function category($category) {
-        if (Auth::check()) {
-            $tag = (Tag::where('text', $category)->first())->id;
-            $subscribed = (Subscription::where('user_id', Auth::user()->id)->where('tag_id', $tag)->first() !== null);
-        } else {
-            $tag = [];
-            $subscribed = [];
-        }
+        $tag = (Tag::where('text', $category)->first())->id;
+        $subscribed = (Auth::user()->subscriptions()->where('tag_id', $tag)->first() !== null) ? true : false;
+
         return view('discover.category')->with('categories', $this->categories)->with('category', $category)->with('subscribed', $subscribed)->with('tag', $tag);
     }
 
     public function subscriptions() {
-        if (Auth::check()) {
-            $id = Auth::user()->id;
-            $subscriptions = Subscription::where('user_id', $id)->orderBy('id', 'desc')->get();
-            return view('discover.subscriptions')->with('categories', $this->categories)->with('subscriptions', $subscriptions);
-        } else {
-            return view('auth.login.index');
-        }
+        $subscriptions = Auth::user()->subscriptions();
+        return view('discover.subscriptions')->with('categories', $this->categories)->with('subscriptions', $subscriptions);
     }
 
 

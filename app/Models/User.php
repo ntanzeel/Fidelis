@@ -55,7 +55,11 @@ class User extends Authenticatable {
     }
 
     public function subscriptions() {
-        return $this->hasMany('App\Models\Subscription', 'user_id');
+        return $this->belongsToMany('App\Models\Tag', 'subscriptions', 'user_id', 'tag_id')
+            ->whereNull('subscriptions.deleted_at')
+            ->withTimestamps();
+
+        //return $this->hasMany('App\Models\Subscription', 'user_id');
     }
 
     /*Function to return the number of notifications for a user
