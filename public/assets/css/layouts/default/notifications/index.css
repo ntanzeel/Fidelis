@@ -1,3 +1,32 @@
-.notification {
+/*.notification img {*/
+    /*width: 100px;*/
+    /*height: auto;*/
+    /*margin-bottom: 20px;*/
+/*}*/
+/*}*/
 
-}
+/*.notification-content {*/
+    /*float: right;*/
+    /*padding: 14px 14px 20px;*/
+    /*width: 221px;*/
+    /*border-bottom: 1px solid #eea236;*/
+/*}*/
+
+/*.notification-details {*/
+    /*float: right;*/
+    /*margin: 14px;*/
+    /*width: 221px;*/
+/*}*/
+
+/*.notification-details ul li {*/
+    /*float: right;*/
+    /*display: inline-block;*/
+/*}*/
+
+/*.notification-details ul li a {*/
+    /*margin: 0 8px;*/
+/*}*/
+
+/*!*.notification-details ul li {*!*/
+
+/*!*}*!*/

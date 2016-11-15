@@ -1,16 +1,20 @@
-<div id="notification-{{ $notif->id }}" class="post">
-    <div class="media-left">
-        <a href="#">
-            <img class="media-object profile-photo" src="{{ $notif->from->photo }}" alt="{{ $notif->from->name }} Profile Photo">
-        </a>
-    </div>
-    <div class="media-body">
-        <h4 class="media-heading">
-            {{--<a href="{{ route('profile.view', [$post->user->username]) }}">{{ $post->user->name }}</a>--}}
-            <a href="#">{{ $notif->from->name }}</a>
-        </h4>
-        <div class="post-content">
-            {{ $notif->notification }}
-        </div>
-    </div>
+<div class="media-left">
+    <a href="#">
+        <img class="media-object avatar" src="{{$notification->from()->photo}}" alt="Generic placeholder image">
+    </a>
+</div>
+<div class="media-body">
+    @if($notification->isType('Comment'))
+        <h4 class="media-heading">{{$notification->from()->name}} commented on your post</h4>
+        <p>{{$notification->regarding()->text}}</p>
+    @elseif(isType('Mention'))
+        <h4 class="media-heading">{{$notification->from()->name}} mentioned you in a post</h4>
+        <p>{{$notification->regarding()->text}}</p>
+    @elseif(isType('Vote'))
+        <h4 class="media-heading">{{$notification->from()->name}} commented on your post</h4>
+        <p>{{$notification->regarding()->text}}</p>
+    @elseif(isTyoe('Follow'))
+        <h4 class="media-heading">{{$notification->from()->name}} commented on your post</h4>
+        <p>{{$notification->regarding()->text}}</p>
+    @endif
 </div>

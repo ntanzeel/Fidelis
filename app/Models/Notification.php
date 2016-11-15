@@ -2,31 +2,49 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Notifications;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\DatabaseNotification;
 
-class Notification extends Model {
+class Notification extends DatabaseNotification {
 
     use SoftDeletes;
 
-    protected $fillable = [
-        'from_id', 'to_id', 'comment_id', 'notification', 'read',
-    ];
+    public function keyExists($key) {
+        return isset($this->data[$key]);
+    }
 
-    protected $dates = [
-        'deleted_at',
-    ];
-
-    public function from() {
-        return $this->belongsTo('App\Models\User', 'from_id');
+    public function get($key) {
+        return $this->keyExists($key) ? $this->data[$key] : false;
     }
 
     public function to() {
-        return $this->belongsTo('App\Models\User', 'to_id');
+        return $this->belongsTo('App\Models\User', 'notifiable_id');
     }
 
-    public function comment() {
-        return $this->belongsTo('App\Models\Comment');
-//            ->where('root', false);
+    public function from() {
+        return $this->exists ?
+            User::find($this->data['from']) : false;
+    }
+
+    public function regarding() {
+        if ($this->exists) {
+            switch ($this->type) {
+                case Notifications\Mention::class:
+                case Notifications\Comment::class:
+                case Notifications\Vote::class:
+                    return Comment::find($this->data['regarding']);
+
+                case Notifications\Follow::class:
+                    return User::find($this->data['regarding']);
+            }
+        }
+
+        return false;
+    }
+
+    public function isType($type) {
+        $components = explode('\\', $this->type);
+        return $this->exists ? end($components) == ucfirst($type) : false;
     }
 }

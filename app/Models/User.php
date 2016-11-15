@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Http\Traits\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable {
 
@@ -50,10 +50,6 @@ class User extends Authenticatable {
         return $this->hasMany('App\Models\Post');
     }
 
-    public function notifications() {
-        return $this->hasMany('App\Models\Notification', 'to_id');
-    }
-
     public function subscriptions() {
         return $this->belongsToMany('App\Models\Tag', 'subscriptions', 'user_id', 'tag_id')
             ->whereNull('subscriptions.deleted_at')
@@ -61,10 +57,4 @@ class User extends Authenticatable {
 
         //return $this->hasMany('App\Models\Subscription', 'user_id');
     }
-
-    /*Function to return the number of notifications for a user
-    public function numOfNotifications() {
-        return count($this->hasMany('App\Models\Notification', 'to_id')->where('read', 0));
-    }
-    */
 }
