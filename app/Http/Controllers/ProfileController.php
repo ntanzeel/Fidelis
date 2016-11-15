@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller {
 
@@ -24,5 +25,9 @@ class ProfileController extends Controller {
     public function following($username) {
         $user = User::where('username', $username)->first();
         return view('profile.following', compact('user'));
+    }
+
+    public function upload_picture(Request $request) {
+        return $request;
     }
 }
