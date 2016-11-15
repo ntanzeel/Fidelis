@@ -6,7 +6,9 @@
 
 @section('container')
     <div class="profile-header">
-        <div class="profile-cover" style="background-image: url({{ $user->cover }})"></div>
+        <div class="profile-cover" style="background-image: url({{ $user->cover }})">
+            <a class="btn-cover-upload" data-toggle="tooltip" title="Upload new cover picture" href="#"><i class="fa fa-upload"></i></a>
+        </div>
         <div class="profile-nav">
             <div class="container">
                 <div class="row">
@@ -16,7 +18,8 @@
                                 <img src="{{ $user->photo }}" />
                             </a>
                             <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i class="fa fa-upload"></i></a>
-                            <input type="file" id="imgupload"/>
+                            <input type="file" class="imgupload" id="profile-upload"/>
+                            <input type="file" class="imgupload" id="cover-upload"/>
                         </div>
                     </div>
                     <div class="col-md-9 col-sm-12">

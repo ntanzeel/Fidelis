@@ -115,6 +115,26 @@ body {
     visibility: hidden;
 }
 
-#imgupload {
+.btn-cover-upload > i {
+    color: #000000;
+    font-size: 20pt;
+    position: relative;
+}
+
+.btn-cover-upload:hover > i,
+.btn-cover-upload:focus > i{
+    color: #FF6631;
+}
+
+.btn-cover-upload {
+    visibility: hidden;
+    position: relative;
+    float: right;
+    padding:20px;
+    top: 260px;
+}
+
+
+.imgupload {
     visibility: hidden;
 }

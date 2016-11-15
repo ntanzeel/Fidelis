@@ -8,8 +8,20 @@ $(document).ready(function(){
         $('.btn-upload').css('visibility', 'hidden');
     });
 
+    $('.profile-cover').hover(function(){
+        $('.btn-cover-upload').css('visibility', 'visible');
+    });
+
+    $('.profile-cover').mouseleave(function(){
+        $('.btn-cover-upload').css('visibility', 'hidden');
+    });
+
     $('.btn-upload').click(function(event){
-       $('#imgupload').trigger('click');
+       $('#profile-upload').trigger('click');
+    });
+
+    $('.btn-cover-upload').click(function(event){
+        $('#cover-upload').trigger('click');
     });
 
 
