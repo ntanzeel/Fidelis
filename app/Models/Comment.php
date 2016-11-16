@@ -20,12 +20,16 @@ class Comment extends Model {
         'deleted_at',
     ];
 
+    public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
+
     public function post() {
         return $this->hasOne('App\Models\Post');
     }
 
     public function htmlText() {
-        return preg_replace_callback('/#(\w+)/', function($matches) {
+        return preg_replace_callback('/#(\w+)/', function ($matches) {
             return '<a class="hash-tag" href="' . route('discover.category', [$matches[1]]) . '">' . $matches[0] . '</a>';
         }, $this->text);
     }

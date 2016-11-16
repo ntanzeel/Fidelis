@@ -42,9 +42,4 @@ class Notification extends DatabaseNotification {
 
         return false;
     }
-
-    public function isType($type) {
-        $components = explode('\\', $this->type);
-        return $this->exists ? end($components) == ucfirst($type) : false;
-    }
 }

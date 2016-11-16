@@ -5,16 +5,21 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\Comment;
 
 class Mention extends Notification {
 
     use Queueable;
 
+    private $cmt;
+
     /**
      * Create a new notification instance.
+     *
+     * @param Comment $cmt
      */
-    public function __construct() {
-        //
+    public function __construct(Comment $cmt) {
+        $this->cmt = $cmt;
     }
 
     /**
@@ -48,7 +53,7 @@ class Mention extends Notification {
      */
     public function toArray($notifiable) {
         return [
-            //
+            text => 'You were mentioned in a comment: ' . $this->cmt->htmlText(),
         ];
     }
 }

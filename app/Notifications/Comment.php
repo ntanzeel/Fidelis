@@ -54,7 +54,7 @@ class Comment extends Notification {
         return [
             'regarding' => $this->comment->id,
             'from'      => $this->comment->user_id,
-            'text'      => $this->comment->user()->name . ' has commented on your post',
+            'text'      => $this->comment->user->name . ' has commented on your post',
         ];
     }
 }

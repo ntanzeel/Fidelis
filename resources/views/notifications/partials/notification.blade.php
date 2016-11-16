@@ -4,17 +4,6 @@
     </a>
 </div>
 <div class="media-body">
-    @if($notification->isType('Comment'))
-        <h4 class="media-heading">{{$notification->from()->name}} commented on your post</h4>
-        <p>{{$notification->regarding()->text}}</p>
-    @elseif(isType('Mention'))
-        <h4 class="media-heading">{{$notification->from()->name}} mentioned you in a post</h4>
-        <p>{{$notification->regarding()->text}}</p>
-    @elseif(isType('Vote'))
-        <h4 class="media-heading">{{$notification->from()->name}} commented on your post</h4>
-        <p>{{$notification->regarding()->text}}</p>
-    @elseif(isTyoe('Follow'))
-        <h4 class="media-heading">{{$notification->from()->name}} commented on your post</h4>
-        <p>{{$notification->regarding()->text}}</p>
-    @endif
+    <h4 class="media-heading">{{$notification->data['text']}}</h4>
+    <p>{{$notification->regarding()->text}}</p>
 </div>

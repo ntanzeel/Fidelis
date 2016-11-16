@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -10,11 +11,15 @@ class Follow extends Notification {
 
     use Queueable;
 
+    private $user;
+
     /**
      * Create a new notification instance.
+     *
+     * @param User $user
      */
-    public function __construct() {
-        //
+    public function __construct(User $user) {
+        $this->user = $user;
     }
 
     /**
@@ -48,7 +53,7 @@ class Follow extends Notification {
      */
     public function toArray($notifiable) {
         return [
-            //
+            'text' => $this->user->name . ' has followed you',
         ];
     }
 }

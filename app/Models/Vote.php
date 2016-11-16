@@ -16,4 +16,8 @@ class Vote extends Model {
     protected $dates = [
         'deleted_at',
     ];
+
+    public function user() {
+        $this->belongsTo('App\Models\User');
+    }
 }
