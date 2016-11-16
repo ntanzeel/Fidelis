@@ -100,11 +100,6 @@ Route::group(['as' => 'discover.'], function () {
     Route::get('discover', [
         'as'   => 'index',
         'uses' => 'DiscoverController@index',
-    ]);
-
-    Route::get('discover/subscriptions', [
-        'as'   => 'subscriptions',
-        'uses' => 'DiscoverController@subscriptions',
     ])->middleware('auth');
 
     Route::get('discover/{category}', [
