@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subscription;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class SubscriptionsController extends Controller {
 
+    public function _construct() {
+        $this->middleware('auth');
+    }
+
     public function subscribe(Request $request) {
-        $tag = $request->tag;
-        Subscription::create([
-            'user_id' => Auth::user()->id ? Auth::user()->id : 4,
-            'tag_id'  => $tag,
-        ]);
+        $tag = Tag::find($request->tag);
+        Auth::user()->subscriptions()->attach($tag);
         return "Added " . $tag;
     }
 
     public function unsubscribe(Request $request) {
-        $tag = $request->tag;
+        $tag = Tag::find($request->tag);
+        Auth::user()->subscriptions()->detach($tag);
 
-        Subscription::where([
-            'user_id' => Auth::user()->id ? Auth::user()->id : 4,
-            'tag_id'  => $tag,
-        ])->delete();
-        return "Deleted " . $tag;
+        return "Deleted ".$tag;
     }
 }

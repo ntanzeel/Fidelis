@@ -100,12 +100,7 @@ Route::group(['as' => 'discover.'], function () {
     Route::get('discover', [
         'as'   => 'index',
         'uses' => 'DiscoverController@index',
-    ]);
-
-    Route::get('discover/subscriptions', [
-        'as'   => 'subscriptions',
-        'uses' => 'DiscoverController@subscriptions',
-    ]);
+    ])->middleware('auth');
 
     Route::get('discover/{category}', [
         'as'   => 'category',
@@ -157,6 +152,11 @@ Route::group(['as' => 'profile.'], function () {
         'as'   => 'following',
         'uses' => 'ProfileController@following',
     ]);
+
+    Route::post('upload', [
+        'as' => 'upload',
+        'uses' => 'ProfileController@upload_picture',
+    ])->middleware('auth');
 });
 
 /*
