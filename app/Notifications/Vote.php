@@ -53,7 +53,7 @@ class Vote extends Notification {
     public function toArray($notifiable) {
         return [
             'from' => $this->vote->user_id,
-            'text' => $this->vote->user->name . " voted on your post",
+            'text' => $this->vote->user->username . " voted on your post",
         ];
     }
 }

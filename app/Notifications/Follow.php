@@ -53,7 +53,7 @@ class Follow extends Notification {
      */
     public function toArray($notifiable) {
         return [
-            'text' => $this->user->name . ' has followed you',
+            'text' => $this->user->username . ' has followed you',
         ];
     }
 }

@@ -11,15 +11,15 @@ class Mention extends Notification {
 
     use Queueable;
 
-    private $cmt;
+    private $comment;
 
     /**
      * Create a new notification instance.
      *
-     * @param Comment $cmt
+     * @param Comment $comment
      */
-    public function __construct(Comment $cmt) {
-        $this->cmt = $cmt;
+    public function __construct(Comment $comment) {
+        $this->comment = $comment;
     }
 
     /**
@@ -53,7 +53,7 @@ class Mention extends Notification {
      */
     public function toArray($notifiable) {
         return [
-            text => 'You were mentioned in a comment: ' . $this->cmt->htmlText(),
+            text => 'You were mentioned in a comment: ' . $this->comment->htmlText(),
         ];
     }
 }
