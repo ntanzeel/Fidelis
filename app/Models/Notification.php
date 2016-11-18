@@ -42,4 +42,10 @@ class Notification extends DatabaseNotification {
 
         return false;
     }
+
+    public function getHtmlText() {
+        return $this->exists ? preg_replace_callback('/@(\w+)/', function ($matches) {
+            return '<a class="mention-username" href="' . route('profile.view', [$matches[1]]) . '">' . $matches[0] . '</a>';
+        }, $this->data['text']) : false;
+    }
 }
