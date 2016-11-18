@@ -24,6 +24,9 @@
                     <i class="fa fa-{{ $link->icon }}" aria-hidden="true"></i>
                 @endif
                 {{ $link->title }}
+                @if($link->title == 'Notifications')
+                    <span class="badge">{{ count(Auth::user()->unreadNotifications) }}</span>
+                @endif
             </a>
         </li>
     @endif
