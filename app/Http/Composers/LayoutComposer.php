@@ -35,12 +35,17 @@ class LayoutComposer {
 
     public function getStyles() {
         list($controller, $action) = explode('@', $this->request->route()->getActionName());
-        $controller = strtolower(substr(str_replace('\\', '/', $controller), 20, strlen($controller) - 30));
+        $controller = strtolower(substr(str_replace('\\', '/', $controller), 21, strlen($controller) - 31));
+        $directories = explode('/', $controller);
 
-        $stylesheets = [
-            'Controller'    => '/assets/css' . $this->layoutPath . $controller . '/_shared.css',
-            'View'          => '/assets/css' . $this->layoutPath . $controller . '/' . $action . '.css'
-        ];
+        $stylesheets = [];
+
+        for ($i = 0, $path = ''; $i < count($directories); $i++) {
+            $path .= '/' . $directories[$i];
+            $stylesheets[$directories[$i] . 'Controller'] = '/assets/css' . $this->layoutPath . $path . '/_shared.css';
+        }
+
+        $stylesheets['View'] = '/assets/css' . $this->layoutPath . '/' . $controller . '/' . $action . '.css';
 
         foreach ($stylesheets as $key => $stylesheet) {
             if (!file_exists($this->publicPath . $stylesheet)) {
