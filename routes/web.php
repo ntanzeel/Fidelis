@@ -157,6 +157,11 @@ Route::group(['as' => 'profile.'], function () {
         'as' => 'upload',
         'uses' => 'ProfileController@upload_picture',
     ])->middleware('auth');
+
+    Route::get('settings', [
+        'as' => 'settings',
+        'uses' => 'ProfileController@settings',
+    ])->middleware('auth');
 });
 
 /*
