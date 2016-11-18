@@ -34,6 +34,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
+                                <a href="{{ route('profile.index') }}">Profile</a>
                                 <a href="{{ route('auth.logout') }}">Log out</a>
                             </li>
                         </ul>
