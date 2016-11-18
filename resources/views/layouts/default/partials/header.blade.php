@@ -35,7 +35,11 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a href="{{ route('profile.index') }}">Profile</a>
-                                <a href="{{ route('profile.settings') }}">Settings</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('settings.account.index') }}">Settings</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('auth.logout') }}">Log out</a>
                             </li>
                         </ul>

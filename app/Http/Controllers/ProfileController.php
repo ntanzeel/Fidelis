@@ -30,8 +30,4 @@ class ProfileController extends Controller {
     public function upload_picture(Request $request) {
         return $request;
     }
-
-    public function settings() {
-        return view('profile.settings');
-    }
 }

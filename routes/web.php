@@ -152,30 +152,46 @@ Route::group(['as' => 'profile.'], function () {
         'as'   => 'following',
         'uses' => 'ProfileController@following',
     ]);
-
-    Route::post('upload', [
-        'as' => 'upload',
-        'uses' => 'ProfileController@upload_picture',
-    ])->middleware('auth');
-
-    Route::get('settings', [
-        'as' => 'settings',
-        'uses' => 'ProfileController@settings',
-    ])->middleware('auth');
 });
 
 /*
- * Subscribe
+ * Settings
  */
+Route::group(['as' => 'settings.'], function () {
 
-Route::group(['as' => 'subscriptions.'], function () {
-    Route::post('subscribe', [
-        'as'   => 'subscribe',
-        'uses' => 'SubscriptionsController@subscribe',
-    ]);
+    /*
+     * Account
+     */
+    Route::group(['as' => 'account.'], function() {
+        Route::get('settings/account', [
+            'as' => 'index',
+            'uses' => 'Settings\AccountController@index',
+        ]);
 
-    Route::post('unsubscribe', [
-        'as'   => 'unsubscribe',
-        'uses' => 'SubscriptionsController@unsubscribe',
-    ]);
+
+        Route::post('upload', [
+            'as' => 'upload',
+            'uses' => 'ProfileController@upload_picture',
+        ]);
+    });
+
+    /*
+     * Subscriptions
+     */
+    Route::group(['as' => 'subscriptions.'], function () {
+        Route::get('settings/subscriptions', [
+            'as' => 'index',
+            'uses' => 'Settings\SubscriptionsController@index',
+        ]);
+
+        Route::post('subscribe', [
+            'as'   => 'subscribe',
+            'uses' => 'Settings\SubscriptionsController@subscribe',
+        ]);
+
+        Route::post('unsubscribe', [
+            'as'   => 'unsubscribe',
+            'uses' => 'Settings\SubscriptionsController@unsubscribe',
+        ]);
+    });
 });

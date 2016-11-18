@@ -16,7 +16,7 @@ class DiscoverController extends Controller {
 
     public function index() {
         $subscriptions = Auth::user()->subscriptions();
-        return view('discover.subscriptions')->with('categories', $this->categories)->with('subscriptions', $subscriptions);
+        return view('discover.index')->with('categories', $this->categories)->with('subscriptions', $subscriptions);
     }
 
     public function category($category) {

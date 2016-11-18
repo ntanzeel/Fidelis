@@ -8,7 +8,7 @@
                     Subscribed
                     @if(Auth::user())
                         <a role="button" class="btn btn-default btn-manage pull-right"
-                           href={{ route('discover.subscriptions') }}>Manage</a>
+                           href={{ route('settings.subscriptions.index') }}>Manage</a>
                     @endif
                 </div>
             </div>
