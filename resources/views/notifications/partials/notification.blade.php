@@ -7,3 +7,4 @@
     <h4 class="media-heading">{{$notification->data['text']}}</h4>
     <p>{{$notification->regarding()->text}}</p>
 </div>
+<hr>

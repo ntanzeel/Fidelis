@@ -12,6 +12,7 @@
                                 @include('notifications.partials.notification', compact('notification'))
                             </li>
                         @endforeach
+                        {{ Auth::user()->unreadNotifications->markAsRead() }}
                     </ul>
                 </div>
             </div>
