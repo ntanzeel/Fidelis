@@ -100,3 +100,7 @@
     border-left: 6px solid transparent;
     content: '';
 }
+
+.navbar-nav > li > a > .badge {
+    background-color: #d9534f;
+}

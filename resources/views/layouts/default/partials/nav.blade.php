@@ -25,7 +25,9 @@
                 @endif
                 {{ $link->title }}
                 @if($link->title == 'Notifications')
-                    <span class="badge">{{ count(Auth::user()->unreadNotifications) }}</span>
+                        @if(Auth::user()->unreadNotifications->count() > 0)
+                            <span class="badge">{{ Auth::user()->unreadNotifications->count() }}</span>
+                        @endif
                 @endif
             </a>
         </li>
