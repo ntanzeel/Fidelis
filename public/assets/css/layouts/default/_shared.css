@@ -24,22 +24,27 @@
 }
 
 /*
- * Users
+ * Globals
  */
-.avatar {
+#app .avatar {
     width: 48px;
     height: 48px;
     border-radius: 4px;
 }
 
-.full-name {
+#app .full-name {
     color: #333;
     font-weight: bold;
 }
 
-.username {
+#app .username {
     color: #999;
     font-size: 13px;
+}
+
+#app .hash-tag,
+#app .mention-username {
+    color: #FF6631;
 }
 
 /*
@@ -76,10 +81,6 @@
 
 .post .post-body {
 
-}
-
-.post .post-body .hash-tag {
-    color: #FF6631;
 }
 
 .post .post-footer {

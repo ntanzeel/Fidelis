@@ -26,8 +26,4 @@ class ProfileController extends Controller {
         $user = User::where('username', $username)->first();
         return view('profile.following', compact('user'));
     }
-
-    public function upload_picture(Request $request) {
-        return $request;
-    }
 }

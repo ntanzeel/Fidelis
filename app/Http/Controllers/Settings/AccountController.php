@@ -13,4 +13,8 @@ class AccountController extends Controller {
     public function index() {
         return view('profile.settings');
     }
+
+    public function upload() {
+
+    }
 }

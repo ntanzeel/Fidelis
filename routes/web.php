@@ -168,10 +168,9 @@ Route::group(['as' => 'settings.'], function () {
             'uses' => 'Settings\AccountController@index',
         ]);
 
-
         Route::post('upload', [
             'as' => 'upload',
-            'uses' => 'ProfileController@upload_picture',
+            'uses' => 'Settings\AccountController@upload',
         ]);
     });
 

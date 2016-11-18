@@ -31,7 +31,7 @@
         <!-- Forced Stylesheets -->
         @stack('stylesheets')
 
-        <!-- Local Stylesheets
+        <!-- Local Stylesheets -->
         @foreach($stylesheets as $key => $stylesheet)
             <!--{{ $key }}-->
             <link href="{{ asset($stylesheet) }}" rel="stylesheet">

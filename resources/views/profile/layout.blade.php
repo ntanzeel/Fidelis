@@ -72,6 +72,6 @@
     </div>
     <script>
         var token = "{{ csrf_token() }}";
-        var uploadUrl = "{{ route('profile.upload') }}";
+        var uploadUrl = "{{ route('settings.account.upload') }}";
     </script>
 @endsection
