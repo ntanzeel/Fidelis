@@ -11,7 +11,17 @@
             <p>{!!   $notification->regarding()->htmlText() !!}</p>
         @endif
         <div class="notification-footer">
-            {{ date('F y', $notification->created_at->getTimestamp()) }}
+            <ul class="list-inline list-unstyled action-list">
+                <li>
+                    <a role="button" class="action action-like"><i class="fa fa-thumbs-up"></i></a>
+                </li>
+                <li>
+                    <a role="button" class="action action-like"><i class="fa fa-thumbs-down"></i></a>
+                </li>
+                <li>
+                    {{ date('H:i F-y', $notification->created_at->getTimestamp()) }}
+                </li>
+            </ul>
         </div>
     </div>
 </div>

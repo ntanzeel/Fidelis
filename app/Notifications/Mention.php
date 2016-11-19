@@ -53,7 +53,8 @@ class Mention extends Notification {
      */
     public function toArray($notifiable) {
         return [
-            text => 'You were mentioned in a comment: ' . $this->comment->htmlText(),
+            'from' => $this->comment->user->id,
+            'text' => 'You were mentioned in a comment: ' . $this->comment->htmlText(),
         ];
     }
 }
