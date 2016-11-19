@@ -22,4 +22,10 @@ trait HasDatabaseNotifications {
             ->whereNull('read_at')
             ->orderBy('created_at', 'desc');
     }
+
+    public function readNotifications() {
+        return $this->morphMany(Notification::class, 'notifiable')
+            ->whereNotNull('read_at')
+            ->orderBy('created_at', 'desc');
+    }
 }

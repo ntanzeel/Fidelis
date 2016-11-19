@@ -2,10 +2,10 @@
 
 namespace App\Notifications;
 
+use App\Models\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\Comment;
 
 class Mention extends Notification {
 
@@ -53,7 +53,9 @@ class Mention extends Notification {
      */
     public function toArray($notifiable) {
         return [
-            text => 'You were mentioned in a comment: ' . $this->comment->htmlText(),
+            'regarding' => $this->comment->id,
+            'from'      => $this->comment->user_id,
+            'text'      => '@' . $this->comment->user->username . ' mentioned you in a post',
         ];
     }
 }

@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder {
         $this->call(WallpapersSeeder::class);
         $this->call(QuotesSeeder::class);
         $this->call(CategoriesSeeder::class);
-        $this->call(CommentsSeeder::class);
-        $this->call(PostsSeeder::class);
+//        $this->call(CommentsSeeder::class);
+//        $this->call(PostsSeeder::class);
         $this->call(FollowersSeeder::class);
         $this->call(ImagesSeeder::class);
         $this->call(SubscriptionsSeeder::class);
-        $this->call(VotesSeeder::class);
+//        $this->call(VotesSeeder::class);
         // $this->call(NotificationsSeeder::class);
     }
 }
