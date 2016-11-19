@@ -194,3 +194,44 @@ Route::group(['as' => 'settings.'], function () {
         ]);
     });
 });
+
+/*
+ * API
+ */
+
+Route::group(['as'  => 'api.', 'prefix' => 'api'], function() {
+    /*
+     * Posts
+     */
+    Route::group(['as' => 'post.', 'prefix' => 'post'], function () {
+        Route::get('/', [
+            'as'   => 'index',
+            'uses' => 'Api\PostsController@index',
+        ]);
+
+        Route::get('/create', [
+            'as'   => 'index',
+            'uses' => 'Api\PostsController@index',
+        ]);
+
+        Route::post('/', [
+            'as'   => 'store',
+            'uses' => 'Api\PostsController@store',
+        ]);
+
+        Route::get('/{post}', [
+            'as'   => 'show',
+            'uses' => 'Api\PostsController@show',
+        ]);
+    });
+
+    /*
+     * Comments
+     */
+
+    /*
+     * Votes
+     */
+
+
+});

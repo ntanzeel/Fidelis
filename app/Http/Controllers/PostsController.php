@@ -2,30 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostRequest;
-use App\Models\Comment;
-use App\Models\Post;
-use App\Models\Tag;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CommentRequest;
+use App\Http\Traits\Post;
 
 class PostsController extends Controller {
 
-    public function store(PostRequest $request) {
-        preg_match_all('/#(\w+)/', $request->get('text'), $tags);
-        $tags = empty($tags) ? [] : $tags[1];
+    use Post;
 
-        $post = Auth::user()->posts()->save(new Post());
-        $post->comments()->save(new Comment([
-            'user_id'       => Auth::user()->id,
-            'text'       => $request->get('text'),
-            'reputation'    => 0,
-            'root'          => 1
-        ]));
+    public function index() {
 
-        foreach ($tags as $tag) {
-            $post->tags()->attach(Tag::firstOrCreate(['text' => $tag]));
-        }
+    }
 
+    /**
+     * Create a new post.
+     *
+     * @param CommentRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(CommentRequest $request) {
+        $this->add($request);
         return redirect()->route('home.index');
     }
 
