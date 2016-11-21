@@ -39,6 +39,7 @@
                             <li>
                                 <a href="{{ route('settings.account.index') }}">Settings</a>
                             </li>
+                            <li class="divider" role="separator"></li>
                             <li>
                                 <a href="{{ route('auth.logout') }}">Log out</a>
                             </li>

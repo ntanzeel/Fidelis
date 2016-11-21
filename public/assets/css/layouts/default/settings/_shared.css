@@ -1,0 +1,20 @@
+body {
+    padding-top: 50px;
+}
+
+.nav-stacked a.active,
+.nav-stacked a:hover,
+.nav-stacked a:focus {
+    color: #FF6631;
+}
+
+.settings-header {
+    background: #FF6631;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #D3E0E9;
+    height: 100px;
+    color: #FFFFFF;
+    font-size: 20pt;
+    line-height: 70px;
+}
