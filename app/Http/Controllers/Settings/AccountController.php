@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller {
 
@@ -28,7 +29,24 @@ class AccountController extends Controller {
         return redirect()->route('settings.account.index');
     }
 
-    public function upload() {
+    public function upload_profile_pic(Request $request) {
+        $path = $request->file('pic')->storeAs(
+            'images', $request->user()->username.".jpg"
+        );
+        Auth::user()->photo = $path;
+        Auth::user()->save();
 
+        return redirect()->back();
     }
+
+    public function upload_cover_pic(Request $request) {
+        $path = $request->file('pic')->storeAs(
+            'images', $request->user()->username."-cover.jpg"
+        );
+        Auth::user()->cover = $path;
+        Auth::user()->save();
+
+        return redirect()->back();
+    }
+
 }

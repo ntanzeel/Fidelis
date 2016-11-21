@@ -17,12 +17,25 @@ $(document).ready(function(){
     });
 
     $('.btn-upload').click(function(event){
-       $('#profile-upload').trigger('click');
+        $('#profile-upload').trigger('click');
+        return false;
     });
 
     $('.btn-cover-upload').click(function(event){
         $('#cover-upload').trigger('click');
+        return false;
     });
+
+    $('#profile-upload').change(function(){
+        $('#submit-profile-pic').submit();
+    });
+
+    $('#cover-upload').change(function(){
+        $('#submit-cover-pic').submit();
+    });
+
+
+
 
 
 });

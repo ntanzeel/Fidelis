@@ -168,9 +168,14 @@ Route::group(['as' => 'settings.'], function () {
             'uses' => 'Settings\AccountController@index',
         ]);
 
-        Route::post('upload', [
-            'as'   => 'upload',
-            'uses' => 'Settings\AccountController@upload',
+        Route::post('upload_profile_pic', [
+            'as'   => 'upload_profile_pic',
+            'uses' => 'Settings\AccountController@upload_profile_pic',
+        ]);
+
+        Route::post('upload_cover_pic', [
+            'as'   => 'upload_cover_pic',
+            'uses' => 'Settings\AccountController@upload_cover_pic',
         ]);
 
         Route::post('edit_profile', [
