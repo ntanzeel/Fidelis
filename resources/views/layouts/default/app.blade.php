@@ -10,6 +10,8 @@
 
         <title>{{ config('app.name') }}</title>
 
+        <link rel="icon" href="{{ asset('favicon.png') }}">
+
         <!-- Fonts -->
         @push('fonts')
             <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">

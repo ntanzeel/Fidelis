@@ -1,13 +1,16 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
 @push('stylesheets')
-    <link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
 @endpush
 
 @section('container')
     <div class="profile-header">
         <div class="profile-cover" style="background-image: url({{ $user->cover }})">
-            <a class="btn-cover-upload" data-toggle="tooltip" title="Upload new cover picture" href="#"><i class="fa fa-upload"></i></a>
+            @if(Auth::user()->username == $user->username)
+                <a class="btn-cover-upload" data-toggle="tooltip" title="Upload new cover picture" href="#"><i
+                            class="fa fa-upload"></i></a>
+            @endif
         </div>
         <div class="profile-nav">
             <div class="container">
@@ -17,9 +20,12 @@
                             <a class="profile-photo">
                                 <img src="{{ $user->photo }}" />
                             </a>
-                            <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i class="fa fa-upload"></i></a>
-                            <input type="file" class="imgupload" id="profile-upload"/>
-                            <input type="file" class="imgupload" id="cover-upload"/>
+                            @if(Auth::user()->username == $user->username)
+                                <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i
+                                            class="fa fa-upload"></i></a>
+                                <input type="file" class="imgupload" id="profile-upload" />
+                                <input type="file" class="imgupload" id="cover-upload" />
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-9 col-sm-12">
@@ -32,7 +38,7 @@
                                 </a>
                             </li>
                             <li class="{{ $active == 'followers' ? 'active' : '' }}" role="presentation">
-                                <a href="{{ route('profile.followers', [$user->username]) }}" >
+                                <a href="{{ route('profile.followers', [$user->username]) }}">
                                     <span class="nav-label">Followers</span>
                                     <span class="nav-value">{{ $user->followers()->count() }}</span>
                                 </a>
