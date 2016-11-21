@@ -55,6 +55,6 @@ class User extends Authenticatable {
             ->whereNull('subscriptions.deleted_at')
             ->withTimestamps();
 
-        //return $this->hasMany('App\Models\Subscription', 'user_id');
+        // return $this->hasMany('App\Models\Subscription', 'user_id');
     }
 }

@@ -1,19 +1,45 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
+@push('stylesheets')
+    <link href="{{ asset('assets/css/layouts/default/discover/_shared.css') }}" rel="stylesheet">
+@endpush
 
 @section('container')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                Profile settings
-            </div>
-            <div class="col-md-9 col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        Coming soon
-                    </div>
+    <div class="discover-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    My Subscriptions
                 </div>
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                @include('discover.partials.sidebar', ['categories' => $categories, 'active' => ""])
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ul class="list-subscription">
+                            @foreach($subscriptions as $subscription)
+                                <li class='item-subscription'>
+                                    {{ $subscription->tag->text }} <a id='{{ $subscription->tag_id }}'
+                                                                      class='btn-unsubscribe' href="#">Unsubscribe</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 hidden-sm hidden-xs">
+                @widget('trending')
+            </div>
+        </div>
+    </div>
+    <script>
+        var token = "{{ csrf_token() }}";
+        var unsubscribeUrl = "{{ route('settings.subscriptions.unsubscribe') }}";
+    </script>
 @stop

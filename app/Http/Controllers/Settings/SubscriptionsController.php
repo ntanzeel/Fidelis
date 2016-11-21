@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubscriptionsController extends Controller {
 
@@ -13,7 +15,12 @@ class SubscriptionsController extends Controller {
     }
 
     public function index() {
-
+        $categories = Category::orderBy('name')->get();
+        $subscriptions = Auth::user()->subscriptions();
+        return view('settings.subscriptions.index', [
+            'categories'    => $categories,
+            'subscriptions' => $subscriptions
+        ]);
     }
 
     public function subscribe(Request $request) {
@@ -26,6 +33,6 @@ class SubscriptionsController extends Controller {
         $tag = Tag::find($request->tag);
         Auth::user()->subscriptions()->detach($tag);
 
-        return "Deleted ".$tag;
+        return "Deleted " . $tag;
     }
 }

@@ -162,15 +162,20 @@ Route::group(['as' => 'settings.'], function () {
     /*
      * Account
      */
-    Route::group(['as' => 'account.'], function() {
+    Route::group(['as' => 'account.'], function () {
         Route::get('settings/account', [
-            'as' => 'index',
+            'as'   => 'index',
             'uses' => 'Settings\AccountController@index',
         ]);
 
         Route::post('upload', [
-            'as' => 'upload',
+            'as'   => 'upload',
             'uses' => 'Settings\AccountController@upload',
+        ]);
+
+        Route::post('edit_profile', [
+            'as'   => 'edit_profile',
+            'uses' => 'Settings\AccountController@edit_profile',
         ]);
     });
 
@@ -179,7 +184,7 @@ Route::group(['as' => 'settings.'], function () {
      */
     Route::group(['as' => 'subscriptions.'], function () {
         Route::get('settings/subscriptions', [
-            'as' => 'index',
+            'as'   => 'index',
             'uses' => 'Settings\SubscriptionsController@index',
         ]);
 
@@ -199,7 +204,7 @@ Route::group(['as' => 'settings.'], function () {
  * API
  */
 
-Route::group(['as'  => 'api.', 'prefix' => 'api'], function() {
+Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     /*
      * Posts
      */
