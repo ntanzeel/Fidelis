@@ -19,7 +19,7 @@ class SubscriptionsController extends Controller {
         $subscriptions = Auth::user()->subscriptions();
         return view('settings.subscriptions.index', [
             'categories'    => $categories,
-            'subscriptions' => $subscriptions
+            'subscriptions' => $subscriptions,
         ]);
     }
 
