@@ -2,17 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property int id
- * @property int user_id
- * @property User user
- * @property Comment content
- * @property Collection comments
- * @property Collection tags
+ * App\Models\Post
+ *
+ * @property integer $id
+ * @property integer $user_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
+ * @property-read \App\Models\User $user
+ * @property-read \App\Models\Comment $content
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereDeletedAt($value)
+ * @mixin \Eloquent
  */
 class Post extends Model {
 

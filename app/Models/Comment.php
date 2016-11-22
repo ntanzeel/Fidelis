@@ -6,7 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @property mixed text
+ * App\Models\Comment
+ *
+ * @property integer $id
+ * @property integer $post_id
+ * @property integer $user_id
+ * @property string $text
+ * @property integer $reputation
+ * @property boolean $root
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
+ * @property-read \App\Models\User $user
+ * @property-read \App\Models\Post $post
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment wherePostId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereText($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereReputation($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereRoot($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereDeletedAt($value)
+ * @mixin \Eloquent
  */
 class Comment extends Model {
 
@@ -29,11 +51,11 @@ class Comment extends Model {
     }
 
     public function htmlText() {
-        $html =  preg_replace_callback('/#(\w+)/', function ($matches) {
+        $html = preg_replace_callback('/#(\w+)/', function ($matches) {
             return '<a class="hash-tag" href="' . route('discover.category', [$matches[1]]) . '">' . $matches[0] . '</a>';
         }, $this->text);
 
-        $html =  preg_replace_callback('/@(\w+)/', function ($matches) {
+        $html = preg_replace_callback('/@(\w+)/', function ($matches) {
             return '<a class="mention-username" href="' . route('profile.view', [$matches[1]]) . '">' . $matches[0] . '</a>';
         }, $html);
 
