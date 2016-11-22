@@ -8,7 +8,7 @@
     <ul class="list-subscription">
         @foreach($subscriptions as $subscription)
             <li class='item-subscription'>
-                {{ $subscription->text }} <a id='{{ $subscription->id }}' class='btn-unsubscribe' href="#">Unsubscribe</a>
+                <a href="{{ route('discover.category',$subscription->text) }}">{{ $subscription->text }}</a> <a id='{{ $subscription->id }}' class='btn-unsubscribe' href="#">Unsubscribe</a>
             </li>
         @endforeach
     </ul>
