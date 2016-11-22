@@ -8,7 +8,7 @@
     <ul class="list-subscription">
         @foreach($subscriptions as $subscription)
             <li class='item-subscription'>
-                {{ $subscription->tag->text }} <a id='{{ $subscription->tag_id }}' class='btn-unsubscribe' href="#">Unsubscribe</a>
+                {{ $subscription->text }} <a id='{{ $subscription->id }}' class='btn-unsubscribe' href="#">Unsubscribe</a>
             </li>
         @endforeach
     </ul>

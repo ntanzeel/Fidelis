@@ -16,7 +16,7 @@ class SubscriptionsController extends Controller {
 
     public function index() {
         $categories = Category::orderBy('name')->get();
-        $subscriptions = Auth::user()->subscriptions();
+        $subscriptions = Auth::user()->subscriptions;
         return view('settings.subscriptions.index', [
             'categories'    => $categories,
             'subscriptions' => $subscriptions,
