@@ -101,12 +101,17 @@
 
 .post .action.action-like.active,
 .post .action.action-like:hover {
+    color: #08AD93;
+}
+
+.post .action.action-dislike.active,
+.post .action.action-dislike:hover {
     color: #e81c4f;
 }
 
 .post .action.action-comment.active,
 .post .action.action-comment:hover {
-    color: #08AD93;
+    color: #FF6631;
 }
 
 .post .action.action-flag.active,
