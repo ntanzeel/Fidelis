@@ -17,7 +17,8 @@ class CreateCommentsTable extends Migration {
             $table->integer('post_id');
             $table->integer('user_id');
             $table->string('text');
-            $table->integer('reputation');
+            $table->integer('up_votes')->unsigned();
+            $table->integer('down_votes')->unsigned();
             $table->boolean('root');
             $table->timestamps();
             $table->softDeletes();

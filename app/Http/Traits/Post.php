@@ -27,7 +27,8 @@ trait Post {
         $comment = new Models\Comment([
             'user_id'       => Auth::user()->id,
             'text'       => e($request->get('text')),
-            'reputation'    => 0,
+            'up_votes'    => 0,
+            'down_votes'    => 0,
             'root'          => $root
         ]);
 

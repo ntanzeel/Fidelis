@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $post_id
  * @property integer $user_id
  * @property string $text
- * @property integer $reputation
+ * @property integer $up_votes
+ * @property integer $down_votes
  * @property boolean $root
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
@@ -28,14 +29,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereUpVotes($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Comment whereDownVotes($value)
  * @mixin \Eloquent
+ *
  */
 class Comment extends Model {
 
     use SoftDeletes;
 
     protected $fillable = [
-        'post_id', 'user_id', 'text', 'reputation', 'root',
+        'post_id', 'user_id', 'text', 'up_votes', 'down_votes', 'root',
     ];
 
     protected $dates = [
