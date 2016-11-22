@@ -6,6 +6,10 @@ use App\Http\Traits\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @property mixed id
+ * @property mixed private
+ */
 class User extends Authenticatable {
 
     use SoftDeletes, Notifiable;
@@ -54,5 +58,13 @@ class User extends Authenticatable {
         return $this->belongsToMany('App\Models\Tag', 'subscriptions', 'user_id', 'tag_id')
             ->whereNull('subscriptions.deleted_at')
             ->withTimestamps();
+    }
+
+    public function follows(User $user) {
+        return $user && $this->following()->where('following_id', $user->id)->exists();
+    }
+
+    public function followedBy(User $user) {
+        return $user && $this->followers()->where('follower_id', $user->id)->exists();
     }
 }

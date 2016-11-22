@@ -2,9 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property int id
+ * @property int user_id
+ * @property User user
+ * @property Comment content
+ * @property Collection comments
+ * @property Collection tags
+ */
 class Post extends Model {
 
     use SoftDeletes;
@@ -36,5 +45,13 @@ class Post extends Model {
             ->whereNull('post_tag.deleted_at')
             ->withPivot(['deleted_at'])
             ->withTimestamps();
+    }
+
+    public function canBeViewedBy(User $user) {
+        return !$this->user->private || ($user && ($this->user->followedBy($user) || $this->canEdit($user)));
+    }
+
+    public function canBeEditedBy(User $user) {
+        return $user && $this->user_id == $user->id;
     }
 }

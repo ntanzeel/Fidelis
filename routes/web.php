@@ -216,28 +216,29 @@ Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     Route::group(['as' => 'post.', 'prefix' => 'post'], function () {
         Route::get('/', [
             'as'   => 'index',
-            'uses' => 'Api\PostsController@index',
+            'uses' => 'Api\PostController@index',
         ]);
 
         Route::get('/create', [
             'as'   => 'index',
-            'uses' => 'Api\PostsController@index',
+            'uses' => 'Api\PostController@index',
         ]);
 
         Route::post('/', [
             'as'   => 'store',
-            'uses' => 'Api\PostsController@store',
+            'uses' => 'Api\PostController@store',
         ]);
 
         Route::get('/{post}', [
             'as'   => 'show',
-            'uses' => 'Api\PostsController@show',
+            'uses' => 'Api\PostController@show',
         ]);
     });
 
     /*
      * Comments
      */
+
 
     /*
      * Votes

@@ -7,10 +7,15 @@ use App\Http\Requests\CommentRequest;
 use App\Http\Traits\Post;
 use App\Models;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller {
 
     use Post;
+
+    public function __construct(Request $request) {
+        $this->middleware('auth')->except('show');
+    }
 
     /**
      * Display a listing of the resource.
@@ -18,7 +23,7 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //
+
     }
 
     /**
@@ -44,21 +49,29 @@ class PostController extends Controller {
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param Models\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        return Models\Post::find($id);
+    public function show(Models\Post $post) {
+        if (!$post->canBeViewedBy(Auth::user())) {
+            abort(403);
+        }
+
+        return response()->json($post);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param Models\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        //
+    public function edit(Models\Post $post) {
+        if (!$post->canBeEditedBy(Auth::user())) {
+            abort(403);
+        }
+
+        return response()->json($post);
     }
 
     /**
@@ -69,16 +82,22 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        return response();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param Models\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        return Post::find($id)->delete();
+    public function destroy(Models\Post $post) {
+        if (!$post->canBeEditedBy(Auth::user())) {
+            abort(403);
+        }
+
+        return response()->json([
+            'success' => $post->delete(),
+        ]);
     }
 }
