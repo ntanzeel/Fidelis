@@ -57,11 +57,11 @@ class Post extends Model {
             ->withTimestamps();
     }
 
-    public function canBeViewedBy(User $user) {
-        return !$this->user->private || ($user && ($this->user->followedBy($user) || $this->canEdit($user)));
+    public function canBeViewedBy($user) {
+        return !$this->user->is_private || ($user && ($this->user->followedBy($user) || $this->canBeEditedBy($user)));
     }
 
-    public function canBeEditedBy(User $user) {
+    public function canBeEditedBy($user) {
         return $user && $this->user_id == $user->id;
     }
 }

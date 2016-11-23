@@ -43,7 +43,7 @@ class PostController extends Controller {
      */
     public function store(CommentRequest $request) {
         $post = $this->add($request);
-        return $post;
+        return response()->view('posts.partials.post', compact('post'));
     }
 
     /**
@@ -54,10 +54,10 @@ class PostController extends Controller {
      */
     public function show(Models\Post $post) {
         if (!$post->canBeViewedBy(Auth::user())) {
-            abort(403);
+            abort(401);
         }
 
-        return response()->json($post);
+        return response()->json($post->load(['user', 'content', 'comments']));
     }
 
     /**
@@ -68,10 +68,10 @@ class PostController extends Controller {
      */
     public function edit(Models\Post $post) {
         if (!$post->canBeEditedBy(Auth::user())) {
-            abort(403);
+            abort(401);
         }
 
-        return response()->json($post);
+        return response()->json($post->load(['user', 'content', 'comments']));
     }
 
     /**
@@ -93,7 +93,7 @@ class PostController extends Controller {
      */
     public function destroy(Models\Post $post) {
         if (!$post->canBeEditedBy(Auth::user())) {
-            abort(403);
+            abort(401);
         }
 
         return response()->json([

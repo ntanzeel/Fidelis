@@ -1,4 +1,4 @@
-<form class="ajax post-form" method="post" action="{{ route('posts.store') }}">
+<form class="ajax post-form" method="post" action="{{ route('api.post.store') }}">
     {{ csrf_field() }}
 
     <div class="form-group">

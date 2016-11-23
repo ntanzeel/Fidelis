@@ -209,7 +209,7 @@ Route::group(['as' => 'settings.'], function () {
  * API
  */
 
-Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], function () {
     /*
      * Posts
      */
@@ -243,6 +243,5 @@ Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
     /*
      * Votes
      */
-
 
 });
