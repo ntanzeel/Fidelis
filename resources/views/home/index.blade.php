@@ -13,10 +13,10 @@
         <div class="col-md-6 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    @include('posts.partials.create')
+                    @include('components.post.create')
                 </div>
                 <div class="panel-body" style="padding: 0">
-                    @include('posts.partials.feed', compact('posts'))
+                    @include('components.post.feed', compact('posts'))
                 </div>
             </div>
         </div>
