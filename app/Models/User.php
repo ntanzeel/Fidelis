@@ -103,4 +103,8 @@ class User extends Authenticatable {
             ->withPivot(['mutual', 'approved', 'deleted_at'])
             ->withTimestamps();
     }
+
+    public function uploadDirectory() {
+        return md5($this->username . $this->created_at);
+    }
 }

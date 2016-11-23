@@ -43,7 +43,7 @@ class PostController extends Controller {
      */
     public function store(CommentRequest $request) {
         $post = $this->add($request);
-        return response()->view('posts.partials.post', compact('post'));
+        return response()->view('components.post.partials.post', compact('post'));
     }
 
     /**
@@ -57,7 +57,7 @@ class PostController extends Controller {
             abort(401);
         }
 
-        return response()->json($post->load(['user', 'content', 'comments']));
+        return response()->json($post->load(['user', 'content', 'comments', 'images']));
     }
 
     /**
@@ -71,7 +71,7 @@ class PostController extends Controller {
             abort(401);
         }
 
-        return response()->json($post->load(['user', 'content', 'comments']));
+        return response()->json($post->load(['user', 'content', 'comments', 'images']));
     }
 
     /**

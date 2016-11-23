@@ -13,6 +13,11 @@
             <span class="time small color light">{{ $post->created_at->diffForHumans() }}</span>
         </div>
         <div class="post-body">
+            <div class="post-images">
+                @foreach($post->images as $image)
+                    <img src="{{ asset('storage/' . $image->path) }}" class="img-responsive img-thumbnail" width="45%"/>
+                @endforeach
+            </div>
             {!! $post->content->htmlText() !!}
         </div>
         <div class="post-footer">

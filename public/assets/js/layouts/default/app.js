@@ -9,7 +9,12 @@ $(document).ready(function () {
         $.ajax({
             url: $form.attr('action'),
             method: $form.attr('method'),
-            data: $form.serialize(),
+            data: new FormData($form[0]),
+            processData: false,
+            contentType: false,
+            beforeSend: function (xhr) {
+                return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+            },
             success: function (response) {
                 $form.trigger('reset');
                 $posts.prepend('<li class="media">' + response + '</li>');

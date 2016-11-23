@@ -14,6 +14,10 @@ trait Post {
 
         $comment = $this->addComment($post, $request, true);
 
+        if ($request->hasFile('images')) {
+            $this->uploadImages($post, $request);
+        }
+
         $this->categorise($post, $this->getTags($comment));
 
         return $post;
@@ -37,6 +41,13 @@ trait Post {
         $this->notifyUsers($comment, $this->getMentions($comment));
 
         return $comment;
+    }
+
+    protected function uploadImages(Models\Post $post, CommentRequest $request) {
+        foreach ($request->file('images') as $file) {
+            $path = $file->store('uploads/' . Auth::user()->uploadDirectory(), 'public');
+            $post->images()->save(new Models\Image(['path' => $path]));
+        }
     }
 
     protected function categorise(Models\Post $post, $tags) {

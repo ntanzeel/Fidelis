@@ -50,6 +50,10 @@ class Post extends Model {
             ->where('root', false);
     }
 
+    public function images() {
+        return $this->hasMany('App\Models\Image');
+    }
+
     public function tags() {
         return $this->belongsToMany('App\Models\Tag')
             ->whereNull('post_tag.deleted_at')
