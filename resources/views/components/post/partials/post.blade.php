@@ -1,7 +1,7 @@
 <div id="post-{{ $post->id }}" class="post">
     <div class="media-left">
         <a href="#">
-            <img class="media-object avatar author-photo-photo" src="{{ asset('storage/' . Auth::user()->photo) }}" onerror="this.src='https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png';" alt="{{ $post->user->name }} Profile Photo">
+            <img class="media-object avatar author-photo-photo" src="{{ asset('storage/' . $post->user->photo) }}" alt="{{ $post->user->name }} Profile Photo">
         </a>
     </div>
     <div class="media-body">

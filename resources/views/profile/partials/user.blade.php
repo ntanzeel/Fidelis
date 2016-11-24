@@ -1,8 +1,8 @@
 <div class="panel panel-default widget profile-widget">
-    <a class="profile-cover" href="{{ route('profile.view', [$user->username]) }}" style="background-image: url({{ $user->cover }})"></a>
+    <a class="profile-cover" href="{{ route('profile.view', [$user->username]) }}" style="background-image: url({{ asset('storage/' . $user->cover) }})"></a>
     <div class="panel-body widget-body">
         <a href="{{ route('profile.view', [$user->username]) }}" class="profile-photo">
-            <img src="{{ $user->photo }}" />
+            <img src="{{ asset('storage/' . $user->photo) }}" />
         </a>
         <div class="profile-about">
             <a class="profile-name" href="{{ route('profile.view', [$user->username]) }}">

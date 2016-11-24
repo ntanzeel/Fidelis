@@ -18,7 +18,7 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="profile-photo-container">
                             <a class="profile-photo">
-                                <img src="{{ asset('storage/' . $user->photo) }}" onerror="this.src='https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png';"/>
+                                <img src="{{ asset('storage/' . $user->photo) }}"/>
                             </a>
                             @if(Auth::user()->username == $user->username)
                                 <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i

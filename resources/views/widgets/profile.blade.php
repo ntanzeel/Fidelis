@@ -2,7 +2,7 @@
     <a class="profile-cover" href="{{ route('profile.index') }}" style="background-image: url({{ asset('storage/' . Auth::user()->cover) }})"></a>
     <div class="panel-body widget-body">
         <a href="{{ route('profile.index') }}" class="profile-photo">
-            <img src="{{ asset('storage/' . Auth::user()->photo) }}" onerror="this.src='https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png';" />
+            <img src="{{ asset('storage/' . Auth::user()->photo) }}" />
         </a>
         <div class="profile-about">
             <a class="profile-name" href="{{ route('profile.index') }}">

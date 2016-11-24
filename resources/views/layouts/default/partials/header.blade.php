@@ -30,7 +30,7 @@
                            aria-expanded="false">
                             <span class="sr-only">{{ Auth::user()->name }}</span>
                             <img src="{{ asset('storage/' . Auth::user()->photo) }}"
-                                 onerror="this.src='https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png';" width="38px" height="38px" />
+                                 width="38px" height="38px" />
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
