@@ -1,0 +1,33 @@
+.post-form,
+.post-form .form-footer {
+    position: relative;
+}
+
+.post-form .image-upload {
+    left: 0;
+    right: 100px;
+    overflow: hidden;
+    text-align: left;
+    position: absolute;
+    padding: 4px 0 2px;
+}
+
+.post-form .image-upload > a {
+    height: 28px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.post-form .image-upload > a:hover {
+    color: #FF6631;
+}
+
+.post-form .image-upload > a > i.fa,
+.post-form .image-upload > a > span.file-name {
+    float: left;
+}
+
+.post-form .image-upload > a > span.file-name {
+    line-height: 28px;
+    margin-left: 5px;
+}
