@@ -31,21 +31,23 @@ class AccountController extends Controller {
 
     public function upload_profile_pic(Request $request)
     {
-        $file = $request->file('pic');
-        $path = $file->store('uploads/' . Auth::user()->uploadDirectory(), 'public');
-        //dd($path);
-        Auth::user()->photo = $path;
-        Auth::user()->save();
-        //dd(Auth::user()->photo);
+        if ($request->hasFile('pic')) {
+            $file = $request->file('pic');
+            $path = $file->store('uploads/' . Auth::user()->uploadDirectory(), 'public');
+            Auth::user()->photo = $path;
+            Auth::user()->save();
+        }
 
         return redirect()->back();
     }
 
     public function upload_cover_pic(Request $request) {
-        $file = $request->file('pic');
-        $path = $file->store('uploads/' . Auth::user()->uploadDirectory(), 'public');
-        Auth::user()->cover = $path;
-        Auth::user()->save();
+        if ($request->hasFile('pic')) {
+            $file = $request->file('pic');
+            $path = $file->store('uploads/' . Auth::user()->uploadDirectory(), 'public');
+            Auth::user()->cover = $path;
+            Auth::user()->save();
+        }
 
         return redirect()->back();
     }
