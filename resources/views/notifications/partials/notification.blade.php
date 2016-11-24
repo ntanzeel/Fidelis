@@ -1,4 +1,4 @@
-<div class="notification">
+<div class="notification {{ !($notification->isFollow()) ? 'show-post' : '' }}" id="notification"  {{ !($notification->isFollow()) ? 'data-post="'.$notification->regarding()->post_id .'"' : '' }} data-toggle="{{ !($notification->isFollow()) ? 'modal' : '' }}" data-target="{{ !($notification->isFollow()) ? '#postModal' : '' }}">
     <div class="media-left">
         <a href="#">
             <img class="media-object avatar" src="{{ $notification->from()->photo }}" alt="Generic placeholder image">
@@ -9,6 +9,8 @@
 
         @if($notification->type != \App\Notifications\Follow::class)
             <p>{!!   $notification->regarding()->htmlText() !!}</p>
+        @else
+            <p> {{ $notification->data['text']  }} </p>
         @endif
         <div class="notification-footer">
             <ul class="list-inline list-unstyled action-list">
@@ -19,9 +21,14 @@
                     <a role="button" class="action action-like"><i class="fa fa-thumbs-down"></i></a>
                 </li>
                 <li>
-                    {{ date('H:i F-y', $notification->created_at->getTimestamp()) }}
+                    {{ $notification->created_at->diffForHumans() }}
                 </li>
             </ul>
         </div>
     </div>
 </div>
+@push('scripts')
+<script type="text/javascript">
+    var userProfile = "{{ route('profile.view', ['username']) }}";
+</script>
+@endpush

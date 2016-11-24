@@ -64,6 +64,7 @@
 
             @section('footer')
             @show
+            @include('components.post.postModal')
         </div>
 
         <!-- Framework Scripts -->
