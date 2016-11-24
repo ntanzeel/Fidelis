@@ -72,6 +72,14 @@ class User extends Authenticatable {
         'deleted_at', 'dob',
     ];
 
+    public function getPhotoAttribute($value) {
+        return asset(empty($value) ? 'assets/images/user/photo.png' : 'storage/' . $value);
+    }
+
+    public function getCoverAttribute($value) {
+        return asset(empty($value) ? 'assets/images/user/cover.jpeg' : 'storage/' . $value);
+    }
+
     public function posts() {
         return $this->hasMany('App\Models\Post');
     }

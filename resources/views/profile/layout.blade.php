@@ -1,12 +1,12 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
 @push('stylesheets')
-<link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
 @endpush
 
 @section('container')
     <div class="profile-header">
-        <div class="profile-cover" style="background-image: url({{ asset('storage/' . $user->cover) }})">
+        <div class="profile-cover" style="background-image: url({{ $user->cover }})">
             @if(Auth::user()->username == $user->username)
                 <a class="btn-cover-upload" data-toggle="tooltip" title="Upload new cover picture" href="#"><i
                             class="fa fa-upload"></i></a>
@@ -18,7 +18,7 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="profile-photo-container">
                             <a class="profile-photo">
-                                <img src="{{ asset('storage/' . $user->photo) }}"/>
+                                <img src="{{ $user->photo }}"/>
                             </a>
                             @if(Auth::user()->username == $user->username)
                                 <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i

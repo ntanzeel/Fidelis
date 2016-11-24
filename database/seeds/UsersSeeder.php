@@ -17,8 +17,8 @@ class UsersSeeder extends Seeder {
             'password'   => bcrypt('123456'),
             'dob'        => \Carbon\Carbon::create(1994, 11, 9),
             'reputation' => 0,
-            'photo'      => 'user.png',
-            'cover'      => 'cover.jpg',
+            'photo'      => '',
+            'cover'      => '',
             'is_private' => False,
         ]);
 
@@ -29,8 +29,8 @@ class UsersSeeder extends Seeder {
             'password'   => bcrypt('rubberducky'),
             'dob'        => \Carbon\Carbon::create(1995, 2, 14),
             'reputation' => 0,
-            'photo'      => 'user.png',
-            'cover'      => 'cover.jpg',
+            'photo'      => '',
+            'cover'      => '',
             'is_private' => False,
         ]);
 
@@ -41,8 +41,8 @@ class UsersSeeder extends Seeder {
             'password'   => bcrypt('password1'),
             'dob'        => \Carbon\Carbon::create(1995, 12, 21),
             'reputation' => 0,
-            'photo'      => 'user.png',
-            'cover'      => 'cover.jpg',
+            'photo'      => '',
+            'cover'      => '',
             'is_private' => False,
         ]);
 
@@ -53,8 +53,8 @@ class UsersSeeder extends Seeder {
             'password'   => bcrypt('password2'),
             'dob'        => \Carbon\Carbon::create(1995, 3, 4),
             'reputation' => 0,
-            'photo'      => 'user.png',
-            'cover'      => 'cover.jpg',
+            'photo'      => '',
+            'cover'      => '',
             'is_private' => False,
         ]);
     }
