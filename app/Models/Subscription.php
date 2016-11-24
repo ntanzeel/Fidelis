@@ -38,4 +38,5 @@ class Subscription extends Model {
     public function tag() {
         return $this->belongsTo('App\Models\Tag', 'tag_id');
     }
+
 }
