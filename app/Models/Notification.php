@@ -73,4 +73,16 @@ class Notification extends DatabaseNotification {
             return '<a class="mention-username" href="' . route('profile.view', [$matches[1]]) . '">' . $matches[0] . '</a>';
         }, $this->data['text']) : false;
     }
+
+    public function isComment() {
+        return $this->type == Notifications\Comment::class;
+    }
+
+    public function isMention() {
+        return $this->type == Notifications\Mention::class;
+    }
+
+    public function isFollow() {
+        return $this->type == Notifications\Follow::class;
+    }
 }
