@@ -58,5 +58,3 @@ $(document).ready(function () {
         });
     }
 });
-
-//{{ ($notification->isComment()) ? 'data-toggle="modal" data-target="#postModal"' : ''}}

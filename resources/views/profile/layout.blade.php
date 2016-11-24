@@ -1,7 +1,7 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
 @push('stylesheets')
-<link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
 @endpush
 
 @section('container')
@@ -18,7 +18,7 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="profile-photo-container">
                             <a class="profile-photo">
-                                <img src="{{ $user->photo }}" />
+                                <img src="{{ $user->photo }}"/>
                             </a>
                             @if(Auth::user()->username == $user->username)
                                 <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i

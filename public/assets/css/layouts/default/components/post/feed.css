@@ -1,3 +1,9 @@
+.post-list {
+    margin: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
 .post-list > li {
     margin: 0;
 }

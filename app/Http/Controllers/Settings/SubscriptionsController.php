@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tag;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Traits\Subscription;
+use App\Http\Requests\SubscriptionRequest;
 
 class SubscriptionsController extends Controller {
 
@@ -23,16 +23,4 @@ class SubscriptionsController extends Controller {
         ]);
     }
 
-    public function subscribe(Request $request) {
-        $tag = Tag::find($request->tag);
-        Auth::user()->subscriptions()->attach($tag);
-        return "Added " . $tag;
-    }
-
-    public function unsubscribe(Request $request) {
-        $tag = Tag::find($request->tag);
-        Auth::user()->subscriptions()->detach($tag);
-
-        return "Deleted " . $tag;
-    }
 }
