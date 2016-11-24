@@ -14,7 +14,7 @@
 
         <!-- Fonts -->
         @push('fonts')
-            <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+            <link href="{{ asset('assets/css/fonts/Raleway.css') }}" rel="stylesheet" type="text/css">
         @endpush
         @stack('fonts')
 

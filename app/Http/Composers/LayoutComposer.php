@@ -58,15 +58,20 @@ class LayoutComposer {
 
     public function getScripts() {
         list($controller, $action) = explode('@', $this->request->route()->getActionName());
-        $controller = strtolower(substr(str_replace('\\', '/', $controller), 20, strlen($controller) - 30));
+        $controller = strtolower(substr(str_replace('\\', '/', $controller), 21, strlen($controller) - 31));
+        $directories = explode('/', $controller);
 
-        $scripts = [
-            'Controller'    => '/assets/js' . $this->layoutPath . $controller . '/_shared.js',
-            'View'          => '/assets/css' . $this->layoutPath . $controller . '/' . $action . '.js'
-        ];
+        $scripts = [];
 
-        foreach ($scripts as $key => $script) {
-            if (!file_exists($this->publicPath . $script)) {
+        for ($i = 0, $path = ''; $i < count($directories); $i++) {
+            $path .= '/' . $directories[$i];
+            $scripts[$directories[$i] . 'Controller'] = '/assets/js' . $this->layoutPath . $path . '/_shared.js';
+        }
+
+        $scripts['View'] = '/assets/js' . $this->layoutPath . '/' . $controller . '/' . $action . '.js';
+
+        foreach ($scripts as $key => $stylesheet) {
+            if (!file_exists($this->publicPath . $stylesheet)) {
                 unset($scripts[$key]);
             }
         }

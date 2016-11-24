@@ -5,11 +5,12 @@
         <label class="sr-only" for="text">What are you thinking?</label>
         <textarea class="form-control" id="text" name="text" placeholder="What are you thinking?"></textarea>
     </div>
-    <div class="form-group">
-        <label class="sr-only" for="images">Images</label>
-        <input type="file" multiple name="images[]" id="images" />
-    </div>
-    <div class="text-right">
+    <div class="text-right form-footer">
+        <div class="image-upload">
+            <label class="sr-only" for="images">Images</label>
+            <a class="toggle" href="#"><i class="fa fa-camera fa-2x" aria-hidden="true"></i> <span class="file-name"></span></a>
+            <input type="file" multiple name="images[]" id="post-images" style="display: none" accept="image/*" />
+        </div>
         <button type="submit" class="btn btn-orange">Submit</button>
     </div>
 </form>
