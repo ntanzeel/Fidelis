@@ -24,19 +24,3 @@ body {
     margin: 17px 15px;
     position: absolute;
 }
-
-.list-subscription {
-    margin: 0;
-    padding: 0;
-}
-
-.item-subscription {
-    list-style-type: none;
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.item-subscription:hover {
-    background-color: #eee;
-}

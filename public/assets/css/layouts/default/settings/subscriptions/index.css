@@ -1,0 +1,7 @@
+.subscription-list {
+    margin: 0;
+}
+
+.subscription-list > li.subscription-item {
+    line-height: 36px;
+}

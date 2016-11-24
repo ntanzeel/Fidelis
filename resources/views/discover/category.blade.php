@@ -7,7 +7,9 @@
                 <div class="col-md-12 text-center">
                     {{ $category }}
                     @if(Auth::user() && !$isRoot)
-                        <a role="button" id='{{ $tag->id }}' class="btn btn-default pull-right" href="#">
+                        <a role="button" class="btn btn-default pull-right btn-subscribe-toggle" href="#"
+                           data-api="{{ url('/api/subscription/')  }}"
+                           data-id="{{ $tag->id }}" data-status="{{ $subscribed ? 1 : 0 }}">
                             {{ $subscribed ? 'Unsubscribe' : 'Subscribe' }}
                         </a>
                     @endif
@@ -32,8 +34,4 @@
             </div>
         </div>
     </div>
-    <script>
-        var subscribeUrl = "{{ route('api.subscriptions.store') }}";
-        var unsubscribeUrl = "{{ route('api.subscriptions.delete',[$tag]) }}";
-    </script>
 @stop

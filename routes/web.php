@@ -230,7 +230,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
     /*
      * Subscriptions
      */
-    Route::group(['as' => 'subscriptions.', 'prefix' => 'subscription'],function() {
+    Route::group(['as' => 'subscription.', 'prefix' => 'subscription'],function() {
         Route::post('/', [
             'as'   => 'store',
             'uses' => 'Api\SubscriptionsController@store',

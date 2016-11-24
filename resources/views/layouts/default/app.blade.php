@@ -41,7 +41,7 @@
         @endforeach
 
         <!-- Scripts -->
-        <script>
+        <script type="text/javascript">
             {!! 'window.Laravel = ' . json_encode(['csrfToken' => csrf_token()])  !!}
         </script>
     </head>
