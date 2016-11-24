@@ -14,7 +14,8 @@ class ProfileController extends Controller {
 
     public function view($username) {
         $user = User::where('username', $username)->first();
-        return view('profile.view', compact('user'));
+        $posts = $user->posts()->latest()->get();
+        return view('profile.view', compact('user', 'posts'));
     }
 
     public function followers($username) {

@@ -15,7 +15,7 @@
                 <div class="panel-heading">
                     @include('components.post.create')
                 </div>
-                <div class="panel-body" style="padding: 0">
+                <div class="panel-body padding-0">
                     @include('components.post.feed', compact('posts'))
                 </div>
             </div>
