@@ -16,7 +16,7 @@
 
 @push('scripts')
     <script>
-        var token = "{{ csrf_token() }}";
-        var unsubscribeUrl = "{{ route('settings.subscriptions.unsubscribe') }}";
+        var unsubscribeUrl = "{{ url('/api/subscription/{id}') }}";
     </script>
+    <script type="text/javascript" src="{{ asset('assets/js/layouts/default/discover/_shared.js') }}"></script>
 @endpush

@@ -193,15 +193,6 @@ Route::group(['as' => 'settings.'], function () {
             'uses' => 'Settings\SubscriptionsController@index',
         ]);
 
-        Route::post('subscribe', [
-            'as'   => 'subscribe',
-            'uses' => 'Settings\SubscriptionsController@subscribe',
-        ]);
-
-        Route::post('unsubscribe', [
-            'as'   => 'unsubscribe',
-            'uses' => 'Settings\SubscriptionsController@unsubscribe',
-        ]);
     });
 });
 
@@ -232,6 +223,22 @@ Route::group(['as' => 'api.', 'prefix' => 'api'], function () {
         Route::get('/{post}', [
             'as'   => 'show',
             'uses' => 'Api\PostController@show',
+        ]);
+
+    });
+
+    /*
+     * Subscriptions
+     */
+    Route::group(['as' => 'subscriptions.', 'prefix' => 'subscription'],function() {
+        Route::post('/', [
+            'as'   => 'store',
+            'uses' => 'Api\SubscriptionsController@store',
+        ]);
+
+        Route::delete('/{tag}', [
+            'as'   => 'delete',
+            'uses' => 'Api\SubscriptionsController@delete',
         ]);
     });
 

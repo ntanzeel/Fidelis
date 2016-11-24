@@ -6,7 +6,7 @@
 
 @section('container')
     <div class="profile-header">
-        <div class="profile-cover" style="background-image: url({{ $user->cover }})">
+        <div class="profile-cover" style="background-image: url({{ asset('storage/' . $user->cover) }})">
             @if(Auth::user()->username == $user->username)
                 <a class="btn-cover-upload" data-toggle="tooltip" title="Upload new cover picture" href="#"><i
                             class="fa fa-upload"></i></a>
@@ -18,7 +18,7 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="profile-photo-container">
                             <a class="profile-photo">
-                                <img src="{{ $user->photo }}" />
+                                <img src="{{ asset('storage/' . $user->photo) }}" onerror="this.src='https://cdn3.iconfinder.com/data/icons/user-avatars-1/512/users-10-3-128.png';"/>
                             </a>
                             @if(Auth::user()->username == $user->username)
                                 <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i
