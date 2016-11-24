@@ -1,4 +1,6 @@
-<div class="notification {{ !($notification->isFollow()) ? 'show-post' : '' }}" id="notification"  {{ !($notification->isFollow()) ? 'data-post="'.$notification->regarding()->post_id .'"' : '' }} data-toggle="{{ !($notification->isFollow()) ? 'modal' : '' }}" data-target="{{ !($notification->isFollow()) ? '#postModal' : '' }}">
+<div class="notification {{ !($notification->isFollow()) ? 'show-post' : '' }}" id="notification"
+     {{ !($notification->isFollow()) ? 'data-post="'.$notification->regarding()->post_id .'"' : '' }} data-toggle="{{ !($notification->isFollow()) ? 'modal' : '' }}"
+     data-target="{{ !($notification->isFollow()) ? '#postModal' : '' }}">
     <div class="media-left">
         <a href="#">
             <img class="media-object avatar" src="{{ $notification->from()->photo }}" alt="Generic placeholder image">

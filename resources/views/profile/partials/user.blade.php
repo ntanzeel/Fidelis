@@ -14,7 +14,7 @@
         </div>
         <p class="profile-status">
             @if ($user->pivot->follower_id == Auth::user()->id || $user->pivot->mutual)
-                <button class="btn btn-block btn-danger">Remove</button>
+                <button class="btn btn-block btn-danger">Unfollow</button>
             @else
                 <button class="btn btn-block btn-primary">Follow</button>
             @endif

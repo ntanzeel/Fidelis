@@ -1,3 +1,7 @@
+@push('stylesheets')
+    <link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
+@endpush
+
 <div class="panel panel-default widget profile-widget">
     <a class="profile-cover" href="{{ route('profile.index') }}" style="background-image: url({{ Auth::user()->cover }})"></a>
     <div class="panel-body widget-body">
