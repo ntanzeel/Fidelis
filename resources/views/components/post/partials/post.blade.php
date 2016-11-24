@@ -1,7 +1,7 @@
 <div id="post-{{ $post->id }}" class="post">
     <div class="media-left">
         <a href="#">
-            <img class="media-object avatar author-photo-photo" src="{{ $post->user->photo }}" alt="{{ $post->user->name }} Profile Photo">
+            <img class="media-object avatar author-photo-photo" src="{{ asset('storage/' . $post->user->photo) }}" alt="{{ $post->user->name }} Profile Photo">
         </a>
     </div>
     <div class="media-body">

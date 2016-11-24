@@ -37,8 +37,7 @@
         </div>
     </div>
     <script>
-        var token = "{{ csrf_token() }}";
-        var subscribeUrl = "{{ route('settings.subscriptions.subscribe') }}";
-        var unsubscribeUrl = "{{ route('settings.subscriptions.unsubscribe') }}";
+        var subscribeUrl = "{{ route('api.subscriptions.store') }}";
+        var unsubscribeUrl = "{{ route('api.subscriptions.delete',[$tag]) }}";
     </script>
 @stop

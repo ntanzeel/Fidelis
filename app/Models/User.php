@@ -79,6 +79,7 @@ class User extends Authenticatable {
     public function subscriptions() {
         return $this->belongsToMany('App\Models\Tag', 'subscriptions', 'user_id', 'tag_id')
             ->whereNull('subscriptions.deleted_at')
+            ->withPivot(['id', 'deleted_at'])
             ->withTimestamps();
     }
 

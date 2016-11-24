@@ -1,15 +1,15 @@
-/**
- * Created by jordan on 12/11/16.
- */
 
 $(document).ready(function () {
 
+    var token = $('meta[name="csrf-token"]').attr('content');
+
+
     function unsubscribe(id) {
+        console.log(token, unsubscribeUrl.replace('{id}', id));
         $.ajax({
-            url: unsubscribeUrl,
-            type: 'post',
+            url: unsubscribeUrl.replace('{id}', id),
+            type: 'delete',
             data: {
-                tag: id,
                 _token: token
             }
         })

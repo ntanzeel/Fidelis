@@ -1,8 +1,8 @@
 <div class="panel panel-default widget profile-widget">
-    <a class="profile-cover" href="{{ route('profile.index') }}" style="background-image: url({{ Auth::user()->cover }})"></a>
+    <a class="profile-cover" href="{{ route('profile.index') }}" style="background-image: url({{ asset('storage/' . Auth::user()->cover) }})"></a>
     <div class="panel-body widget-body">
         <a href="{{ route('profile.index') }}" class="profile-photo">
-            <img src="{{ Auth::user()->photo }}" />
+            <img src="{{ asset('storage/' . Auth::user()->photo) }}" />
         </a>
         <div class="profile-about">
             <a class="profile-name" href="{{ route('profile.index') }}">

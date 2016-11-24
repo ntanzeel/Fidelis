@@ -29,20 +29,21 @@ class AccountController extends Controller {
         return redirect()->route('settings.account.index');
     }
 
-    public function upload_profile_pic(Request $request) {
-        $path = $request->file('pic')->storeAs(
-            'images', $request->user()->username.".jpg"
-        );
+    public function upload_profile_pic(Request $request)
+    {
+        $file = $request->file('pic');
+        $path = $file->store('uploads/' . Auth::user()->uploadDirectory(), 'public');
+        //dd($path);
         Auth::user()->photo = $path;
         Auth::user()->save();
+        //dd(Auth::user()->photo);
 
         return redirect()->back();
     }
 
     public function upload_cover_pic(Request $request) {
-        $path = $request->file('pic')->storeAs(
-            'images', $request->user()->username."-cover.jpg"
-        );
+        $file = $request->file('pic');
+        $path = $file->store('uploads/' . Auth::user()->uploadDirectory(), 'public');
         Auth::user()->cover = $path;
         Auth::user()->save();
 
