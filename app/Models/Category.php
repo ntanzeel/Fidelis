@@ -38,7 +38,7 @@ class Category extends Model {
     public function tags() {
         return $this->belongsToMany('App\Models\Tag')
             ->whereNull('category_tag.deleted_at')
-            ->withPivot(['root', 'deleted_at'])
+            ->withPivot(['id', 'root', 'deleted_at'])
             ->withTimestamps()
             ->orderBy('category_tag.root', 'DESC');
     }

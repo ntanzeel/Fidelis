@@ -6,10 +6,8 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     Subscribed
-                    @if(Auth::user())
-                        <a role="button" class="btn btn-default btn-manage pull-right"
-                           href={{ route('settings.subscriptions.index') }}>Manage</a>
-                    @endif
+                    <a role="button" class="btn btn-default pull-right"
+                       href={{ route('settings.subscriptions.index') }}>Manage</a>
                 </div>
             </div>
         </div>
@@ -21,12 +19,8 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        @if(Auth::user())
-                            Post
-                        @else
-                            Sign up and log in to subscribe to different topics
-                        @endif
+                    <div class="panel-body padding-0">
+                        @include('components.post.feed', compact('posts'))
                     </div>
                 </div>
             </div>

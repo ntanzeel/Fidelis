@@ -72,3 +72,7 @@
 .post .action.action-flag:hover {
     color: #AD441A;
 }
+
+.empty-feed {
+    padding: 15px;
+}

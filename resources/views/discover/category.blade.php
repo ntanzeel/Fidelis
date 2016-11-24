@@ -6,13 +6,9 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     {{ $category }}
-                    @if(Auth::user())
-                        <a role="button" id='{{ $tag }}' class="btn btn-default btn-subscribe pull-right" href="#">
-                            @if($subscribed)
-                                Unsubscribe
-                            @else
-                                Subscribe
-                            @endif
+                    @if(Auth::user() && !$isRoot)
+                        <a role="button" id='{{ $tag->id }}' class="btn btn-default pull-right" href="#">
+                            {{ $subscribed ? 'Unsubscribe' : 'Subscribe' }}
                         </a>
                     @endif
                 </div>
@@ -26,8 +22,8 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        Post
+                    <div class="panel-body padding-0">
+                        @include('components.post.feed', compact('posts'))
                     </div>
                 </div>
             </div>

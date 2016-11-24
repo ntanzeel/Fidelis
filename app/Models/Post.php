@@ -57,7 +57,7 @@ class Post extends Model {
     public function tags() {
         return $this->belongsToMany('App\Models\Tag')
             ->whereNull('post_tag.deleted_at')
-            ->withPivot(['deleted_at'])
+            ->withPivot(['id', 'deleted_at'])
             ->withTimestamps();
     }
 

@@ -37,7 +37,7 @@ class Tag extends Model {
     public function categories() {
         return $this->belongsToMany('App\Models\Category')
             ->whereNull('category_tag.deleted_at')
-            ->withPivot(['root', 'deleted_at'])
+            ->withPivot(['id', 'root', 'deleted_at'])
             ->withTimestamps()
             ->orderBy('category_tag.root', 'DESC');
     }
@@ -45,7 +45,7 @@ class Tag extends Model {
     public function posts() {
         return $this->belongsToMany('App\Models\Post')
             ->whereNull('post_tag.deleted_at')
-            ->withPivot(['deleted_at'])
+            ->withPivot(['id', 'deleted_at'])
             ->withTimestamps();
     }
 }

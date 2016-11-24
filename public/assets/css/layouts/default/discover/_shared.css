@@ -19,32 +19,15 @@ body {
     line-height: 70px;
 }
 
-.discover-header a.btn-subscribe {
-    color: #FF6631;
-    background-color: #FFFFFF;
-    border-color: #d3e0e9;
-    margin: 17px;
+.discover-header .btn {
+    right: 0;
+    margin: 17px 15px;
     position: absolute;
-    right: 15px;
-}
-
-.discover-header a.btn-manage {
-    color: #FF6631;
-    background-color: #FFFFFF;
-    border-color: #d3e0e9;
-    margin: 17px 0;
-    position: absolute;
-    right: 15px;
-}
-
-.discover-header a:focus,
-.discover-header a:hover {
-    background-color: #eee;
 }
 
 .list-subscription {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .item-subscription {
@@ -56,23 +39,4 @@ body {
 
 .item-subscription:hover {
     background-color: #eee;
-}
-
-a.btn-unsubscribe {
-    position: relative;
-    top: -8px;
-    padding: 7px;
-    border-radius: 4px;
-    float: right;
-    color: #FF6631;
-    background-color: #FFFFFF;
-    border: 1px solid #FF6631;
-}
-
-a.btn-unsubscribe:hover,
-a.btn-unsubscribe:focus,
-a.btn-unsubscribe:active {
-    color: #FFFFFF;
-    background-color: #FF6631;
-    text-decoration: none;
 }
