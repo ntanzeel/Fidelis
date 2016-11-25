@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name') }}</title>
+        <title>{{ config('app.name') . (!empty($title) ? ' :: ' . $title : '') }}</title>
 
         <link rel="icon" href="{{ asset('favicon.png') }}">
 
@@ -64,7 +64,6 @@
 
             @section('footer')
             @show
-            @include('components.post.postModal')
         </div>
 
         <!-- Framework Scripts -->
