@@ -138,17 +138,17 @@ Route::group(['as' => 'profile.'], function () {
         'uses' => 'ProfileController@index',
     ]);
 
-    Route::get('@{username}', [
+    Route::get('@{user}', [
         'as'   => 'view',
         'uses' => 'ProfileController@view',
     ]);
 
-    Route::get('@{username}/followers', [
+    Route::get('@{user}/followers', [
         'as'   => 'followers',
         'uses' => 'ProfileController@followers',
     ]);
 
-    Route::get('@{username}/following', [
+    Route::get('@{user}/following', [
         'as'   => 'following',
         'uses' => 'ProfileController@following',
     ]);

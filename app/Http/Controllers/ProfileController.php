@@ -8,23 +8,24 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller {
 
+    public function __construct() {
+        $this->middleware('auth')->only('index');
+    }
+
     public function index() {
         return redirect()->route('profile.view', [Auth::user()->username]);
     }
 
-    public function view($username) {
-        $user = User::where('username', $username)->first();
+    public function view(User $user) {
         $posts = $user->posts()->latest()->get();
         return view('profile.view', compact('user', 'posts'));
     }
 
-    public function followers($username) {
-        $user = User::where('username', $username)->first();
+    public function followers(User $user) {
         return view('profile.followers', compact('user'));
     }
 
-    public function following($username) {
-        $user = User::where('username', $username)->first();
+    public function following(User $user) {
         return view('profile.following', compact('user'));
     }
 }
