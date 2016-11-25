@@ -11,10 +11,10 @@
                 <span class="icon-bar"></span>
             </button>
 
-            {{--<!-- Branding Image -->--}}
-            {{--<a class="navbar-brand" href="{{ route('pages.index') }}">--}}
-            {{--{{ config('app.name') }}--}}
-            {{--</a>--}}
+            <!-- Branding Image -->
+            <a class="navbar-brand" href="{{ route('pages.index') }}">
+                <img src="{{ asset('assets/images/Logo-NoBG.png') }}" height="30px" />
+            </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">

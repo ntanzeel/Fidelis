@@ -12,9 +12,24 @@
     box-shadow: 0 0 4px 0 rgba(0,0,0,0.5);
 }
 
+@media (min-width: 768px) {
+    .navbar-default .navbar-header {
+        left: 50%;
+        width: 54px;
+        margin-left: -27px;
+        position: absolute;
+    }
+
+    .navbar-default .navbar-header .navbar-brand {
+        display: block;
+        margin-left: 0;
+    }
+}
+
 .navbar-default .navbar-brand,
 .navbar-default .navbar-brand:hover {
     color: #FF6631;
+    padding: 10px 15px;
 }
 
 .navbar-nav > li > a {
