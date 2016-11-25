@@ -122,9 +122,9 @@ Route::group(['as' => 'notifications.'], function () {
  * Posts
  */
 Route::group(['as' => 'posts.'], function () {
-    Route::post('post', [
-        'as'   => 'store',
-        'uses' => 'PostsController@store',
+    Route::get('@{user}/post/{post}', [
+        'as'   => 'view',
+        'uses' => 'PostsController@view',
     ]);
 });
 
@@ -230,7 +230,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
     /*
      * Subscriptions
      */
-    Route::group(['as' => 'subscription.', 'prefix' => 'subscription'],function() {
+    Route::group(['as' => 'subscription.', 'prefix' => 'subscription'], function () {
         Route::post('/', [
             'as'   => 'store',
             'uses' => 'Api\SubscriptionsController@store',

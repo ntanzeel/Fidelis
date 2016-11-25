@@ -116,4 +116,14 @@ class User extends Authenticatable {
     public function uploadDirectory() {
         return md5($this->username . $this->created_at);
     }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 }
