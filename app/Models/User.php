@@ -56,7 +56,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'dob', 'reputation',
+        'name', 'email', 'password', 'about', 'dob', 'reputation',
     ];
 
     /**
@@ -71,6 +71,14 @@ class User extends Authenticatable {
     protected $dates = [
         'deleted_at', 'dob',
     ];
+
+    protected $attributes = [
+        'about' => '',
+    ];
+
+    public function __construct(array $attributes = []) {
+        parent::__construct(array_merge(['api_token' => str_random(64)], $attributes));
+    }
 
     public function getPhotoAttribute($value) {
         return asset(empty($value) ? 'assets/images/user/photo.png' : 'storage/' . $value);
@@ -122,8 +130,7 @@ class User extends Authenticatable {
      *
      * @return string
      */
-    public function getRouteKeyName()
-    {
+    public function getRouteKeyName() {
         return 'username';
     }
 }
