@@ -16,14 +16,16 @@ class PostsController extends Controller {
     }
 
     public function view(User $user, Post $post) {
-        if(($user->id != $post->user_id)) {
+        if (($user->id != $post->user_id)) {
             abort(404);
         }
 
-        if(!($post->canBeViewedBy(Auth::user()))) {
+        if (!($post->canBeViewedBy(Auth::user()))) {
             abort(401);
         }
 
-        return view('posts.view', compact('user', 'post'));
+        $comments = $post->comments;
+
+        return view('posts.view', compact('user', 'post', 'comments'));
     }
 }

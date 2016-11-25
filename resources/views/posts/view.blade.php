@@ -1,5 +1,10 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
+@push('stylesheets')
+<link rel="stylesheet"
+      href="{{ asset('assets/css/' . str_replace('.', '/', config('view.layout')) . '/posts/view.css') }}">
+@endpush
+
 @section('content')
     <div class="row">
         <div class="col-md-3 hidden-sm hidden-xs">
@@ -12,25 +17,32 @@
                     <div class="media">
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object avatar" src="{{ $user->photo }}" alt="Generic placeholder image">
+                                <img class="media-object avatar" src="{{ $user->photo }}"
+                                     alt="Generic placeholder image">
                             </a>
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">{{ $user->name }}</h4>
                             {!! $post->content->htmlText() !!}
-                            {{--@forelse($comment as $comment)--}}
+                            @include('posts.partials.footer', compact('post', 'comment'))
+                            <hr>
+
+                            @forelse($comments as $comment)
                                 <div class="media mt-2">
                                     <a class="media-left" href="#">
-                                        <img class="media-object" src="..." alt="Generic placeholder image">
+                                        <img class="media-object avatar" src="{{ $comment->user->photo }}"
+                                             alt="Generic placeholder image">
                                     </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Nested media heading</h4>
-                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                        <h4 class="media-heading">{{ $comment->user->name }}</h4>
+                                        {{ $comment->text }}
+                                        @include('posts.partials.footer', compact('post', 'comment'))
                                     </div>
                                 </div>
-                            {{--@empty--}}
-
-                            {{--@endforelse--}}
+                                <hr>
+                            @empty
+                            @endforelse
+                            @include('posts.partials.reply')
                         </div>
                     </div>
                 </div>
