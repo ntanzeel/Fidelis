@@ -228,7 +228,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
         /*
          * Comments
          */
-        Route::group(['as' => 'comment.', 'prefix' => 'comment'], function() {
+        Route::group(['as' => 'comment.', 'prefix' => '/{post}/comment'], function() {
             Route::post('/', [
                 'as' => 'store',
                 'uses' => 'Api\CommentController@store',

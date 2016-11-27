@@ -14,9 +14,7 @@ $(document).ready(function () {
         $.ajax({
             url: form.attr('action'),
             method: form.attr('method'),
-            data: {
-                text: text
-            },
+            data: new FormData(form[0]),
             processData: false,
             contentType: false,
             beforeSend: function (xhr) {

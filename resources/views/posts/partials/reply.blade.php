@@ -1,4 +1,4 @@
-<form class="ajax post-form" method="post" action="{{ route('api.post.comment.store') }}" enctype="multipart/form-data">
+<form class="ajax post-form" method="post" action="{{ route('api.post.comment.store', $post->id) }}" enctype="multipart/form-data">
     {{ csrf_field() }}
 
     <div class="form-group">

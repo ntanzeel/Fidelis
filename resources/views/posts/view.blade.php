@@ -43,7 +43,7 @@
                                     <hr>
                                 @empty
                                 @endforelse
-                                @include('posts.partials.reply')
+                                @include('posts.partials.reply', compact('post'))
                             </div>
                         </div>
                     </div>
