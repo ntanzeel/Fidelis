@@ -54,6 +54,10 @@ class Comment extends Model {
         return $this->hasOne('App\Models\Post');
     }
 
+    public function votes() {
+        return $this->hasMany('App\Models\Vote');
+    }
+
     public function htmlText() {
         $html = preg_replace_callback('/#(\w+)/', function ($matches) {
             return '<a class="hash-tag" href="' . route('discover.category', [$matches[1]]) . '">' . $matches[0] . '</a>';
