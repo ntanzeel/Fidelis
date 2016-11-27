@@ -23,7 +23,7 @@
         <div class="post-footer">
             <ul class="list-inline list-unstyled action-list">
                 <li>
-                    <a role="button" class="action action-like" href="route("><i class="fa fa-thumbs-up"></i> {{ $post->content->up_votes }}</a>
+                    <a role="button" class="action action-like"><i class="fa fa-thumbs-up"></i> {{ $post->content->up_votes }}</a>
                 </li>
                 <li>
                     <a role="button" class="action action-dislike"><i class="fa fa-thumbs-down"></i> {{ $post->content->down_votes }}</a>

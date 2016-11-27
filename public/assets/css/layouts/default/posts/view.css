@@ -1,4 +1,5 @@
 .post-view-footer {
+    padding: 5px;
     height: 20px;
     width: auto;
 }
@@ -12,4 +13,14 @@ hr.style-one {
 
 hr.double {
     border-top: 3px double #8c8b8b;
+}
+
+.thread .action.action-like.active,
+.thread .action.action-like:hover {
+    color: #08AD93;
+}
+
+.thread .action.action-dislike.active,
+.thread .action.action-dislike:hover {
+    color: #e81c4f;
 }

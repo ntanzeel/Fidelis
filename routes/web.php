@@ -225,6 +225,21 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
             'uses' => 'Api\PostController@show',
         ]);
 
+        /*
+         * Comments
+         */
+        Route::group(['as' => 'comment.', 'prefix' => 'comment'], function() {
+            Route::post('/', [
+                'as' => 'store',
+                'uses' => 'Api\CommentController@store',
+            ]);
+
+            Route::delete('/{comment}', [
+                'as' => 'delete',
+                'uses' => 'Api\CommentController@delete',
+            ]);
+        });
+
     });
 
     /*
@@ -241,11 +256,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
             'uses' => 'Api\SubscriptionsController@delete',
         ]);
     });
-
-    /*
-     * Comments
-     */
-
 
     /*
      * Votes
