@@ -224,22 +224,6 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
             'as'   => 'show',
             'uses' => 'Api\PostController@show',
         ]);
-
-        /*
-         * Comments
-         */
-        Route::group(['as' => 'comment.', 'prefix' => 'comment'], function() {
-            Route::post('/', [
-                'as' => 'store',
-                'uses' => 'Api\CommentController@store',
-            ]);
-
-            Route::delete('/{comment}', [
-                'as' => 'delete',
-                'uses' => 'Api\CommentController@delete',
-            ]);
-        });
-
     });
 
     /*
@@ -254,6 +238,21 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
         Route::delete('/{tag}', [
             'as'   => 'delete',
             'uses' => 'Api\SubscriptionsController@delete',
+        ]);
+    });
+
+    /*
+         * Comments
+         */
+    Route::group(['as' => 'comment.', 'prefix' => '/post/{post}/comment'], function() {
+        Route::post('/', [
+            'as' => 'store',
+            'uses' => 'Api\CommentController@store',
+        ]);
+
+        Route::delete('/{comment}', [
+            'as' => 'delete',
+            'uses' => 'Api\CommentController@delete',
         ]);
     });
 
