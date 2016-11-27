@@ -63,6 +63,7 @@
             </div>
 
             @section('footer')
+                @include('layouts.default.partials.footer')
             @show
         </div>
 

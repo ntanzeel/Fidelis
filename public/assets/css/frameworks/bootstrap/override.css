@@ -1,6 +1,12 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+
 body {
     line-height: 1;
     padding-top: 70px;
+    margin-bottom: 80px;
 }
 
 a, a:hover, a:visited, a:focus {

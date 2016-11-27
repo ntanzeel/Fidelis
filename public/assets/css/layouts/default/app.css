@@ -119,3 +119,15 @@
 .navbar-nav > li > a > .badge {
     background-color: #d9534f;
 }
+
+.footer {
+    padding: 15px 0 5px;
+    background: #FFF;
+    border-top: 1px solid #d3e0e9;
+}
+
+.footer-fixed-bottom {
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+}
