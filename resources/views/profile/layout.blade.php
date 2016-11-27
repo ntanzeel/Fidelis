@@ -24,11 +24,11 @@
                                 <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i
                                             class="fa fa-upload"></i></a>
                                 <form id="submit-profile-pic" class="imgupload" enctype="multipart/form-data" method="post" action="{{ route('settings.account.upload_profile_pic') }}">
-                                    <input type="file" id="profile-upload" name="pic"/>
+                                    <input type="file" id="profile-upload" name="pic" accept="image/*"/>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </form>
                                 <form id="submit-cover" class="imgupload" enctype="multipart/form-data" method="post" action="{{ route('settings.account.upload_cover_pic') }}">
-                                    <input type="file" id="cover-upload" name="pic"/>
+                                    <input type="file" id="cover-upload" name="pic" accept="image/*"/>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </form>
                             @endif

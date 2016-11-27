@@ -18,3 +18,8 @@ body {
     font-size: 20pt;
     line-height: 70px;
 }
+
+.btn .btn-orange {
+    color: #FF6631;
+    border: 1px solid #FF6631;
+}
