@@ -121,9 +121,10 @@ class User extends Authenticatable {
             ->withTimestamps();
     }
 
-    public function likes() {
-        return $this->hasMany('App\Models\Vote')
-            ->where('type', 'up');
+    public function voted() {
+        return Post::whereHas('content.votes', function($query) {
+            $query->where('user_id', $this->id);
+        });
     }
 
     public function uploadDirectory() {

@@ -131,7 +131,6 @@ Route::group(['as' => 'post.'], function () {
 /*
  * User
  */
-
 Route::group(['as' => 'profile.'], function () {
     Route::get('@me', [
         'as'   => 'index',
@@ -153,9 +152,9 @@ Route::group(['as' => 'profile.'], function () {
         'uses' => 'ProfileController@following',
     ]);
 
-    Route::get('@{user}/likes', [
-        'as'   => 'likes',
-        'uses' => 'ProfileController@likes',
+    Route::get('@{user}/rated', [
+        'as'   => 'rated',
+        'uses' => 'ProfileController@rated',
     ]);
 });
 
@@ -204,7 +203,6 @@ Route::group(['as' => 'settings.'], function () {
 /*
  * API
  */
-
 Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], function () {
     /*
      * Posts

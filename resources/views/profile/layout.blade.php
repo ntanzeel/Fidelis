@@ -55,10 +55,10 @@
                                     <span class="nav-value">{{ $user->following()->count() }}</span>
                                 </a>
                             </li>
-                            <li class="{{ $active == 'likes' ? 'active' : '' }}" role="presentation">
-                                <a href="{{ route('profile.likes', [$user->username]) }}">
-                                    <span class="nav-label">Likes</span>
-                                    <span class="nav-value">{{ 99 }}</span>
+                            <li class="{{ $active == 'rated' ? 'active' : '' }}" role="presentation">
+                                <a href="{{ route('profile.rated', [$user->username]) }}">
+                                    <span class="nav-label">Rated</span>
+                                    <span class="nav-value">{{ $user->voted()->count() }}</span>
                                 </a>
                             </li>
                         </ul>
