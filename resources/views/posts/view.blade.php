@@ -47,7 +47,7 @@
                     </div>
                     <div class="post-comments">
                         <ul class="media-list comment-list">
-                            @forelse($comments as $comment)
+                            @forelse($post->comments as $comment)
                                 <li class="media">
                                     @include('posts.partials.comment', compact('comment'))
                                 </li>

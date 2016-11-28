@@ -8,10 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller {
 
-    public function index() {
-
-    }
-
     /**
      * @param User $user
      * @param Post $post
@@ -20,17 +16,17 @@ class PostsController extends Controller {
     public function view(User $user, Post $post) {
         $this->checkAccess($user, $post);
 
-        $with = ['user'];
+        $load = ['user', 'content', 'comments', 'comments.user'];
 
         if (Auth::user()) {
-            $with['votes'] = function ($query) {
+            $load = array_merge($load, array_fill_keys(['content.votes', 'comments.votes'], function ($query) {
                 $query->where('user_id', Auth::user()->id);
-            };
+            }));
         }
 
-        $comments = $post->comments()->with($with)->get();
+        $post->load($load);
 
-        return view('posts.view', compact('user', 'post', 'comments'));
+        return view('posts.view', compact('user', 'post'));
     }
 
     private function checkAccess(User $user, Post $post) {
