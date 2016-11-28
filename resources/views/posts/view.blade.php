@@ -55,10 +55,12 @@
                             @endforelse
                         </ul>
                     </div>
+                    <div class="add-comment padding-15">
+                        @include('posts.partials.reply')
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="col-md-3 hidden-sm hidden-xs">
             @widget('trending')
         </div>

@@ -4,5 +4,7 @@
     <div class="form-group">
         <textarea placeholder="What are your thoughts on this?" class="form-control" name="text" id="text" rows="3"></textarea>
     </div>
-    <button type="submit" class="btn btn-orange">Submit</button>
+    <div class="form-actions text-right">
+        <button type="submit" class="btn btn-orange">Submit</button>
+    </div>
 </form>
