@@ -46,7 +46,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-<script src="{{ asset('assets/js/layouts/default/posts/index.js') }}"></script>
-@endpush
