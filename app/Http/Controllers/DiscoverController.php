@@ -19,9 +19,17 @@ class DiscoverController extends Controller {
     public function index() {
         $subscriptions = Auth::user()->subscriptions()->pluck('tags.id');
 
+        $with = ['user', 'content'];
+
+        if (Auth::user()) {
+            $with['content.votes'] = function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            };
+        }
+
         $posts = Post::whereHas('tags', function ($query) use ($subscriptions) {
             $query->whereIn('tags.id', $subscriptions);
-        })->latest()->get();
+        })->with($with)->latest()->get();
 
         return view('discover.index', [
             'categories' => $this->categories,
@@ -38,14 +46,22 @@ class DiscoverController extends Controller {
 
         $rootCategory = $tag->categories()->where('root', true)->first();
 
+        $with = ['user', 'content'];
+
+        if (Auth::user()) {
+            $with['content.votes'] = function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            };
+        }
+
         if ($rootCategory) {
             $tagIds = $rootCategory->tags()->pluck('tags.id');
 
             $posts = Post::whereHas('tags', function ($query) use ($tagIds) {
                 $query->whereIn('tags.id', $tagIds);
-            })->latest()->get();
+            })->with($with)->latest()->get();
         } else {
-            $posts = $tag->posts()->latest()->get();
+            $posts = $tag->posts()->with($with)->latest()->get();
         }
 
         return view('discover.category', [

@@ -43,7 +43,7 @@ class PostController extends Controller {
      */
     public function store(CommentRequest $request) {
         $post = $this->add($request);
-        return response()->view('components.post.partials.post', compact('post'));
+        return response()->view('posts.partials.feed-post', compact('post'));
     }
 
     /**
