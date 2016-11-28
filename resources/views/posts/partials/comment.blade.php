@@ -7,7 +7,7 @@
         <div class="media-body">
             <h4 class="media-heading">{{ $comment->user->name }}</h4>
             {!! $comment->htmlText() !!}
-            @include('posts.partials.footer', compact('post', 'comment'))
+            @include('posts.partials.footer', compact('post'))
         </div>
     </div>
 </div>
