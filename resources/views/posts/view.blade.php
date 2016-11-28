@@ -1,10 +1,5 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
-@push('stylesheets')
-<link rel="stylesheet"
-      href="{{ asset('assets/css/' . str_replace('.', '/', config('view.layout')) . '/posts/view.css') }}">
-@endpush
-
 @section('content')
     <div class="row">
         <div class="col-md-3 hidden-sm hidden-xs">
@@ -47,7 +42,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-<script src="{{ asset('assets/js/layouts/default/posts/index.js') }}"></script>
-@endpush
