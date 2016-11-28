@@ -21,7 +21,7 @@
                 <li>
                     <a href="{{ route('profile.index') }}" class="stat-link">
                         <span class="stat-label">Posts</span>
-                        <span class="stat-value">{{ 99 }}</span>
+                        <span class="stat-value">{{ Auth::user()->posts()->count() }}</span>
                     </a>
                 </li>
                 <li>
