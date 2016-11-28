@@ -29,7 +29,7 @@
                     <a role="button" class="action action-dislike"><i class="fa fa-thumbs-down"></i> {{ $post->content->down_votes }}</a>
                 </li>
                 <li>
-                    <a role="button" class="action action-comment"><i class="fa fa-comment"></i> {{ $post->content->up_votes }}</a>
+                    <a role="button" class="action action-comment" href="{{ route('post.view', [$post->user->username, $post->id]) }}"><i class="fa fa-comment"></i> {{ $post->content->up_votes }}</a>
                 </li>
                 <li class="pull-right">
                     <a role="button" class="action action-flag"><i class="fa fa-flag"></i></a>

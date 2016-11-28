@@ -28,21 +28,16 @@
                                 @include('posts.partials.footer', compact('post', 'comment'))
                                 <hr>
 
-                                @forelse($comments as $comment)
-                                    <div class="media mt-2">
-                                        <a class="media-left" href="#">
-                                            <img class="media-object avatar" src="{{ $comment->user->photo }}"
-                                                 alt="Generic placeholder image">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">{{ $comment->user->name }}</h4>
-                                            {{ $comment->text }}
-                                            @include('posts.partials.footer', compact('post', 'comment'))
-                                        </div>
-                                    </div>
-                                    <hr>
-                                @empty
-                                @endforelse
+                                <div id="thread">
+                                    <ul class="media-list">
+                                    @forelse($comments as $comment)
+                                        <li class="media">
+                                            @include('posts.partials.comment', compact('comment'))
+                                        </li>
+                                    @empty
+                                    @endforelse
+                                    </ul>
+                                </div>
                                 @include('posts.partials.reply', compact('post'))
                             </div>
                         </div>

@@ -7,6 +7,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var form = $(this);
+        var thread = $('#thread ul').last();
         var text = $('textarea#text').val();
         console.log('Text: ' + text);
 
@@ -22,6 +23,9 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log('Success!');
+                form.trigger('reset');
+                // thread.append('<li class="media">'+response+'</li>');
+
                 console.log(response);
             },
             error: function (response) {
