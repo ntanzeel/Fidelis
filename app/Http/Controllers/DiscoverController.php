@@ -68,7 +68,7 @@ class DiscoverController extends Controller {
             'tag'        => $tag,
             'category'   => $category,
             'categories' => $this->categories,
-            'subscribed' => Auth::user()->subscriptions()->where('tag_id', $tag->id)->exists(),
+            'subscribed' => Auth::user() ? Auth::user()->subscriptions()->where('tag_id', $tag->id)->exists() : false,
             'posts'      => $posts,
             'isRoot'     => !is_null($rootCategory),
         ]);
