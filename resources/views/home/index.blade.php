@@ -7,7 +7,7 @@
             @widget('users')
         </div>
         <div class="col-md-6 col-sm-12">
-            <div class="panel panel-default">
+            <div class="panel panel-default content-panel">
                 <div class="panel-heading">
                     @include('posts.partials.create')
                 </div>

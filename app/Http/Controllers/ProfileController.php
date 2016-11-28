@@ -17,7 +17,15 @@ class ProfileController extends Controller {
     }
 
     public function view(User $user) {
-        $posts = $user->posts()->latest()->get();
+        $with = ['user', 'content'];
+
+        if (Auth::user()) {
+            $with['content.votes'] = function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            };
+        }
+
+        $posts = $user->posts()->with($with)->latest()->get();
         return view('profile.view', compact('user', 'posts'));
     }
 
@@ -30,7 +38,15 @@ class ProfileController extends Controller {
     }
 
     public function likes(User $user) {
-        $posts = Post::with('content')->whereHas('content.votes', function($query) use ($user) {
+        $with = ['user', 'content'];
+
+        if (Auth::user()) {
+            $with['content.votes'] = function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            };
+        }
+
+        $posts = Post::with($with)->whereHas('content.votes', function($query) use ($user) {
             $query->where('user_id', $user->id);
         })->get();
 

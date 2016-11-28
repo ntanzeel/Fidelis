@@ -5,7 +5,7 @@
         <div class="col-md-8 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-body padding-0">
-                    @include('components.post.feed', compact('posts'))
+                    @include('posts.partials.feed', compact('posts'))
                 </div>
             </div>
         </div>

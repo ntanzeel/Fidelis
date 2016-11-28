@@ -7,7 +7,7 @@
             @widget('users')
         </div>
         <div class="col-md-6 col-sm-12 ">
-            <div class="panel panel-default">
+            <div class="panel panel-default content-panel">
                 <div class="panel-body padding-0">
                     <div class="post">
                         <div class="post-header">
