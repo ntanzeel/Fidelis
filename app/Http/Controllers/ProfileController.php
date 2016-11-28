@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class ProfileController extends Controller {
 
@@ -17,7 +16,15 @@ class ProfileController extends Controller {
     }
 
     public function view(User $user) {
-        $posts = $user->posts()->latest()->get();
+        $with = ['user', 'content'];
+
+        if (Auth::user()) {
+            $with['content.votes'] = function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            };
+        }
+
+        $posts = $user->posts()->with($with)->latest()->get();
         return view('profile.view', compact('user', 'posts'));
     }
 
@@ -27,5 +34,19 @@ class ProfileController extends Controller {
 
     public function following(User $user) {
         return view('profile.following', compact('user'));
+    }
+
+    public function rated(User $user) {
+        $with = ['user', 'content'];
+
+        if (Auth::user()) {
+            $with['content.votes'] = function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            };
+        }
+
+        $posts = $user->voted()->with($with)->get();
+
+        return view('profile.rated', compact('user', 'posts'));
     }
 }

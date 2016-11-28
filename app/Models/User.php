@@ -121,6 +121,12 @@ class User extends Authenticatable {
             ->withTimestamps();
     }
 
+    public function voted() {
+        return Post::whereHas('content.votes', function($query) {
+            $query->where('user_id', $this->id);
+        });
+    }
+
     public function uploadDirectory() {
         return md5($this->username . $this->created_at);
     }

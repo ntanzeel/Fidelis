@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.action-vote').on('click', function (event) {
+    $('.content-panel').on('click', '.action-vote', function (event) {
         event.preventDefault();
 
         var isLike = $(this).hasClass('action-like');

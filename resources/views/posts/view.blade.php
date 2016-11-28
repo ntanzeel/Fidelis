@@ -7,24 +7,24 @@
             @widget('users')
         </div>
         <div class="col-md-6 col-sm-12 ">
-            <div class="panel panel-default">
+            <div class="panel panel-default content-panel">
                 <div class="panel-body padding-0">
                     <div class="post">
                         <div class="post-header">
                             <div href="#" class="author-photo">
                                 <a href="#">
-                                    <img class="media-object avatar author-photo" src="{{ $post->user->photo }}"
-                                         alt="{{ $post->user->name }} Profile Photo">
+                                    <img class="media-object avatar author-photo" src="{{ $user->photo }}"
+                                         alt="{{ $user->name }} Profile Photo">
                                 </a>
                             </div>
                             <div class="author-info">
                                 <div class="author-name">
-                                    <a href="{{ route('profile.view', [$post->user->username]) }}">
-                                        <strong class="full-name author-name">{{ $post->user->name }}</strong>
+                                    <a href="{{ route('profile.view', [$user->username]) }}">
+                                        <strong class="full-name author-name">{{ $user->name }}</strong>
                                     </a>
                                 </div>
                                 <div class="author-username">
-                                    <a href="{{ route('profile.view', [$post->user->username]) }}">
+                                    <a href="{{ route('profile.view', [$user->username]) }}">
                                         <span class="username author-username">&commat;{{ $post->user->username }}</span>
                                     </a>
                                 </div>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="post-comments">
                         <ul class="media-list comment-list">
-                            @forelse($post->comments as $comment)
+                            @forelse($comments as $comment)
                                 <li class="media">
                                     @include('posts.partials.comment', compact('comment'))
                                 </li>

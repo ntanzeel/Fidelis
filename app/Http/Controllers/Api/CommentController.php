@@ -15,11 +15,11 @@ class CommentController extends Controller {
     /**
      * @param Models\Post $post
      * @param CommentRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(Models\Post $post, CommentRequest $request) {
         $comment = $this->addComment($post, $request, false);
-        return response()->json(['success' => $comment->load('user')]);
+        return response()->view('posts.partials.comment', compact('comment'));
     }
 
     /**
