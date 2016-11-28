@@ -266,7 +266,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
         ]);
 
         Route::post('/{vote}', [
-            'as'   => 'store',
+            'as'   => 'delete',
             'uses' => 'Api\VoteController@delete',
         ]);
     });

@@ -1,7 +1,8 @@
 <div id="post-{{ $post->id }}" class="post">
     <div class="media-left">
         <a href="#">
-            <img class="media-object avatar author-photo-photo" src="{{ $post->user->photo }}" alt="{{ $post->user->name }} Profile Photo">
+            <img class="media-object avatar author-photo-photo" src="{{ $post->user->photo }}"
+                 alt="{{ $post->user->name }} Profile Photo">
         </a>
     </div>
     <div class="media-body">
@@ -15,7 +16,8 @@
         <div class="post-body">
             <div class="post-images">
                 @foreach($post->images as $image)
-                    <img src="{{ asset('storage/' . $image->path) }}" class="img-responsive img-thumbnail" width="45%"/>
+                    <img src="{{ asset('storage/' . $image->path) }}" class="img-responsive img-thumbnail"
+                         width="45%" />
                 @endforeach
             </div>
             {!! $post->content->htmlText() !!}
@@ -23,16 +25,30 @@
         <div class="post-footer">
             <ul class="list-inline list-unstyled action-list">
                 <li>
-                    <a role="button" class="action action-like"><i class="fa fa-thumbs-up"></i> {{ $post->content->up_votes }}</a>
+                    @php($liked = Auth::user() && $post->content->votes->count() && $post->content->votes->first()->type == 'up')
+                    <a href="{{ route('api.vote.store', [$post->content->id]) }}"
+                       data-type="up" role="button"
+                       class="action action-vote action-like {{ $liked ? 'active' : '' }}">
+                        <i class="fa fa-thumbs-up"></i> <span class="text">{{ $post->content->up_votes }}</span>
+                    </a>
                 </li>
                 <li>
-                    <a role="button" class="action action-dislike"><i class="fa fa-thumbs-down"></i> {{ $post->content->down_votes }}</a>
+                    @php($disliked = Auth::user() && $post->content->votes->count() && $post->content->votes->first()->type == 'down')
+                    <a href="{{ route('api.vote.store', [$post->content->id]) }}"
+                       data-type="down" role="button"
+                       class="action action-vote action-dislike {{ $disliked ? 'active' : '' }}">
+                        <i class="fa fa-thumbs-down"></i> <span class="text">{{ $post->content->down_votes }}</span>
+                    </a>
                 </li>
                 <li>
-                    <a role="button" class="action action-comment"><i class="fa fa-comment"></i> {{ $post->content->up_votes }}</a>
+                    <a role="button" class="action action-comment">
+                        <i class="fa fa-comment"></i> {{ 0 }}
+                    </a>
                 </li>
                 <li class="pull-right">
-                    <a role="button" class="action action-flag"><i class="fa fa-flag"></i></a>
+                    <a role="button" class="action action-flag">
+                        <i class="fa fa-flag"></i>
+                    </a>
                 </li>
             </ul>
         </div>

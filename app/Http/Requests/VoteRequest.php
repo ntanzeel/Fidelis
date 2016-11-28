@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class VoteRequest extends FormRequest {
 
@@ -13,7 +12,7 @@ class VoteRequest extends FormRequest {
      * @return bool
      */
     public function authorize() {
-        return Auth::user();
+        return $this->user();
     }
 
     /**
