@@ -14,9 +14,15 @@
         </div>
         <p class="profile-status">
             @if ($user->pivot->follower_id == Auth::user()->id || $user->pivot->mutual)
-                <button class="btn btn-block btn-danger">Unfollow</button>
-            @else
-                <button class="btn btn-block btn-primary">Follow</button>
+                <button class="btn btn-block btn-danger btn-follow-toggle"
+                        data-api="{{ url('/api/follower/delete')  }}"
+                        data-id="{{ $user->id }}"
+                        data-status="1">Unfollow</button>
+            @elseif ($user->id != Auth::user()->id)
+                <button class="btn btn-block btn-primary btn-follow-toggle"
+                        data-api="{{ url('/api/follower/')  }}"
+                        data-id="{{ $user->id }}"
+                        data-status="0">Follow</button>
             @endif
         </p>
         <div class="profile-statistics">

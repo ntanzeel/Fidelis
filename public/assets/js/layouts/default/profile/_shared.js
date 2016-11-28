@@ -31,7 +31,7 @@ $(document).ready(function(){
     });
 
     $('#cover-upload').change(function(){
-        $('#submit-cover').submit();
+        $('#submit-cover-pic').submit();
     });
 
 

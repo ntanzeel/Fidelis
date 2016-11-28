@@ -259,7 +259,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
         ]);
 
         Route::get('/', [
-            'as' => 'show',
+            'as'   => 'show',
             'uses' => 'Api\CommentController@show',
         ]);
     });
@@ -277,6 +277,19 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
             'as'   => 'delete',
             'uses' => 'Api\VoteController@delete',
         ]);
+    });
+
+    Route::group(['as' => 'follower.', 'prefix' => 'follower'], function () {
+        Route::post('/', [
+            'as'   => 'store',
+            'uses' => 'Api\FollowersController@store',
+        ]);
+
+        Route::delete('/{user}', [
+            'as'   => 'delete',
+            'uses' => 'Api\FollowersController@delete',
+        ]);
+
     });
 
 });
