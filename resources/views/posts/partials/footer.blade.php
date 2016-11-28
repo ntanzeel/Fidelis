@@ -1,7 +1,6 @@
 <div class="post-view-footer">
     <ul class="list-inline list-unstyled action-list">
         <li>
-            {{--@php($liked = Auth::user() && $post->content->votes->count() && $post->content->votes->first()->type == 'up')--}}
             @php($liked = Auth::user() && $comment->votes->count() && $comment->votes->first()->type == 'up')
             <a href="{{ route('api.vote.store', [$post->content->id]) }}"
                data-type="up" role="button"
@@ -10,7 +9,6 @@
             </a>
         </li>
         <li>
-            {{--@php($disliked = Auth::user() && $post->content->votes->count() && $post->content->votes->first()->type == 'down')--}}
             @php($disliked = Auth::user() && $comment->votes->count() && $comment->votes->first()->type == 'down')
             <a href="{{ route('api.vote.store', [$comment->id]) }}"
                data-type="down" role="button"
