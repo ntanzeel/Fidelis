@@ -41,8 +41,9 @@
                     </a>
                 </li>
                 <li>
-                    <a role="button" class="action action-comment">
-                        <i class="fa fa-comment"></i> {{ 0 }}
+                    <a role="button" class="action action-comment"
+                       href="{{ route('post.view', [$post->user->username, $post->id]) }}">
+                        <i class="fa fa-comment"></i> {{ $post->comments()->count() }}
                     </a>
                 </li>
                 <li class="pull-right">

@@ -121,7 +121,7 @@ Route::group(['as' => 'notifications.'], function () {
 /*
  * Posts
  */
-Route::group(['as' => 'posts.'], function () {
+Route::group(['as' => 'post.'], function () {
     Route::get('@{user}/post/{post}', [
         'as'   => 'view',
         'uses' => 'PostsController@view',
@@ -253,6 +253,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
         Route::delete('/{comment}', [
             'as'   => 'delete',
             'uses' => 'Api\CommentController@delete',
+        ]);
+
+        Route::get('/', [
+            'as' => 'show',
+            'uses' => 'Api\CommentController@show',
         ]);
     });
 
