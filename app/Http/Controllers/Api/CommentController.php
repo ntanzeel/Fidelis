@@ -22,20 +22,15 @@ class CommentController extends Controller {
         return response()->json(['success' => $comment->load('user')]);
     }
 
-    public function delete() {
-
-    }
-
     /**
-     * @param Models\Post $post
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Models\Comment $comment
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Models\Post $post) {
-        if (!$post->canBeViewedBy(Auth::user())) {
+    public function delete(Models\Comment $comment) {
+        if (!$comment->canBeEditedBy(Auth::user())) {
             abort(401);
         }
 
-        $comments = $post->comments;
-        return view('posts.view', compact('post', 'comments'));
+        return response()->json(['success' => $comment->delete()]);
     }
 }

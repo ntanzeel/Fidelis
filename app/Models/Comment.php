@@ -69,4 +69,8 @@ class Comment extends Model {
 
         return $html;
     }
+
+    public function canBeEditedBy($user) {
+        return $user && $this->user_id == $user->id;
+    }
 }

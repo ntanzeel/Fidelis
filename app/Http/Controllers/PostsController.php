@@ -20,12 +20,10 @@ class PostsController extends Controller {
             abort(404);
         }
 
-        if (!($post->canBeViewedBy(Auth::user()))) {
+        if (!$post->canBeViewedBy(Auth::user())) {
             abort(401);
         }
 
-        $comments = $post->comments;
-
-        return view('posts.view', compact('user', 'post', 'comments'));
+        return view('posts.view', compact('user', 'post'));
     }
 }
