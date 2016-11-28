@@ -7,10 +7,8 @@ $(document).ready(function () {
         e.preventDefault();
 
         var form = $(this);
-        var thread = $('#thread ul').last();
-        var text = $('textarea#text').val();
-        console.log('Text: ' + text);
-
+        var thread = $('.media');
+        var comments = $('.comment-list').last();
 
         $.ajax({
             url: form.attr('action'),
@@ -24,9 +22,8 @@ $(document).ready(function () {
             success: function (response) {
                 console.log('Success!');
                 form.trigger('reset');
-                // thread.append('<li class="media">'+response+'</li>');
 
-                console.log(response);
+                comments.append('<li class="media">' + response + '</li>');
             },
             error: function (response) {
                 console.log('Error :(');
