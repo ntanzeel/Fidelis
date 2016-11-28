@@ -1,26 +1,107 @@
-.post-view-footer {
+.panel {
+    overflow: hidden;
+}
+
+/*
+ * Post
+ */
+.post .post-header {
+    position: relative;
+    padding: 15px 15px 0;
+    /*background: #f5f8fa;*/
+    /*border-bottom: 1px solid #d3e0e9;*/
+}
+
+.post .post-header .author-photo {
+    position: absolute;
+}
+
+.post .post-header .author-info {
+    height: 48px;
+    margin-left: 48px;
+    padding: 10px 0 10px 15px;
+}
+
+.post .post-body {
+    padding: 15px;
+}
+
+.post .post-footer {
+    padding: 10px 15px;
+    border-top: 1px solid #d3e0e9;
+    border-bottom: 1px solid #d3e0e9;
+}
+
+.post .action-list {
+    margin-bottom: 0;
+}
+
+/*
+ * Comments
+ */
+
+.comment-list {
+    margin: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.comment-list > li {
+    margin: 0;
+    border-bottom: 1px solid #D3E0E9;
+}
+
+.comment-list > li > .comment {
+    padding: 10px 15px;
+}
+
+.comment .comment-header > a.author {
+    text-decoration: none;
+}
+
+.comment .comment-header > a.author:hover > .full-name {
+    text-decoration: underline;
+}
+
+.comment .comment-header .time::before {
+    content: "\2014";
+}
+
+.comment .comment-footer {
+    margin-top: 10px;
+}
+
+/*
+ * Action List
+ */
+.action-list a.action {
     padding: 5px;
-    height: 20px;
-    width: auto;
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 14px;
 }
 
-hr.style-one {
-    border: 0;
-    height: 1px;
-    background: #333;
-    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+.action-list a.action > i.fa {
+    margin-right: 5px;
 }
 
-hr.double {
-    border-top: 3px double #8c8b8b;
-}
-
-.thread .action.action-like.active,
-.thread .action.action-like:hover {
+.action-list .action.action-like.active,
+.action-list .action.action-like:hover {
     color: #08AD93;
 }
 
-.thread .action.action-dislike.active,
-.thread .action.action-dislike:hover {
+.action-list .action.action-dislike.active,
+.action-list .action.action-dislike:hover {
     color: #e81c4f;
+}
+
+.action-list .action.action-comment.active,
+.action-list .action.action-comment:hover {
+    color: #FF6631;
+}
+
+.action-list .action.action-flag.active,
+.action-list .action.action-flag:hover {
+    color: #AD441A;
 }

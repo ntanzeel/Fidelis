@@ -8,30 +8,52 @@
         </div>
         <div class="col-md-6 col-sm-12 ">
             <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-left">
-                            <a href="#">
-                                <img class="media-object avatar" src="{{ $user->photo }}"
-                                     alt="Generic placeholder image">
-                            </a>
+                <div class="panel-body padding-0">
+                    <div class="post">
+                        <div class="post-header">
+                            <div href="#" class="author-photo">
+                                <a href="#">
+                                    <img class="media-object avatar author-photo" src="{{ $post->user->photo }}"
+                                         alt="{{ $post->user->name }} Profile Photo">
+                                </a>
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">
+                                    <a href="{{ route('profile.view', [$post->user->username]) }}">
+                                        <strong class="full-name author-name">{{ $post->user->name }}</strong>
+                                    </a>
+                                </div>
+                                <div class="author-username">
+                                    <a href="{{ route('profile.view', [$post->user->username]) }}">
+                                        <span class="username author-username">&commat;{{ $post->user->username }}</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ $user->name }}</h4>
-                            {!! $post->content->htmlText() !!}
-                            @include('posts.partials.footer', compact('post'))
-                            <hr>
-
-                            <ul class="media-list">
+                        <div class="post-body">
+                            <div class="post-images">
+                                @foreach($post->images as $image)
+                                    <img src="{{ asset('storage/' . $image->path) }}"
+                                         class="img-responsive img-thumbnail" width="45%" />
+                                @endforeach
+                            </div>
+                            <div class="post-text">
+                                {!! $post->content->htmlText() !!}
+                            </div>
+                        </div>
+                        <div class="post-footer">
+                            @include('posts.partials.actions', ['showComments' => true, 'comment' => $post->content])
+                        </div>
+                    </div>
+                    <div class="post-comments">
+                        <ul class="media-list comment-list">
                             @forelse($post->comments as $comment)
                                 <li class="media">
                                     @include('posts.partials.comment', compact('comment'))
                                 </li>
                             @empty
                             @endforelse
-                            </ul>
-                            @include('posts.partials.reply', compact('post'))
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>
