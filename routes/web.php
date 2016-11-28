@@ -244,14 +244,14 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
     /*
      * Comments
      */
-    Route::group(['as' => 'comment.', 'prefix' => '/post/{post}/comment'], function() {
+    Route::group(['as' => 'comment.', 'prefix' => '/post/{post}/comment'], function () {
         Route::post('/', [
-            'as' => 'store',
+            'as'   => 'store',
             'uses' => 'Api\CommentController@store',
         ]);
 
         Route::delete('/{comment}', [
-            'as' => 'delete',
+            'as'   => 'delete',
             'uses' => 'Api\CommentController@delete',
         ]);
 
@@ -264,5 +264,16 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
     /*
      * Votes
      */
+    Route::group(['as' => 'vote.', 'prefix' => '/comment/{comment}/vote'], function () {
+        Route::post('/', [
+            'as'   => 'store',
+            'uses' => 'Api\VoteController@store',
+        ]);
+
+        Route::post('/{vote}', [
+            'as'   => 'store',
+            'uses' => 'Api\VoteController@delete',
+        ]);
+    });
 
 });
