@@ -8,7 +8,7 @@ $(document).ready(function () {
         $postForm.find('#post-images').trigger('click');
     });
 
-    $postForm.find('#post-images').on('change', function(event) {
+    $postForm.find('#post-images').on('change', function (event) {
         var $name = $postForm.find('.image-upload').find('.file-name');
         if (event.target.files.length > 1) {
             $name.text(event.target.files.length + ' Files');
@@ -38,6 +38,11 @@ $(document).ready(function () {
             },
             success: function (response) {
                 $form.trigger('reset');
+
+                if ($posts.data('empty') == 1) {
+                    $posts.empty();
+                    $posts.data('empty', '0');
+                }
                 $posts.prepend('<li class="media">' + response + '</li>');
             },
             error: function (response) {
