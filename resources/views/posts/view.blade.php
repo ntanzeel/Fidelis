@@ -19,7 +19,7 @@
                         <div class="media-body">
                             <h4 class="media-heading">{{ $user->name }}</h4>
                             {!! $post->content->htmlText() !!}
-                            @include('posts.partials.footer', ['comment' => $post->content]))
+                            @include('posts.partials.footer', ['comment' => $post->content])
                             <hr>
 
                             <ul class="media-list">
