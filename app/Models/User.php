@@ -121,6 +121,11 @@ class User extends Authenticatable {
             ->withTimestamps();
     }
 
+    public function likes() {
+        return $this->hasMany('App\Models\Vote')
+            ->where('type', 'up');
+    }
+
     public function uploadDirectory() {
         return md5($this->username . $this->created_at);
     }

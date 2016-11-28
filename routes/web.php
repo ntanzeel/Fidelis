@@ -152,6 +152,11 @@ Route::group(['as' => 'profile.'], function () {
         'as'   => 'following',
         'uses' => 'ProfileController@following',
     ]);
+
+    Route::get('@{user}/likes', [
+        'as'   => 'likes',
+        'uses' => 'ProfileController@likes',
+    ]);
 });
 
 /*

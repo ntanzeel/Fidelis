@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class ProfileController extends Controller {
 
@@ -27,5 +27,13 @@ class ProfileController extends Controller {
 
     public function following(User $user) {
         return view('profile.following', compact('user'));
+    }
+
+    public function likes(User $user) {
+        $posts = Post::with('content')->whereHas('content.votes', function($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->get();
+
+        return view('profile.likes', compact('user', 'posts'));
     }
 }
