@@ -67,7 +67,7 @@ trait Post {
     }
 
     protected function getTags(Models\Comment $comment) {
-        preg_match_all('/#(\w+)/', $comment->text, $tags);
+        preg_match_all('/\B#\w*[a-zA-Z]+\w*/', $comment->text, $tags);
         return empty($tags) ? [] : $tags[1];
     }
 
