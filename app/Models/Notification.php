@@ -85,4 +85,8 @@ class Notification extends DatabaseNotification {
     public function isFollow() {
         return $this->type == Notifications\Follow::class;
     }
+
+    public function isVote() {
+        return $this->type == Notifications\Vote::class;
+    }
 }

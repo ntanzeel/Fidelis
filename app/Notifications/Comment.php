@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class Comment extends Notification {
 
@@ -54,7 +55,7 @@ class Comment extends Notification {
         return [
             'regarding' => $this->comment->id,
             'from'      => $this->comment->user_id,
-            'text'      => '@' . $this->comment->user->username . ' commented on your post',
+            'text'      => '@' . Auth::user()->username . ' commented on your post',
         ];
     }
 }
