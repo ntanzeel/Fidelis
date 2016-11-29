@@ -29,10 +29,21 @@ class ProfileController extends Controller {
     }
 
     public function followers(User $user) {
+        if (Auth::user()) {
+            $user->load(['followers', 'followers.followers' => function ($query) {
+                $query->where('follower_id', Auth::user()->id);
+            }]);
+        }
         return view('profile.followers', compact('user'));
     }
 
     public function following(User $user) {
+        if (Auth::user()) {
+            $user->load(['following', 'following.followers' => function ($query) {
+                $query->where('follower_id', Auth::user()->id);
+            }]);
+        }
+
         return view('profile.following', compact('user'));
     }
 
