@@ -76,9 +76,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <div>
-                        <strong>{{ $user->name }}</strong><br />
-                        <span>&commat;{{ $user->username }}</span>
+                    <div class="profile-info">
+                        <p class="full-name">
+                            <strong>{{ $user->name }}</strong>
+                        </p>
+                        <p class="username">
+                            <span>&commat;{{ $user->username }}</span>
+                        </p>
+                        <p class="about">
+                            {{ $user->about }}
+                        </p>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Photos
+                        </div>
+                        <div class="panel-body">
+                            Users Photos.
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-9">
