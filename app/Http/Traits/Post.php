@@ -58,7 +58,7 @@ trait Post {
     }
 
     protected function notifyUsers(Models\Comment $comment, $mentions, Models\Post $post) {
-        if(!$comment->root) {
+        if(!$comment->root && $comment->user_id != $post->user_id) {
             $post->user->notify(new Comment($comment));
         }
 
@@ -80,4 +80,6 @@ trait Post {
         preg_match_all('/@(\w+)/', $comment->text, $users);
         return empty($users) ? [] : $users[1];
     }
+
+
 }

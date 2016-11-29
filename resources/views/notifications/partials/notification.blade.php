@@ -20,6 +20,17 @@
                 <li>
                     <a role="button" class="action action-like"><i class="fa fa-thumbs-down"></i></a>
                 </li>
+                {{--<li>--}}
+                    {{--<a role="button" class="action action-comment"--}}
+                       {{--href="{{ route('post.view', [$post->user->username, $post->id]) }}">--}}
+                        {{--<i class="fa fa-comment"></i> {{ $post->comments()->count() }}--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                <li class="pull-right">
+                    <a role="button" class="action action-flag">
+                        <i class="fa fa-flag"></i>
+                    </a>
+                </li>
                 <li>
                     {{ $notification->created_at->diffForHumans() }}
                 </li>
