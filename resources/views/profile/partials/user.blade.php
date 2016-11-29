@@ -13,9 +13,9 @@
                 &commat;{{ $user->username }}
             </a>
         </div>
-        <p class="profile-status">
+        <div class="profile-status margin-b-15">
             @include('profile.partials.follow', compact('user'))
-        </p>
+        </div>
         <div class="profile-statistics">
             <ul class="list-unstyled statistics-list">
                 <li>

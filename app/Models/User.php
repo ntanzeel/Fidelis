@@ -25,6 +25,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $username
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $followers
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $following
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $blocked
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $subscriptions
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\App\Models\Notification[] $notifications
@@ -106,19 +107,25 @@ class User extends Authenticatable {
     public function following() {
         return $this->belongsToMany('App\Models\User', 'followers', 'follower_id', 'following_id')
             ->whereNull('followers.deleted_at')
-            ->withPivot(['mutual', 'approved', 'deleted_at'])
+            ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
+            ->withTimestamps();
+    }
+    public function followers() {
+        return $this->belongsToMany('App\Models\User', 'followers', 'following_id', 'follower_id')
+            ->whereNull('followers.deleted_at')
+            ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
+            ->withTimestamps();
+    }
+
+    public function blocked() {
+        return $this->belongsToMany('App\Models\User', 'blocked', 'blocker_id', 'blocked_id')
+            ->whereNull('blocked.deleted_at')
+            ->withPivot(['id', 'deleted_at'])
             ->withTimestamps();
     }
 
     public function followedBy(User $user) {
         return $user && $this->followers()->where('follower_id', $user->id)->exists();
-    }
-
-    public function followers() {
-        return $this->belongsToMany('App\Models\User', 'followers', 'following_id', 'follower_id')
-            ->whereNull('followers.deleted_at')
-            ->withPivot(['mutual', 'approved', 'deleted_at'])
-            ->withTimestamps();
     }
 
     public function voted() {

@@ -11,11 +11,27 @@ class ProfileController extends Controller {
         $this->middleware('auth')->only('index');
     }
 
+    private function preRoute(User $user) {
+        if (Auth::guest()) {
+            return;
+        }
+
+        if ($user->blocked()->where('blocked_id', Auth::user()->id)->exists()) {
+            abort(404);
+        }
+
+        Auth::user()->load(['blocked' => function ($query) use ($user) {
+            $query->where('blocked_id', $user->id);
+        }]);
+    }
+
     public function index() {
         return redirect()->route('profile.view', [Auth::user()->username]);
     }
 
     public function view(User $user) {
+        $this->preRoute($user);
+
         $with = ['user', 'content'];
 
         if (Auth::user()) {
@@ -29,6 +45,8 @@ class ProfileController extends Controller {
     }
 
     public function followers(User $user) {
+        $this->preRoute($user);
+
         if (Auth::user()) {
             $user->load(['followers', 'followers.followers' => function ($query) {
                 $query->where('follower_id', Auth::user()->id);
@@ -38,6 +56,8 @@ class ProfileController extends Controller {
     }
 
     public function following(User $user) {
+        $this->preRoute($user);
+
         if (Auth::user()) {
             $user->load(['following', 'following.followers' => function ($query) {
                 $query->where('follower_id', Auth::user()->id);
@@ -48,6 +68,8 @@ class ProfileController extends Controller {
     }
 
     public function rated(User $user) {
+        $this->preRoute($user);
+
         $with = ['user', 'content'];
 
         if (Auth::user()) {

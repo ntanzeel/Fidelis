@@ -1,5 +1,28 @@
 $(document).ready(function(){
 
+    $('.btn-toggle-block').on('click', function () {
+        event.preventDefault();
+
+        var $btn = $(this);
+
+        $.ajax({
+            url: $btn.data('api') + '/' + ($btn.data('status') == 1 ? $btn.data('id') : ''),
+            type: 'POST',
+            data: {
+                _token : window.Laravel.csrfToken,
+                _method: $btn.data('status') == 1 ? 'DELETE' : 'POST',
+                user: $btn.data('id')
+            },
+            success: function (response) {
+                $btn.data('status', $btn.data('status') == 1 ? 0 : 1);
+                $btn.text($btn.data('status') == 1 ? 'Unblock' : 'Block');
+            },
+            error: function (response) {
+
+            }
+        });
+    });
+
     $('.profile-photo-container').hover(function(){
         $('.btn-upload').css('visibility', 'visible');
     });
@@ -33,9 +56,5 @@ $(document).ready(function(){
     $('#cover-upload').change(function(){
         $('#submit-cover-pic').submit();
     });
-
-
-
-
 
 });

@@ -279,6 +279,9 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
         ]);
     });
 
+    /*
+     * Following
+     */
     Route::group(['as' => 'follower.', 'prefix' => 'follower'], function () {
         Route::post('/', [
             'as'   => 'store',
@@ -292,4 +295,19 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
 
     });
 
+    /*
+     * Blocked
+     */
+    Route::group(['as' => 'blocked.', 'prefix' => 'blocked'], function () {
+        Route::post('/', [
+            'as'   => 'store',
+            'uses' => 'Api\BlockedController@store',
+        ]);
+
+        Route::delete('/{user}', [
+            'as'   => 'delete',
+            'uses' => 'Api\BlockedController@delete',
+        ]);
+
+    });
 });
