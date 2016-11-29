@@ -1,6 +1,5 @@
 <div class="notification {{ !($notification->isFollow()) ? 'show-post' : '' }}" id="notification"
-     {{ !($notification->isFollow()) ? 'data-post="'.$notification->regarding()->post_id .'"' : '' }} data-toggle="{{ !($notification->isFollow()) ? 'modal' : '' }}"
-     data-target="{{ !($notification->isFollow()) ? '#postModal' : '' }}">
+        {{ !($notification->isFollow()) ? 'data-post="'.$notification->regarding()->post_id .'"' : '' }} >
     <div class="media-left">
         <a href="#">
             <img class="media-object avatar" src="{{ $notification->from()->photo }}" alt="Generic placeholder image">
@@ -12,7 +11,6 @@
         @if($notification->type != \App\Notifications\Follow::class)
             <p>{!!   $notification->regarding()->htmlText() !!}</p>
         @else
-            <p> {{ $notification->data['text']  }} </p>
         @endif
         <div class="notification-footer">
             <ul class="list-inline list-unstyled action-list">
