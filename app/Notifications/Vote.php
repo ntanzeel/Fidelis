@@ -54,7 +54,7 @@ class Vote extends Notification {
     public function toArray($notifiable) {
         return [
             'from' => $this->vote->user_id,
-            'text' => Auth::user()->username . " voted on your post",
+            'text' => '@' . Auth::user()->username . " voted on your post",
         ];
     }
 }
