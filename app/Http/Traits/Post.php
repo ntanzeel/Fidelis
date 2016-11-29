@@ -5,6 +5,7 @@ namespace App\Http\Traits;
 use App\Models;
 use App\Http\Requests\CommentRequest;
 use App\Notifications\Mention;
+use App\Notifications\Comment;
 use Illuminate\Support\Facades\Auth;
 
 trait Post {
@@ -38,7 +39,7 @@ trait Post {
 
         $post->comments()->save($comment);
 
-        $this->notifyUsers($comment, $this->getMentions($comment));
+        $this->notifyUsers($comment, $this->getMentions($comment), $post);
 
         return $comment;
     }
@@ -56,7 +57,11 @@ trait Post {
         }
     }
 
-    protected function notifyUsers(Models\Comment $comment, $mentions) {
+    protected function notifyUsers(Models\Comment $comment, $mentions, Models\Post $post) {
+        if(!$comment->root && $comment->user_id != $post->user_id) {
+            $post->user->notify(new Comment($comment));
+        }
+
         if (!empty($mentions)) {
             $mentioned = Models\User::whereIn('username', $mentions)->get();
 
@@ -75,4 +80,6 @@ trait Post {
         preg_match_all('/@(\w+)/', $comment->text, $users);
         return empty($users) ? [] : $users[1];
     }
+
+
 }

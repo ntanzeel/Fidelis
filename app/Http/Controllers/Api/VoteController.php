@@ -7,6 +7,7 @@ use App\Http\Requests\VoteRequest;
 use App\Models\Comment;
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use App\Notifications;
 
 class VoteController extends Controller {
 
@@ -57,6 +58,11 @@ class VoteController extends Controller {
          */
         $vote->save();
         $comment->save();
+
+        /*
+         * Notify the comments' user that someone has voted on their comment
+         */
+        $comment->user->notify(new Notifications\Vote($vote));
 
         /*
          * Return the new number of likes and dislikes so it can be updated on the view.

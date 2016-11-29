@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class Vote extends Notification {
 
@@ -53,7 +54,7 @@ class Vote extends Notification {
     public function toArray($notifiable) {
         return [
             'from' => $this->vote->user_id,
-            'text' => $this->vote->user->username . " voted on your post",
+            'text' => '@' . Auth::user()->username . " voted on your post",
         ];
     }
 }

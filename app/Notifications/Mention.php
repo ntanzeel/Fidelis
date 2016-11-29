@@ -6,6 +6,7 @@ use App\Models\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class Mention extends Notification {
 
@@ -56,7 +57,7 @@ class Mention extends Notification {
 
             'regarding' => $this->comment->id,
             'from'      => $this->comment->user_id,
-            'text'      => '@' . $this->comment->user->username . ' mentioned you in a post',
+            'text'      => '@' . Auth::user()->username . ' mentioned you in a post',
         ];
     }
 }
