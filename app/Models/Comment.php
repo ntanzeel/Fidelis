@@ -59,7 +59,7 @@ class Comment extends Model {
     }
 
     public function htmlText() {
-        $html = preg_replace_callback('/#(\w+)/', function ($matches) {
+        $html = preg_replace_callback('/\B#(\w*[a-zA-Z]+\w*)/', function ($matches) {
             return '<a class="hash-tag" href="' . route('discover.category', [$matches[1]]) . '">' . $matches[0] . '</a>';
         }, $this->text);
 
