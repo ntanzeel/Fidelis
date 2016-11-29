@@ -87,6 +87,11 @@ body {
     color: #FF6631;
 }
 
+
+.profile-header .profile-nav .nav-tabs > li > .profile-actions {
+    padding: 12px 0 11px;
+}
+
 .profile-header .profile-nav .nav-tabs > li > a > .nav-label,
 .profile-header .profile-nav .nav-tabs > li > a > .nav-value {
     display: block;

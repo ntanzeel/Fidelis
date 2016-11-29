@@ -61,6 +61,11 @@
                                     <span class="nav-value">{{ $user->voted()->count() }}</span>
                                 </a>
                             </li>
+                            <li class="pull-right" role="presentation">
+                                <div class="profile-actions">
+                                    @include('profile.partials.follow', compact('user'))
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
