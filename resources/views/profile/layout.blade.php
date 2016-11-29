@@ -7,7 +7,7 @@
 @section('container')
     <div class="profile-header">
         <div class="profile-cover" style="background-image: url({{ $user->cover }})">
-            @if(Auth::user()->username == $user->username)
+            @if(Auth::user() && Auth::user()->username == $user->username)
                 <a class="btn-cover-upload" data-toggle="tooltip" title="Upload new cover picture" href="#"><i
                             class="fa fa-upload"></i></a>
             @endif
@@ -20,7 +20,7 @@
                             <a class="profile-photo">
                                 <img src="{{ $user->photo }}"/>
                             </a>
-                            @if(Auth::user()->username == $user->username)
+                            @if(Auth::user() && Auth::user()->username == $user->username)
                                 <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i
                                             class="fa fa-upload"></i></a>
                                 <form id="submit-profile-pic" class="imgupload" enctype="multipart/form-data" method="post" action="{{ route('settings.account.upload_profile_pic') }}">

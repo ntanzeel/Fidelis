@@ -42,13 +42,11 @@ $(document).ready(function () {
                 user: $btn.data('id')
             },
             success: function (response) {
-                console.log(response);
                 $btn.data('status', $btn.data('status') == 1 ? 0 : 1);
-                $btn.text($btn.data('status') == 1 ? 'Unfollow' : 'Follow')
-
+                $btn.text($btn.data('status') == 1 ? 'Unfollow' : 'Follow');
+                $btn.toggleClass('btn-danger btn-primary');
             },
             error: function (response) {
-                console.log(response['responseText']);
             }
         });
     });

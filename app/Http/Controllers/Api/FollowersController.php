@@ -22,7 +22,8 @@ class FollowersController {
         return response()->json(['success' => true]);
     }
 
-    public function delete(User $user){
+    public function delete($user){
+        $user = User::findOrFail($user);
         Auth::user()->following()->detach($user);
         return response()->json(['success' => true]);
     }
