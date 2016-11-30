@@ -12,6 +12,8 @@ $(document).ready(function () {
                 _method: 'DELETE'
             },
             success: function (response) {
+                console.log(response);
+
                 $btn.parent('li').remove();
 
                 if ($list.children().length == 0) {

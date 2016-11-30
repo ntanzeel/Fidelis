@@ -14,8 +14,8 @@ class SubscriptionsController {
         return response()->json(['success' => true]);
     }
 
-    public function delete(Tag $subscription) {
-        Auth::user()->subscriptions()->detach($subscription);
+    public function delete(Tag $tag) {
+        Auth::user()->subscriptions()->detach($tag);
         return response()->json(['success' => true]);
     }
 
