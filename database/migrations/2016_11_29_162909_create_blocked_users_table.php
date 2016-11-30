@@ -18,9 +18,6 @@ class CreateBlockedUsersTable extends Migration {
             $table->integer('blocked_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('blocker_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('blocked_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
