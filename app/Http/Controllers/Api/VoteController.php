@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Vote;
 use Illuminate\Http\Request;
 use App\Notifications;
+use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller {
 
@@ -22,48 +23,51 @@ class VoteController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Comment $comment, VoteRequest $request) {
-        /**
-         * @var $vote Vote
-         */
-        $vote = $comment->votes()->firstOrNew(['user_id' => $request->user()->id]);
-        $vote->type = $request->get('type');
 
-        /*
-         * If the type fields is not dirty, it means a vote of this type already exists.
-         * Hence, clicking the same action should reverse the vote.
-         * e.g. If you've liked a post, clicking the like button should unlike it.
-         */
-        if (!$vote->isDirty('type')) {
-            return $this->delete($comment, $vote, $request);
-        }
+        if (!Auth::guest() && $comment->user_id != Auth::user()->id) {
+            /**
+             * @var $vote Vote
+             */
+            $vote = $comment->votes()->firstOrNew(['user_id' => $request->user()->id]);
+            $vote->type = $request->get('type');
 
-        /*
-         * By this stage, through logic, the vote type must be dirty (has changed).
-         * If the vote already exists and it's dirty, it means the user has changed their vote.
-         * In this scenario, the old vote type has to be decremented.
-         * e.g. If the user likes a post they previously disliked, the no of down votes must be decremented.
-         */
-        if ($vote->exists) {
-            $comment->{($vote->type == 'up' ? 'down' : 'up') . '_votes'} -= 1;
-        }
+            /*
+             * If the type fields is not dirty, it means a vote of this type already exists.
+             * Hence, clicking the same action should reverse the vote.
+             * e.g. If you've liked a post, clicking the like button should unlike it.
+             */
+            if (!$vote->isDirty('type')) {
+                return $this->delete($comment, $vote, $request);
+            }
 
-        /*
-         * Now the number of votes for the type cast by user can be incremented.
-         * e.g. If the user likes a post, the number of up votes needs to be incremented.
-         */
-        $comment->{$vote->type . '_votes'} += 1;
+            /*
+             * By this stage, through logic, the vote type must be dirty (has changed).
+             * If the vote already exists and it's dirty, it means the user has changed their vote.
+             * In this scenario, the old vote type has to be decremented.
+             * e.g. If the user likes a post they previously disliked, the no of down votes must be decremented.
+             */
+            if ($vote->exists) {
+                $comment->{($vote->type == 'up' ? 'down' : 'up') . '_votes'} -= 1;
+            }
 
-        /*
-         * Save the changes to the vote and comment model.
-         */
-        $vote->save();
-        $comment->save();
+            /*
+             * Now the number of votes for the type cast by user can be incremented.
+             * e.g. If the user likes a post, the number of up votes needs to be incremented.
+             */
+            $comment->{$vote->type . '_votes'} += 1;
 
-        /*
-         * Notify the comments' user that someone has voted on their comment
-         */
-        if($vote->user_id != $comment->post->user_id) {
-            $comment->user->notify(new Notifications\Vote($vote));
+            /*
+             * Save the changes to the vote and comment model.
+             */
+            $vote->save();
+            $comment->save();
+
+            /*
+             * Notify the comments' user that someone has voted on their comment
+             */
+            if ($vote->user_id != $comment->post->user_id) {
+                $comment->user->notify(new Notifications\Vote($vote));
+            }
         }
 
         /*

@@ -85,13 +85,13 @@
     margin-right: 5px;
 }
 
-.action-list .action.action-like.active,
-.action-list .action.action-like:hover {
+.action-list li:not(.disabled) .action.action-like.active,
+.action-list li:not(.disabled) .action.action-like:hover {
     color: #08AD93;
 }
 
-.action-list .action.action-dislike.active,
-.action-list .action.action-dislike:hover {
+.action-list li:not(.disabled) .action.action-dislike.active,
+.action-list li:not(.disabled) .action.action-dislike:hover {
     color: #e81c4f;
 }
 
