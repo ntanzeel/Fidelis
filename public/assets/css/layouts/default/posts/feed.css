@@ -41,7 +41,7 @@
     margin-top: 10px;
 }
 
-.post .action-list a.action {
+.action-list a.action {
     padding: 5px;
     display: block;
     font-weight: bold;
@@ -49,27 +49,27 @@
     line-height: 14px;
 }
 
-.post .action-list a.action > i.fa {
+.action-list a.action > i.fa {
     margin-right: 5px;
 }
 
-.post .action.action-like.active,
-.post .action.action-like:hover {
+.action-list li:not(.disabled) .action.action-like.active,
+.action-list li:not(.disabled) .action.action-like:hover {
     color: #08AD93;
 }
 
-.post .action.action-dislike.active,
-.post .action.action-dislike:hover {
+.action-list li:not(.disabled) .action.action-dislike.active,
+.action-list li:not(.disabled) .action.action-dislike:hover {
     color: #e81c4f;
 }
 
-.post .action.action-comment.active,
-.post .action.action-comment:hover {
+.action-list .action.action-comment.active,
+.action-list .action.action-comment:hover {
     color: #FF6631;
 }
 
-.post .action.action-flag.active,
-.post .action.action-flag:hover {
+.action-list .action.action-flag.active,
+.action-list .action.action-flag:hover {
     color: #AD441A;
 }
 

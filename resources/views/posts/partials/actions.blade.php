@@ -1,5 +1,5 @@
 <ul class="list-inline list-unstyled action-list">
-    <li>
+    <li class="{{ Auth::guest() || $comment->user_id == Auth::user()->id ? 'disabled' : '' }}">
         @php($liked = Auth::user() && $comment->votes->count() && $comment->votes->first()->type == 'up')
         <a href="{{ route('api.vote.store', [$comment->id]) }}"
            data-type="up" role="button"
@@ -8,7 +8,7 @@
                     class="text">{{ $comment->up_votes }}</span>
         </a>
     </li>
-    <li>
+    <li class="{{ Auth::guest() || $comment->user_id == Auth::user()->id ? 'disabled' : '' }}">
         @php($disliked = Auth::user() && $comment->votes->count() && $comment->votes->first()->type == 'down')
         <a href="{{ route('api.vote.store', [$comment->id]) }}"
            data-type="down" role="button"

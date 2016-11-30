@@ -13,7 +13,7 @@
                     @if($trend->posts_count > 0)
                         <li class="row-trend">
                             <a class="hash-tag"
-                               href="{{ route("discover.category", $trend->text) }}">{{ $trend->text }}</a>
+                               href="{{ route("discover.category", $trend->text) }}">#{{ $trend->text }}</a>
                         </li>
                     @endif
                 @endforeach
