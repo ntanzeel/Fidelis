@@ -74,7 +74,7 @@ class ProfileController extends Controller {
     }
 
     public function rated(User $user) {
-        $this->preRoute($user);
+        $preRoute = $this->preRoute($user);
 
         $with = ['user', 'content'];
 
@@ -86,6 +86,6 @@ class ProfileController extends Controller {
 
         $posts = $user->voted()->with($with)->get();
 
-        return view('profile.rated', compact('user', 'posts'));
+        return view('profile.view', array_merge(compact('user', 'posts'), $preRoute));
     }
 }

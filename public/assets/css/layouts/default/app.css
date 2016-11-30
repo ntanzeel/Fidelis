@@ -139,6 +139,6 @@
     left: 50%;
     height: 35px;
     width: 700px;
-    font-size: 16pt;
-    visibility: hidden;
+    font-size: 14pt;
+    display: none;
 }
