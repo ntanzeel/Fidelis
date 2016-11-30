@@ -50,4 +50,19 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('.btn-search').on('click', function () {
+        $('.btn-search').css('visibility','hidden');
+        $('.navbar-brand').css('visibility','hidden');
+        $('.txt-search').css('visibility', 'visible');
+        $('.txt-search').focus();
+    });
+
+    $('.txt-search').focusout(function () {
+        if ($(this).val().length == 0) {
+            $('.navbar-brand').css('visibility','visible');
+            $('.btn-search').css('visibility','visible');
+            $('.txt-search').css('visibility', 'hidden');
+        }
+    });
 });

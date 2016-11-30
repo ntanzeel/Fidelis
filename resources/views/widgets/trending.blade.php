@@ -1,5 +1,5 @@
 @push('stylesheets')
-<link href="{{ asset('assets/css/layouts/default/widgets/trending.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/layouts/default/widgets/trending.css') }}" rel="stylesheet">
 @endpush
 
 <div class="panel panel-default">
