@@ -3,23 +3,23 @@
 @endpush
 
 <div class="panel panel-default widget profile-widget">
-    <a class="profile-cover" href="{{ route('profile.index') }}" style="background-image: url({{ Auth::user()->cover }})"></a>
+    <a class="profile-cover" href="{{ route('profile.view', [Auth::user()->username]) }}" style="background-image: url({{ Auth::user()->cover }})"></a>
     <div class="panel-body widget-body">
-        <a href="{{ route('profile.index') }}" class="profile-photo">
+        <a href="{{ route('profile.view', [Auth::user()->username]) }}" class="profile-photo">
             <img src="{{ Auth::user()->photo }}" />
         </a>
         <div class="profile-about">
-            <a class="profile-name" href="{{ route('profile.index') }}">
+            <a class="profile-name" href="{{ route('profile.view', [Auth::user()->username]) }}">
                 {{ Auth::user()->name }}
             </a>
-            <a class="profile-username" href="{{ route('profile.index') }}">
+            <a class="profile-username" href="{{ route('profile.view', [Auth::user()->username]) }}">
                 &commat;{{ Auth::user()->username }}
             </a>
         </div>
         <div class="profile-statistics">
             <ul class="list-unstyled statistics-list">
                 <li>
-                    <a href="{{ route('profile.index') }}" class="stat-link">
+                    <a href="{{ route('profile.view', [Auth::user()->username]) }}" class="stat-link">
                         <span class="stat-label">Posts</span>
                         <span class="stat-value">{{ Auth::user()->posts()->count() }}</span>
                     </a>

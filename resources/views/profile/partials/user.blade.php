@@ -9,7 +9,7 @@
             <a class="profile-name" href="{{ route('profile.view', [$user->username]) }}">
                 {{ $user->name }}
             </a>
-            <a class="profile-username" href="{{ route('profile.index') }}">
+            <a class="profile-username" href="{{ route('profile.view', [$user->username]) }}">
                 &commat;{{ $user->username }}
             </a>
         </div>

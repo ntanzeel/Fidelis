@@ -63,7 +63,7 @@
                             </li>
                             <li class="pull-right" role="presentation">
                                 <div class="profile-actions">
-                                    @include('profile.partials.follow', ['user' => $user, 'dropdown' => true])
+                                    @include('profile.partials.follow', ['user' => $user, 'dropdown' => true, 'isFollowing' => $isFollowing])
                                 </div>
                             </li>
                         </ul>
