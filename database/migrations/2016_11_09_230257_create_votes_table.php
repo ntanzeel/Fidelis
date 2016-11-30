@@ -14,20 +14,11 @@ class CreateVotesTable extends Migration {
     public function up() {
         Schema::create('votes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('comment_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('comment_id')->unsigned();
             $table->string('type', 4);
             $table->timestamps();
             $table->softDeletes();
-
-            /*
-             * Foreign key constraint
-             */
-
-            /*
-             * $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-			 * $table->foreign('comment_id')->references('id')->on('comments')->onUpdate('cascade')->onDelete('cascade');
-             */
         });
     }
 

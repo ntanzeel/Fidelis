@@ -21,7 +21,7 @@
                 <li>
                     <a href="{{ route('profile.view', [Auth::user()->username]) }}" class="stat-link">
                         <span class="stat-label">Posts</span>
-                        <span class="stat-value">{{ Auth::user()->posts()->count() }}</span>
+                        <span class="stat-value" id="posts-value">{{ Auth::user()->posts()->count() }}</span>
                     </a>
                 </li>
                 <li>

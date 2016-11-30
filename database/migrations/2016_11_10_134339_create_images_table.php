@@ -14,20 +14,10 @@ class CreateImagesTable extends Migration {
     public function up() {
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id');
+            $table->integer('post_id')->unsigned();
             $table->string('path');
             $table->timestamps();
             $table->softDeletes();
-
-
-            /*
-             * Foreign key constraint
-             */
-
-            /*
-             * $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
-             */
-
         });
     }
 

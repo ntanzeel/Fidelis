@@ -14,8 +14,8 @@ class CreateSubscriptionsTable extends Migration {
     public function up() {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('tag_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

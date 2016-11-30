@@ -1,5 +1,5 @@
 @push('stylesheets')
-    <link href="{{ asset('assets/css/layouts/default/widgets/trending.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/layouts/default/widgets/trending.css') }}" rel="stylesheet">
 @endpush
 
 <div class="panel panel-default">
@@ -10,9 +10,12 @@
                 Nothing is trending...
             @else
                 @foreach($trends as $trend)
-                    <li class="row-trend">
-                        <a class="hash-tag" href="{{ route("discover.category", $trend->text) }}">{{ $trend->text }}</a>
-                    </li>
+                    @if($trend->posts_count > 0)
+                        <li class="row-trend">
+                            <a class="hash-tag"
+                               href="{{ route("discover.category", $trend->text) }}">{{ $trend->text }}</a>
+                        </li>
+                    @endif
                 @endforeach
             @endif
         </ul>

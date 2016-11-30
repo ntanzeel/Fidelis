@@ -19,12 +19,6 @@ class CreateCategoryTagTable extends Migration {
             $table->boolean('root');
             $table->timestamps();
             $table->softDeletes();
-
-            /*
-             * Foreign keys
-             */
-            $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
