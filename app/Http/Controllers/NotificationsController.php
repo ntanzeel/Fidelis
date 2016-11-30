@@ -10,8 +10,16 @@ class NotificationsController extends Controller {
         $this->middleware('auth');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index() {
-        $notifications = Auth::user()->notifications;
+        /*
+         * Retrieve all the authorised users notifications and pass these to the notification view.
+         * Also mark all unread notifications as read once they have been retrieved and passed to the
+         * view.
+         */
+        $notifications = Auth::user()->notifications->unread();
         Auth::user()->unreadNotifications->markAsRead();
         return view('notifications.index', compact('notifications'));
     }
