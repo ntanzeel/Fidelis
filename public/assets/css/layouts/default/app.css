@@ -142,3 +142,11 @@
     font-size: 14pt;
     display: none;
 }
+
+/*
+* Lightbox
+*/
+#lightbox .modal-content {
+    display: inline-block;
+    text-align: center;
+}
