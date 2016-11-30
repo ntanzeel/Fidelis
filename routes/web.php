@@ -132,11 +132,6 @@ Route::group(['as' => 'post.'], function () {
  * User
  */
 Route::group(['as' => 'profile.'], function () {
-    Route::get('@me', [
-        'as'   => 'index',
-        'uses' => 'ProfileController@index',
-    ]);
-
     Route::get('@{user}', [
         'as'   => 'view',
         'uses' => 'ProfileController@view',

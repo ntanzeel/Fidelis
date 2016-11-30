@@ -11,8 +11,12 @@ class ProfileController extends Controller {
         $this->middleware('auth')->only('index');
     }
 
+    /**
+     * @param User $user
+     * @return array|void
+     */
     private function preRoute(User $user) {
-        if (Auth::guest()) {
+        if (!Auth::user()) {
             return;
         }
 
@@ -23,14 +27,14 @@ class ProfileController extends Controller {
         Auth::user()->load(['blocked' => function ($query) use ($user) {
             $query->where('blocked_id', $user->id);
         }]);
-    }
 
-    public function index() {
-        return redirect()->route('profile.view', [Auth::user()->username]);
+        $isFollowing = Auth::user()->following()->where('following_id', $user->id)->exists();
+
+        return ['isFollowing' => $isFollowing];
     }
 
     public function view(User $user) {
-        $this->preRoute($user);
+        $preRoute = $this->preRoute($user);
 
         $with = ['user', 'content'];
 
@@ -41,22 +45,24 @@ class ProfileController extends Controller {
         }
 
         $posts = $user->posts()->with($with)->latest()->get();
-        return view('profile.view', compact('user', 'posts'));
+
+        return view('profile.view', array_merge(compact('user', 'posts'), $preRoute));
     }
 
     public function followers(User $user) {
-        $this->preRoute($user);
+        $preRoute = $this->preRoute($user);
 
         if (Auth::user()) {
             $user->load(['followers', 'followers.followers' => function ($query) {
                 $query->where('follower_id', Auth::user()->id);
             }]);
         }
-        return view('profile.followers', compact('user'));
+
+        return view('profile.followers', array_merge(compact('user'), $preRoute));
     }
 
     public function following(User $user) {
-        $this->preRoute($user);
+        $preRoute = $this->preRoute($user);
 
         if (Auth::user()) {
             $user->load(['following', 'following.followers' => function ($query) {
@@ -64,7 +70,7 @@ class ProfileController extends Controller {
             }]);
         }
 
-        return view('profile.following', compact('user'));
+        return view('profile.following', array_merge(compact('user'), $preRoute));
     }
 
     public function rated(User $user) {

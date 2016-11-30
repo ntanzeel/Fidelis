@@ -1,6 +1,8 @@
+@php($isFollowing = (!empty($dropdown) && !empty($isFollowing)) || empty($dropdown) && $user->followers->count())
+
 @if (Auth::user() && $user->id != Auth::user()->id)
     <div class="btn-group {{ empty($dropdown) ? 'btn-group-justified' : '' }}">
-        @if ($user->followers->count())
+        @if ($isFollowing)
             <a href="#" role="button" class="btn btn-danger btn-follow-toggle"
                data-api="{{ route('api.follower.store')  }}"
                data-id="{{ $user->id }}"
@@ -15,7 +17,7 @@
 
         @if (!empty($dropdown))
             <button type="button"
-                    class="btn {{ $user->followers->count() ? 'btn-danger' : 'btn-primary' }} dropdown-toggle"
+                    class="btn {{ $isFollowing ? 'btn-danger' : 'btn-primary' }} dropdown-toggle"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>

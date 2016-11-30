@@ -42,7 +42,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ route('profile.index') }}">Profile</a>
+                                <a href="{{ route('profile.view', [Auth::user()->username]) }}">Profile</a>
                             </li>
                             <li>
                                 <a href="{{ route('settings.account.index') }}">Settings</a>
