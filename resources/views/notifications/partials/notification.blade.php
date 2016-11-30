@@ -20,8 +20,3 @@
         </div>
     </div>
 </div>
-@push('scripts')
-<script type="text/javascript">
-    var userProfile = "{{ route('profile.view', ['username']) }}";
-</script>
-@endpush
