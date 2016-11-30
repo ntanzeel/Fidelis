@@ -21,7 +21,15 @@
             <ul class="nav navbar-nav navbar-left">
                 @include('layouts.default.partials.nav', ['nav' => $navigation->app])
             </ul>
+            <form action="#">
+                <input class="form-control txt-search" type="text" placeholder="Search"/>
+            </form>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="btn-search">
+                        <i class="fa fa-search"></i>Search
+                    </a>
+                </li>
                 @include('layouts.default.partials.nav', ['nav' => $navigation->user])
 
                 @if (Auth::user())

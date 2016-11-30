@@ -131,3 +131,14 @@
     width: 100%;
     position: absolute;
 }
+
+.txt-search {
+    position: absolute;
+    margin:7px;
+    margin-left:-350px;
+    left: 50%;
+    height: 35px;
+    width: 700px;
+    font-size: 16pt;
+    visibility: hidden;
+}

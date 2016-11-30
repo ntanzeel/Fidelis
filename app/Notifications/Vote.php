@@ -53,6 +53,7 @@ class Vote extends Notification {
      */
     public function toArray($notifiable) {
         return [
+            'regarding' =>  $this->vote->comment_id,
             'from' => $this->vote->user_id,
             'text' => '@' . Auth::user()->username . " voted on your post",
         ];
