@@ -44,6 +44,8 @@ $(document).ready(function () {
                     $posts.data('empty', '0');
                 }
                 $posts.prepend('<li class="media">' + response + '</li>');
+                var tot = parseInt($('#posts-value').html());
+                $('#posts-value').html(tot+1);
             },
             error: function (response) {
                 var errors = response.responseJSON;
