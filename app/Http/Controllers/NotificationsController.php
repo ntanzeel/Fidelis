@@ -19,7 +19,7 @@ class NotificationsController extends Controller {
          * Also mark all unread notifications as read once they have been retrieved and passed to the
          * view.
          */
-        $notifications = Auth::user()->notifications->unread();
+        $notifications = Auth::user()->notifications;
         Auth::user()->unreadNotifications->markAsRead();
         return view('notifications.index', compact('notifications'));
     }
