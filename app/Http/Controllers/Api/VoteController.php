@@ -62,7 +62,9 @@ class VoteController extends Controller {
         /*
          * Notify the comments' user that someone has voted on their comment
          */
-        $comment->user->notify(new Notifications\Vote($vote));
+        if($vote->user_id != $comment->post->user_id) {
+            $comment->user->notify(new Notifications\Vote($vote));
+        }
 
         /*
          * Return the new number of likes and dislikes so it can be updated on the view.
