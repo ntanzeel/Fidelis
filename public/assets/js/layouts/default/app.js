@@ -52,17 +52,17 @@ $(document).ready(function () {
     });
 
     $('.btn-search').on('click', function () {
-        $('.btn-search').css('visibility','hidden');
-        $('.navbar-brand').css('visibility','hidden');
-        $('.txt-search').css('visibility', 'visible');
+        $('.btn-search').hide();
+        $('.navbar-brand').hide();
+        $('.txt-search').show();
         $('.txt-search').focus();
     });
 
     $('.txt-search').focusout(function () {
         if ($(this).val().length == 0) {
-            $('.navbar-brand').css('visibility','visible');
-            $('.btn-search').css('visibility','visible');
-            $('.txt-search').css('visibility', 'hidden');
+            $('.txt-search').hide();
+            $('.navbar-brand').show();
+            $('.btn-search').show()
         }
     });
 });

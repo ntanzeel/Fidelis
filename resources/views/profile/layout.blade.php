@@ -40,7 +40,7 @@
                             <li class="{{ $active == 'posts' ? 'active' : '' }}" role="presentation">
                                 <a href="{{ route('profile.view', [$user->username]) }}">
                                     <span class="nav-label">Posts</span>
-                                    <span class="nav-value">{{ 99 }}</span>
+                                    <span class="nav-value">{{ $user->posts()->count() }}</span>
                                 </a>
                             </li>
                             <li class="{{ $active == 'followers' ? 'active' : '' }}" role="presentation">
@@ -58,7 +58,7 @@
                             <li class="{{ $active == 'rated' ? 'active' : '' }}" role="presentation">
                                 <a href="{{ route('profile.rated', [$user->username]) }}">
                                     <span class="nav-label">Rated</span>
-                                    <span class="nav-value">{{ $user->voted()->count() }}</span>
+                                    <span class="nav-value" id="rates-value">{{ $user->voted()->count() }}</span>
                                 </a>
                             </li>
                             <li class="pull-right" role="presentation">
