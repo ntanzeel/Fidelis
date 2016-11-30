@@ -10,7 +10,7 @@
 
         <title>{{ config('app.name') . (!empty($title) ? ' :: ' . $title : '') }}</title>
 
-        <link rel="icon" href="{{ asset('favicon.png') }}">
+        <link rel="icon" href="{{ asset('favicon.ico') }}">
 
         <!-- Fonts -->
         @push('fonts')

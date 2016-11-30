@@ -21,19 +21,19 @@
                 <li>
                     <a href="{{ route('profile.index') }}" class="stat-link">
                         <span class="stat-label">Posts</span>
-                        <span class="stat-value">{{ Auth::user()->posts()->count() }}</span>
+                        <span class="stat-value" id="posts-value">{{ Auth::user()->posts()->count() }}</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('profile.followers', [Auth::user()->username]) }}" class="stat-link">
                         <span class="stat-label">Followers</span>
-                        <span class="stat-value">{{ Auth::user()->followers()->count() }}</span>
+                        <span class="stat-value" id="followers-value">{{ Auth::user()->followers()->count() }}</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('profile.following', [Auth::user()->username]) }}" class="stat-link">
                         <span class="stat-label">Following</span>
-                        <span class="stat-value">{{ Auth::user()->following()->count() }}</span>
+                        <span class="stat-value" id="following-value">{{ Auth::user()->following()->count() }}</span>
                     </a>
                 </li>
             </ul>
