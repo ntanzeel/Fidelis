@@ -20,4 +20,37 @@
     width:auto;
 }
 
-/*.notification-footer > li > a >*/
+/*
+ * Action List
+ */
+.action-list a.action {
+    padding: 5px;
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 14px;
+}
+
+.action-list a.action > i.fa {
+    margin-right: 5px;
+}
+
+.action-list .action.action-like.active,
+.action-list .action.action-like:hover {
+    color: #08AD93;
+}
+
+.action-list .action.action-dislike.active,
+.action-list .action.action-dislike:hover {
+    color: #e81c4f;
+}
+
+.action-list .action.action-comment.active,
+.action-list .action.action-comment:hover {
+    color: #FF6631;
+}
+
+.action-list .action.action-flag.active,
+.action-list .action.action-flag:hover {
+    color: #AD441A;
+}
