@@ -64,6 +64,7 @@
 
             @section('footer')
                 @include('layouts.default.partials.footer')
+                @include('components.ui.lightbox')
             @show
         </div>
 
