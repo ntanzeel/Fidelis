@@ -47,7 +47,7 @@ trait Post {
     protected function uploadImages(Models\Post $post, CommentRequest $request) {
         foreach ($request->file('images') as $file) {
             $path = $file->store('uploads/' . Auth::user()->uploadDirectory(), 'public');
-            $post->images()->save(new Models\Image(['path' => $path]));
+            $post->images()->save(new Models\Image(['user_id' => Auth::user()->id,'path' => $path]));
         }
     }
 

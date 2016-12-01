@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller {
@@ -45,8 +46,9 @@ class ProfileController extends Controller {
         }
 
         $posts = $user->posts()->with($with)->latest()->get();
+        $images = Image::where('user_id', $user->id)->latest()->get();
 
-        return view('profile.view', array_merge(compact('user', 'posts'), $preRoute));
+        return view('profile.view', array_merge(compact('user', 'posts', 'images'), $preRoute));
     }
 
     public function followers(User $user) {
@@ -58,7 +60,9 @@ class ProfileController extends Controller {
             }]);
         }
 
-        return view('profile.followers', array_merge(compact('user'), $preRoute));
+        $images = Image::where('user_id', $user->id)->latest()->get();
+
+        return view('profile.followers', array_merge(compact('user', 'images'), $preRoute));
     }
 
     public function following(User $user) {
@@ -70,7 +74,9 @@ class ProfileController extends Controller {
             }]);
         }
 
-        return view('profile.following', array_merge(compact('user'), $preRoute));
+        $images = Image::where('user_id', $user->id)->latest()->get();
+
+        return view('profile.following', array_merge(compact('user', 'images'), $preRoute));
     }
 
     public function rated(User $user) {
@@ -85,7 +91,8 @@ class ProfileController extends Controller {
         }
 
         $posts = $user->voted()->with($with)->get();
+        $images = Image::where('user_id', $user->id)->latest()->get();
 
-        return view('profile.view', array_merge(compact('user', 'posts'), $preRoute));
+        return view('profile.view', array_merge(compact('user', 'posts', 'images'), $preRoute));
     }
 }

@@ -27,7 +27,7 @@ class Image extends Model {
     use SoftDeletes;
 
     protected $fillable = [
-        'post_id', 'path',
+        'user_id', 'post_id', 'path',
     ];
 
     protected $dates = [

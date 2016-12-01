@@ -92,7 +92,9 @@
                             Photos
                         </div>
                         <div class="panel-body">
-                            Users Photos.
+                            @foreach($images as $image)
+                                <div class="user-images" style="background-image: url({{ $image }})"></div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
