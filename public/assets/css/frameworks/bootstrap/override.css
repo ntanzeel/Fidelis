@@ -120,6 +120,10 @@ a, a:hover, a:visited, a:focus {
     border: 1px solid #d9534f;
 }
 
+.btn.btn-link.btn-link-orange {
+    color: #FF6631;
+}
+
 /*
  * Inputs
  */
