@@ -19,14 +19,14 @@ class BlockedController extends Controller {
         /**
          * @var $user User
          */
-        $user = User::findOrFail($request->get('id'));
+        $user = User::findOrFail($request->get('user'));
 
         Follower::where(function ($query) use ($user) {
             $query->where('follower_id', $user->id);
             $query->where('following_id', Auth::user()->id);
         })->orWhere(function ($query) use ($user) {
-            $query->where('follower_id', $user->id);
-            $query->where('following_id', Auth::user()->id);
+            $query->where('follower_id', Auth::user()->id);
+            $query->where('following_id', $user->id);
         })->delete();
 
         $request->user()->blocked()->attach($user);

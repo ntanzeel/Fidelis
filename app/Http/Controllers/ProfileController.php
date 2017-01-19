@@ -14,11 +14,11 @@ class ProfileController extends Controller {
 
     /**
      * @param User $user
-     * @return array|void
+     * @return array
      */
     private function preRoute(User $user) {
         if (!Auth::user()) {
-            return;
+            return [];
         }
 
         if ($user->blocked()->where('blocked_id', Auth::user()->id)->exists()) {
