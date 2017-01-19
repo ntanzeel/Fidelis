@@ -21,7 +21,7 @@
                 <li>
                     <a href="{{ route('profile.view', [$user->username]) }}" class="stat-link">
                         <span class="stat-label">Posts</span>
-                        <span class="stat-value">{{ 99 }}</span>
+                        <span class="stat-value">{{ $user->posts()->count() }}</span>
                     </a>
                 </li>
                 <li>
