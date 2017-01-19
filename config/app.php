@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Arrilot\Widgets\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         /*

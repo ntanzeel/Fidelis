@@ -24,6 +24,7 @@
             <link href="{{ asset('assets/css/frameworks/bootstrap/override.css') }}" rel="stylesheet">
             <link href="{{ asset('assets/css/frameworks/bootstrap/bootstrap-switch.min.css') }}" rel="stylesheet">
             <link href="{{ asset('assets/css/frameworks/font-awesome/css/4.7.0.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('assets/css/frameworks/highlight.js/9.9.0.min.css') }}" rel="stylesheet" >
         @endpush
         @stack('frameworks.stylesheets')
 
@@ -72,6 +73,7 @@
         @push('frameworks.scripts')
             <script src="{{ asset('assets/js/frameworks/jquery/3.1.1.min.js') }}"></script>
             <script src="{{ asset('assets/js/frameworks/bootstrap/3.3.7.min.js') }}"></script>
+            <script src="{{ asset('assets/js/frameworks/highlight.js/9.9.0.min.js') }}"></script>
             <script src="{{ asset('assets/js/frameworks/bootstrap/bootstrap-switch.min.js') }}"></script>
         @endpush
         @stack('frameworks.scripts')
