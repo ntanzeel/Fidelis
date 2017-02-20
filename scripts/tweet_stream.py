@@ -26,8 +26,8 @@ class TweetStreamListener(StreamListener):
             in_reply_to = data['in_reply_to_status_id']
             screen_name = data['user']['screen_name']
             time = data['created_at'];
-            print(json.dumps({'id': tweet_id, 'screen_name': screen_name, 'text': tweet_text, 'in_reply_to': in_reply_to}))
-            t.append({'id': tweet_id, 'screen_name': screen_name, 'text': tweet_text, 'in_reply_to': in_reply_to})
+            print(json.dumps({'id': tweet_id, 'screen_name': screen_name, 'text': tweet_text, 'in_reply_to': in_reply_to, 'created_at': time}))
+            t.append({'id': tweet_id, 'screen_name': screen_name, 'text': tweet_text, 'in_reply_to': in_reply_to, 'created_at': time})
 
     def on_error(self, status):
         print(status)
@@ -54,6 +54,6 @@ if __name__ == "__main__":
         l = TweetStreamListener()
         stream = tweepy.Stream(auth=api.auth, listener=l)
         atexit.register(exitfunc)
-        stream.filter(track=['education', 'fashion', 'finance', 'food', 'health', 'home', 'politics', 'sport', 'travel','fine arts'])
+        stream.filter(languages=['en'], track=['education', 'fashion', 'finance', 'food', 'health', 'home', 'politics', 'sport', 'travel','fine arts'])
     except Exception as e:
         print(e)
