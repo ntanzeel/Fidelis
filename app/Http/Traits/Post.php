@@ -26,12 +26,12 @@ trait Post {
 
     protected function addComment(Models\Post $post, CommentRequest $request, $root = false) {
         $comment = new Models\Comment([
-            'user_id'    => Auth::user()->id,
-            'text'       => e($request->get('text')),
-            'up_votes'   => 0,
-            'down_votes' => 0,
-            'root'       => $root,
-            'hidden'     => false,
+            'user_id'     => Auth::user()->id,
+            'text'        => e($request->get('text')),
+            'up_votes'    => 0,
+            'down_votes'  => 0,
+            'root'        => $root,
+            'abuse_score' => 0,
         ]);
 
         $post->comments()->save($comment);

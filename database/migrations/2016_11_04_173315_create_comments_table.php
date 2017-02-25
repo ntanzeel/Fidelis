@@ -20,7 +20,7 @@ class CreateCommentsTable extends Migration {
             $table->integer('up_votes')->unsigned();
             $table->integer('down_votes')->unsigned();
             $table->boolean('root');
-            $table->boolean('hidden');
+            $table->integer('abuse_score');
             $table->timestamps();
             $table->softDeletes();
         });
