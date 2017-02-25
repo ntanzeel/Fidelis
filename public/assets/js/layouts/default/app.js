@@ -5,6 +5,11 @@ $(document).ready(function () {
         var isLike = $(this).hasClass('action-like');
 
         var $button = $(this);
+
+        if ($button.parent().hasClass('disabled')) {
+            return;
+        }
+
         var $opposite = $button.parents('.action-list')
             .find('.action-' + (isLike ? 'dislike' : 'like'));
 
@@ -23,6 +28,31 @@ $(document).ready(function () {
 
                 $button.find('.text').text(isLike ? response.likes : response.dislikes);
                 $opposite.find('.text').text(isLike ? response.dislikes : response.likes);
+            },
+            error: function (response) {}
+        });
+    }).on('click', '.action-flag', function (event) {
+        event.preventDefault();
+
+        var $button = $(this);
+
+        if ($button.parent().hasClass('disabled')) {
+            return;
+        }
+
+        $.ajax({
+            url: $button.attr('href'),
+            method: 'POST',
+            data: {},
+            beforeSend: function (xhr) {
+                return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+            },
+            success: function (response) {
+                if (response.status) {
+                    $button.addClass('active');
+                } else {
+                    $button.removeClass('active');
+                }
             },
             error: function (response) {}
         });

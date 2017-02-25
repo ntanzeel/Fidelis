@@ -25,8 +25,9 @@
             </a>
         </li>
     @endif
-    <li class="pull-right">
-        <a role="button" class="action action-flag">
+    <li class="pull-right {{ Auth::guest() || $comment->user_id == Auth::user()->id ? 'disabled' : '' }}">
+        @php($reported = Auth::user() && $comment->reports->count())
+        <a href="{{ route('api.report.store', [$comment->id]) }}" role="button" class="action action-flag {{ $reported ? 'active' : '' }}">
             <i class="fa fa-flag"></i>
         </a>
     </li>

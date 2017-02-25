@@ -275,6 +275,21 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
     });
 
     /*
+     * Reports
+     */
+    Route::group(['as' => 'report.', 'prefix' => '/comment/{comment}/report'], function () {
+        Route::post('/', [
+            'as'   => 'store',
+            'uses' => 'Api\ReportController@store',
+        ]);
+
+        Route::post('/{report}', [
+            'as'   => 'delete',
+            'uses' => 'Api\ReportController@delete',
+        ]);
+    });
+
+    /*
      * Following
      */
     Route::group(['as' => 'follower.', 'prefix' => 'follower'], function () {

@@ -22,7 +22,7 @@ class DiscoverController extends Controller {
         $with = ['user', 'content'];
 
         if (Auth::user()) {
-            $with['content.votes'] = function ($query) {
+            $with['content.reports'] = $with['content.votes'] = function ($query) {
                 $query->where('user_id', Auth::user()->id);
             };
         }
@@ -49,7 +49,7 @@ class DiscoverController extends Controller {
         $with = ['user', 'content'];
 
         if (Auth::user()) {
-            $with['content.votes'] = function ($query) {
+            $with['content.reports'] = $with['content.votes'] = function ($query) {
                 $query->where('user_id', Auth::user()->id);
             };
         }

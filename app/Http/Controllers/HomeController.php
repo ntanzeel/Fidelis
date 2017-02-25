@@ -23,9 +23,11 @@ class HomeController extends Controller {
     public function index() {
         $userIds = Auth::user()->following()->pluck('users.id');
         $userIds[] = Auth::user()->id;
-        $posts = Post::whereIn('user_id', $userIds)->with(['content', 'content.votes' => function($query) {
+        $with = ['content'];
+        $with['content.votes'] = $with['content.reports'] = function($query) {
             $query->where('user_id', Auth::user()->id);
-        }])->latest()->get();
+        };
+        $posts = Post::whereIn('user_id', $userIds)->with($with)->latest()->get();
         return view('home.index', compact('posts'));
     }
 }
