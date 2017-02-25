@@ -39,7 +39,7 @@ class Comment extends Model {
     use SoftDeletes;
 
     protected $fillable = [
-        'post_id', 'user_id', 'text', 'up_votes', 'down_votes', 'root',
+        'post_id', 'user_id', 'text', 'up_votes', 'down_votes', 'root', 'hidden',
     ];
 
     protected $dates = [
