@@ -17,6 +17,7 @@ class ReportController extends Controller {
         $report = Report::firstOrCreate([
             'user_id'    => $request->user()->id,
             'comment_id' => $comment->id,
+            'processed'  => 0,
         ]);
 
         if (!$report->wasRecentlyCreated) {
