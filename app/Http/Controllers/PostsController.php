@@ -19,9 +19,12 @@ class PostsController extends Controller {
         $load = ['user', 'content', 'comments', 'comments.user'];
 
         if (Auth::user()) {
-            $load = array_merge($load, array_fill_keys(['content.votes', 'comments.votes'], function ($query) {
-                $query->where('user_id', Auth::user()->id);
-            }));
+            $load = array_merge($load, array_fill_keys(
+                ['content.votes', 'content.reports', 'comments.votes', 'comments.reports'],
+                function ($query) {
+                    $query->where('user_id', Auth::user()->id);
+                })
+            );
         }
 
         $post->load($load);

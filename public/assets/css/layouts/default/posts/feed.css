@@ -53,6 +53,10 @@
     margin-right: 5px;
 }
 
+.action-list li.disabled .action {
+    color: #CCC;
+}
+
 .action-list li:not(.disabled) .action.action-like.active,
 .action-list li:not(.disabled) .action.action-like:hover {
     color: #08AD93;
@@ -68,8 +72,8 @@
     color: #FF6631;
 }
 
-.action-list .action.action-flag.active,
-.action-list .action.action-flag:hover {
+.action-list li:not(.disabled)  .action.action-flag.active,
+.action-list li:not(.disabled)  .action.action-flag:hover {
     color: #AD441A;
 }
 

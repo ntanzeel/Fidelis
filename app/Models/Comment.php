@@ -39,7 +39,7 @@ class Comment extends Model {
     use SoftDeletes;
 
     protected $fillable = [
-        'post_id', 'user_id', 'text', 'up_votes', 'down_votes', 'root',
+        'post_id', 'user_id', 'text', 'up_votes', 'down_votes', 'root', 'abuse_score',
     ];
 
     protected $dates = [
@@ -56,6 +56,10 @@ class Comment extends Model {
 
     public function votes() {
         return $this->hasMany('App\Models\Vote');
+    }
+
+    public function reports() {
+        return $this->hasMany('App\Models\Report');
     }
 
     public function htmlText() {

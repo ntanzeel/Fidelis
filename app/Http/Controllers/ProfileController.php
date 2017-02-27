@@ -40,7 +40,7 @@ class ProfileController extends Controller {
         $with = ['user', 'content'];
 
         if (Auth::user()) {
-            $with['content.votes'] = function ($query) {
+            $with['content.reports'] = $with['content.votes'] = function ($query) {
                 $query->where('user_id', Auth::user()->id);
             };
         }
@@ -85,7 +85,7 @@ class ProfileController extends Controller {
         $with = ['user', 'content'];
 
         if (Auth::user()) {
-            $with['content.votes'] = function ($query) {
+            $with['content.reports'] = $with['content.votes'] = function ($query) {
                 $query->where('user_id', Auth::user()->id);
             };
         }
