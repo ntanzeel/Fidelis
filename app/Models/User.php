@@ -134,6 +134,10 @@ class User extends Authenticatable {
         });
     }
 
+    public function settings() {
+        return $this->hasMany('App\Models\Setting');
+    }
+
     public function uploadDirectory() {
         return md5($this->username . $this->created_at);
     }

@@ -156,13 +156,13 @@ Route::group(['as' => 'profile.'], function () {
 /*
  * Settings
  */
-Route::group(['as' => 'settings.'], function () {
+Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
 
     /*
      * Account
      */
     Route::group(['as' => 'account.'], function () {
-        Route::get('settings/account', [
+        Route::get('/account', [
             'as'   => 'index',
             'uses' => 'Settings\AccountController@index',
         ]);
@@ -187,11 +187,26 @@ Route::group(['as' => 'settings.'], function () {
      * Subscriptions
      */
     Route::group(['as' => 'subscriptions.'], function () {
-        Route::get('settings/subscriptions', [
+        Route::get('/subscriptions', [
             'as'   => 'index',
             'uses' => 'Settings\SubscriptionsController@index',
         ]);
 
+    });
+
+    /*
+     * Safety
+     */
+    Route::group(['as' => 'safety.'], function () {
+        Route::get('/safety', [
+            'as'   => 'index',
+            'uses' => 'Settings\SafetyController@index',
+        ]);
+
+        Route::post('/safety', [
+            'as'   => 'store',
+            'uses' => 'Settings\SafetyController@store',
+        ]);
     });
 });
 
