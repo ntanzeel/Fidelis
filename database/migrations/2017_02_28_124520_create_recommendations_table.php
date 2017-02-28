@@ -15,14 +15,14 @@ class CreateRecommendationsTable extends Migration
     {
         Schema::create('recommendations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('recommendee_id')->unsigned();
-            $table->integer('recommendation_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('recommendation')->unsigned();
             $table->integer('response');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('recommendee_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('recommendation_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('recommendation')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
