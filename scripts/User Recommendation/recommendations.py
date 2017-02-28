@@ -174,7 +174,7 @@ def generate_user_recommendations(curs, user, num_recommendations):
 
 
 # Establish database connection
-conn = mysql.connect(user='root', password='', host='localhost', database='fidelis_recommendations')
+conn = mysql.connect(user='root', password='', host='localhost', database='fidelis')
 curs = conn.cursor()
 
 curs.execute("SELECT name FROM users WHERE id='2'")
