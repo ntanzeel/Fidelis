@@ -21,8 +21,8 @@ class CreateRecommendationsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('recommendation')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('recommendee_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('recommendation_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
