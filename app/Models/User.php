@@ -142,6 +142,11 @@ class User extends Authenticatable {
         return md5($this->username . $this->created_at);
     }
 
+    public function recommendations() {
+        return $this->hasMany('App\Models\Recommendation')
+            ->where('response', 0);
+    }
+
     /**
      * Get the route key for the model.
      *

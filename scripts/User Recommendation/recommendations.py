@@ -109,8 +109,8 @@ def get_hybrid_recommendations(curs, recommendee_id, recommendee_vector, tags, n
     return list(hybrid_recommendations)
 
 
-def get_followees(curs, recomendee_id):
-    curs.execute("SELECT following_id FROM followers WHERE follower_id='" + recomendee_id + "'")
+def get_followees(curs, recommendee_id):
+    curs.execute("SELECT following_id FROM followers WHERE follower_id='" + recommendee_id + "'")
     return [x[0] for x in curs.fetchall()]
 
 
@@ -169,6 +169,7 @@ def generate_user_recommendations(curs, user, num_recommendations):
 
     for recommendation in recommendations:
         curs.execute("INSERT INTO recommendations VALUES ('"+ recommendee_id +"', '" + str(recommendation) +"', 0)")
+    conn.commit()
 
 
 # Establish database connection
