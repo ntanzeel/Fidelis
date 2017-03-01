@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRecommendationPreferenceToUsersTables extends Migration
+class AddReputationToCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddRecommendationPreferenceToUsersTables extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('recommendation_preference', 20);
+        Schema::table('comments', function (Blueprint $table) {
+            $table->integer('reputation');
         });
     }
 
@@ -25,8 +25,8 @@ class AddRecommendationPreferenceToUsersTables extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('recommendation_preference');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropColumn('reputation');
         });
     }
 }

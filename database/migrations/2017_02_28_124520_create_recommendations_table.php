@@ -17,12 +17,11 @@ class CreateRecommendationsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('recommendation')->unsigned();
+            $table->string('type');
+            $table->integer('tag_id')->unsigned();
             $table->integer('response');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('recommendation')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
