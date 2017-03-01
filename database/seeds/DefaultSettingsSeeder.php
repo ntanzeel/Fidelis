@@ -19,8 +19,27 @@ class DefaultSettingsSeeder extends Seeder {
                 'value'      => 75,
                 'created_at' => $now,
                 'updated_at' => $now,
-            ], [
-                'name'       => 'is_private',
+            ],
+            [
+                'name'       => 'Recommendation Preference',
+                'value'      => 'Explorer',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'name'       => 'Number of Recommendations',
+                'value'      => 10,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'name'       => 'Threshold',
+                'value'      => 0.6,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'name'       => 'Reputation',
                 'value'      => 0,
                 'created_at' => $now,
                 'updated_at' => $now,

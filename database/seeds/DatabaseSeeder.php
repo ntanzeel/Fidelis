@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder {
         $this->call(DefaultSettingsSeeder::class);
         // $this->call(SubscriptionsSeeder::class);
         $this->call(PostsSeeder::class);
-         $this->call(CommentsSeeder::class);
+        $this->call(CommentsSeeder::class);
         // $this->call(ImagesSeeder::class);
-         $this->call(VotesSeeder::class);
-         $this->call(SettingsSeeder::class);
+        $this->call(VotesSeeder::class);
+        // $this->call(SettingsSeeder::class);
         // $this->call(NotificationsSeeder::class);
     }
 }
