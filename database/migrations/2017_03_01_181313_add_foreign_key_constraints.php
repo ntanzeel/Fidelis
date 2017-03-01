@@ -58,6 +58,10 @@ class AddForeignKeyConstraints extends Migration {
             $table->foreign('blocker_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('blocked_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
+
+        Schema::table('settings', function (Blueprint $table) {
+            $table->foreign('name')->references('name')->on('default_settings')->onUpdate('CASCADE')->onDelete('CASCADE');
+        });
     }
 
     /**
@@ -111,6 +115,10 @@ class AddForeignKeyConstraints extends Migration {
         Schema::table('blocked', function (Blueprint $table) {
             $table->dropForeign('blocked_blocker_id_foreign');
             $table->dropForeign('blocked_blocked_id_foreign');
+        });
+
+        Schema::table('settings', function (Blueprint $table) {
+            $table->dropForeign('settings_name_foreign');
         });
     }
 }

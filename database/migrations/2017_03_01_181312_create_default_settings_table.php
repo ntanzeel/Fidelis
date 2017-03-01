@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserSettingsTable extends Migration {
+class CreateDefaultSettingsTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,13 +12,14 @@ class CreateUserSettingsTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('default_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('value');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique('name');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateUserSettingsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('default_settings');
     }
 }

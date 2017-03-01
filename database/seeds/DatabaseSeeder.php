@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(QuotesSeeder::class);
         $this->call(CategoriesSeeder::class);
         $this->call(FollowersSeeder::class);
+        $this->call(DefaultSettingsSeeder::class);
         // $this->call(SubscriptionsSeeder::class);
         // $this->call(CommentsSeeder::class);
         // $this->call(PostsSeeder::class);
