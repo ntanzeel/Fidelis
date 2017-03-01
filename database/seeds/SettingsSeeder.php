@@ -137,7 +137,7 @@ class SettingsSeeder extends DatabaseSeeder {
         ]);
 
         App\Models\Setting::create([
-            'user_id' => 6,
+            'user_id' => 7,
             'name' => 'Recommendation Preference',
             'value' => 'Explorer'
         ]);
