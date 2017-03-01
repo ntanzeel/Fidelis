@@ -20,7 +20,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
+            'is_private' => False
         ]);
 
         App\Models\User::create([
@@ -33,7 +33,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
+            'is_private' => False
         ]);
 
         App\Models\User::create([
@@ -46,7 +46,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
+            'is_private' => False
         ]);
 
         App\Models\User::create([
@@ -59,7 +59,46 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
+            'is_private' => False
+        ]);
+
+        App\Models\User::create([
+            'name'       => 'Henry Jackson',
+            'username'   => 'hjackson',
+            'email'      => 'hjackson@gmail.com',
+            'password'   => bcrypt('password3'),
+            'about'      => '4th year Physics student at University of Warwick.',
+            'dob'        => \Carbon\Carbon::create(1995, 7, 19),
+            'reputation' => 0,
+            'photo'      => '',
+            'cover'      => '',
+            'is_private' => False
+        ]);
+
+        App\Models\User::create([
+            'name'       => 'Aria Ahari',
+            'username'   => 'aahari',
+            'email'      => 'aria.ahari@gmail.com',
+            'password'   => bcrypt('password4'),
+            'about'      => '4th year MORSE student at University of Warwick.',
+            'dob'        => \Carbon\Carbon::create(1995, 3, 17),
+            'reputation' => 0,
+            'photo'      => '',
+            'cover'      => '',
+            'is_private' => False
+        ]);
+
+        App\Models\User::create([
+            'name'       => 'Richard Bettermen',
+            'username'   => 'dickvandyke',
+            'email'      => 'richbman@gmail.com',
+            'password'   => bcrypt('password5'),
+            'about'      => '4th year Computer Science student at University of Warwick.',
+            'dob'        => \Carbon\Carbon::create(1995, 1, 14),
+            'reputation' => 0,
+            'photo'      => '',
+            'cover'      => '',
+            'is_private' => False
         ]);
     }
 }

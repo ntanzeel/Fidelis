@@ -135,6 +135,21 @@ class User extends Authenticatable {
         });
     }
 
+    private function defaultSettings() {
+        return DefaultSetting::leftJoin(
+            \DB::raw(
+                '(' . $this->settings()->toSql() . ') settings'
+            ), 'default_settings.name', '=', 'settings.name')
+            ->select(
+                'settings.id AS id',
+                \DB::raw('(CASE WHEN settings.user_id IS NULL THEN ? ELSE settings.user_id END) AS user_id'),
+                'default_settings.name AS name',
+                \DB::raw('(CASE WHEN settings.value IS NULL THEN default_settings.value ELSE settings.value END) AS value')
+            )
+            ->whereNull('settings.deleted_at')
+            ->where('default_settings.deleted_at');
+    }
+
     public function settings() {
         return $this->hasMany('App\Models\Setting');
     }
@@ -153,23 +168,13 @@ class User extends Authenticatable {
         return $this->getRelation('settings');
     }
 
-    private function defaultSettings() {
-        return DefaultSetting::leftJoin(
-            \DB::raw(
-                '(' . $this->settings()->toSql() . ') settings'
-            ), 'default_settings.name', '=', 'settings.name')
-            ->select(
-                'settings.id AS id',
-                \DB::raw('(CASE WHEN settings.user_id IS NULL THEN ? ELSE settings.user_id END) AS user_id'),
-                'default_settings.name AS name',
-                \DB::raw('(CASE WHEN settings.value IS NULL THEN default_settings.value ELSE settings.value END) AS value')
-            )
-            ->whereNull('settings.deleted_at')
-            ->where('default_settings.deleted_at');
-    }
-
     public function uploadDirectory() {
         return md5($this->username . $this->created_at);
+    }
+
+    public function recommendations() {
+        return $this->hasMany('App\Models\Recommendation')
+            ->where('response', 0);
     }
 
     /**

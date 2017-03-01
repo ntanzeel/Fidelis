@@ -17,10 +17,10 @@ class CreateCommentsTable extends Migration {
             $table->integer('post_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->string('text');
-            $table->integer('up_votes')->unsigned();
-            $table->integer('down_votes')->unsigned();
+            $table->integer('up_votes')->unsigned()->default(0);
+            $table->integer('down_votes')->unsigned()->default(0);
             $table->boolean('root');
-            $table->integer('abuse_score');
+            $table->integer('abuse_score')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
