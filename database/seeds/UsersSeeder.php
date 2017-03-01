@@ -20,8 +20,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
-            'recommendation_preference' => 'General'
+            'is_private' => False
         ]);
 
         App\Models\User::create([
@@ -34,8 +33,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
-            'recommendation_preference' => 'General'
+            'is_private' => False
         ]);
 
         App\Models\User::create([
@@ -48,8 +46,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
-            'recommendation_preference' => 'General'
+            'is_private' => False
         ]);
 
         App\Models\User::create([
@@ -62,8 +59,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
-            'recommendation_preference' => 'General'
+            'is_private' => False
         ]);
 
         App\Models\User::create([
@@ -76,8 +72,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
-            'recommendation_preference' => 'General'
+            'is_private' => False
         ]);
 
         App\Models\User::create([
@@ -90,8 +85,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
-            'recommendation_preference' => 'General'
+            'is_private' => False
         ]);
 
         App\Models\User::create([
@@ -104,8 +98,7 @@ class UsersSeeder extends Seeder {
             'reputation' => 0,
             'photo'      => '',
             'cover'      => '',
-            'is_private' => False,
-            'recommendation_preference' => 'General'
+            'is_private' => False
         ]);
     }
 }

@@ -13,16 +13,151 @@ class PostsSeeder extends Seeder {
      */
 
     protected $data = [
+        /*
+         * Naqash - Politics
+         */
         [
             'user_id' => 1,
             'tags'    => ['Politics'],
         ],
         [
-            'user_id' => 4,
-            'tags'    => ['Sports', 'Politics'],
+            'user_id' => 1,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 1,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 1,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 1,
+            'tags'    => ['Politics'],
+        ],
+
+        /*
+         * Ishe - Politics/Sports
+         */
+        [
+            'user_id' => 2,
+            'tags'    => ['Fashion'],
         ],
         [
             'user_id' => 2,
+            'tags'    => ['Sports'],
+        ],
+        [
+            'user_id' => 2,
+            'tags'    => ['Sports'],
+        ],
+        [
+            'user_id' => 2,
+            'tags'    => ['Sports'],
+        ],
+        [
+            'user_id' => 2,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 2,
+            'tags'    => ['Politics'],
+        ],
+
+        /*
+         * Big Mac - Fashion
+         */
+        [
+            'user_id' => 3,
+            'tags'    => ['Fashion'],
+        ],
+        [
+            'user_id' => 3,
+            'tags'    => ['Fashion'],
+        ],
+        [
+            'user_id' => 3,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 3,
+            'tags'    => ['Fashion'],
+        ],
+        [
+            'user_id' => 3,
+            'tags'    => ['Sports'],
+        ],
+        [
+            'user_id' => 3,
+            'tags'    => ['Fashion'],
+        ],
+
+        /*
+         * Jordan - Politics/Fashion
+         */
+        [
+            'user_id' => 4,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 4,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 4,
+            'tags'    => ['Sports'],
+        ],
+        [
+            'user_id' => 4,
+            'tags'    => ['Fashion'],
+        ],
+        [
+            'user_id' => 4,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 4,
+            'tags'    => ['Fashion'],
+        ],
+        [
+            'user_id' => 4,
+            'tags'    => ['Politics'],
+        ],
+
+        /*
+         * Hez - Politics
+         */
+        [
+            'user_id' => 5,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 5,
+            'tags'    => ['Politics'],
+        ],
+        [
+            'user_id' => 5,
+            'tags'    => ['Politics'],
+        ],
+
+        /*
+         * Aria - Fashion
+         */
+        [
+            'user_id' => 6,
+            'tags'    => ['Fashion'],
+        ],
+
+        /*
+         * Richard - Sports/Fashion
+         */
+        [
+            'user_id' => 7,
+            'tags'    => ['Sports'],
+        ],
+        [
+            'user_id' => 7,
             'tags'    => ['Fashion'],
         ]
     ];
