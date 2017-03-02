@@ -130,15 +130,15 @@ class AddForeignKeyConstraints extends Migration {
         });
 
         Schema::table('user_recommendations', function (Blueprint $table) {
-            $table->dropForeign('recommendations_user_id_foreign');
-            $table->dropForeign('recommendations_user_recommendation_foreign');
-            $table->dropForeign('recommendations_tag_id_foreign');
+            $table->dropForeign('user_recommendations_user_id_foreign');
+            $table->dropForeign('user_recommendations_user_recommendation_foreign');
+            $table->dropForeign('user_recommendations_tag_id_foreign');
         });
 
         Schema::table('content_recommendations', function (Blueprint $table) {
-            $table->dropForeign('recommendations_user_id_foreign');
-            $table->dropForeign('recommendations_content_recommendation_foreign');
-            $table->dropForeign('recommendations_tag_id_foreign');
+            $table->dropForeign('content_recommendations_user_id_foreign');
+            $table->dropForeign('content_recommendations_content_recommendation_foreign');
+            $table->dropForeign('content_recommendations_tag_id_foreign');
         });
 
         Schema::table('settings', function (Blueprint $table) {
