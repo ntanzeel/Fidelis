@@ -20,15 +20,11 @@ $(document).ready(function () {
                 return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
             },
             success: function (response) {
-                console.log('Success!');
                 form.trigger('reset');
 
                 comments.append('<li class="media">' + response + '</li>');
             },
-            error: function (response) {
-                console.log('Error :(');
-                console.log(response.responseJSON);
-            }
+            error: function (response) {}
         });
     });
 });

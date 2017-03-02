@@ -16,7 +16,7 @@ class CreateReportsTable extends Migration {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('comment_id')->unsigned();
-            $table->boolean('processed');
+            $table->boolean('processed')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

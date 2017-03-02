@@ -1,3 +1,4 @@
+@php($abusive = Auth::user() && ($comment->reports->count() || Auth::user()->settings['abuse_rating']->value < $comment->abuse_score))
 <div id="comment-{{ $comment->id }}" class="comment">
     <div class="media-left">
         <a href="#">
@@ -14,7 +15,19 @@
             <span class="time small color light">{{ $comment->created_at->diffForHumans() }}</span>
         </div>
         <div class="comment-body">
-            {!! $comment->htmlText() !!}
+            <div id="comment-{{ $comment->id }}-content" class="collapse {{ $abusive ? 'margin-b-15' : 'in' }}"
+                    {!! $abusive ? 'aria-expanded="false"' : 'aria-expanded="true"' !!}>
+                {!! $comment->htmlText() !!}
+            </div>
+            @if ($abusive)
+                <div class="text-warning" id="comment-{{ $comment->id }}-content-toggle">
+                    This post has been hidden as it was considered abusive for you.
+                    <a class="text-danger" role="button" data-toggle="collapse" href="#comment-{{ $comment->id }}-content"
+                       aria-expanded="false" aria-controls="comment-{{ $comment->id }}-content">
+                        Toggle View
+                    </a>
+                </div>
+            @endif
         </div>
         <div class="comment-footer">
             @include('posts.partials.actions', ['showComments' => false, 'comment' => $comment])
