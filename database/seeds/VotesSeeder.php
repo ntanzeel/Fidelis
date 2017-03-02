@@ -12,29 +12,14 @@ class VotesSeeder extends Seeder {
      */
     public function run() {
         Vote::create([
-            'user_id'    => 1,
-            'comment_id' => 3,
+            'user_id'    => 7,
+            'comment_id' => 7,
             'type'       => 1,
         ]);
         Vote::create([
-            'user_id'    => 2,
-            'comment_id' => 3,
-            'type'       => -1,
-        ]);
-        Vote::create([
-            'user_id'    => 2,
-            'comment_id' => 4,
+            'user_id'    => 7,
+            'comment_id' => 6,
             'type'       => 1,
-        ]);
-        Vote::create([
-            'user_id'    => 4,
-            'comment_id' => 1,
-            'type'       => 1,
-        ]);
-        Vote::create([
-            'user_id'    => 3,
-            'comment_id' => 2,
-            'type'       => -1,
         ]);
     }
 }
