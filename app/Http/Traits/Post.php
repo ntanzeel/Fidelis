@@ -67,9 +67,19 @@ trait Post {
         }
     }
 
+    protected function getNonTags(Models\Comment $comment) {
+        preg_match_all('/(\w*\w[a-zA-Z]+\w\w*)/', $comment->text, $words); //Ensure it is valid tag and is a minimum of 3 characters
+        return empty($words) ? [] : $words[1];
+    }
+
     protected function categorise(Models\Post $post, $tags) {
         foreach ($tags as $tag) {
             $post->tags()->attach(Models\Tag::firstOrCreate(['text' => $tag]));
+        }
+        if (empty($tags)) {
+            $words = $this->getNonTags($post->content);
+            $existing_tags = Models\Tag::wherein('text',$words)->get();
+            $post->tags()->attach($existing_tags);
         }
     }
 
