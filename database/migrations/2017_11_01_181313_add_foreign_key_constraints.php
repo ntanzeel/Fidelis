@@ -59,9 +59,15 @@ class AddForeignKeyConstraints extends Migration {
             $table->foreign('blocked_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::table('recommendations', function (Blueprint $table) {
+        Schema::table('user_recommendations', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('recommendation')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_recommendation')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
+        });
+
+        Schema::table('content_recommendations', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('content_recommendation')->references('id')->on('comments')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
         });
 
@@ -123,9 +129,15 @@ class AddForeignKeyConstraints extends Migration {
             $table->dropForeign('blocked_blocked_id_foreign');
         });
 
-        Schema::table('recommendations', function (Blueprint $table) {
+        Schema::table('user_recommendations', function (Blueprint $table) {
             $table->dropForeign('recommendations_user_id_foreign');
-            $table->dropForeign('recommendations_recommendation_foreign');
+            $table->dropForeign('recommendations_user_recommendation_foreign');
+            $table->dropForeign('recommendations_tag_id_foreign');
+        });
+
+        Schema::table('content_recommendations', function (Blueprint $table) {
+            $table->dropForeign('recommendations_user_id_foreign');
+            $table->dropForeign('recommendations_content_recommendation_foreign');
             $table->dropForeign('recommendations_tag_id_foreign');
         });
 
