@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddForeignKeyConstraints extends Migration {
 
@@ -64,6 +64,10 @@ class AddForeignKeyConstraints extends Migration {
             $table->foreign('recommendation')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
         });
+
+        Schema::table('settings', function (Blueprint $table) {
+            $table->foreign('name')->references('name')->on('default_settings')->onUpdate('CASCADE')->onDelete('CASCADE');
+        });
     }
 
     /**
@@ -120,9 +124,13 @@ class AddForeignKeyConstraints extends Migration {
         });
 
         Schema::table('recommendations', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-            $table->dropForeign('recommendation');
-            $table->dropForeign('tag_id');
+            $table->dropForeign('recommendations_user_id_foreign');
+            $table->dropForeign('recommendations_recommendation_foreign');
+            $table->dropForeign('recommendations_tag_id_foreign');
+        });
+
+        Schema::table('settings', function (Blueprint $table) {
+            $table->dropForeign('settings_name_foreign');
         });
     }
 }

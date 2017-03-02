@@ -110,12 +110,6 @@ class User extends Authenticatable {
             ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
             ->withTimestamps();
     }
-    public function followers() {
-        return $this->belongsToMany('App\Models\User', 'followers', 'following_id', 'follower_id')
-            ->whereNull('followers.deleted_at')
-            ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
-            ->withTimestamps();
-    }
 
     public function blocked() {
         return $this->belongsToMany('App\Models\User', 'blocked', 'blocker_id', 'blocked_id')
@@ -128,14 +122,50 @@ class User extends Authenticatable {
         return $user && $this->followers()->where('follower_id', $user->id)->exists();
     }
 
+    public function followers() {
+        return $this->belongsToMany('App\Models\User', 'followers', 'following_id', 'follower_id')
+            ->whereNull('followers.deleted_at')
+            ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
+            ->withTimestamps();
+    }
+
     public function voted() {
-        return Post::whereHas('content.votes', function($query) {
+        return Post::whereHas('content.votes', function ($query) {
             $query->where('user_id', $this->id);
         });
     }
 
+    private function defaultSettings() {
+        return DefaultSetting::leftJoin(
+            \DB::raw(
+                '(' . $this->settings()->toSql() . ') settings'
+            ), 'default_settings.name', '=', 'settings.name')
+            ->select(
+                'settings.id AS id',
+                \DB::raw('(CASE WHEN settings.user_id IS NULL THEN ? ELSE settings.user_id END) AS user_id'),
+                'default_settings.name AS name',
+                \DB::raw('(CASE WHEN settings.value IS NULL THEN default_settings.value ELSE settings.value END) AS value')
+            )
+            ->whereNull('settings.deleted_at')
+            ->where('default_settings.deleted_at');
+    }
+
     public function settings() {
         return $this->hasMany('App\Models\Setting');
+    }
+
+    public function getSettingsAttribute() {
+        if (!array_key_exists('settings', $this->relations)) {
+            $settings = Setting::hydrateRaw($this->defaultSettings()->toSql(), [$this->id, $this->id])->keyBy('name');
+
+            foreach ($settings->all() as $setting) {
+                $setting->exists = !is_null($setting->id);
+            }
+
+            $this->setRelation('settings', $settings);
+        }
+
+        return $this->getRelation('settings');
     }
 
     public function uploadDirectory() {

@@ -13,11 +13,11 @@ class SafetyController extends Controller {
     }
 
     public function index() {
-        return view('settings.safety.index', ['settings' => \Auth::user()->settings->keyBy('name')]);
+        return view('settings.safety.index', ['settings' => \Auth::user()->settings]);
     }
 
     public function store(Request $request) {
-        $settings = $request->user()->settings->keyBy('name');
+        $settings = $request->user()->settings;
 
         /**
          * @var $setting Setting
