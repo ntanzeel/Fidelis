@@ -27,7 +27,7 @@ class DefaultSettingsSeeder extends Seeder {
                 'updated_at' => $now,
             ],
             [
-                'name'       => 'recommendation_preference',
+                'name'       => 'recommendation_number',
                 'value'      => 10,
                 'created_at' => $now,
                 'updated_at' => $now,
