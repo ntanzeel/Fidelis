@@ -17,9 +17,10 @@ class CreateContentRecommendationsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('content_recommendation')->unsigned();
-            $table->integer('tag_id')->unsigned();
+            $table->integer('tag_id')->unsigned()->nullable();
             $table->integer('response');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
