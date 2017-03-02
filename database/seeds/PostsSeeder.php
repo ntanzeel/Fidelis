@@ -18,23 +18,23 @@ class PostsSeeder extends Seeder {
          */
         [
             'user_id' => 1,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 1,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 1,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 1,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 1,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
 
         /*
@@ -42,27 +42,27 @@ class PostsSeeder extends Seeder {
          */
         [
             'user_id' => 2,
-            'tags'    => ['Fashion'],
+            'tags'    => [],
         ],
         [
             'user_id' => 2,
-            'tags'    => ['Sports'],
+            'tags'    => [],
         ],
         [
             'user_id' => 2,
-            'tags'    => ['Sports'],
+            'tags'    => [],
         ],
         [
             'user_id' => 2,
-            'tags'    => ['Sports'],
+            'tags'    => [],
         ],
         [
             'user_id' => 2,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 2,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
 
         /*
@@ -70,27 +70,27 @@ class PostsSeeder extends Seeder {
          */
         [
             'user_id' => 3,
-            'tags'    => ['Fashion'],
+            'tags'    => [],
         ],
         [
             'user_id' => 3,
-            'tags'    => ['Fashion'],
+            'tags'    => [],
         ],
         [
             'user_id' => 3,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 3,
-            'tags'    => ['Fashion'],
+            'tags'    => [],
         ],
         [
             'user_id' => 3,
-            'tags'    => ['Sports'],
+            'tags'    => [],
         ],
         [
             'user_id' => 3,
-            'tags'    => ['Fashion'],
+            'tags'    => [],
         ],
 
         /*
@@ -98,31 +98,31 @@ class PostsSeeder extends Seeder {
          */
         [
             'user_id' => 4,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 4,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 4,
-            'tags'    => ['Sports'],
+            'tags'    => [],
         ],
         [
             'user_id' => 4,
-            'tags'    => ['Fashion'],
+            'tags'    => [],
         ],
         [
             'user_id' => 4,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 4,
-            'tags'    => ['Fashion'],
+            'tags'    => [],
         ],
         [
             'user_id' => 4,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
 
         /*
@@ -130,15 +130,15 @@ class PostsSeeder extends Seeder {
          */
         [
             'user_id' => 5,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 5,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
         [
             'user_id' => 5,
-            'tags'    => ['Politics'],
+            'tags'    => [],
         ],
 
         /*
@@ -146,7 +146,7 @@ class PostsSeeder extends Seeder {
          */
         [
             'user_id' => 6,
-            'tags'    => ['Fashion'],
+            'tags'    => [],
         ],
 
         /*
@@ -154,11 +154,11 @@ class PostsSeeder extends Seeder {
          */
         [
             'user_id' => 7,
-            'tags'    => ['Sports'],
+            'tags'    => [],
         ],
         [
             'user_id' => 7,
-            'tags'    => ['Fashion'],
+            'tags'    => [],
         ]
     ];
 
