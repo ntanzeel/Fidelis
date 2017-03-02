@@ -36,6 +36,10 @@ trait Post {
 
         $post->comments()->save($comment);
 
+        $post->no_comments += 1;
+
+        $post->save();
+
         $this->notifyUsers($comment, $this->getMentions($comment), $post);
 
         return $comment;

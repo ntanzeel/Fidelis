@@ -45,6 +45,11 @@ class CommentController extends Controller {
         }
 
         /*
+         * Decrement 'no_comments' counter from the post this comment is on.
+         */
+        $comment->post()->update(['no_comments' => 'no_comments - 1']);
+
+        /*
          * If the user has authorisation, return a success message with the deleted
          * comment.
          */
