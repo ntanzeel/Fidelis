@@ -172,8 +172,13 @@ class User extends Authenticatable {
         return md5($this->username . $this->created_at);
     }
 
-    public function recommendations() {
-        return $this->hasMany('App\Models\Recommendation')
+    public function user_recommendations() {
+        return $this->hasMany('App\Models\UserRecommendation')
+            ->where('response', 0);
+    }
+
+    public function content_recommendations() {
+        return $this->hasMany('App\Models\ContentRecommendation')
             ->where('response', 0);
     }
 
