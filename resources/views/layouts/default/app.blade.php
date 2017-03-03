@@ -80,6 +80,7 @@
 
         <!-- App Scripts -->
         <script src="{{ asset('assets/js/layouts/default/app.js') }}"></script>
+        <script src="{{ asset('assets/js/layouts/default/_shared.js') }}"></script>
 
         <!-- Forced Scripts -->
         @stack('scripts')
