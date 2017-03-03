@@ -43,6 +43,19 @@
 }
 
 /*
+ * Form
+ */
+form fieldset:not(:first-of-type) {
+    margin-top: 22px;
+}
+
+form fieldset legend {
+    border: none;
+    color: #636b6f;
+    font-size: 18px;
+}
+
+/*
  * Globals
  */
 #app .avatar {
