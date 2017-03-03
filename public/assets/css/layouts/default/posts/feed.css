@@ -71,9 +71,10 @@
 .action-list .action.action-comment:hover {
     color: #FF6631;
 }
-
-.action-list li:not(.disabled)  .action.action-flag.active,
-.action-list li:not(.disabled)  .action.action-flag:hover {
+.action-list .action.action-delete.active,
+.action-list .action.action-delete:hover,
+.action-list li:not(.disabled) .action.action-flag.active,
+.action-list li:not(.disabled) .action.action-flag:hover {
     color: #AD441A;
 }
 

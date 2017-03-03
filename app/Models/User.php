@@ -145,9 +145,7 @@ class User extends Authenticatable {
                 \DB::raw('(CASE WHEN settings.user_id IS NULL THEN ? ELSE settings.user_id END) AS user_id'),
                 'default_settings.name AS name',
                 \DB::raw('(CASE WHEN settings.value IS NULL THEN default_settings.value ELSE settings.value END) AS value')
-            )
-            ->whereNull('settings.deleted_at')
-            ->where('default_settings.deleted_at');
+            );
     }
 
     public function settings() {

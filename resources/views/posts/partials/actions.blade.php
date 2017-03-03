@@ -17,7 +17,7 @@
                     class="text">{{ $comment->down_votes }}</span>
         </a>
     </li>
-    @if (!empty($showComments))
+    @if (!empty($isPost))
         <li>
             <a role="button" class="action action-comment"
                href="{{ route('post.view', [$post->user->username, $post->id]) }}">
@@ -25,9 +25,18 @@
             </a>
         </li>
     @endif
+    @if (Auth::user() && Auth::user()->id == $comment->user_id)
+        <li class="pull-right">
+            <a href="{{ $isPost ? route('api.post.delete', [$post->id]) : route('api.comment.delete', [$comment->post->id, $comment->id]) }}"
+               role="button" class="action action-delete" data-type="{{ empty($isPost) ? 'comment' : 'post' }}">
+                <i class="fa fa-trash"></i>
+            </a>
+        </li>
+    @endif
     <li class="pull-right {{ Auth::guest() || $comment->user_id == Auth::user()->id ? 'disabled' : '' }}">
         @php($reported = Auth::user() && $comment->reports->count())
-        <a href="{{ route('api.report.store', [$comment->id]) }}" role="button" class="action action-flag {{ $reported ? 'active' : '' }}">
+        <a href="{{ route('api.report.store', [$comment->id]) }}" role="button"
+           class="action action-flag {{ $reported ? 'active' : '' }}">
             <i class="fa fa-flag"></i>
         </a>
     </li>

@@ -14,7 +14,7 @@
         <div class="notification-footer">
             <ul class="list-inline list-unstyled action-list">
                 @if(!$notification->isFollow())
-                    @include('posts.partials.actions', ['post' => $notification->regarding()->post,'showComments' => true, 'comment' => $notification->regarding()])
+                    @include('posts.partials.actions', ['post' => $notification->regarding()->post,'isPost' => true, 'comment' => $notification->regarding()])
                 @endif
             </ul>
         </div>

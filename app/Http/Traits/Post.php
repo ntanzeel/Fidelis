@@ -36,9 +36,9 @@ trait Post {
 
         $post->comments()->save($comment);
 
-        $post->no_comments += 1;
-
-        $post->save();
+        if (!$root) {
+            $post->increment('no_comments');
+        }
 
         $this->notifyUsers($comment, $this->getMentions($comment), $post);
 

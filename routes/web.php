@@ -208,6 +208,16 @@ Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
             'uses' => 'Settings\SafetyController@store',
         ]);
     });
+
+    /*
+     * Safety
+     */
+    Route::group(['as' => 'blocked.', 'prefix' => 'blocked'], function () {
+        Route::get('/', [
+            'as'   => 'index',
+            'uses' => 'Settings\BlockedController@index',
+        ]);
+    });
 });
 
 /*
@@ -236,6 +246,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
         Route::get('/{post}', [
             'as'   => 'show',
             'uses' => 'Api\PostController@show',
+        ]);
+
+        Route::delete('/{post}', [
+            'as'   => 'delete',
+            'uses' => 'Api\PostController@destroy',
         ]);
     });
 

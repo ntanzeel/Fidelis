@@ -30,7 +30,7 @@
             @endif
         </div>
         <div class="comment-footer">
-            @include('posts.partials.actions', ['showComments' => false, 'comment' => $comment])
+            @include('posts.partials.actions', ['isPost' => false, 'comment' => $comment])
         </div>
     </div>
 </div>
