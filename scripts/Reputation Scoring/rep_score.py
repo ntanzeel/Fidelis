@@ -1,4 +1,7 @@
 import mysql.connector
+import pandas as pd
+import numpy as np
+import decimal
 
 #connect to database
 cnx = mysql.connector.connect(host='127.0.0.1', database='Fidelis', user='root')
@@ -6,110 +9,46 @@ cnx = mysql.connector.connect(host='127.0.0.1', database='Fidelis', user='root')
 #create cursor
 cursor = cnx.cursor(buffered=True)
 
-#get all user IDs
-query = ("SELECT id FROM users")
+#Get each user's total positive vote rep, negative vote rep and comment rep.
+#Returns table in the form: user_id, positive, negative, comment.
+query = ("SELECT t1.*, t2.comments, t3.followers FROM ( SELECT user_id, SUM(CASE WHEN root = 1 THEN 0.3 ELSE 0.1 END * up_votes) AS positive, SUM(CASE WHEN root = 1 THEN 0.3 ELSE 0.1 END * down_votes) AS negative FROM comments GROUP BY user_id ) t1 LEFT JOIN ( SELECT p.user_id, COUNT(c.id) * 0.2 comments FROM comments c LEFT JOIN posts p ON c.post_id = p.id WHERE c.user_id != p.user_id GROUP BY p.user_id ) t2 ON t1.user_id = t2.user_id LEFT JOIN ( SELECT followers.following_id AS user_id, COUNT(DISTINCT followers.follower_id) * 0.5 AS followers FROM followers INNER JOIN ( SELECT * FROM followers WHERE approved = 1 ) subq ON followers.follower_id = subq.following_id GROUP BY followers.following_id ) t3 ON t1.user_id = t3.user_id")
 cursor.execute(query)
 
-#'user' is a singlet tuple containing the id of a given user.
-#so for each user...
-for user in cursor:
-    #This user's initial reputation score
-    reputation = 0
+d = pd.DataFrame(np.zeros((cursor.rowcount, 2)))
 
-    #create second cursor
-    cursor2 = cnx.cursor(buffered=True)
+#for each tuple...
+count = 0
+for user_id, positive, negative, comments, followers in cursor:
+    reputation = positive - negative
 
-    #get all post IDs associated with this user
-    query = ("SELECT id FROM posts WHERE user_id = {}".format(user[0]))
-    cursor2.execute(query)
+    #Make sure 'comments' field is not empty (Only returns number when there is at least one comment)
+    if(isinstance(comments, decimal.Decimal)):
+        reputation += comments
 
-    #for each post
-    for post in cursor2:
-        #create third cursor
-        cursor3 = cnx.cursor(buffered=True)
+    #Same again for 'followers' field
+    if(isinstance(followers, decimal.Decimal)):
+        reputation += followers
 
-        #get count of up votes on this post
-        query = ("SELECT COUNT(id) FROM votes WHERE type = 'up' AND comment_id = {}".format(post[0]))
-        cursor3.execute(query)
+    #update data frame to store reputations
+    d.set_value(count, 0, user_id)
+    d.set_value(count, 1, reputation)
 
-        #add weighted count to reputation score
-        for count in cursor3:
-            reputation += (0.3 * count[0])
+    count += 1
 
-        #get count of down votes
-        query = ("SELECT COUNT(id) FROM votes WHERE type = 'down' AND comment_id = {}".format(post[0]))
-        cursor3.execute(query)
+#get min and max recorded reputation scores, then find difference between them
+min_rep = d[1].min()
+max_rep = d[1].max()
+diff = max_rep - min_rep
 
-        #subtract weighted count to repuration score
-        for count in cursor3:
-            reputation -= (0.3 * count[0])
+#scale between 0 and 100 and update reputation values in database
+d[1] = d[1].apply(lambda x: (x - min_rep)/(diff))
 
-        #get count of comments on this post which were not made by this user
-        query = ("SELECT COUNT(id) FROM comments WHERE post_id = {} AND user_id != {}".format(post[0], user[0]))
-        cursor3.execute(query)
-
-        #add weighted count to reputation score
-        for count in cursor3:
-            reputation += (0.2 * count[0])
-
-        #close cursor3
-        cursor3.close()
-
-    #get all comments from this user (which are not root)
-    query = ("SELECT id FROM comments WHERE root = false AND user_id = {}".format(user[0]))
-    cursor2.execute(query)
-
-    #for each comment
-    for comment in cursor2:
-        #create third cursor
-        cursor3 = cnx.cursor(buffered=True)
-
-        #get count of up votes on this comment
-        query = ("SELECT COUNT(id) FROM votes WHERE type = 'up' AND comment_id = {}".format(comment[0]))
-        cursor3.execute(query)
-
-        #add weighted count to reputation score
-        for count in cursor3:
-            reputation += (0.1 * count[0])
-
-        #get count of down votes
-        query = ("SELECT COUNT(id) FROM votes WHERE type = 'down' AND comment_id = {}".format(comment[0]))
-        cursor3.execute(query)
-
-        #subtract weighted count to repuration score
-        for count in cursor3:
-            reputation -= (0.1 * count[0])
-
-        #close cursor3
-        cursor3.close()
-
-    #query for updating reputation of user
-    add_rep = ("UPDATE users SET reputation = {} WHERE id = {}".format(reputation, user[0]))
-    cursor2.execute(add_rep)
+#iterate through each row of dataframe and update users table with new reputation value
+for ind, row in d.iterrows():
+    add_rep = ("UPDATE users SET reputation = {} WHERE id = {}".format(row[1], row[0]))
+    cursor.execute(add_rep)
     cnx.commit()
-
-    if user[0] == 3:
-            print(reputation)
-
-    #close cursor2
-    cursor2.close()
-
-#get all user IDs
-query = ("SELECT id, reputation FROM users")
-cursor.execute(query)
-for id, rep in cursor:
-    print(id, rep)
 
 #close cursor and connection to database
 cursor.close()
 cnx.close()
-print("done")
-
-#currently reputations are stored as integers, so will be rounded: Shouldn't really be too much of an issue in a system
-#with lots of users and lots of interaction (since reputation values will be high enough that rounding is negligable)
-
-#Should positive votes have stronger weighting than negative to stop trolls from 'neg-bombing'?
-
-#Wanted to only update rep score with new votes/comments, but issues with people changing votes/deleting comments etc.
-#would have to change other parts of platform. But then should deleted comments count towards reputation or not?
-#Therefore just made it recalculate each user's score each time the program runs for the moment.
