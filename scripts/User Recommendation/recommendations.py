@@ -311,7 +311,7 @@ def generate_recommendations(curs, recomendee_id, recommendation_type, preferenc
 
     print "Recommendations for user are {}".format(recommendations)
 
-    print "Adding new recommendations to database........."
+    print "Adding new recommendations to database.........\n"
     # Insert newly created recommendations into the database
     for r in recommendations:
         # Adding new content recommendations
@@ -336,8 +336,7 @@ def generate_recommendations(curs, recomendee_id, recommendation_type, preferenc
                 "INSERT INTO user_recommendations VALUES (Null, %s, %s, %s, %s, DEFAULT, DEFAULT, DEFAULT)",
                 (recomendee_id, r[1], r[0], 0)
             )
-    # conn.commit()
-    print "\n"
+    conn.commit()
 
 
 # Establish database connection
@@ -352,20 +351,26 @@ for user in fidelis_users:
     user = str(user)
 
     curs.execute(
-        "SELECT name, value FROM default_settings"
+        "SELECT settings.id AS id, (CASE WHEN settings.user_id IS NULL THEN {} "
+        "ELSE settings.user_id END) AS user_id, default_settings.name AS name, "
+        "(CASE WHEN settings.value IS NULL THEN default_settings.value ELSE "
+        "settings.value END) AS value FROM default_settings LEFT JOIN (SELECT "
+        "* FROM settings WHERE user_id = {} AND settings.user_id IS NOT NULL AND "
+        "settings.deleted_at IS NULL) settings ON default_settings.name = "
+        "settings.name WHERE default_settings.deleted_at IS NULL".format(user, user)
     )
     settings = curs.fetchall()
 
     # Get all relevant user settings
-    for tup in settings:
-        if tup[0] == 'recommendation_preference':
-            preference = str(tup[1])
-        elif tup[0] == 'recommendation_number':
-            num_recommendations = int(tup[1])
-        elif tup[0] == 'recommendation_threshold':
-            similarity_threshold = float(tup[1])
-        elif tup[0] == 'recommendation_reputation':
-            min_reputation = int(tup[1])
+    for setting in settings:
+        if setting[2] == 'recommendation_preference':
+            preference = str(setting[3])
+        elif setting[2] == 'recommendation_number':
+            num_recommendations = int(setting[3])
+        elif setting[2] == 'recommendation_threshold':
+            similarity_threshold = float(setting[3])
+        elif setting[2] == 'recommendation_reputation':
+            min_reputation = int(setting[3])
 
     curs.execute(
         "SELECT count(id) FROM content_recommendations WHERE user_id=" + user + " "
