@@ -34,7 +34,7 @@ class CommentController extends Controller {
      * @param Models\Comment $comment
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Models\Comment $comment) {
+    public function delete(Models\Post $post, Models\Comment $comment) {
         /*
          * Before deleting the comment, first check if the user has the correct
          * authorisation to edit the comment. If not, return a 401 unauthorised
@@ -47,7 +47,7 @@ class CommentController extends Controller {
         /*
          * Decrement 'no_comments' counter from the post this comment is on.
          */
-        $comment->post()->update(['no_comments' => 'no_comments - 1']);
+        $post->decrement('no_comments');
 
         /*
          * If the user has authorisation, return a success message with the deleted

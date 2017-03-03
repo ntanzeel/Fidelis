@@ -237,6 +237,11 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
             'as'   => 'show',
             'uses' => 'Api\PostController@show',
         ]);
+
+        Route::delete('/{post}', [
+            'as'   => 'delete',
+            'uses' => 'Api\PostController@destroy',
+        ]);
     });
 
     /*

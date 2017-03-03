@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="post-footer">
-                            @include('posts.partials.actions', ['showComments' => true, 'comment' => $post->content])
+                            @include('posts.partials.actions', ['isPost' => true, 'comment' => $post->content])
                         </div>
                     </div>
                     <div class="post-comments">

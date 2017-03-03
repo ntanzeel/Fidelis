@@ -29,7 +29,8 @@ $(document).ready(function () {
                 $button.find('.text').text(isLike ? response.likes : response.dislikes);
                 $opposite.find('.text').text(isLike ? response.dislikes : response.likes);
             },
-            error: function (response) {}
+            error: function (response) {
+            }
         });
     }).on('click', '.action-flag', function (event) {
         event.preventDefault();
@@ -54,7 +55,34 @@ $(document).ready(function () {
                     $button.removeClass('active');
                 }
             },
-            error: function (response) {}
+            error: function (response) {
+            }
+        });
+    }).on('click', '.action-delete', function (event) {
+        event.preventDefault();
+
+        var $button = $(this);
+
+        $.ajax({
+            url: $button.attr('href'),
+            method: 'DELETE',
+            data: {},
+            beforeSend: function (xhr) {
+                return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+            },
+            success: function (response) {
+                var $media = $button.parents('.media');
+                if ($media.length > 0) {
+                    $media.remove();
+                } else {
+                    var $post = $button.parents('.post');
+                    if ($post.length > 0) {
+                        window.location.href = '/home'
+                    }
+                }
+            },
+            error: function (response) {
+            }
         });
     });
 
@@ -67,7 +95,7 @@ $(document).ready(function () {
             url: $btn.data('api') + '/' + ($btn.data('status') == 1 ? $btn.data('id') : ''),
             type: 'POST',
             data: {
-                _token : window.Laravel.csrfToken,
+                _token: window.Laravel.csrfToken,
                 _method: $btn.data('status') == 1 ? 'DELETE' : 'POST',
                 user: $btn.data('id')
             },
@@ -98,7 +126,7 @@ $(document).ready(function () {
 
     var lightbox = $('#lightbox');
 
-    $('[data-target="#lightbox"]').on('click', function(event) {
+    $('[data-target="#lightbox"]').on('click', function (event) {
         var $img = $(this).find('img'),
             src = $img.attr('src'),
             alt = $img.attr('alt'),
