@@ -174,12 +174,20 @@ class User extends Authenticatable {
 
     public function user_recommendations() {
         return $this->hasMany('App\Models\UserRecommendation')
-            ->where('response', 0);
+            ->where([
+                ['response', '=', 0],
+                ['user_id', '=', $this->id],
+            ])
+            ->select('user_recommendation');
     }
 
     public function content_recommendations() {
         return $this->hasMany('App\Models\ContentRecommendation')
-            ->where('response', 0);
+            ->where([
+                ['response', '=', 0],
+                ['user_id', '=', $this->id],
+            ])
+            ->select('content_recommendation');
     }
 
     /**
