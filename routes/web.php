@@ -208,6 +208,16 @@ Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
             'uses' => 'Settings\SafetyController@store',
         ]);
     });
+
+    /*
+     * Safety
+     */
+    Route::group(['as' => 'blocked.', 'prefix' => 'blocked'], function () {
+        Route::get('/', [
+            'as'   => 'index',
+            'uses' => 'Settings\BlockedController@index',
+        ]);
+    });
 });
 
 /*

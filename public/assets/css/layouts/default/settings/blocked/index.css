@@ -1,0 +1,28 @@
+.blocked-list {
+    margin-bottom: 0;
+}
+
+.blocked-list li:not(:first-child) {
+    padding-top: 15px;
+}
+
+.blocked-list li:not(:last-child) {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d3e0e9;
+}
+
+.blocked-user .user-photo {
+    position: absolute;
+}
+
+.blocked-user .user-info {
+    height: 48px;
+    margin-left: 48px;
+    padding: 10px 0 10px 15px;
+}
+
+@media (min-width: 768px) {
+    .btn-toggle-block {
+        margin: 6px 0;
+    }
+}

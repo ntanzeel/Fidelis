@@ -72,7 +72,7 @@ trait Post {
     }
 
     protected function getNonTags(Models\Comment $comment) {
-        preg_match_all('/(\w*\w[a-zA-Z]+\w\w*)/', $comment->text, $words); //Ensure it is valid tag and is a minimum of 3 characters
+        preg_match_all('/(\w*[a-zA-Z]\w*){4,}/', $comment->text, $words); //Ensure it is valid tag and is a minimum of 3 characters
         return empty($words) ? [] : $words[1];
     }
 
