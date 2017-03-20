@@ -38,7 +38,7 @@ diff = max_rep - min_rep
 if(diff == 0):
     d[1] = 0
 else:
-    #scale between 0 and 100 and update reputation values in database
+    #scale between 0 and 1 and update reputation values in database
     d[1] = d[1].apply(lambda x: (x - min_rep)/(diff))
 
 #iterate through each row of dataframe and update users table with new reputation value
