@@ -40,8 +40,12 @@ min_rep = d[1].min()
 max_rep = d[1].max()
 diff = max_rep - min_rep
 
-#scale between 0 and 100 and update reputation values in database
-d[1] = d[1].apply(lambda x: (x - min_rep)/(diff))
+#if min = max, all have same reputation score, scale all scores to 0
+if(diff == 0):
+    d[1] = 0
+else:
+    #scale between 0 and 100 and update reputation values in database
+    d[1] = d[1].apply(lambda x: (x - min_rep)/(diff))
 
 #iterate through each row of dataframe and update users table with new reputation value
 for ind, row in d.iterrows():
