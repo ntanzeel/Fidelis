@@ -232,8 +232,6 @@ def get_hybrid_recommendations(curs, recommendation_type, recomendee_id, recomen
 
     hybrid_recommendations = set.intersection(fof_recommendations, explorer_recommendations)
 
-    if len(list(hybrid_recommendations)) == 0:
-        print "No hybrid recommendations.........."
     return list(hybrid_recommendations)
 
 
