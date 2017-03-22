@@ -2,7 +2,6 @@ from nltk.corpus import stopwords
 import preprocessor as p
 import string
 from nltk.stem import WordNetLemmatizer
-from nltk import ngrams
 
 lemma = WordNetLemmatizer()
 p.set_options(p.OPT.URL, p.OPT.MENTION, p.OPT.RESERVED, p.OPT.EMOJI, p.OPT.SMILEY, p.OPT.NUMBER)
@@ -17,5 +16,7 @@ def preprocess(post):
     filtered = [lemma.lemmatize(word) for word in filtered.split() if word not in stops]
     return(filtered)
 
+
+
 if __name__=='__main__':
-    print(preprocess('@BBCSport HAVE Watford  am ve having #lol won against 20 Arsenal\'s in the leagues, for the first time...'))
+    features = preprocess('@BBCSport HAVE Watford  am ve having #lol won against 20 Arsenal\'s in the leagues, for the first time...')

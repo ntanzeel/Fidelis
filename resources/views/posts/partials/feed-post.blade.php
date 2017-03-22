@@ -19,7 +19,7 @@
                     {!! $abusive ? 'aria-expanded="false"' : 'aria-expanded="true"' !!}>
                 <div class="post-images">
                     @foreach($post->images as $image)
-                        <img src="{{ asset('storage/' . $image->path) }}" class="img-responsive img-thumbnail"
+                        <img src="{{ asset('storage/' . $image->path) }}" class="post-image img-responsive img-thumbnail"
                              width="45%" />
                     @endforeach
                 </div>

@@ -37,6 +37,10 @@
 
 }
 
+.post .post-images {
+    margin-bottom: 10px;
+}
+
 .post .post-footer {
     margin-top: 10px;
 }

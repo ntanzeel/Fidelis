@@ -1,0 +1,51 @@
+.modal-dialog {
+    width: 100%;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-content {
+    background-color: #d0d0d0;
+    align-content: center;
+}
+
+.modal-image-container {
+    display: block;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#modal-image {
+    max-height: 80vh;
+    max-width: 60vw;
+    display: inline-block;
+}
+
+.scroll-left {
+    position: relative;
+    font-size: 20pt;
+    left: 0;
+}
+
+.scroll-right {
+    position: relative;
+    font-size: 20pt;
+    right: 0;
+}
+
+.im-arrow {
+    color: #000000;
+}
+
+.im-arrow:link {
+    opacity:0.7;
+}
+
+.im-arrow:hover,
+.im-arrow:active,
+.imarrow:focus {
+    opacity:1;
+}
