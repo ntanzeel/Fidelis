@@ -36,6 +36,14 @@
     margin-bottom: 0;
 }
 
+.post .post-images {
+    margin-bottom: 10px;
+}
+
+.post .post-images img:hover {
+    cursor: pointer;
+}
+
 /*
  * Comments
  */

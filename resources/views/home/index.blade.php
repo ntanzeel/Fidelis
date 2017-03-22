@@ -1,5 +1,4 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
-
 @section('content')
     <div class="row">
         <div class="col-md-3 hidden-sm hidden-xs">
