@@ -14,3 +14,13 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+.action-list li:not(.disabled) .action.action-accept.active,
+.action-list li:not(.disabled) .action.action-accept:hover {
+    color: #08AD93;
+}
+
+.action-list li:not(.disabled) .action.action-reject.active,
+.action-list li:not(.disabled) .action.action-reject:hover {
+    color: #e81c4f;
+}
