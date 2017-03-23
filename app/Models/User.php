@@ -57,7 +57,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'about', 'dob', 'reputation',
+        'name', 'email', 'password', 'about', 'dob', 'reputation', 'api_token'
     ];
 
     /**
@@ -66,7 +66,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'api_token',
     ];
 
     protected $dates = [
@@ -78,7 +78,7 @@ class User extends Authenticatable {
     ];
 
     public function __construct(array $attributes = []) {
-        parent::__construct(array_merge(['api_token' => str_random(64)], $attributes));
+        parent::__construct(array_merge(['api_token' => str_random(10) . md5(microtime()) . uniqid() . str_random(9)], $attributes));
     }
 
     public function getPhotoAttribute($value) {
