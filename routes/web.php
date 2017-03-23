@@ -350,4 +350,19 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
         ]);
 
     });
+
+    /*
+     * User Recommendation
+     */
+    Route::group(['as' => 'user_recommendation.', 'prefix' => 'user_recommendation'], function () {
+        Route::post('/', [
+            'as'   => 'store',
+            'uses' => 'Api\UserRecommendationController@store',
+        ]);
+
+        Route::post('/{user}', [
+            'as'   => 'delete',
+            'uses' => 'Api\UserRecommendationController@delete',
+        ]);
+    });
 });
