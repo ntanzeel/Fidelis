@@ -8,104 +8,26 @@ class CategoriesSeeder extends Seeder {
 
     protected $data = [
         [
-            'name'        => 'Travel',
-            'description' => 'Latest travel news from around the world.',
+            'name'        => 'Arts',
+            'description' => '',
             'tags'        => [
                 [
-                    'text' => 'Travel',
+                    'text' => 'Arts',
                     'root' => true,
                 ],
             ],
         ], [
-            'name'        => 'Politics',
-            'description' => 'They say you should not talk about religion or politics in mixed company, and yet, that\'s exactly what people want to talk about.',
+            'name'        => 'Business',
+            'description' => '',
             'tags'        => [
                 [
-                    'text' => 'Politics',
-                    'root' => true,
-                ], [
-                    'text' => 'Brexit',
-                    'root' => false,
-                ], [
-                    'text' => 'Article50',
-                    'root' => false,
-                ], [
-                    'text' => 'Parliament',
-                    'root' => false,
-                ], [
-                    'text' => 'ElectionDay',
-                    'root' => false,
-                ], [
-                    'text' => 'Election2016',
-                    'root' => false,
-                ],
-            ],
-        ], [
-            'name'        => 'Home',
-            'description' => 'Stay up to date with home and garden trends.',
-            'tags'        => [
-                [
-                    'text' => 'Home',
-                    'root' => true,
-                ],
-            ],
-        ], [
-            'name'        => 'Sports',
-            'description' => 'Stay up to date with the latest sports.',
-            'tags'        => [
-                [
-                    'text' => 'Sports',
-                    'root' => true,
-                ],
-            ],
-        ], [
-            'name'        => 'Food',
-            'description' => 'When it comes to food and wine, the first rule to remember is that there are no rules.',
-            'tags'        => [
-                [
-                    'text' => 'Food',
-                    'root' => true,
-                ],
-            ],
-        ], [
-            'name'        => 'Health',
-            'description' => 'Discuss all kinds of health related issues.',
-            'tags'        => [
-                [
-                    'text' => 'Health',
-                    'root' => true,
-                ],
-            ],
-        ], [
-            'name'        => 'Finance',
-            'description' => 'This is a degree for those interested in learning how the banking and finance systems work.',
-            'tags'        => [
-                [
-                    'text' => 'Finance',
-                    'root' => true,
-                ],
-            ],
-        ], [
-            'name'        => 'Fashion',
-            'description' => 'Jewelry and clothing fashions vary with the season.',
-            'tags'        => [
-                [
-                    'text' => 'Fashion',
-                    'root' => true,
-                ],
-            ],
-        ], [
-            'name'        => 'Fine Arts',
-            'description' => 'From 2011, all students will complete a three-year degree, either in fine arts or music.',
-            'tags'        => [
-                [
-                    'text' => 'Fine Arts',
+                    'text' => 'Business',
                     'root' => true,
                 ],
             ],
         ], [
             'name'        => 'Education',
-            'description' => 'Education news on the VCE, universities, TAFE and other higher education options in the world.',
+            'description' => '',
             'tags'        => [
                 [
                     'text' => 'Education',
@@ -113,17 +35,96 @@ class CategoriesSeeder extends Seeder {
                 ],
             ],
         ], [
-            'name'        => 'Miscellaneous',
-            'description' => 'Regimes, rulers and miscellaneous radicals have come and gone.',
+            'name'        => 'Games',
+            'description' => '',
             'tags'        => [
                 [
-                    'text' => 'Miscellaneous',
+                    'text' => 'Games',
                     'root' => true,
                 ],
             ],
-        ],
-    ];
-
+        ], [
+            'name'        => 'Health',
+            'description' => '',
+            'tags'        => [
+                [
+                    'text' => 'Health',
+                    'root' => true,
+                ],
+            ],
+        ], [
+            'name'        => 'Home',
+            'description' => '',
+            'tags'        => [
+                [
+                    'text' => 'Home',
+                    'root' => true,
+                ],
+            ],
+        ], [
+            'name'        => 'News',
+            'description' => '',
+            'tags'        => [
+                [
+                    'text' => 'News',
+                    'root' => true,
+                ],
+            ],
+        ], [
+            'name'        => 'Recreation',
+            'description' => '',
+            'tags'        => [
+                [
+                    'text' => 'Recreation',
+                    'root' => true,
+                ],
+            ],
+        ], [
+            'name'        => 'Science',
+            'description' => '',
+            'tags'        => [
+                [
+                    'text' => 'Science',
+                    'root' => true,
+                ],
+            ],
+        ], [
+            'name'        => 'Shopping',
+            'description' => '',
+            'tags'        => [
+                [
+                    'text' => 'Shopping',
+                    'root' => true,
+                ],
+            ],
+        ], [
+            'name'        => 'Society',
+            'description' => '',
+            'tags'        => [
+                [
+                    'text' => 'Society',
+                    'root' => true,
+                ],
+            ],
+        ], [
+            'name'        => 'Sport',
+            'description' => '',
+            'tags'        => [
+                [
+                    'text' => 'Sport',
+                    'root' => true,
+                ],
+            ],
+        ], [
+            'name'        => 'Technology',
+            'description' => '',
+            'tags'        => [
+                [
+                    'text' => 'Technology',
+                    'root' => true,
+                ],
+            ],
+        ]];
     /**
      * Run the database seeds.
      *
