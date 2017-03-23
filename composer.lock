@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a96ca04629acc6c9c1433a582d3d77fd",
-    "content-hash": "e8ef4b777d9622777418f41357ada3ea",
+    "hash": "3b23489854742adc30a9f2321d597558",
+    "content-hash": "e5be77a8aaf5aecb90db7336f4caefdf",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -56,6 +56,40 @@
                 "widgets"
             ],
             "time": "2017-01-26 18:04:00"
+        },
+        {
+            "name": "askedio/laravel5-soft-cascade",
+            "version": "1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Askedio/laravel5-soft-cascade.git",
+                "reference": "2a5d297c37d607fcbdd733e73f261586345d4fbe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Askedio/laravel5-soft-cascade/zipball/2a5d297c37d607fcbdd733e73f261586345d4fbe",
+                "reference": "2a5d297c37d607fcbdd733e73f261586345d4fbe",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "codacy/coverage": "dev-master",
+                "laravel/framework": "5.*",
+                "laravel/laravel": "5.*",
+                "laravel/lumen-framework": "5.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Askedio\\SoftCascade\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Soft Delete & Restore Cascader",
+            "time": "2016-10-06 05:15:43"
         },
         {
             "name": "barryvdh/laravel-debugbar",

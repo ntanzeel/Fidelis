@@ -10,7 +10,8 @@
         "arrilot/laravel-widgets": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.2",
         "doctrine/dbal": "^2.5",
-        "barryvdh/laravel-debugbar": "^2.3"
+        "barryvdh/laravel-debugbar": "^2.3",
+        "askedio/laravel5-soft-cascade": "^1.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
