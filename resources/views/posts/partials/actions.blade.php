@@ -21,7 +21,7 @@
         <li>
             <a role="button" class="action action-comment"
                href="{{ route('post.view', [$post->user->username, $post->id]) }}">
-                <i class="fa fa-comment"></i> {{ $post->comments()->count() }}
+                <i class="fa fa-comment"></i> {{ $post->no_comments }}
             </a>
         </li>
     @endif

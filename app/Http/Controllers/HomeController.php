@@ -22,7 +22,7 @@ class HomeController extends Controller {
     public function index() {
         $userIds = Auth::user()->following()->pluck('users.id');
         $userIds[] = Auth::user()->id;
-        $with = ['content', 'images'];
+        $with = [];
         $with['content.votes'] = $with['content.reports'] = function($query) {
             $query->where('user_id', Auth::user()->id);
         };
