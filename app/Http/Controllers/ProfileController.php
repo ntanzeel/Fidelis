@@ -46,7 +46,7 @@ class ProfileController extends Controller {
         }
 
         $posts = $user->posts()->with($with)->latest()->get();
-        $images = Image::where('user_id', $user->id)->latest()->get();
+        $images = Image::where('user_id', $user->id)->latest()->pluck('path');
 
         return view('profile.view', array_merge(compact('user', 'posts', 'images'), $preRoute));
     }

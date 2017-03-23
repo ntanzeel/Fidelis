@@ -28,37 +28,4 @@ $(document).ready(function () {
         });
     });
 
-    //Image modal
-    $('.post-image').on('click', function(event){
-        event.preventDefault();
-        var $images = $(this).siblings();
-        if ($images.length==1) {
-            $(".im-arrow").hide();
-        }
-        else {
-            $(".im-arrow").show();
-        }
-        $('#modal-image').attr('src',$(this).attr('src'));
-
-        $('#image-modal').modal();
-    });
-
-    $('.im-arrow').click(function(event){
-        event.preventDefault();
-        var source = $(this).siblings('#modal-image').attr('src');
-        var images = $(".post-image");
-        var index = images.index($('img[src="'+source+'"]'));
-        var newImage;
-
-        if ($(this).hasClass('scroll-left')) {
-            newImage = $(images.get(index - 1)).attr('src');
-        }
-        else {
-            var i = (index+1) % images.length;
-            newImage = $(images.get(i)).attr('src');
-        }
-
-        $('#modal-image').attr('src',newImage);
-
-    });
 });

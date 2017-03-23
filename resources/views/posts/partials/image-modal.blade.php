@@ -10,7 +10,7 @@
                                                                                           aria-hidden="true"></i></a>
                 <div class="modal-image-container">
                     <a href="#" class="im-arrow scroll-left"><i class="fa fa-chevron-circle-left"></i></a>
-                    <img id="modal-image" src="#" data-post="#"/>
+                    <img id="modal-image" src="#" data-post="#" data-index="#"/>
                     <a href="#" class="im-arrow scroll-right"><i class="fa fa-chevron-circle-right"></i></a>
                 </div>
             </div>
