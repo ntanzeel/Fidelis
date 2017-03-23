@@ -4,6 +4,10 @@
     <link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
 @endpush
 
+@push('scripts')
+    <script src="{{ asset('assets/js/layouts/default/posts/partials/image-modal.js') }}"></script>
+@endpush
+
 @section('container')
     <div class="profile-header">
         <div class="profile-cover" style="background-image: url({{ $user->cover }})">
@@ -16,9 +20,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-12">
-                        <div class="profile-photo-container">
+                        <div class="anchor profile-photo-container">
                             <a class="profile-photo">
-                                <img src="{{ $user->photo }}" />
+                                <img src="{{ $user->photo }}" class="exp anchor" style="cursor:pointer"/>
                             </a>
                             @if(Auth::user() && Auth::user()->username == $user->username)
                                 <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i
@@ -93,10 +97,10 @@
                         <div class="panel-heading">
                             Photos
                         </div>
-                        <div class="panel-body">
-                            @foreach($images->slice(0,4) as $index => $image)
-                                <img id="img-{{ $index }}" src="{{ asset('storage/'.$image) }}"
-                                     class="user-image img-responsive img-thumbnail" max-height="22px" max-width="22px">
+                        <div class="panel-body anchor">
+                            @foreach($images as $image)
+                                <img id="img-{{ $image->id }}" src="{{ asset('storage/'.$image->path) }}"
+                                     class="exp user-image img-responsive img-thumbnail" max-height="22px" max-width="22px">
                             @endforeach
                         </div>
                     </div>
@@ -108,10 +112,5 @@
         </div>
     </div>
 
-    <script>
-        var userImgs =
-                {!! json_encode($images) !!}
-        var src = {!! json_encode(asset('storage')) !!}
-    </script>
-
+    @include('posts.partials.image-modal')
 @endsection

@@ -1,9 +1,6 @@
 $(document).ready(function () {
 
-    /** Image modal **/
-
-    //If photo is from feed
-    $('.media-list').on('click', '.post-image', function (event) {
+    $('.anchor').on('click', '.exp', function (event) {
         event.preventDefault();
 
         var $images = $(this).parent().children();
@@ -17,6 +14,13 @@ $(document).ready(function () {
 
         var image = $modal.find('.img').first();
         image.css('background-image', 'url(' + $(this).attr('src') + ')');
+        image.attr('data-image', $(this).attr('id').split('-')[1]);
+        if ($(this).hasClass('post-image')) {
+            image.attr('data-type','post');
+        }
+        else {
+            image.attr('data-type','user');
+        }
 
         $modal.modal();
     });
@@ -24,44 +28,26 @@ $(document).ready(function () {
 
     $('.im-arrow').click(function (event) {
         event.preventDefault();
-        var source = $(this).siblings('#modal-image').attr('src');
-        var container = $(this).siblings('#modal-image').attr('data-post')
-        var newImage, index;
+        var image = $('#image-modal').find('.img').first();
+        var id = image.attr('data-image');
+        var type = image.attr('data-type');
 
-        if (container != "sidebar") { //Photos are from a post on the feed
-            var post = $("#" + container);
-            var images = post.children('.post-images').children();
-            index = images.index($('#' + container + ' img[src="' + source + '"]'));
-
-            if ($(this).hasClass('scroll-left')) {
-                newImage = $(images.get(index - 1)).attr('src');
+        if (type == 'post') {
+            if ($(this).hasClass('scroll-left')){
+                changeImage('post_prev', id);
             }
             else {
-                index = (index + 1) % images.length;
-                newImage = $(images.get(index)).attr('src');
+                changeImage('post_next', id);
             }
         }
-        else { //Photos are from a user
-            index = $(this).siblings('#modal-image').attr('data-index');
-
-
-            if ($(this).hasClass('scroll-left')) {
-                index = parseInt(index) - 1;
-                if (index < 0) {
-                    index = userImgs.length - 1;
-                }
-
-                $(this).siblings('#modal-image').attr('data-index', index);
-                newImage = src + '/' + userImgs[index];
+        else {
+            if ($(this).hasClass('scroll-left')){
+                changeImage('user_prev', id);
             }
             else {
-                index = (parseInt(index) + 1) % userImgs.length;
-                $(this).siblings('#modal-image').attr('data-index', index);
-                newImage = src + '/' + userImgs[index];
+                changeImage('user_next', id);
             }
         }
-
-        $('#modal-image').attr('src', newImage);
 
     });
 
@@ -82,3 +68,24 @@ $(document).keydown(function (event) {
         }
     }
 });
+
+function changeImage (method, id){
+    var image = $('#image-modal').find('.img').first();
+    var url = 'image'; //Need to change url depending on method
+
+    $.ajax({
+        url: url,
+        method: 'get',
+        data: {'id': id},
+        processData: false,
+        contentType: false,
+        beforeSend: function (xhr) {
+            return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+        },
+        success: function (response) {
+            image.css('background-image', 'url(' + response['source'] + ')');
+            image.attr('data-image', response[id]);
+        },
+        error: function (response) {}
+    });
+}

@@ -6,7 +6,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="img" data-src="#" data-post="#" data-index="#"></div>
+                <div class="img" data-type="#" data-image="#"></div>
 
                 <div class="modal-controls">
                     <a type="button" class="close" data-dismiss="modal" aria-hidden="true">

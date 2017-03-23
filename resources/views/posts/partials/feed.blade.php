@@ -2,11 +2,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/' . str_replace('.', '/', config('view.layout')) . '/posts/feed.css') }}">
 @endpush
 
-@push('scripts')
-    <script src="{{ asset('assets/js/layouts/default/posts/partials/feed.js') }}"></script>
-@endpush
-
-<ul class="media-list post-list" data-empty="{{ $posts->count() == 0 }}">
+<ul class="media-list post-list anchor" data-empty="{{ $posts->count() == 0 }}">
     @forelse($posts as $post)
         <li class="media">
             @include('posts.partials.feed-post', compact('post'))
@@ -17,5 +13,3 @@
         </li>
     @endforelse
 </ul>
-
-@include('posts.partials.image-modal')

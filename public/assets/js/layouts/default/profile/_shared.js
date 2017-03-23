@@ -33,24 +33,4 @@ $(document).ready(function () {
         $('#submit-cover-pic').submit();
     });
 
-    //Image modal
-    //If photo is from sidebar
-    $('.user-image').click(function(event) {
-
-        event.preventDefault();
-        if (userImgs.length == 1) {
-            $(".im-arrow").hide();
-        }
-        else {
-            $(".im-arrow").show();
-        }
-
-        var image = $('#modal-image');
-        image.attr('src', $(this).attr('src'));
-        image.attr('data-post', "sidebar");
-        image.attr('data-index', $(this).attr('id').split('-')[1]);
-
-        $('#image-modal').modal();
-    });
-
 });

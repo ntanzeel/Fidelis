@@ -365,4 +365,26 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
             'uses' => 'Api\UserRecommendationController@delete',
         ]);
     });
+
+//    Route::group(['as' => 'image.', 'prefix' => 'image'], function () {
+//        Route::get('post_prev', [
+//            'as'   => 'post_prev',
+//            'uses' => 'Api\ImageController@post_prev',
+//        ]);
+//
+//        Route::get('post_next', [
+//            'as'   => 'post_next',
+//            'uses' => 'Api\ImageController@post_next',
+//        ]);
+//
+//        Route::get('user_prev', [
+//            'as'   => 'user_prev',
+//            'uses' => 'Api\ImageController@user_prev',
+//        ]);
+//
+//        Route::get('user_next', [
+//            'as'   => 'user_next',
+//            'uses' => 'Api\ImageController@user_next',
+//        ]);
+//    });
 });
