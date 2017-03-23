@@ -45,6 +45,10 @@
     margin-top: 10px;
 }
 
+.post-image {
+    margin: 2px;
+}
+
 .action-list a.action {
     padding: 5px;
     display: block;

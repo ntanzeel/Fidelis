@@ -1,7 +1,7 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
 @push('stylesheets')
-    <link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
 @endpush
 
 @section('container')
@@ -18,17 +18,19 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="profile-photo-container">
                             <a class="profile-photo">
-                                <img src="{{ $user->photo }}"/>
+                                <img src="{{ $user->photo }}" />
                             </a>
                             @if(Auth::user() && Auth::user()->username == $user->username)
                                 <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i
                                             class="fa fa-upload"></i></a>
-                                <form id="submit-profile-pic" class="imgupload" enctype="multipart/form-data" method="post" action="{{ route('settings.account.upload_profile_pic') }}">
-                                    <input type="file" id="profile-upload" name="pic" accept="image/*"/>
+                                <form id="submit-profile-pic" class="imgupload" enctype="multipart/form-data"
+                                      method="post" action="{{ route('settings.account.upload_profile_pic') }}">
+                                    <input type="file" id="profile-upload" name="pic" accept="image/*" />
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </form>
-                                <form id="submit-cover" class="imgupload" enctype="multipart/form-data" method="post" action="{{ route('settings.account.upload_cover_pic') }}">
-                                    <input type="file" id="cover-upload" name="pic" accept="image/*"/>
+                                <form id="submit-cover" class="imgupload" enctype="multipart/form-data" method="post"
+                                      action="{{ route('settings.account.upload_cover_pic') }}">
+                                    <input type="file" id="cover-upload" name="pic" accept="image/*" />
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </form>
                             @endif
@@ -92,8 +94,9 @@
                             Photos
                         </div>
                         <div class="panel-body">
-                            @foreach($images as $image)
-                                <div class="user-images" style="background-image: url({{ $image }})"></div>
+                            @foreach($images->slice(0,4) as $index => $image)
+                                <img id="img-{{ $index }}" src="{{ asset('storage/'.$image) }}"
+                                     class="user-image img-responsive img-thumbnail" max-height="22px" max-width="22px">
                             @endforeach
                         </div>
                     </div>
@@ -104,4 +107,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var userImgs = {!! json_encode($images) !!}
+        var src = {!! json_encode(asset('storage')) !!}
+    </script>
+
 @endsection
