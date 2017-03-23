@@ -37,7 +37,7 @@ class ProfileController extends Controller {
     public function view(User $user) {
         $preRoute = $this->preRoute($user);
 
-        $with = ['user', 'content', 'images'];
+        $with = [];
 
         if (Auth::user()) {
             $with['content.reports'] = $with['content.votes'] = function ($query) {

@@ -133,3 +133,35 @@ $('.btn-follow-toggle').on('click', function () {
         }
     });
 });
+
+$('.action-accept').on('click', function () {
+    event.preventDefault();
+
+    ajaxPost($(this), 1);
+});
+
+$('.action-reject').on('click', function () {
+    event.preventDefault();
+
+    ajaxPost($(this), 0);
+});
+
+function ajaxPost($btn, $type) {
+    $.ajax({
+        url: $btn.attr('href'),
+        method: 'POST',
+        data: {
+            user: $btn.data('user')
+        },
+        beforeSend: function (xhr) {
+            return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+        },
+        success: function (response) {
+            $type == 1 ? $('#following-value').html(parseInt($('#following-value').html(), 10) + 1) : '';
+            var divId = 'recommendation-' + $btn.data('user');
+            $('#' + divId).hide('slow');
+        },
+        error: function (response) {
+        }
+    });
+}
