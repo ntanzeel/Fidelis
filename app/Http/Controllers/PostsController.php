@@ -16,7 +16,7 @@ class PostsController extends Controller {
     public function view(User $user, Post $post) {
         $this->checkAccess($user, $post);
 
-        $load = ['user', 'content', 'comments', 'comments.user'];
+        $load = ['user', 'content', 'images', 'comments', 'comments.user'];
 
         if (Auth::user()) {
             $load = array_merge($load, array_fill_keys(

@@ -19,7 +19,7 @@ class DiscoverController extends Controller {
     public function index() {
         $subscriptions = Auth::user()->subscriptions()->pluck('tags.id');
 
-        $with = ['user', 'content'];
+        $with = ['user', 'content', 'images'];
 
         if (Auth::user()) {
             $with['content.reports'] = $with['content.votes'] = function ($query) {
@@ -46,7 +46,7 @@ class DiscoverController extends Controller {
 
         $rootCategory = $tag->categories()->where('root', true)->first();
 
-        $with = ['user', 'content'];
+        $with = ['user', 'content', 'images'];
 
         if (Auth::user()) {
             $with['content.reports'] = $with['content.votes'] = function ($query) {
