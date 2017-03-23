@@ -273,43 +273,30 @@ def generate_recommendations(curs, recomendee_id, recommendation_type, preferenc
     recommendations = []
 
     # Get tag names and generate user vector that will be used to
-    print "Preparing tag count vector........."
     tags = get_tags(curs)
     num_tags = len(tags)
     recomendee_vector = get_tag_counts(curs, recommendation_type, str(recomendee_id), num_tags, tags)
 
     if preference == 'FOF':
-        print "Generating FOF Recommendations........."
         recommendations = get_fof_recommendations(curs, recommendation_type, recomendee_id, num_recommendations, min_reputation)
-
-        print "FOF Recommendations: {}".format(recommendations)
     elif preference == 'Explorer':
-        print "Generating Explorer Recommendations........."
         recommendations = get_explorer_recommendations(curs, recommendation_type, recomendee_id,
         recomendee_vector, similarity_threshold, min_reputation, tags, num_tags, num_recommendations)
-
-        print "Explorer Recommendations: {}".format(recommendations)
     elif preference == 'Hybrid':
-        print "Generating Hybrid Recommendations........."
         recommendations = get_hybrid_recommendations(curs, recommendation_type, recomendee_id,
         recomendee_vector, num_recommendations, min_reputation, similarity_threshold, tags, num_tags)
 
-        print "Hybrid Recommendations: {}".format(recommendations)
-
     # Get a set of recommendations that will be used if we fail to generate "dynamic" recommendations
     if len(recommendations) == 0:
-        print "No recommendations made........reverting to default recommendations......."
         recommendations = get_default_recommendations(curs, recomendee_id, recommendation_type, min_reputation, num_recommendations)
 
-    print "Removing unwanted recommendations........."
+    # Trim recommendation list by removing accepted/rejected recommendations, along with blocked users
+    # and the recomendees followees
     recommendations = list(set(recommendations) -
     set(get_resolved_recommendations(curs, recommendation_type, recomendee_id))
     - set(get_blocked_users(curs, recomendee_id))
     - set(get_followees(curs, recomendee_id)) - set(recomendee_id))
 
-    print "Recommendations for user are {}".format(recommendations)
-
-    print "Adding new recommendations to database.........\n"
     # Insert newly created recommendations into the database
     for r in recommendations:
         # Adding new content recommendations
@@ -338,7 +325,6 @@ def generate_recommendations(curs, recomendee_id, recommendation_type, preferenc
 
 
 # Establish database connection
-print "Connecting to database........."
 conn = mysql.connect(user='root', password='', host='localhost', database='fidelis')
 curs = conn.cursor()
 
@@ -386,12 +372,10 @@ for user in fidelis_users:
     name = curs.fetchone()[0]
 
     if remaining_content < num_recommendations:
-        print "Generating content recommendations for {}............".format(name)
         generate_recommendations(curs, user, 0, preference, num_recommendations - remaining_content,
         similarity_threshold, min_reputation)
 
     if remaining_users < num_recommendations:
-        print "Generating user recommendations for {}............".format(name)
         generate_recommendations(curs, user, 1, preference, num_recommendations - remaining_users,
         similarity_threshold, min_reputation)
 
