@@ -1,7 +1,7 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
 @push('stylesheets')
-<link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
 @endpush
 
 @section('container')
@@ -65,7 +65,7 @@
                             </li>
                             <li class="pull-right" role="presentation">
                                 <div class="profile-actions">
-                                    @include('profile.partials.follow', ['user' => $user, 'dropdown' => true, 'isFollowing' => $isFollowing])
+                                    @include('profile.partials.follow', ['user' => $user, 'dropdown' => TRUE, 'isFollowing' => $isFollowing])
                                 </div>
                             </li>
                         </ul>
@@ -109,7 +109,8 @@
     </div>
 
     <script>
-        var userImgs = {!! json_encode($images) !!}
+        var userImgs =
+                {!! json_encode($images) !!}
         var src = {!! json_encode(asset('storage')) !!}
     </script>
 

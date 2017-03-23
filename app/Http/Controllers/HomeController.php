@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -23,7 +22,7 @@ class HomeController extends Controller {
     public function index() {
         $userIds = Auth::user()->following()->pluck('users.id');
         $userIds[] = Auth::user()->id;
-        $with = ['content'];
+        $with = ['content', 'images'];
         $with['content.votes'] = $with['content.reports'] = function($query) {
             $query->where('user_id', Auth::user()->id);
         };
