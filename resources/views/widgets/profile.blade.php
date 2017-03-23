@@ -33,7 +33,7 @@
                 <li>
                     <a href="{{ route('profile.following', [Auth::user()->username]) }}" class="stat-link">
                         <span class="stat-label">Following</span>
-                        <span class="stat-value">{{ Auth::user()->following()->count() }}</span>
+                        <span class="stat-value" id="following-value">{{ Auth::user()->following()->count() }}</span>
                     </a>
                 </li>
             </ul>

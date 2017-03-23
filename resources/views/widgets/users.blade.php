@@ -2,15 +2,11 @@
 <link href="{{ asset('assets/css/layouts/default/widgets/users.css') }}" rel="stylesheet">
 @endpush
 
-@push('scripts')
-<script src="{{ asset('assets/js/layouts/default/widgets/users.js') }}"></script>
-@endpush
-
 <div class="panel panel-default">
     <div class="panel-heading">Who to follow?</div>
-    <div class="panel-body">
+    <div class="panel-body" id="recommendation-panel">
         @forelse($recommendations as $recommendation)
-            <div class="recommendation">
+            <div class="recommendation" id="recommendation-{{ $recommendation->id }}">
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object avatar" src="{{ $recommendation->photo }}"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\FollowRequest;
+use App\Models\UserRecommendation;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 

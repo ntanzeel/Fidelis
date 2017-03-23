@@ -136,7 +136,6 @@ $('.btn-follow-toggle').on('click', function () {
 
 $('.action-accept').on('click', function () {
     event.preventDefault();
-
     ajaxPost($(this), 1);
 });
 
@@ -157,9 +156,15 @@ function ajaxPost($btn, $type) {
             return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
         },
         success: function (response) {
-            $type == 1 ? $('#following-value').html(parseInt($('#following-value').html(), 10) + 1) : '';
             var divId = 'recommendation-' + $btn.data('user');
             $('#' + divId).hide('slow');
+            $type == 1 ? $('#following-value').html(parseInt($('#following-value').html(), 10) + 1) : '';
+
+            var $emptyPanel = $('#recommendation-panel');
+
+            if($emptyPanel.children(':visible').length == 1) {
+                setTimeout(function() { $emptyPanel.append('You have no recommendations') }, 800);
+            }
         },
         error: function (response) {
         }
