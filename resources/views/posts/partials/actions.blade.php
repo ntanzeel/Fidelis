@@ -33,11 +33,13 @@
             </a>
         </li>
     @endif
-    <li class="pull-right {{ Auth::guest() || $comment->user_id == Auth::user()->id ? 'disabled' : '' }}">
-        @php($reported = Auth::user() && $comment->reports->count())
-        <a href="{{ route('api.report.store', [$comment->id]) }}" role="button"
-           class="action action-flag {{ $reported ? 'active' : '' }}">
-            <i class="fa fa-flag"></i>
-        </a>
-    </li>
+    @if (Auth::user() && Auth::user()->id != $comment->user_id)
+        <li class="pull-right">
+            @php($reported = Auth::user() && $comment->reports->count())
+            <a href="{{ route('api.report.store', [$comment->id]) }}" role="button"
+               class="action action-flag {{ $reported ? 'active' : '' }}">
+                <i class="fa fa-flag"></i>
+            </a>
+        </li>
+    @endif
 </ul>
