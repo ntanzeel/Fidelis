@@ -32,9 +32,17 @@
                         </div>
                         <div class="post-body">
                             <div class="post-images">
-                                @foreach($post->images as $image)
+                                @foreach($post->images as $key => $image)
                                     <img src="{{ asset('storage/' . $image->path) }}"
-                                         class="post-image img-responsive img-thumbnail" width="45%" />
+                                         class="post-image lightbox img-responsive img-thumbnail"
+                                         data-type="post"
+                                         data-source="{{ $image->id }}"
+                                         data-album="{{ $post->id }}"
+                                         width="45%" />
+
+                                    @if ($key >= 3)
+                                        @break
+                                    @endif
                                 @endforeach
                             </div>
                             <div class="post-text">
@@ -42,7 +50,7 @@
                             </div>
                         </div>
                         <div class="post-footer">
-                            @include('posts.partials.actions', ['isPost' => true, 'comment' => $post->content])
+                            @include('posts.partials.actions', ['isPost' => TRUE, 'comment' => $post->content])
                         </div>
                     </div>
                     <div class="post-comments">
@@ -65,5 +73,4 @@
             @widget('trending')
         </div>
     </div>
-    @include('posts.partials.image-modal')
 @endsection

@@ -1,11 +1,7 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
 @push('stylesheets')
-    <link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
-@endpush
-
-@push('scripts')
-    <script src="{{ asset('assets/js/layouts/default/posts/partials/image-modal.js') }}"></script>
+<link href="{{ asset('assets/css/layouts/default/widgets/profile.css') }}" rel="stylesheet">
 @endpush
 
 @section('container')
@@ -22,7 +18,7 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="anchor profile-photo-container">
                             <a class="profile-photo">
-                                <img src="{{ $user->photo }}" class="exp anchor" style="cursor:pointer"/>
+                                <img src="{{ $user->photo }}" class="lightbox" style="cursor:pointer" />
                             </a>
                             @if(Auth::user() && Auth::user()->username == $user->username)
                                 <a class="btn-upload" data-toggle="tooltip" title="Upload new profile picture" href="#"><i
@@ -98,9 +94,13 @@
                             Photos
                         </div>
                         <div class="panel-body anchor">
-                            @foreach($images as $image)
-                                <img id="img-{{ $image->id }}" src="{{ asset('storage/'.$image->path) }}"
-                                     class="exp user-image img-responsive img-thumbnail" max-height="22px" max-width="22px">
+                            @foreach($images as $key => $image)
+                                <img src="{{ asset('storage/' . $image->path) }}"
+                                     class="lightbox user-image img-responsive img-thumbnail"
+                                     data-type="user"
+                                     data-source="{{ $image->id }}"
+                                     data-album="{{ $user->username }}"
+                                     width="45%" />
                             @endforeach
                         </div>
                     </div>
@@ -111,6 +111,4 @@
             </div>
         </div>
     </div>
-
-    @include('posts.partials.image-modal')
 @endsection

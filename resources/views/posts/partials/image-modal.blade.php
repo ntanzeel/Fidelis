@@ -1,5 +1,9 @@
 @push('stylesheets')
-<link href="{{ asset('assets/css/layouts/default/posts/partials/image-modal.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/layouts/default/posts/partials/image-modal.css') }}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('assets/js/frameworks/LightBox/1.0.js') }}" type="text/javascript"></script>
 @endpush
 
 <div class="modal" id="image-modal" tabindex="-1" aria-labelledby="image-modal" aria-hidden="true">

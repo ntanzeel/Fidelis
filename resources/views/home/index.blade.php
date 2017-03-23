@@ -1,9 +1,5 @@
 @extends(config('view.layout', 'layouts.default') . '.app')
 
-@push('scripts')
-    <script src="{{ asset('assets/js/layouts/default/posts/partials/image-modal.js') }}"></script>
-@endpush
-
 @section('content')
     <div class="row">
         <div class="col-md-3 hidden-sm hidden-xs">
@@ -24,6 +20,4 @@
             @widget('trending')
         </div>
     </div>
-
-    @include('posts.partials.image-modal')
 @endsection

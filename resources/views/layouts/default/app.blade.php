@@ -14,34 +14,37 @@
 
         <!-- Fonts -->
         @push('fonts')
-            <link href="{{ asset('assets/css/fonts/Raleway.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('assets/css/fonts/Raleway.css') }}" rel="stylesheet" type="text/css">
         @endpush
         @stack('fonts')
 
-        <!-- Framework Stylesheets -->
+    <!-- Framework Stylesheets -->
         @push('frameworks.stylesheets')
-            <link href="{{ asset('assets/css/frameworks/bootstrap/3.3.7.min.css') }}" rel="stylesheet">
-            <link href="{{ asset('assets/css/frameworks/bootstrap/override.css') }}" rel="stylesheet">
-            <link href="{{ asset('assets/css/frameworks/bootstrap/bootstrap-switch.min.css') }}" rel="stylesheet">
-            <link href="{{ asset('assets/css/frameworks/font-awesome/css/4.7.0.min.css') }}" rel="stylesheet">
-            <link href="{{ asset('assets/css/frameworks/highlight.js/9.9.0.min.css') }}" rel="stylesheet" >
-        @endpush
-        @stack('frameworks.stylesheets')
+        <link href="{{ asset('assets/css/frameworks/bootstrap/3.3.7.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/frameworks/bootstrap/override.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/frameworks/bootstrap/bootstrap-switch.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/frameworks/font-awesome/css/4.7.0.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/frameworks/highlight.js/9.9.0.min.css') }}" rel="stylesheet">
+    @endpush
+    @stack('frameworks.stylesheets')
 
-        <!-- App Stylesheets -->
+    <!-- App Stylesheets -->
         <link href="{{ asset('assets/css/layouts/default/app.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/layouts/default/_shared.css') }}" rel="stylesheet">
 
+        <!-- Components -->
+        <link href="{{ asset('assets/css/layouts/default/components/ui/lightbox.css') }}" rel="stylesheet">
+
         <!-- Forced Stylesheets -->
-        @stack('stylesheets')
+    @stack('stylesheets')
 
-        <!-- Local Stylesheets -->
-        @foreach($stylesheets as $key => $stylesheet)
-            <!--{{ $key }}-->
+    <!-- Local Stylesheets -->
+    @foreach($stylesheets as $key => $stylesheet)
+        <!--{{ $key }}-->
             <link href="{{ asset($stylesheet) }}" rel="stylesheet">
-        @endforeach
+    @endforeach
 
-        <!-- Scripts -->
+    <!-- Scripts -->
         <script type="text/javascript">
             {!! 'window.Laravel = ' . json_encode(['csrfToken' => csrf_token()])  !!}
         </script>
@@ -71,23 +74,27 @@
 
         <!-- Framework Scripts -->
         @push('frameworks.scripts')
-            <script src="{{ asset('assets/js/frameworks/jquery/3.1.1.min.js') }}"></script>
-            <script src="{{ asset('assets/js/frameworks/bootstrap/3.3.7.min.js') }}"></script>
-            <script src="{{ asset('assets/js/frameworks/highlight.js/9.9.0.min.js') }}"></script>
-            <script src="{{ asset('assets/js/frameworks/bootstrap/bootstrap-switch.min.js') }}"></script>
+        <script src="{{ asset('assets/js/frameworks/jquery/3.1.1.min.js') }}"></script>
+        <script src="{{ asset('assets/js/frameworks/bootstrap/3.3.7.min.js') }}"></script>
+        <script src="{{ asset('assets/js/frameworks/highlight.js/9.9.0.min.js') }}"></script>
+        <script src="{{ asset('assets/js/frameworks/bootstrap/bootstrap-switch.min.js') }}"></script>
         @endpush
         @stack('frameworks.scripts')
 
-        <!-- App Scripts -->
+    <!-- App Scripts -->
         <script src="{{ asset('assets/js/layouts/default/app.js') }}"></script>
         <script src="{{ asset('assets/js/layouts/default/_shared.js') }}"></script>
+
+        <!-- Components -->
+        <script src="{{ asset('assets/js/layouts/default/components/ui/lightbox.js') }}"
+                type="text/javascript"></script>
 
         <!-- Forced Scripts -->
         @stack('scripts')
 
-        <!-- Local Scripts -->
+    <!-- Local Scripts -->
         @foreach($scripts as $key => $script)
-            <!--{{ $key }}-->
+        <!--{{ $key }}-->
             <script src="{{ asset($script) }}"></script>
         @endforeach
     </body>

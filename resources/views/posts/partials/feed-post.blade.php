@@ -18,9 +18,16 @@
             <div id="post-{{ $post->id }}-content" class="collapse {{ $abusive ? 'margin-b-15' : 'in' }}"
                     {!! $abusive ? 'aria-expanded="false"' : 'aria-expanded="true"' !!}>
                 <div class="post-images">
-                    @foreach($post->images as $image)
-                        <img id="postimage-{{ $image->id }}" src="{{ asset('storage/' . $image->path) }}" class="exp post-image img-responsive img-thumbnail"
+                    @foreach($post->images as $key => $image)
+                        <img src="{{ asset('storage/' . $image->path) }}" class="lightbox img-responsive img-thumbnail"
+                             data-type="post"
+                             data-source="{{ $image->id }}"
+                             data-album="{{ $post->id }}"
                              width="45%" />
+
+                        @if ($key >= 3)
+                            @break
+                        @endif
                     @endforeach
                 </div>
                 <div class="post-text">
