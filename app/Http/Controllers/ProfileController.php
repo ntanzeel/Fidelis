@@ -60,7 +60,7 @@ class ProfileController extends Controller {
             }]);
         }
 
-        $images = Image::where('user_id', $user->id)->latest()->get();
+        $images = Image::where('user_id', $user->id)->latest()->pluck('path');
 
         return view('profile.followers', array_merge(compact('user', 'images'), $preRoute));
     }
@@ -74,7 +74,7 @@ class ProfileController extends Controller {
             }]);
         }
 
-        $images = Image::where('user_id', $user->id)->latest()->get();
+        $images = Image::where('user_id', $user->id)->latest()->pluck('path');
 
         return view('profile.following', array_merge(compact('user', 'images'), $preRoute));
     }
@@ -91,7 +91,7 @@ class ProfileController extends Controller {
         }
 
         $posts = $user->voted()->with($with)->get();
-        $images = Image::where('user_id', $user->id)->latest()->get();
+        $images = Image::where('user_id', $user->id)->latest()->pluck('path');
 
         return view('profile.view', array_merge(compact('user', 'posts', 'images'), $preRoute));
     }
