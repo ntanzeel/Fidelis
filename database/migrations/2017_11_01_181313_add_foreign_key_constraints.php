@@ -54,6 +54,10 @@ class AddForeignKeyConstraints extends Migration {
             $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
         });
 
+        Schema::table('notifications', function (Blueprint $table) {
+            $table->foreign('notifiable_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+        });
+
         Schema::table('blocked', function (Blueprint $table) {
             $table->foreign('blocker_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('blocked_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
@@ -71,8 +75,14 @@ class AddForeignKeyConstraints extends Migration {
             $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
         });
 
+        Schema::table('reports', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('comment_id')->references('id')->on('comments')->onUpdate('cascade')->onDelete('cascade');
+        });
+
         Schema::table('settings', function (Blueprint $table) {
-            $table->foreign('name')->references('name')->on('default_settings')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('name')->references('name')->on('default_settings')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -124,6 +134,10 @@ class AddForeignKeyConstraints extends Migration {
             $table->dropForeign('images_post_id_foreign');
         });
 
+        Schema::table('notifications', function (Blueprint $table) {
+            $table->dropForeign('notifications_notifiable_id_foreign');
+        });
+
         Schema::table('blocked', function (Blueprint $table) {
             $table->dropForeign('blocked_blocker_id_foreign');
             $table->dropForeign('blocked_blocked_id_foreign');
@@ -141,7 +155,13 @@ class AddForeignKeyConstraints extends Migration {
             $table->dropForeign('content_recommendations_tag_id_foreign');
         });
 
+        Schema::table('reports', function (Blueprint $table) {
+            $table->dropForeign('reports_user_id_foreign');
+            $table->dropForeign('reports_comment_id_foreign');
+        });
+
         Schema::table('settings', function (Blueprint $table) {
+            $table->dropForeign('settings_user_id_foreign');
             $table->dropForeign('settings_name_foreign');
         });
     }
