@@ -5,22 +5,13 @@ import random
 from collections import Counter
 
 
-def calculate_reputation(curs, comment_id, min_reputation):
+def get_post_reputation(curs, post_id, min_reputation):
         curs.execute(
-            "SELECT COUNT(id) FROM votes WHERE comment_id = " + comment_id + " "
-            "AND type = 1"
+            "SELECT reputation FROM posts WHERE id = " + post_id + ""
         )
+        post_reputation = curs.fetchone()[0]
 
-        up_votes = curs.fetchone()[0]
-
-        curs.execute(
-            "SELECT COUNT(id) FROM votes WHERE comment_id = " + comment_id + " "
-            "AND type = -1"
-        )
-
-        down_votes = curs.fetchone()[0]
-
-        return up_votes - down_votes >= min_reputation
+        return post_reputation >= min_reputation
 
 
 # Given the recommendation type, generate default recommendations. For user,
@@ -31,15 +22,14 @@ def get_default_recommendations(curs, recomendee_id, recommendation_type, min_re
 
     if recommendation_type == 0:
         curs.execute(
-            "SELECT PT.tag_id, C.id FROM comments C JOIN posts P ON C.post_id = "
-            "P.id JOIN post_tag PT ON P.id = PT.post_id WHERE C.user_id != "
-            + recomendee_id + ""
+            "SELECT PT.tag_id, P.id FROM posts P JOIN post_tag PT ON P.id = "
+            "PT.post_id WHERE P.user_id != " + recomendee_id + ""
         )
-        comments = curs.fetchall()
+        posts = curs.fetchall()
 
-        for comment in comments:
-            if calculate_reputation(curs, str(comment[1]), min_reputation):
-                default_recommendations.append(comment)
+        for post in posts:
+            if get_post_reputation(curs, str(post[1]), min_reputation):
+                default_recommendations.append(post)
     else:
         curs.execute(
             "SELECT id, reputation FROM users WHERE reputation >= "
@@ -121,8 +111,7 @@ def get_fof_recommendations(curs, recommendation_type, recomendee_id, num_recomm
             # tags to generate recommendtions so set ID to -1
             fof_recommendations.append([x[0] for x in fofs])
 
-    # fof_recommendations is currently a list of lists, so flatten it to get
-    # a single list
+    # Flatten list of recommendations
     fof_recommendations = [val for sublist in fof_recommendations for val in sublist]
 
     if recommendation_type == 0:
@@ -131,14 +120,14 @@ def get_fof_recommendations(curs, recommendation_type, recomendee_id, num_recomm
 
         for user in fof_recommendations:
             curs.execute(
-                "SELECT T.id, C.id FROM comments C JOIN posts P ON C.post_id = "
-                "P.id JOIN post_tag PT ON P.id = PT.post_id JOIN tags T ON "
-                "PT.tag_id = T.id WHERE C.user_id = " + str(user) + " AND C.root = 1"
+                "SELECT T.id, P.id FROM posts P JOIN post_tag PT ON P.id = "
+                "PT.post_id JOIN tags T ON PT.tag_id = T.id WHERE P.user_id = "
+                + str(user) + ""
             )
-            comments = curs.fetchall()
+            posts = curs.fetchall()
 
-            for comment in comments:
-                if calculate_reputation(curs, str(comment[1]), min_reputation):
+            for post in posts:
+                if get_post_reputation(curs, str(post[1]), min_reputation):
                     candidate_posts.append(comment)
 
         fof_recommendations = candidate_posts
@@ -185,21 +174,20 @@ def get_explorer_recommendations(curs, recommendation_type, recomendee_id, recom
         for u in users:
             if recommendation_type == 0:
                 curs.execute(
-                    "SELECT C.id FROM tags T join post_tag PT "
-                    "ON T.id = PT.tag_id JOIN posts P on PT.post_id = P.id JOIN "
-                    "comments C on P.id = C.post_id WHERE C.user_id = "
-                    + str(u) + " AND C.root = 1 AND T.id = " + str(tag) + " "
+                    "SELECT P.id FROM tags T join post_tag PT ON T.id = PT.tag_id "
+                    "JOIN posts P on PT.post_id = P.id WHERE P.user_id = "
+                    + str(u) + " AND T.id = " + str(tag) + " "
                 )
 
-                comments = [x[0] for x in curs.fetchall()]
+                posts = [x[0] for x in curs.fetchall()]
                 curs.execute("SELECT name FROM users WHERE id = " + str(u) + "")
                 name = curs.fetchone()[0]
 
                 curs.execute("SELECT text FROM tags WHERE id = " + str(tag) + "")
                 t_name = curs.fetchone()[0]
 
-                for comment in comments:
-                    if calculate_reputation(curs, str(comment), min_reputation):
+                for post in posts:
+                    if get_post_reputation(curs, str(post), min_reputation):
                         explorer_recommendations.append((tag, comment))
             else:
                 # Perform cosine similarity between recomendees tag count vector
