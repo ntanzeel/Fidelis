@@ -22,7 +22,7 @@
                 @include('layouts.default.partials.nav', ['nav' => $navigation->app])
             </ul>
             <form action="#">
-                <input class="form-control txt-search" type="text" placeholder="Search" onkeyup="showResult(this.value)"/>
+                <input class="form-control txt-search" type="text" placeholder="Search"/>
                 <div id="livesearch"></div>
             </form>
             <ul class="nav navbar-nav navbar-right">

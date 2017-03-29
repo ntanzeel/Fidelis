@@ -10,6 +10,10 @@
     class SearchController extends Controller {
 
         public function display($query) {
+            if (strlen($query) < 3) {
+                return response(403);
+            }
+
             $results = collect([]);
             if (!starts_with($query, '#')) {
                 $results = $results->merge($this->getUsers($query));
