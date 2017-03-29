@@ -378,7 +378,7 @@
         /*
          * Search
          */
-        Route::get('search', [
+        Route::get('search/{query}', [
             'as' => 'display',
             'uses' => 'Api\SearchController@display'
         ]);

@@ -1,32 +1,53 @@
 <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers\Api;
 
-use App\Models\Tag;
-use App\Models\User;
-use Illuminate\Http\Request;
+    use App\Http\Controllers\Controller;
+    use App\Models\Tag;
+    use App\Models\User;
+    use Illuminate\Database\Eloquent\Model;
 
-class SearchController extends Controller
-{
-    public function display(Request $request) {
-        $query = \Request::get('q');
+    class SearchController extends Controller {
 
-        //Get all users with usernames 'like' input
-        $posts = $query ? User::where([
-            ['name', 'LIKE', "%$query%"],
-        ])->select('id as user_id')->orderBy('id')->get() : User::select('id as user_id')->orderBy('id')->get();
+        public function display($query) {
+            $results = collect([]);
+            if (!starts_with($query, '#')) {
+                $results = $results->merge($this->getUsers($query));
+            }
+            if (!starts_with($query, '@')) {
+                $results = $results->merge($this->getTags($query));
+            }
 
-        //Get all non-root tags 'like' inputs
-        $tags = $query ? Tag::where([
-            ['text', 'LIKE', "%$query%"],
-            ['root', '!=', 1],
-        ])->select('id as tag_id')->orderBy('id')->get() : Tag::select('id as tag_id')->orderBy('id')->get();
+            $results->map(function ($result) {
+                /**
+                 * @var $result Model
+                 */
+                $result->type = $result->getTable();
+            });
 
-        //Merge query results
-        $result = $posts->merge($tags);
+            return response()->json($results);
+        }
 
-        return response()->json([
-            //not sure exactly what to return here?
-        ]);
+        private function getUsers($query) {
+            $query = starts_with($query, '@') ? substr($query, 1) : $query;
+
+            $users = User::where('name', 'LIKE', '%' . $query . '%')
+                ->orWhere('username', 'LIKE', '%' . $query . '%')
+                ->select('id AS identifier')
+                ->limit(5)
+                ->get();
+
+            return $users ? $users : [];
+        }
+
+        private function getTags($query) {
+            $query = starts_with($query, '#') ? substr($query, 1) : $query;
+
+            $tags = Tag::where('text', 'LIKE', '%' . $query . '%')
+                ->select('text AS identifier')
+                ->limit(5)
+                ->get();
+
+            return $tags ? $tags : [];
+        }
     }
-}
