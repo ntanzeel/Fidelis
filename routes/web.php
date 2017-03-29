@@ -374,4 +374,12 @@
             'as'   => 'user.image.',
             'uses' => 'Api\ImageController@user',
         ]);
+
+        /*
+         * Search
+         */
+        Route::get('search', [
+            'as' => 'display',
+            'uses' => 'Api\SearchController@display'
+        ]);
     });

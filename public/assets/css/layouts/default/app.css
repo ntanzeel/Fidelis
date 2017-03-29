@@ -135,12 +135,44 @@
 .txt-search {
     position: absolute;
     margin:7px;
-    margin-left:-350px;
-    left: 50%;
-    height: 35px;
-    width: 700px;
-    font-size: 14pt;
+    width: 20%;
+    opacity: 0;
+    font-size: 11pt;
+    vertical-align: center;
     display: none;
+    background-color: #f5f8fa;
+}
+
+/*
+ * 'Search' placeholder text color
+ */
+
+input::-webkit-input-placeholder {
+    color: #777 !important;
+    font-size: 11pt;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    color: #777 !important;
+    font-size: 11pt;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+    color: #777 !important;
+    font-size: 11pt;
+}
+
+input:-ms-input-placeholder {
+    color: #777 !important;
+    font-size: 11pt;
+}
+
+/*
+ * AJAX live search
+ */
+
+#livesearch{
+    display: block;
 }
 
 /*
