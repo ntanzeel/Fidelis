@@ -11,7 +11,7 @@
 
         public function display($query) {
             if (strlen($query) < 3) {
-                return response(403);
+                return abort(400);
             }
 
             $results = collect([]);
