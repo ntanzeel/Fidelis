@@ -158,9 +158,10 @@ def get_explorer_recommendations(curs, recommendation_type, recomendee_id, recom
         curs.execute("SELECT text FROM tags WHERE id = " + str(tag) + "")
         tag_name = curs.fetchone()[0]
         curs.execute(
-            "SELECT DISTINCT P.user_id FROM posts P JOIN post_tag PT ON "
-            "P.id = PT.post_id JOIN tags T ON PT.tag_id = T.id WHERE T.id = {} "
-            "AND P.user_id != {}".format(tag, recomendee_id)
+            "SELECT DISTINCT U.user_id FROM users U JOIN posts P ON U.id = "
+            "P.user_id JOIN post_tag PT ON P.id = PT.post_id JOIN tags T ON "
+            "PT.tag_id = T.id WHERE T.id = {} AND U.user_id != {} AND "
+            "U.reputation >= {}".format(tag, recomendee_id, min_reputation)
         )
         users = [x[0] for x in curs.fetchall()]
 
