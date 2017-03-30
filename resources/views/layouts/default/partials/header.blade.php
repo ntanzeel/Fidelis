@@ -37,9 +37,9 @@
                     <li class="dropdown profile-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-expanded="false">
-                            <span class="sr-only">{{ Auth::user()->name }}</span>
                             <img src="{{ Auth::user()->photo }}"
-                                 width="38px" height="38px" />
+                                 width="38px" height="38px" title="{{ Auth::user()->name }}" />
+                            <span class="visible-sm-inline-block visible-xs-inline-block">{{ Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
