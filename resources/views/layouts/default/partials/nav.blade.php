@@ -1,9 +1,10 @@
 @foreach($nav->links as $link)
     @if($link->dropdown)
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+            <a href="#" class="dropdown-toggle" data-tooltip="true" data-placement="bottom" title="{{ $link->title }}"
+               data-toggle="dropdown" role="button"
                aria-expanded="false">
-                {{ $link->title }} <span class="caret"></span>
+                <span class="visible-xs-inline">{{ $link->title }}</span> <span class="caret"></span>
             </a>
 
             <ul class="dropdown-menu" role="menu">
@@ -19,15 +20,16 @@
         </li>
     @else
         <li class="{{ $link->active ? 'active' : '' }}">
-            <a href="{{ route($link->route->name, $link->route->params) }}">
+            <a href="{{ route($link->route->name, $link->route->params) }}" data-tooltip="true" data-placement="bottom"
+               title="{{ $link->title }}">
                 @if(isset($link->icon))
                     <i class="fa fa-{{ $link->icon }}" aria-hidden="true"></i>
                 @endif
-                {{ $link->title }}
+                <span class="visible-xs-inline">{{ $link->title }}</span>
                 @if($link->title == 'Notifications')
-                        @if(Auth::user()->unreadNotifications->count() > 0)
-                            <span class="badge">{{ Auth::user()->unreadNotifications->count() }}</span>
-                        @endif
+                    @if(Auth::user()->unreadNotifications->count() > 0)
+                        <span class="badge">{{ Auth::user()->unreadNotifications->count() }}</span>
+                    @endif
                 @endif
             </a>
         </li>

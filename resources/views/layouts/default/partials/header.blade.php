@@ -21,16 +21,7 @@
             <ul class="nav navbar-nav navbar-left">
                 @include('layouts.default.partials.nav', ['nav' => $navigation->app])
             </ul>
-            <form action="#">
-                <input class="form-control txt-search" type="text" placeholder="Search"/>
-                <div id="livesearch"></div>
-            </form>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" class="btn-search">
-                        <i class="fa fa-search"></i>Search
-                    </a>
-                </li>
                 @include('layouts.default.partials.nav', ['nav' => $navigation->user])
 
                 @if (Auth::user())
@@ -39,7 +30,7 @@
                            aria-expanded="false">
                             <img src="{{ Auth::user()->photo }}"
                                  width="38px" height="38px" title="{{ Auth::user()->name }}" />
-                            <span class="visible-sm-inline-block visible-xs-inline-block">{{ Auth::user()->name }}</span>
+                            <span class="visible-xs-inline-block">{{ Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
@@ -56,6 +47,10 @@
                     </li>
                 @endif
             </ul>
+            <form class="navbar-form navbar-right navbar-search dropdown" role="search">
+                <input type="text" class="form-control" placeholder="Search...">
+                <ul class="dropdown-menu search-results"></ul>
+            </form>
         </div>
     </div>
 </nav>
