@@ -27,8 +27,12 @@ $(document).ready(function () {
         } else {
             $searchForm.removeClass('open').find('.search-results').empty();
         }
-    }).on('blur', 'input', function () {
-        $searchForm.removeClass('open').find('.search-results').empty();
+    });
+
+    $('body').on('click', function (event) {
+        if($searchForm.has(event.target).length == 0) {
+            $searchForm.removeClass('open').find('.search-results').empty();
+        }
     });
 
     function appendResults(results, label) {
