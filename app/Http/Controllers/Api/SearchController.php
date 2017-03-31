@@ -5,29 +5,18 @@
     use App\Http\Controllers\Controller;
     use App\Models\Tag;
     use App\Models\User;
-    use Illuminate\Database\Eloquent\Model;
 
     class SearchController extends Controller {
 
         public function display($query) {
-            if (strlen($query) < 3) {
+            if (strlen($query) == 0 || ((starts_with($query, '#') || starts_with($query, '#')) && strlen($query) < 2)) {
                 return abort(400);
             }
 
-            $results = collect([]);
-            if (!starts_with($query, '#')) {
-                $results = $results->merge($this->getUsers($query));
-            }
-            if (!starts_with($query, '@')) {
-                $results = $results->merge($this->getTags($query));
-            }
-
-            $results->map(function ($result) {
-                /**
-                 * @var $result Model
-                 */
-                $result->type = $result->getTable();
-            });
+            $results = [
+                'users' => !starts_with($query, '#') ? $this->getUsers($query) : [],
+                'tags'  => !starts_with($query, '@') ? $this->getTags($query) : [],
+            ];
 
             return response()->json($results);
         }
@@ -37,7 +26,7 @@
 
             $users = User::where('name', 'LIKE', '%' . $query . '%')
                 ->orWhere('username', 'LIKE', '%' . $query . '%')
-                ->select('id AS identifier')
+                ->select('name', 'username', 'photo')
                 ->limit(5)
                 ->get();
 
@@ -48,7 +37,7 @@
             $query = starts_with($query, '#') ? substr($query, 1) : $query;
 
             $tags = Tag::where('text', 'LIKE', '%' . $query . '%')
-                ->select('text AS identifier')
+                ->select('text')
                 ->limit(5)
                 ->get();
 

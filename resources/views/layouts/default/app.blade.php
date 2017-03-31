@@ -82,8 +82,8 @@
         @stack('frameworks.scripts')
 
     <!-- App Scripts -->
-        <script src="{{ asset('assets/js/layouts/default/app.js') }}"></script>
         <script src="{{ asset('assets/js/layouts/default/_shared.js') }}"></script>
+        <script src="{{ asset('assets/js/layouts/default/app.js') }}"></script>
 
         <!-- Components -->
         <script src="{{ asset('assets/js/layouts/default/components/ui/lightbox.js') }}"

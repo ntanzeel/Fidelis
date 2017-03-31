@@ -1,54 +1,61 @@
 $(document).ready(function () {
-    $('.btn-search').on('click', function () {
-        $('.btn-search').hide();
-        $('.txt-search').show().focus();
-    });
+    $('[data-tooltip="true"]').tooltip();
 
-    $('.txt-search').on('blur', function () {
-        if ($(this).val().length == 0) {
-            $('.txt-search').hide();
-            $('.btn-search').show()
-        }
-    }).on('keyup', function () {
+    var $searchForm = $('.navbar-search');
+
+    $searchForm.on('keyup focus', 'input', function () {
         var query = encodeURIComponent($(this).val());
 
-        if (query.length >= 3) {
+        if ($(window).width() >= 768 && query.length > 0) {
             $.ajax({
-                url: 'api/search/' + query,
+                url: '/api/search/' + query,
                 method: 'GET',
                 dataType: "json",
                 success: function (data) {
-                    console.log(data);
+                    $searchForm.find('.search-results').empty();
+
+                    appendResults(data.tags, 'Categories');
+                    appendResults(data.users, 'Users');
+
+                    if (data.users.length > 0 || data.tags.length > 0) {
+                        $searchForm.addClass('open');
+                    } else {
+                        $searchForm.removeClass('open')
+                    }
                 }
             });
+        } else {
+            $searchForm.removeClass('open').find('.search-results').empty();
         }
+    }).on('blur', 'input', function () {
+        $searchForm.removeClass('open').find('.search-results').empty();
     });
-});
 
-function showResult(str) {
-    if (str.length == 0) {
-        document.getElementById("livesearch").innerHTML = "";
-        document.getElementById("livesearch").style.border = "0px";
-        return;
+    function appendResults(results, label) {
+        var isUser = label == 'Users';
+
+        if (results.length > 0) {
+            var $label = $('<li class="dropdown-header">' + label + '</li>');
+            $searchForm.find('.search-results').append($label);
+
+            for (var i = results.length - 1; i >= 0; i--) {
+                var template = '';
+                if (isUser) {
+                    template = '<a href="/@' + results[i].username + '">' +
+                        '<img src="' + results[i].photo + '" />' +
+                        '<span class="user-info">' +
+                        '<span class="full-name">' + results[i].name + '</span>' +
+                        '<span class="username">@' + results[i].username + '</span>' +
+                        '</span>' +
+                        '</a>';
+                } else {
+                    template = '<a href="/discover/' + results[i].text + '">' +
+                        results[i].text +
+                        '</a>';
+                }
+
+                $label.after('<li>' + template + '</li>');
+            }
+        }
     }
-
-    $.ajax({
-        url: 'display',
-        method: 'get',
-        data: {'str': str},
-        processData: false,
-        contentType: false,
-        beforeSend: function (xhr) {
-            return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
-        },
-        success: function (response) {
-            //For now just want to list out the names of Users/Tsgs returned from the SearchController
-            //Not sure exactly how to do so...
-            // document.getElementById("livesearch").innerHTML = response[];
-            document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
-        },
-        error: function (response) {
-            console.log(this.responseText);
-        }
-    });
-};
+});
