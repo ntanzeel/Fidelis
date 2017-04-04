@@ -248,6 +248,35 @@ def get_blocked_users(curs, recomendee_id):
     return [(-1, x[0]) for x in curs.fetchall()]
 
 
+# Get posts made by blocked users
+def get_blocked_user_posts(curs, recomendee_id):
+    curs.execute(
+        "SELECT blocked_id FROM blocked WHERE blocker_id = {}".format(recomendee_id)
+    )
+    blocked_users = [x[0] for x in curs.fetchall()]
+
+    posts = []
+    for b_id in blocked_users:
+        curs.execute(
+            "SELECT PT.tag_id, P.id FROM posts P JOIN post_tag PT ON "
+            "P.id=PT.post_id WHERE P.user_id={}".format(b_id)
+        )
+        posts.append(curs.fetchall())
+
+    posts = [val for sublist in posts for val in sublist]
+    return posts
+
+
+# Get posts a user has already voted on
+def get_voted_posts(curs, recomendee_id):
+    curs.execute(
+        "SELECT PT.tag_id, P.id FROM votes V JOIN comments C ON V.comment_id=C.id "
+        "JOIN posts P ON C.post_id=P.id JOIN post_tag PT ON P.id=PT.post_id "
+        "WHERE V.user_id={} AND C.root=1".format(recomendee_id)
+    )
+    return curs.fetchall()
+
+
 # Create a set of user and content recommendations for a given user by using their preferred
 # recommendation technique
 def generate_recommendations(curs, recomendee_id, recommendation_type, preference, num_recommendations, similarity_threshold, min_reputation):
@@ -273,10 +302,16 @@ def generate_recommendations(curs, recomendee_id, recommendation_type, preferenc
 
     # Trim recommendation list by removing accepted/rejected recommendations, along with blocked users
     # and the recomendees followees
-    recommendations = list(set(recommendations) -
-    set(get_current_recommendations(curs, recommendation_type, recomendee_id))
-    - set(get_blocked_users(curs, recomendee_id))
-    - set(get_followees(curs, recomendee_id)) - set(recomendee_id))
+    recommendations = set(recommendations) - set(get_current_recommendations(curs, recommendation_type, recomendee_id))
+
+    if recommendation_type == 0:
+        recommendations = list(recommendations -
+        set(get_blocked_user_posts(curs, recomendee_id)) -
+        set(get_voted_posts(curs, recomendee_id)))
+    else:
+        recommendations = list(recommendations -
+        set(get_blocked_users(curs, recomendee_id))
+        - set(get_followees(curs, recomendee_id)) - set(recomendee_id))
 
     # Insert newly created recommendations into the database
     for r in recommendations:
@@ -335,6 +370,7 @@ def main():
         curs.execute("SELECT id FROM users")
         fidelis_users = [x[0] for x in curs.fetchall()]
 
+        print "Generating user and content recommendations..."
         for user in fidelis_users:
             settings = get_user_settings(curs, str(user))
 
