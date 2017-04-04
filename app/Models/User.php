@@ -183,7 +183,7 @@
         }
 
         public function content_recommendations() {
-            return $this->belongsToMany('App\Models\User', 'content_recommendations', 'user_id', 'content_recommendation')
+            return $this->belongsToMany('App\Models\Post', 'content_recommendations', 'user_id', 'content_recommendation')
                 ->whereNull('content_recommendations.deleted_at')
                 ->withPivot(['id', 'response', 'deleted_at'])
                 ->withTimestamps();
