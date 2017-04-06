@@ -120,6 +120,7 @@ a, a:hover, a:visited, a:focus {
     border: 1px solid #d9534f;
 }
 
+a.btn-link-orange,
 .btn.btn-link.btn-link-orange {
     color: #FF6631;
 }

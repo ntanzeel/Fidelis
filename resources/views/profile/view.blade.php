@@ -11,7 +11,6 @@
             </div>
         </div>
         <div class="col-md-4 hidden-sm hidden-xs">
-            @widget('users')
             @widget('trending')
         </div>
     </div>

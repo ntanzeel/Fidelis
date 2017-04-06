@@ -31,13 +31,15 @@
 /*
  * Buttons
  */
-.btn-orange {
+.btn-orange,
+a.btn-orange {
     color: #FF6631;
     background-color: #FFF;
     border: 1px solid #FF6631;
 }
 
-.btn-orange:hover {
+.btn-orange:hover,
+a.btn-orange:hover {
     color: #FFF;
     background-color: #FF6631;
 }

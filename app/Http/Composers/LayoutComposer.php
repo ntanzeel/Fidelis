@@ -134,17 +134,8 @@ class LayoutComposer {
 
         $navigation->links = Auth::guest() ? [
             (Object) [
-                'title'     => 'Sign up',
-                'icon'      => 'vcard-o',
-                'route'     => (Object) [
-                    'name'      => 'auth.register',
-                    'params'    => []
-                ],
-                'active'    => false,
-                'dropdown'  => false
-            ], (Object) [
-                'title'     => 'Log in',
-                'icon'      => 'sign-in',
+                'title'     => 'Login',
+                'icon'      => 'user',
                 'route'     => (Object) [
                     'name'      => 'auth.login',
                     'params'    => []
