@@ -9,14 +9,15 @@ stops = set(stopwords.words('english'))
 replace_punc = str.maketrans(string.punctuation, ' '*len(string.punctuation))
 
 def preprocess(post):
-    post = post.encode('ascii', errors='ignore').decode('utf-8')
-    filtered = p.clean(post).lower()
-    filtered = str(filtered).translate(replace_punc)
+    post = post.encode('ascii', errors='ignore').decode('utf-8') # Remove non ascii characters
+    filtered = p.clean(post).lower() # Clean Twitter entities and make lower case
+    filtered = str(filtered).translate(replace_punc) # Remove punctuation
     filtered = p.clean(filtered)
-    filtered = [lemma.lemmatize(word) for word in filtered.split() if word not in stops]
+    filtered = ' '.join([lemma.lemmatize(word) for word in filtered.split() if (word not in stops) and (len(word) > 3)])
     return(filtered)
 
 
 
 if __name__=='__main__':
     features = preprocess('@BBCSport HAVE Watford  am ve having #lol won against 20 Arsenal\'s in the leagues, for the first time...')
+    print(features)
