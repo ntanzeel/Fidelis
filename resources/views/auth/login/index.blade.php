@@ -42,9 +42,12 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <div class="checkbox">
-                                        <label>
+                                        <label class="">
                                             <input type="checkbox" name="remember"> Remember Me
                                         </label>
+                                        <a class="btn-link-orange pull-right" href="{{ route('auth.password.request') }}">
+                                            Forgot Your Password?
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -54,10 +57,7 @@
                                     <button type="submit" class="btn btn-orange">
                                         Login
                                     </button>
-
-                                    <a class="btn btn-link btn-link-orange" href="{{ route('auth.password.request') }}">
-                                        Forgot Your Password?
-                                    </a>
+                                    <a href="{{ route('auth.register') }}" class="btn btn-link btn-link-orange">Register</a>
                                 </div>
                             </div>
                         </form>
