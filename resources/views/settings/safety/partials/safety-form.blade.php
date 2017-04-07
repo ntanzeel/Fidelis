@@ -24,20 +24,25 @@
         <label for="recommendation_preference" class="col-md-2 control-label">Recommendation Preference</label>
         <div class="row">
             <div class="col-sm-1">
-                <input type="radio" name="recommendation_preference" value="Explorer" {{ $settings['recommendation_preference']->value == 'Explorer' ?  'checked' : ''}}>Explorer
+                <input type="radio" name="recommendation_preference"
+                       value="Explorer" {{ $settings['recommendation_preference']->value == 'Explorer' ?  'checked' : ''}}>Explorer
             </div>
             <div class="col-sm-1">
-                <input type="radio" name="recommendation_preference" value="FOF" {{ $settings['recommendation_preference']->value == 'FOF' ?  'checked' : ''}}>Friend-of-a-Friend
+                <input type="radio" name="recommendation_preference"
+                       value="FOF" {{ $settings['recommendation_preference']->value == 'FOF' ?  'checked' : ''}}>Friend-of-a-Friend
             </div>
             <div class="col-sm-1">
-                <input type="radio" name="recommendation_preference" value="Hybrid"{{ $settings['recommendation_preference']->value == 'Hybrid' ?  'checked' : ''}}>Hybrid
+                <input type="radio" name="recommendation_preference"
+                       value="Hybrid" {{ $settings['recommendation_preference']->value == 'Hybrid' ?  'checked' : ''}}>Hybrid
             </div>
         </div>
     </div>
     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
         <label for="recommendation_number" class="col-md-2 control-label">Number of Recommendations</label>
         <div class="col-md-2">
-            <input type="text" class="form-control" name="recommendation_number">
+            <input type="text"
+                   value={{ !empty($settings['recommendation_number']->value) ? $settings['recommendation_number']->value : 5 }} class="form-control"
+                   name="recommendation_number">
         </div>
     </div>
     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">

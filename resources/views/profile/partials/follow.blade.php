@@ -36,6 +36,6 @@
     <button class="btn btn-block btn-orange">Edit Profile</button>
 @else
     <a href="{{ route('auth.login') }}" class="btn btn-block btn-primary">
-        Login or Register
+        Login
     </a>
 @endif

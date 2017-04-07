@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     {{ $category }}
-                    @if(Auth::user() && !$isRoot)
+                    @if(Auth::user() && !$isRoot && $category != 'Recommendations')
                         <a role="button" class="btn btn-default pull-right btn-subscribe-toggle" href="#"
                            data-api="{{ url('/api/subscription/')  }}"
                            data-id="{{ $tag->id }}" data-status="{{ $subscribed ? 1 : 0 }}">

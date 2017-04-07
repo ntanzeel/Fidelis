@@ -6,6 +6,10 @@
                 <a class="{{ $active == "Subscribed" ? 'active' : '' }}"
                    href="{{ route('discover.index') }}">Subscribed</a>
             </li>
+            <li role="presentation">
+                <a class="{{ $active == "Recommendations" ? 'active' : '' }}"
+                   href="{{ route('discover.category', 'Recommendations') }}">Recommendations</a>
+            </li>
             @foreach($categories as $category)
                 <li role="presentation">
                     <a class="{{ $active == $category->name ? 'active' : '' }}"
