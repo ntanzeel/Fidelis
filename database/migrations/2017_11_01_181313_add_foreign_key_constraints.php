@@ -121,8 +121,8 @@ class AddForeignKeyConstraints extends Migration {
         });
 
         Schema::table('subscriptions', function (Blueprint $table) {
-            $table->dropForeign('subscriptions_user_id_foreign')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->dropForeign('subscriptions_tag_id_foreign')->references('id')->on('tags')->onUpdate('cascade')->onDelete('cascade');
+            $table->dropForeign('subscriptions_user_id_foreign');
+            $table->dropForeign('subscriptions_tag_id_foreign');
         });
 
         Schema::table('votes', function (Blueprint $table) {

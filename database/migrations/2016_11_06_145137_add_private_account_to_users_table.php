@@ -13,7 +13,7 @@ class AddPrivateAccountToUsersTable extends Migration {
      */
     public function up() {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_private');
+            $table->boolean('is_private')->default(False);
         });
     }
 

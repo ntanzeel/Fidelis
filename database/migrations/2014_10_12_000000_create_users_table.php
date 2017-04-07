@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration {
             $table->string('email')->unique();
             $table->string('password');
             $table->string('about');
-            $table->float('reputation');
+            $table->float('reputation')->unsigned()->default(0);
             $table->string('api_token', 64)->unique();
             $table->rememberToken();
             $table->timestamps();
