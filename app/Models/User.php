@@ -57,7 +57,7 @@
          * @var array
          */
         protected $fillable = [
-            'name', 'email', 'password', 'about', 'dob', 'reputation', 'api_token',
+            'name', 'email', 'username', 'password', 'about', 'dob', 'reputation', 'api_token',
         ];
 
         /**

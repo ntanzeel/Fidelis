@@ -13,7 +13,7 @@ class AddCoverPhotoToUsersTable extends Migration {
      */
     public function up() {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('cover');
+            $table->text('cover')->nullable();
         });
     }
 
