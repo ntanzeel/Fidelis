@@ -1,0 +1,34 @@
+body {
+    padding-top: 50px;
+}
+
+.nav-stacked a.active,
+.nav-stacked a:hover,
+.nav-stacked a:focus {
+    color: #FF6631;
+}
+
+.support-header {
+    background: #FF6631;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #D3E0E9;
+    height: 100px;
+    color: #FFFFFF;
+    font-size: 20pt;
+    line-height: 70px;
+}
+
+.btn .btn-orange {
+    color: #FF6631;
+    border: 1px solid #FF6631;
+}
+
+.li-support {
+    padding-top: 10px;
+    line-height: 1.5;
+}
+
+.li-support a {
+    color: #FF6631;
+}

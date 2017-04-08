@@ -80,3 +80,9 @@ form fieldset legend {
 #app .mention-username {
     color: #FF6631;
 }
+
+#app .support-link {
+    color: #FF6631;
+    margin-left: 5px;
+    margin-right: 5px;
+}

@@ -7,6 +7,10 @@
                 <a class="mention-username" href="{{ route('profile.view', 'jolney') }}">Jordan Olney</a>,
                 <a class="mention-username" href="{{ route('profile.view', 'tmcaloone') }}">Thomas Mcaloone</a>
             </p>
+            <p>
+                <a class="support-link" href="{{ route('support.index') }}">Support</a>
+                <a class="support-link" href="{{ route('support.terms') }}">Terms</a>
+            </p>
             <p>&copy; 2016 Fidelis.</p>
         </div>
     </div>

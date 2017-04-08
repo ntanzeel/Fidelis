@@ -217,6 +217,22 @@
                 'uses' => 'Settings\BlockedController@index',
             ]);
         });
+
+    });
+
+    /*
+     * Support
+     */
+    Route::group(['as' => 'support.', 'prefix' => '/support'], function () {
+        Route::get('/', [
+            'as'   => 'index',
+            'uses' => 'SupportController@index',
+        ]);
+
+        Route::get('/terms', [
+            'as'   => 'terms',
+            'uses' => 'SupportController@terms',
+        ]);
     });
 
     /*
