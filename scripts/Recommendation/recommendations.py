@@ -5,7 +5,7 @@ import random
 from collections import Counter
 
 
-def get_post_reputation(curs, post_id, min_reputation):
+def compare_reputation(curs, post_id, min_reputation):
         curs.execute(
             "SELECT reputation FROM posts WHERE id = {}".format(post_id)
         )
@@ -18,9 +18,6 @@ def get_tags(curs):
     curs.execute("SELECT id FROM tags")
     return [x[0] for x in curs.fetchall()]
 
-# Generate a count vector that will be used for user similarity
-def generate_count_vector(num_tags):
-    return [0] * num_tags
 
 # Populate the count vector by counting the number of posts/votes a user has made
 # in each of the tags. Return a vector of tuples, where each tuple is a tag ID-count
@@ -62,14 +59,11 @@ def get_default_recommendations(curs, recomendee_id, recommendation_type, min_re
 
     if recommendation_type == 0:
         curs.execute(
-            "SELECT PT.tag_id, P.id FROM posts P JOIN post_tag PT ON P.id = "
-            "PT.post_id WHERE P.user_id != {}".format(recomendee_id)
+            "SELECT PT.tag_id, P.id, P.reputation FROM posts P JOIN post_tag PT "
+            "ON P.id = PT.post_id WHERE P.user_id != {} AND P.reputation >= {} "
+            "ORDER BY P.reputation DESC".format(recomendee_id, min_reputation)
         )
-        posts = curs.fetchall()
-
-        for post in posts:
-            if get_post_reputation(curs, str(post[1]), min_reputation):
-                default_recommendations.append(post)
+        default_recommendations = [(post[0], post[1]) for x in curs.fetchall()]
     else:
         curs.execute(
             "SELECT id, reputation FROM users WHERE reputation >= {} AND id != "
@@ -121,12 +115,12 @@ def get_fof_recommendations(curs, recommendation_type, recomendee_id, num_recomm
             posts = curs.fetchall()
 
             for post in posts:
-                if get_post_reputation(curs, str(post[1]), min_reputation):
+                if compare_reputation(curs, str(post[1]), min_reputation):
                     candidate_posts.append(comment)
 
         fof_recommendations = candidate_posts
     else:
-        fof_recommendations = Counter(fof_recommendations).most_common()
+        fof_recommendations = Counter(fof_recommendations).most_common(num_recommendations)
         fof_recommendations = [(-1, x[0]) for x in fof_recommendations]
 
     # Only return the number of recommendations required
@@ -143,13 +137,12 @@ def get_fof_recommendations(curs, recommendation_type, recomendee_id, num_recomm
 # is used, and for content recommendation use the content's reputation
 def get_explorer_recommendations(curs, recommendation_type, recomendee_id, recomendee_vector, threshold, min_reputation, tags, num_tags, num_recommendations):
     explorer_recommendations = []
-    num_favourites = 5
 
     # Sort vector by the count to get the users favourite tags
     recomendee_sorted = sorted(recomendee_vector, key=lambda tup: tup[1], reverse=True)
 
     # Select the IDs of the users most popular tags
-    favourite_tags = [x[0] for x in recomendee_sorted[:num_favourites] if x[1] > 0]
+    favourite_tags = [x[0] for x in recomendee_sorted if x[1] > 0]
     recomendee_vector = [x[1] for x in recomendee_vector]
 
     # For each tag, get users posting in it and generate their vectors and check
@@ -163,10 +156,10 @@ def get_explorer_recommendations(curs, recommendation_type, recomendee_id, recom
             "PT.tag_id = T.id WHERE T.id = {} AND U.user_id != {} AND "
             "U.reputation >= {}".format(tag, recomendee_id, min_reputation)
         )
-        users = [x[0] for x in curs.fetchall()]
+        tag_users = [x[0] for x in curs.fetchall()]
 
         # Create tag vectors for users in each tag the recomendee has posted in, and check for similarity
-        for u in users:
+        for u in tag_users:
             if recommendation_type == 0:
                 curs.execute(
                     "SELECT P.id FROM tags T join post_tag PT ON T.id = PT.tag_id "
@@ -177,7 +170,7 @@ def get_explorer_recommendations(curs, recommendation_type, recomendee_id, recom
                 posts = [x[0] for x in curs.fetchall()]
 
                 for post in posts:
-                    if get_post_reputation(curs, str(post), min_reputation):
+                    if compare_reputation(curs, str(post), min_reputation):
                         explorer_recommendations.append((tag, comment))
             else:
                 # Perform cosine similarity between recomendees tag count vector
@@ -203,9 +196,11 @@ def get_explorer_recommendations(curs, recommendation_type, recomendee_id, recom
 # Generate 'hybrid' recommendations by taking the intersect of the results from fof
 # and explorer recommendations
 def get_hybrid_recommendations(curs, recommendation_type, recomendee_id, recomendee_vector, num_recommendations, min_reputation, threshold,tags, num_tags):
-    fof_recommendations = set(get_fof_recommendations(curs, recommendation_type, recomendee_id, num_recommendations, min_reputation))
+    fof_recommendations = set(get_fof_recommendations(curs, recommendation_type, recomendee_id,
+    num_recommendations, min_reputation))
 
-    explorer_recommendations = set(get_explorer_recommendations(curs, recommendation_type, recomendee_id, recomendee_vector, threshold,
+    explorer_recommendations = set(get_explorer_recommendations(curs, recommendation_type,
+    recomendee_id, recomendee_vector, threshold,
                                     min_reputation, tags, num_tags, num_recommendations))
 
     hybrid_recommendations = set.intersection(fof_recommendations, explorer_recommendations)
@@ -305,12 +300,10 @@ def generate_recommendations(curs, recomendee_id, recommendation_type, preferenc
     recommendations = set(recommendations) - set(get_current_recommendations(curs, recommendation_type, recomendee_id))
 
     if recommendation_type == 0:
-        recommendations = list(recommendations -
-        set(get_blocked_user_posts(curs, recomendee_id)) -
+        recommendations = list(recommendations - set(get_blocked_user_posts(curs, recomendee_id)) -
         set(get_voted_posts(curs, recomendee_id)))
     else:
-        recommendations = list(recommendations -
-        set(get_blocked_users(curs, recomendee_id))
+        recommendations = list(recommendations - set(get_blocked_users(curs, recomendee_id))
         - set(get_followees(curs, recomendee_id)) - set(recomendee_id))
 
     # Insert newly created recommendations into the database
@@ -387,9 +380,6 @@ def main():
 
             content_count = get_recommendation_count(curs, str(user), 'content_recommendations')
             user_count = get_recommendation_count(curs, str(user), 'user_recommendations')
-
-            curs.execute("SELECT name FROM users WHERE id = {}".format(str(user)))
-            name = curs.fetchone()[0]
 
             if content_count < num_recommendations:
                 generate_recommendations(curs, str(user), 0, preference, num_recommendations - content_count,

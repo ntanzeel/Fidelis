@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel {
         // Python scripts set to run daily for abuse detection, user and content
         // recommendations/reputation
         $schedule->exec('python "scripts\Abuse Detection\prediction.py"')->daily();
-        $schedule->exec('python "scripts\User Recommendation\recommendations.py"')->daily();
+        $schedule->exec('python "scripts\Recommendation\recommendations.py"')->daily();
         $schedule->exec('python "scripts\Reputation Scoring\Post_Rep_Score.py"')->daily();
         $schedule->exec('python "scripts\Reputation Scoring\User_Rep_Score.py"')->daily();
 
