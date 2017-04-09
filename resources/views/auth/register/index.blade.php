@@ -94,6 +94,21 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="read-terms" class="col-md-4 control-label">Agree to Terms</label>
+
+                                <div class="col-md-6">
+                                    <input id="read-terms" type="checkbox"
+                                           name="read_terms" > I have read and agree to the <a href="{{ route('support.terms') }}" style="color: #FF6631">Terms</a> of using Fidelis.
+
+                                           @if ($errors->has('read_terms'))
+                                               <span class="help-block">
+                                               <strong>{{ $errors->first('read_terms') }}</strong>
+                                           </span>
+                                           @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-orange">
                                         Register
