@@ -93,7 +93,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group{{ $errors->has('read_terms') ? ' has-error' : '' }}">
                                 <label for="read-terms" class="col-md-4 control-label">Agree to Terms</label>
 
                                 <div class="col-md-6">
@@ -102,7 +102,7 @@
 
                                            @if ($errors->has('read_terms'))
                                                <span class="help-block">
-                                               <strong>{{ $errors->first('read_terms') }}</strong>
+                                               <strong>You must accept the terms of Fidelis before registering.</strong>
                                            </span>
                                            @endif
                                 </div>
