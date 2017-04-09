@@ -59,6 +59,7 @@ class RegisterController extends Controller {
             'username' => 'required|max:255:unique:users',
             'password' => 'required|min:6|confirmed',
             'dob'      => 'required|date',
+            'read_terms' => 'required',
         ]);
     }
 
