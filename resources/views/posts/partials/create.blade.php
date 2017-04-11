@@ -11,6 +11,16 @@
             <a class="toggle" href="#"><i class="fa fa-camera fa-2x" aria-hidden="true"></i> <span class="file-name"></span></a>
             <input type="file" multiple name="images[]" id="post-images" style="display: none" accept="image/*" />
         </div>
-        <button type="submit" class="btn btn-orange">Submit</button>
+        <button type="submit" id="new-post" class="btn btn-orange">Submit</button>
     </div>
 </form>
+
+<div class="modal" id="category-modal" tabindex="-1" aria-labelledby="category-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>

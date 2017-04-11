@@ -238,7 +238,7 @@
     /*
      * API
      */
-    Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], function () {
+    Route::group(['as' => 'api.', 'prefix' => 'api'], function () { //, 'middleware' => 'ajax'
         /*
          * Posts
          */
@@ -266,6 +266,11 @@
             Route::delete('/{post}', [
                 'as'   => 'delete',
                 'uses' => 'Api\PostController@destroy',
+            ]);
+
+            Route::get('/categorise/{post}', [
+                'as'   => 'categorise',
+                'uses' => 'Api\PostController@categorise',
             ]);
         });
 
