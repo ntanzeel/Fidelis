@@ -27,6 +27,7 @@ from sklearn.model_selection import cross_val_score
 if __name__ == '__main__':
     data = pd.read_csv('data/dataset.csv', header=None, names=['Post', 'Category']) # Load dataframe
     data['Category'], categories = pd.factorize(data.Category) # Replace text categories with integers
+    pd.DataFrame(data=categories).to_csv(path_or_buf='categories.csv', index=False, header=False) # Save indices to CSV
     data['Post'] = data['Post'].apply(p.preprocess) # Clean the post
     data = data[data.Post.str.len() > 20].reset_index(drop=True) # Drop samples with text less than 20 characters long
 

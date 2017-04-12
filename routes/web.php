@@ -270,7 +270,7 @@
 
             Route::get('/categorise/{post}', [
                 'as'   => 'categorise',
-                'uses' => 'Api\PostController@categorise',
+                'uses' => 'Api\PostController@predict',
             ]);
         });
 
