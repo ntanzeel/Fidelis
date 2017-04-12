@@ -23,7 +23,6 @@ class FeatureStacker(BaseEstimator):
     def transform(self, X):
         features = []
         for name, trans in self.transformer_list:
-            print "Transforming %s" % name
             features.append(trans.transform(X))
         issparse = [sparse.issparse(f) for f in features]
         if np.any(issparse):

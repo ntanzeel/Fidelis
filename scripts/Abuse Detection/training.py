@@ -1,3 +1,4 @@
+from sklearn.externals import joblib
 from sklearn.model_selection import GridSearchCV
 
 import data
@@ -22,6 +23,8 @@ def build_lr_model():
 
     print auc_score(test_labels, predictions[:, 1])
 
+    joblib.dump(lr_pipeline, './models/LogisticRegression.pkl');
+
 
 def build_svc_model():
     print "Reading Data"
@@ -38,6 +41,8 @@ def build_svc_model():
     predictions = lr_pipeline.predict_proba(test_comments)
 
     print auc_score(test_labels, predictions[:, 1])
+
+    joblib.dump(lr_pipeline, './models/SVC.pkl');
 
 
 def test_svc_model():

@@ -1,3 +1,5 @@
+import sys
+
 import pandas as pd
 from sql import MySQL
 from sklearn.externals import joblib
@@ -29,6 +31,23 @@ def getReportedComments(mysql):
     return pd.DataFrame(results) if len(results) > 0 else None
 
 
+def getComments(mysql):
+    query = ("SELECT comments.id AS comment_id, comments.text as text FROM comments "
+             "WHERE comments.deleted_at IS NULL AND comments.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)")
+
+    cursor = mysql.get_cursor()
+    cursor.execute(query)
+
+    results = []
+
+    for (comment_id, text) in cursor:
+        results.append({'comment_id': comment_id, 'text': text})
+
+    cursor.close()
+
+    return pd.DataFrame(results) if len(results) > 0 else None
+
+
 def getScores(comments, classifier):
     predictions = classifier.predict_proba(comments)
 
@@ -42,33 +61,35 @@ def updatePredictions(mysql, comments):
     for index, row in comments.iterrows():
         cursor.execute(query, (row['score'], int(round(row['comment_id']))))
 
-    query = ("UPDATE reports SET processed = 1 WHERE id >= %s AND id <= %s")
-    cursor.execute(query, (int(min(comments.report_id.values)), int(max(comments.report_id.values))))
+    if 'report_id' in comments.columns:
+        query = ("UPDATE reports SET processed = 1 WHERE id >= %s AND id <= %s")
+        cursor.execute(query, (int(min(comments.report_id.values)), int(max(comments.report_id.values))))
 
     mysql.get_connection().commit()
     cursor.close()
 
 
-def processReports(mysql, classifier):
-    comments = getReportedComments(mysql)
-
+def processComments(mysql, classifier, comments):
     if comments is not None:
+        print comments
         comments['score'] = getScores(comments.text.values, classifier)
         updatePredictions(mysql, comments)
     else:
-        print "No reports to process."
+        print "No comments to process."
 
 
-def main():
+def main(reported=False):
     # Create a connection to the database.
     classifier = getClassifier()
     mysql = getConnection()
 
     if mysql.connect():
-        processReports(mysql, classifier)
+        comments = getReportedComments(mysql) if reported else getComments(mysql)
+        processComments(mysql, classifier, comments)
     else:
         print "There was an error connecting to the database. Please check your database configuration and try again."
 
 
 if __name__ == '__main__':
-    main()
+    reportedOnly = True if len(sys.argv) > 1 and sys.argv[1] == 'true' else False
+    main(reportedOnly)
