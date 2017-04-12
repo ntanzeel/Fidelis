@@ -49,6 +49,9 @@ $(document).ready(function () {
 
                 var tot = parseInt($('#posts-value').html());
                 $('#posts-value').html(tot+1);
+
+                var id = $(response).attr('id').split('-')[1];
+                predictPost($form.attr('action')+'/categorise/'+ id);
             },
             error: function (response) {
                 var errors = response.responseJSON;
@@ -60,3 +63,21 @@ $(document).ready(function () {
         });
     });
 });
+
+function predictPost(url) {
+    $.ajax({
+        url: url,
+        method: 'get',
+        processData: false,
+        contentType: false,
+        beforeSend: function (xhr) {
+            return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (response) {
+            var errors = response.responseJSON;
+        }
+    });
+}

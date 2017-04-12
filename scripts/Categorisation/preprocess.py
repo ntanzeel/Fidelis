@@ -6,13 +6,12 @@ from nltk.stem import WordNetLemmatizer
 lemma = WordNetLemmatizer()
 p.set_options(p.OPT.URL, p.OPT.MENTION, p.OPT.RESERVED, p.OPT.EMOJI, p.OPT.SMILEY, p.OPT.NUMBER)
 stops = set(stopwords.words('english'))
-replace_punc = str.maketrans(string.punctuation, ' '*len(string.punctuation))
+replace_punc = string.maketrans(string.punctuation, ' '*len(string.punctuation))
 
 def preprocess(post):
     post = post.encode('ascii', errors='ignore').decode('utf-8') # Remove non ascii characters
     filtered = p.clean(post).lower() # Clean Twitter entities and make lower case
     filtered = str(filtered).translate(replace_punc) # Remove punctuation
-    filtered = p.clean(filtered)
     filtered = ' '.join([lemma.lemmatize(word) for word in filtered.split() if (word not in stops) and (len(word) > 3)])
     return(filtered)
 

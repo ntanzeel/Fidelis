@@ -53,6 +53,7 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Models\Post $post) {
+        dd(1);
         if (!$post->canBeViewedBy(Auth::user())) {
             abort(401);
         }
@@ -99,5 +100,12 @@ class PostController extends Controller {
         return response()->json([
             'success' => $post->delete(),
         ]);
+    }
+
+    public function categorise(Models\Post $post){
+        if (!$post->canBeEditedBy(Auth::user())) {
+            abort(401);
+        }
+        return response(exec('python storage/scripts/predict.py '.$post->id));
     }
 }
