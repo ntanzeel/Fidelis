@@ -8,6 +8,7 @@ use App\Http\Traits\Post;
 use App\Models;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Process\Process;
 
 class PostController extends Controller {
 
@@ -102,10 +103,22 @@ class PostController extends Controller {
         ]);
     }
 
-    public function categorise(Models\Post $post){
+    public function predict(Models\Post $post){
         if (!$post->canBeEditedBy(Auth::user())) {
             abort(401);
         }
-        return response(exec('python storage/scripts/predict.py '.$post->id));
+        $tags = $post->tags;
+        $categoryName = 'None';
+        if (!empty($tags)) {
+            $process = new Process('cd '.base_path('scripts/Categorisation').'; python predict.py "'. $post->content->text .'"');
+            $process->run();
+            $category = $process->getOutput();
+            if ($category != -1){
+                $categoryName = substr($category,0,-1);
+                $tag = Models\Tag::where('text', $categoryName)->get();
+                $post->tags()->attach($tag);
+            }
+        }
+        return response($categoryName);
     }
 }
