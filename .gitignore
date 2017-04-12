@@ -1,10 +1,10 @@
 /node_modules
 /public/storage
 /vendor
-/.idea
 Homestead.json
 Homestead.yaml
 .env
 .DS_STORE
 
+**/.idea
 **/.ipynb_checkpoints
