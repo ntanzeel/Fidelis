@@ -9,7 +9,7 @@
     class SearchController extends Controller {
 
         public function display($query) {
-            if (strlen($query) == 0 || ((starts_with($query, '#') || starts_with($query, '#')) && strlen($query) < 2)) {
+            if (strlen($query) == 0 || ((starts_with($query, '#') || starts_with($query, '@')) && strlen($query) < 2)) {
                 return abort(400);
             }
 
