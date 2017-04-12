@@ -13,7 +13,10 @@ class Kernel extends ConsoleKernel {
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\Recommendations',
+        'App\Console\Commands\AbuseDetection',
+        'App\Console\Commands\PostReputation',
+        'App\Console\Commands\UserReputation',
         'App\Console\Commands\CleanRecommendations',
     ];
 
@@ -24,14 +27,13 @@ class Kernel extends ConsoleKernel {
      * @return void
      */
     protected function schedule(Schedule $schedule) {
-        // Python scripts set to run daily for abuse detection, user and content
-        // recommendations/reputation
-        $schedule->exec('python "scripts\Abuse Detection\prediction.py"')->daily();
-        $schedule->exec('python "scripts\Recommendation\recommendations.py"')->daily();
-        $schedule->exec('python "scripts\Reputation Scoring\Post_Rep_Score.py"')->daily();
-        $schedule->exec('python "scripts\Reputation Scoring\User_Rep_Score.py"')->daily();
-
-        // User commands
+        /*
+         * Tasks set to run daily
+         */
+        $schedule->command('script:post-reputation')->daily();
+        $schedule->command('script:user-reputation')->daily();
+        $schedule->command('script:recommendation')->daily();
+        $schedule->command('script:abuse-detection')->daily();
         $schedule->command('clean:recommendation')->weekly();
     }
 
