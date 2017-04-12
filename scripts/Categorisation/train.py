@@ -40,4 +40,4 @@ if __name__ == '__main__':
     model = pipeline.fit(data.Post, data.Category.values)
 
     # Export model
-    joblib.dump(model,'../../storage/app/public/scripts/models/SGD.pkl')
+    joblib.dump(model,'models/SGD.pkl')
