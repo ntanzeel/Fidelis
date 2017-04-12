@@ -70,7 +70,6 @@ class RegisterController extends Controller {
      * @return User
      */
     protected function create(array $data) {
-        var_dump($data['username']);
         return User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
