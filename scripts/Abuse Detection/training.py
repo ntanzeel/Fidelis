@@ -3,6 +3,7 @@ from sklearn.model_selection import GridSearchCV
 
 import data
 from classifiers import LogisticRegression
+from classifiers import SGD
 from classifiers import SVM
 from sklearn.metrics import roc_auc_score as auc_score
 
@@ -23,7 +24,26 @@ def build_lr_model():
 
     print auc_score(test_labels, predictions[:, 1])
 
-    joblib.dump(lr_pipeline, './models/LogisticRegression.pkl');
+    joblib.dump(lr_pipeline, './models/LogisticRegression.pkl')
+
+
+def build_sgd_model():
+    print "Reading Data"
+    comments, labels = data.get_train_data()
+    test_comments, test_labels = data.get_test_data()
+
+    print "Building SGD Pipeline"
+    sgd_pipeline = SGD.build_stacked_model()
+
+    print "Training SGD"
+    sgd_pipeline.fit(comments, labels)
+
+    print "Predicting SGD"
+    predictions = sgd_pipeline.predict_proba(test_comments)
+
+    print auc_score(test_labels, predictions[:, 1])
+
+    joblib.dump(sgd_pipeline, './models/SGD.pkl')
 
 
 def build_svc_model():
@@ -66,4 +86,4 @@ def test_svc_model():
 
 
 if __name__ == "__main__":
-    build_lr_model()
+    build_sgd_model()

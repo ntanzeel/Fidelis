@@ -15,10 +15,12 @@ class LogisticRegression:
     def build_stacked_model():
         select = SelectPercentile(score_func=chi2, percentile=16)
 
-        logistic_regression = lm.LogisticRegression(tol=1e-8, penalty='l2', C=4)
+        bad_words = BadWordCounter()
+
         char_vector = TfidfVectorizer(ngram_range=(1, 5), analyzer="char", binary=False)
         word_vector = TfidfVectorizer(ngram_range=(1, 3), analyzer="word", binary=False, min_df=3)
-        bad_words = BadWordCounter()
+
+        logistic_regression = lm.LogisticRegression(tol=1e-8, penalty='l2', C=4)
 
         features = FeatureStacker([("bad_words", bad_words), ("chars", char_vector), ("words", word_vector)])
         pipeline = Pipeline([('features', features), ('select', select), ('logistic_regression', logistic_regression)])

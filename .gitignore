@@ -8,3 +8,4 @@ Homestead.yaml
 
 **/.idea
 **/.ipynb_checkpoints
+**/*.pyc
