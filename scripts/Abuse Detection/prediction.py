@@ -14,7 +14,7 @@ def getConnection():
 
 
 def getReportedComments(mysql):
-    query = ("SELECT reports.id as report_id, comments.id AS comment_id, comments.text as text FROM comments "
+    query = ("SELECT reports.id AS report_id, comments.id AS comment_id, comments.text AS text FROM comments "
              "INNER JOIN reports ON comments.id = reports.comment_id "
              "WHERE reports.processed = FALSE AND reports.deleted_at IS NULL")
 
@@ -32,7 +32,7 @@ def getReportedComments(mysql):
 
 
 def getComments(mysql):
-    query = ("SELECT comments.id AS comment_id, comments.text as text FROM comments "
+    query = ("SELECT comments.id AS comment_id, comments.text AS text FROM comments "
              "WHERE comments.deleted_at IS NULL AND comments.created_at >= DATE_SUB(NOW(), INTERVAL 1 DAY)")
 
     cursor = mysql.get_cursor()
