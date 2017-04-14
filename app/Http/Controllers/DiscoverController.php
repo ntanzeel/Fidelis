@@ -13,7 +13,7 @@ class DiscoverController extends Controller {
     private $categories;
 
     public function __construct() {
-        $this->middleware('auth')->only('index');
+        $this->middleware('auth')->only(['index', 'recommended']);
         $this->categories = Category::orderBy('name')->get();
     }
 
@@ -38,6 +38,23 @@ class DiscoverController extends Controller {
         ]);
     }
 
+    public function recommended() {
+        $with = [];
+
+        if (Auth::user()) {
+            $with['content.reports'] = $with['content.votes'] = function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            };
+        }
+
+        $posts = Auth::user()->recommendedPosts()->with($with)->latest()->get();
+
+        return view('discover.recommended', [
+            'categories' => $this->categories,
+            'posts'      => $posts,
+        ]);
+    }
+
     public function category($category) {
         $tag = Tag::where('text', $category)->first();
 
@@ -53,25 +70,18 @@ class DiscoverController extends Controller {
             };
         }
 
-        if($category == 'Recommendations') {
-            $tag_id = -1;
-            $rootCategory = Null;
-            $posts = Auth::user()->content_recommendations()->with($with)->latest()->get();
-        }
-        else {
-            $rootCategory = $tag->categories()->where('root', true)->first();
+        $rootCategory = $tag->categories()->where('root', true)->first();
 
-            if ($rootCategory) {
-                $tagIds = $rootCategory->tags()->pluck('tags.id');
+        if ($rootCategory) {
+            $tagIds = $rootCategory->tags()->pluck('tags.id');
 
-                $posts = Post::whereHas('tags', function ($query) use ($tagIds) {
-                    $query->whereIn('tags.id', $tagIds);
-                })->with($with)->latest()->get();
-            } else {
-                $posts = $tag->posts()->with($with)->latest()->get();
-            }
-            $tag_id = $tag->id;
+            $posts = Post::whereHas('tags', function ($query) use ($tagIds) {
+                $query->whereIn('tags.id', $tagIds);
+            })->with($with)->latest()->get();
+        } else {
+            $posts = $tag->posts()->with($with)->latest()->get();
         }
+        $tag_id = $tag->id;
 
         return view('discover.category', [
             'tag'        => $tag,

@@ -95,13 +95,18 @@
     /*
      * Discover
      */
-    Route::group(['as' => 'discover.'], function () {
-        Route::get('discover', [
+    Route::group(['as' => 'discover.', 'prefix' => 'discover'], function () {
+        Route::get('/', [
             'as'   => 'index',
             'uses' => 'DiscoverController@index',
         ])->middleware('auth');
 
-        Route::get('discover/{category}', [
+        Route::get('/recommended', [
+            'as'   => 'recommended',
+            'uses' => 'DiscoverController@recommended',
+        ]);
+
+        Route::get('/{category}', [
             'as'   => 'category',
             'uses' => 'DiscoverController@category',
         ]);

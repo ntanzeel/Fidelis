@@ -2,16 +2,6 @@
     <div class="panel-heading">Categories</div>
     <div class="panel-body">
         <ul class="nav nav-pills nav-stacked">
-            @if(Auth::user())
-                <li role="presentation">
-                    <a class="{{ $active == "Subscribed" ? 'active' : '' }}"
-                       href="{{ route('discover.index') }}">Subscribed</a>
-                </li>
-                <li role="presentation">
-                    <a class="{{ $active == "Recommendations" ? 'active' : '' }}"
-                       href="{{ route('discover.category', 'Recommendations') }}">Recommendations</a>
-                </li>
-            @endif
             @foreach($categories as $category)
                 <li role="presentation">
                     <a class="{{ $active == $category->name ? 'active' : '' }}"
