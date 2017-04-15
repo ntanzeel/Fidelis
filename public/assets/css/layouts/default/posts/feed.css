@@ -103,3 +103,14 @@
 .empty-feed {
     padding: 15px;
 }
+
+.categories-container {
+    list-style-type: none;
+    font-size: 12pt;
+    line-height: 1.5;
+}
+
+a.current {
+    color: #FF6631;
+    text-decoration: underline;
+}

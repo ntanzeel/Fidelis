@@ -14,7 +14,7 @@
     @endforelse
 </ul>
 
-<div class="modal" id="category-modal" tabindex="-1" aria-labelledby="category-modal" aria-hidden="true" data-post="#" data-api="#" data-url="{{ url('discover') }}/">
+<div class="modal" id="category-modal" tabindex="-1" aria-labelledby="category-modal" aria-hidden="true" data-post="#" data-api="{{ route('api.post.editcategory') }}" data-url="{{ url('discover') }}/">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,7 +26,7 @@
                     @foreach($categories as $category)
                         <li id="cat-{{ $category->id }}" class="category-item"><a class="" href="#">{{ $category->name }}</a></li>
                     @endforeach
-                    <li id="cat-14" class="category-item"><a class="" href="#">No category</a></li>
+                    <li id="cat-0" class="category-item"><a class="" href="#">No category</a></li>
                 </ul>
             </div>
             <div class="modal-footer"><button type="button" class="btn btn-orange btn-save-category" data-dismiss="modal">Save</button></div>

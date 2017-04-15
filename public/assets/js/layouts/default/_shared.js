@@ -170,3 +170,62 @@ function ajaxPost($btn, $type) {
         }
     });
 }
+
+$('.anchor').on('click', '.edit-category', function(event){
+    event.preventDefault();
+
+    var post = $(this).closest('.post').attr('id').split('-')[1];
+    if ($(this).siblings().length == 0) {
+        var category = "No category";
+    }
+    else {
+        var category = $(this).siblings().first().html();
+    }
+    var tag = $(this).attr('id').split('-')[1];
+    var modal = $('#category-modal');
+
+    modal.find('.current').first().removeClass('current');
+    modal.find(".category-item:contains('"+category+"')").first().find('a').addClass('current');
+    modal.attr('data-post',post);
+    modal.modal();
+});
+
+$('.category-item').click(function(e) {
+    e.preventDefault();
+
+    $('#category-modal').find('.current').first().removeClass('current');
+    $(this).find('a').addClass('current');
+});
+
+$('.btn-save-category').click(function(e) {
+    e.preventDefault();
+
+    var modal = $('#category-modal');
+    var api = modal.attr('data-api');
+    var post = modal.attr('data-post');
+    var category = modal.find('.current').first().parent().attr('id').split('-')[1];
+    var discover = modal.attr('data-url');
+
+    $.ajax({
+        url: api,
+        method: 'POST',
+        data: {
+            post: post,
+            category: category
+        },
+        beforeSend: function (xhr) {
+            return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+        },
+        success: function (response) {
+            if (response['name'] == 'No category') {
+                $('#post-' + post).find('.category-link').html("<a id='edit-0' class='edit-category' href='#'><i class='fa fa-pencil'></i></a>No category");
+            }
+            else {
+                $('#post-' + post).find('.category-link').html("<a id='edit-"+category+"' class='edit-category' href='#'><i class='fa fa-pencil'></i></a><a href='"+discover+response['name']+"'>"+response['name']+"</a>");
+            }
+        },
+        error: function (response) {
+            console.log(response.responseText);
+        }
+    });
+});

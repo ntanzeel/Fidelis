@@ -126,8 +126,16 @@ class PostController extends Controller {
 
     public function editCategory(Request $request) {
         $post = Models\Post::find($request->input('post'));
-        $tag = Models\Tag::find($request->input('tag'));
-        $post->tag()->attach($tag);
-        return response($category->name);
+        if ($request->input('category') == 0) {
+            $post->tags()->detach($post->automaticTag->first());
+            return response()->json(['name' => 'No category',
+                                     'id'   => 0]);
+        }
+        $category = Models\Category::find($request->input('category'));
+        $tag = Models\Tag::where('text', $category->name)->first();
+        $post->tags()->detach($post->automaticTag->first());
+        $post->tags()->attach($tag->id, ['automatic' => 1]);
+        return response()->json(['name' => $category->name,
+                                 'id'   => $tag->id]);
     }
 }

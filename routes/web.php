@@ -277,6 +277,11 @@
                 'as'   => 'categorise',
                 'uses' => 'Api\PostController@predict',
             ]);
+
+            Route::post('/categorise', [
+                'as'  => 'editcategory',
+                'uses' => 'Api\PostController@editCategory',
+            ]);
         });
 
         /*
