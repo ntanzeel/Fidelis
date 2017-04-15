@@ -26,6 +26,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var $form = $(this);
+        var discover = $form.attr('data-discover');
 
         $.ajax({
             url: $form.attr('action'),
@@ -44,14 +45,17 @@ $(document).ready(function () {
                     $posts.data('empty', '0');
                 }
                 $posts.prepend('<li class="media">' + response + '</li>');
+
+                var id = $(response).attr('id').split('-')[1];
+                $('#post-'+id).find('.category-link').first().html('Loading category...');
+
                 var $name = $form.find('.image-upload').find('.file-name');
                 $name.text('');
 
                 var tot = parseInt($('#posts-value').html());
                 $('#posts-value').html(tot+1);
 
-                var id = $(response).attr('id').split('-')[1];
-                predictPost($form.attr('action')+'/categorise/'+ id);
+                predictPost($form.attr('action')+'/categorise/', id, discover);
             },
             error: function (response) {
                 var errors = response.responseJSON;
@@ -64,9 +68,9 @@ $(document).ready(function () {
     });
 });
 
-function predictPost(url) {
+function predictPost(url, id, discover) {
     $.ajax({
-        url: url,
+        url: url + id,
         method: 'get',
         processData: false,
         contentType: false,
@@ -74,7 +78,13 @@ function predictPost(url) {
             return xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
         },
         success: function (response) {
-            console.log(response);
+            var categoryDiv = $('#post-'+id).find('.category-link').first();
+            if (response['id'] == 0) {
+                categoryDiv.html("<a id='edit-0' class='edit-category' href='#'><i class='fa fa-pencil'></i></a>No category");
+            }
+            else {
+                categoryDiv.html("<a id='edit-"+response['id']+"' class='edit-category' href='#'><i class='fa fa-pencil'></i></a><a href='"+discover+response['name']+"'>"+response['name']+"</a>");
+            }
         },
         error: function (response) {
             var errors = response.responseJSON;

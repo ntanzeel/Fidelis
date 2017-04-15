@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 
 class ProfileController extends Controller {
 
@@ -47,8 +48,9 @@ class ProfileController extends Controller {
 
         $posts = $user->posts()->with($with)->latest()->get();
         $images = Image::where('user_id', $user->id)->orderBy('id', 'DESC')->limit(4)->get();
+        $categories = Category::orderBy('name')->get();
 
-        return view('profile.view', array_merge(compact('user', 'posts', 'images'), $preRoute));
+        return view('profile.view', array_merge(compact('user', 'posts', 'images', 'categories'), $preRoute));
     }
 
     public function followers(User $user) {
@@ -92,7 +94,8 @@ class ProfileController extends Controller {
 
         $posts = $user->voted()->with($with)->get();
         $images = Image::where('user_id', $user->id)->orderBy('id', 'DESC')->limit(4)->get();
+        $categories = Category::orderBy('name')->get();
 
-        return view('profile.view', array_merge(compact('user', 'posts', 'images'), $preRoute));
+        return view('profile.view', array_merge(compact('user', 'posts', 'images', 'categories'), $preRoute));
     }
 }

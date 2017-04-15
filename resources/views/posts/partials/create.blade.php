@@ -1,4 +1,4 @@
-<form class="ajax post-form" method="post" action="{{ route('api.post.store') }}" enctype="multipart/form-data" >
+<form class="ajax post-form" method="post" action="{{ route('api.post.store') }}" enctype="multipart/form-data" data-discover='{{ url('discover') }}/' >
     {{ csrf_field() }}
 
     <div class="form-group">
@@ -14,13 +14,3 @@
         <button type="submit" id="new-post" class="btn btn-orange">Submit</button>
     </div>
 </form>
-
-<div class="modal" id="category-modal" tabindex="-1" aria-labelledby="category-modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-
-            </div>
-        </div>
-    </div>
-</div>

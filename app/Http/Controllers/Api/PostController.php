@@ -107,18 +107,27 @@ class PostController extends Controller {
         if (!$post->canBeEditedBy(Auth::user())) {
             abort(401);
         }
-        $tags = $post->tags;
-        $categoryName = 'None';
-        if (!empty($tags)) {
-            $process = new Process('cd '.base_path('scripts/Categorisation').'; python predict.py "'. $post->content->text .'"');
-            $process->run();
-            $category = $process->getOutput();
-            if ($category != -1){
-                $categoryName = substr($category,0,-1);
-                $tag = Models\Tag::where('text', $categoryName)->get();
-                $post->tags()->attach($tag);
-            }
+        $process = new Process('cd '.base_path('scripts/Categorisation').'; python predict.py "'. $post->content->text .'"');
+        $process->run();
+        $category = $process->getOutput();
+        if ($category != -1){
+            $categoryName = substr($category,0,-1);
+            $tag = Models\Tag::where('text', $categoryName)->first();
+            $post->tags()->attach($tag, ['automatic' => 1]);
+            $tagId = $tag->id;
         }
-        return response($categoryName);
+        else {
+            $tagId = 0;
+            $categoryName = 'No category';
+        }
+        return response()->json(['name' => $categoryName,
+                                 'id'   => $tagId]);
+    }
+
+    public function editCategory(Request $request) {
+        $post = Models\Post::find($request->input('post'));
+        $tag = Models\Tag::find($request->input('tag'));
+        $post->tag()->attach($tag);
+        return response($category->name);
     }
 }

@@ -65,6 +65,12 @@
                 ->withTimestamps();
         }
 
+        public function automaticTag() {
+             return $this->belongsToMany('App\Models\Tag')
+             ->withPivot('automatic')
+             ->wherePivot('automatic', 1);
+        }
+
         public function canBeViewedBy($user) {
             return !$this->user->is_private || ($user && ($this->user->followedBy($user) || $this->canBeEditedBy($user)));
         }

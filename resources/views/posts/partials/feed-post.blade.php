@@ -13,6 +13,18 @@
                 <span class="username author-username">&commat;{{ $post->user->username }}</span>
             </a>
             <span class="time small color light">{{ $post->created_at->diffForHumans() }}</span>
+            <div class='post-category'>
+                <span class="small color light category-link">
+                    @if(Auth::user()->id == $post->user->id)
+                        <a id="edit-{{ $post->automaticTag->count() > 0 ? $post->automaticTag{0}->id : 0 }}" class='edit-category' href='#'><i class='fa fa-pencil'></i></a>
+                    @endif
+                    @if($post->automaticTag->count() == 0)
+                        No category
+                    @else
+                        <a href='{{ route('discover.category', $post->automaticTag{0}->text) }}'>{{ $post->automaticTag{0}->text }}</a>
+                    @endif
+                </span>
+            </div>
         </div>
         <div class="post-body">
             <div id="post-{{ $post->id }}-content" class="collapse {{ $abusive ? 'margin-b-15' : 'in' }}"

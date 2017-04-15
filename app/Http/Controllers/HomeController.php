@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 
 class HomeController extends Controller {
 
@@ -27,6 +28,7 @@ class HomeController extends Controller {
             $query->where('user_id', Auth::user()->id);
         };
         $posts = Post::whereIn('user_id', $userIds)->with($with)->latest()->get();
-        return view('home.index', compact('posts'));
+        $categories = Category::orderBy('name')->get();
+        return view('home.index', compact('posts','categories'));
     }
 }

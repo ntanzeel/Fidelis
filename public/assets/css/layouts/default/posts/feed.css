@@ -33,6 +33,20 @@
     content: "\2014";
 }
 
+.post .post-header .post-category {
+    float: right;
+}
+
+.post .post-header .post-category .edit-category {
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.post .post-header .post-category .edit-category:active,
+.post .post-header .post-category .edit-category:hover {
+    color: #FF6631;
+}
+
 .post .post-body {
 
 }
