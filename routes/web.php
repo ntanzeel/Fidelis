@@ -243,7 +243,7 @@
     /*
      * API
      */
-    Route::group(['as' => 'api.', 'prefix' => 'api'], function () { //, 'middleware' => 'ajax'
+    Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], function () { 
         /*
          * Posts
          */
