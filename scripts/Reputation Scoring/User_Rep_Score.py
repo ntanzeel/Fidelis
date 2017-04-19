@@ -29,6 +29,7 @@ for user_id, positive, negative, comments, followers, reports in cursor:
     if(isinstance(followers, decimal.Decimal)):
         reputation += followers
 
+    #Once more for 'reports' field
     if(isinstance(reports, decimal.Decimal)):
         reputation -= reports
 
@@ -37,8 +38,6 @@ for user_id, positive, negative, comments, followers, reports in cursor:
     d.set_value(count, 1, reputation)
 
     count += 1
-
-print(d)
 
 #get min and max recorded reputation scores, then find difference between them
 min_rep = d[1].min()
