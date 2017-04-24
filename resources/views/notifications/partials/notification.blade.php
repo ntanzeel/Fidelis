@@ -1,4 +1,4 @@
-<div class="notification {{ !($notification->isFollow()) ? 'show-post' : '' }}" id="notification">
+<div class="notification {{ !$notification->isFollow() && !$notification->isFollowRequest()  ? 'show-post' : '' }}" id="notification">
     <div class="media-left">
         <a href="#">
             <img class="media-object avatar" src="{{ $notification->from()->photo }}" alt="Generic placeholder image">
@@ -7,13 +7,13 @@
     <div class="media-body">
         <p>{!! $notification->getHtmlText() !!} </p>
 
-        @if(!$notification->isFollow())
+        @if(!$notification->isFollow() && !$notification->isFollowRequest())
             <p>{!!   $notification->regarding()->htmlText() !!}</p>
         @else
         @endif
         <div class="notification-footer">
             <ul class="list-inline list-unstyled action-list">
-                @if(!$notification->isFollow())
+                @if(!$notification->isFollow() && !$notification->isFollowRequest())
                     @include('posts.partials.actions', ['post' => $notification->regarding()->post,'isPost' => true, 'comment' => $notification->regarding()])
                 @endif
             </ul>

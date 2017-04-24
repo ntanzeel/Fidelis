@@ -59,8 +59,8 @@ class Notification extends DatabaseNotification {
                 case Notifications\Comment::class:
                 case Notifications\Vote::class:
                     return Comment::find($this->data['regarding']);
-
                 case Notifications\Follow::class:
+                case Notifications\FollowRequest::class:
                     return User::find($this->data['regarding']);
             }
         }
@@ -89,4 +89,8 @@ class Notification extends DatabaseNotification {
     public function isVote() {
         return $this->type == Notifications\Vote::class;
     }
+
+    public function isFollowRequest() {
+        return $this->type == Notifications\FollowRequest::class;
+}
 }
