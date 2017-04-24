@@ -82,7 +82,7 @@
                     @include('profile.partials.photos', compact('user', 'images'))
                 </div>
                 <div class="col-md-9">
-                    @if($isFollowing)
+                    @if($isFollowing || (Auth::user() && $user->id == Auth::user()->id))
                         @yield('content')
                     @else
                         <div class="row">
