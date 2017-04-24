@@ -60,7 +60,7 @@ class Notification extends DatabaseNotification {
                 case Notifications\Vote::class:
                     return Comment::find($this->data['regarding']);
                 case Notifications\Follow::class:
-                case Notifications\FollowRequest::class:
+                case Notifications\PendingFollow::class:
                     return User::find($this->data['regarding']);
             }
         }
@@ -90,7 +90,7 @@ class Notification extends DatabaseNotification {
         return $this->type == Notifications\Vote::class;
     }
 
-    public function isFollowRequest() {
-        return $this->type == Notifications\FollowRequest::class;
+    public function isPendingFollow() {
+        return $this->type == Notifications\PendingFollow::class;
 }
 }
