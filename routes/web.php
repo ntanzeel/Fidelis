@@ -189,7 +189,7 @@ Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
         Route::post('/account/delete', [
             'as'   => 'delete',
             'uses' => 'Settings\AccountController@delete',
-        ])
+        ]);
     });
 
     /*
