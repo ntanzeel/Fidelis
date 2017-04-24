@@ -201,15 +201,15 @@
         /*
          * Safety
          */
-        Route::group(['as' => 'safety.'], function () {
-            Route::get('/safety', [
+        Route::group(['as' => 'network.'], function () {
+            Route::get('/network', [
                 'as'   => 'index',
-                'uses' => 'Settings\SafetyController@index',
+                'uses' => 'Settings\NetworkController@index',
             ]);
 
-            Route::post('/safety', [
+            Route::post('/network', [
                 'as'   => 'store',
-                'uses' => 'Settings\SafetyController@store',
+                'uses' => 'Settings\NetworkController@store',
             ]);
         });
 
