@@ -24,11 +24,8 @@ $('.btn-toggle-block').on('click', function () {
     });
 });
 
-$('.content-panel').on('click', '.post', function (event) {
-    window.location.href = $(this).data('url');
-}).on('click', '.action-vote', function (event) {
+$('.content-panel').on('click', '.action-vote', function (event) {
     event.preventDefault();
-    event.stopPropagation();
 
     var isLike = $(this).hasClass('action-like');
 
@@ -62,7 +59,6 @@ $('.content-panel').on('click', '.post', function (event) {
     });
 }).on('click', '.action-flag', function (event) {
     event.preventDefault();
-    event.stopPropagation();
 
     var $button = $(this);
 
@@ -89,7 +85,6 @@ $('.content-panel').on('click', '.post', function (event) {
     });
 }).on('click', '.action-delete', function (event) {
     event.preventDefault();
-    event.stopPropagation();
 
     var $button = $(this);
 

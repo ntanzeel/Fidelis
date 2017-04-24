@@ -2,7 +2,6 @@ $(document).ready(function () {
     var $postForm = $('.post-form').first();
 
     $postForm.find('.image-upload').find('.toggle').on('click', function (event) {
-        console.log('test');
         event.preventDefault();
 
         $postForm.find('#post-images').trigger('click');
