@@ -96,6 +96,6 @@ class ProfileController extends Controller {
         $images = Image::where('user_id', $user->id)->orderBy('id', 'DESC')->limit(4)->get();
         $categories = Category::orderBy('name')->get();
 
-        return view('profile.view', array_merge(compact('user', 'posts', 'images', 'categories'), $preRoute));
+        return view('profile.rated', array_merge(compact('user', 'posts', 'images', 'categories'), $preRoute));
     }
 }
