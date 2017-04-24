@@ -78,35 +78,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="profile-info">
-                        <p class="full-name">
-                            <strong>{{ $user->name }}</strong>
-                        </p>
-                        <p class="username">
-                            <span>&commat;{{ $user->username }}</span>
-                        </p>
-                        <p class="about">
-                            {{ $user->about }}
-                        </p>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Photos
-                        </div>
-                        <div class="panel-body anchor">
-                            @foreach($images as $key => $image)
-                                <img src="{{ asset('storage/' . $image->path) }}"
-                                     class="lightbox user-image img-responsive img-thumbnail"
-                                     data-type="user"
-                                     data-source="{{ $image->id }}"
-                                     data-album="{{ $user->username }}"
-                                     width="45%" />
-                            @endforeach
-                        </div>
-                    </div>
+                    @include('profile.partials.about', compact('user'))
+                    @include('profile.partials.photos', compact('user', 'images'))
                 </div>
                 <div class="col-md-9">
-                    @yield('content')
+                    @if($isFollowing)
+                        @yield('content')
+                    @else
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12">
+                                <div class="panel panel-default content-panel">
+                                    <div class="panel-body text-center">
+                                        You must follow this account in order to see their content.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
