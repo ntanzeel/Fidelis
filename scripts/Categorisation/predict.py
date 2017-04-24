@@ -46,6 +46,5 @@ if __name__ == "__main__":
                     (int(cat), int(id))
                 )
                 conn.commit()
-
         curs.close()
         conn.close()
