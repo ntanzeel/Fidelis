@@ -117,7 +117,7 @@ $('.btn-follow-toggle').on('click', function () {
     var $btn = $(this);
 
     $.ajax({
-        url: $btn.data('api') + '/' + ($btn.data('status') == 1 ? $btn.data('id') : ''),
+        url: $btn.data('api'),
         type: 'POST',
         data: {
             _token: window.Laravel.csrfToken,
@@ -125,8 +125,8 @@ $('.btn-follow-toggle').on('click', function () {
             user: $btn.data('id')
         },
         success: function (response) {
-            $btn.data('status', $btn.data('status') == 1 ? 0 : 1);
-            $btn.text($btn.data('status') == 1 ? 'Unfollow' : 'Follow');
+            $btn.attr('data-status', $btn.attr('data-status') == 1 ? 0 : 1);
+            $btn.text($btn.attr('data-status') == 1 ? 'Unfollow' : 'Follow');
             $btn.toggleClass('btn-danger btn-primary');
         },
         error: function (response) {
