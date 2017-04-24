@@ -33,7 +33,7 @@
         @endif
     </div>
 @elseif(Auth::user() && $user->id == Auth::user()->id)
-    <button class="btn btn-block btn-orange">Edit Profile</button>
+    <a class="btn btn-block btn-orange" href="{{ route('settings.account.index') }}">Edit Profile</a>
 @else
     <a href="{{ route('auth.login') }}" class="btn btn-block btn-primary">
         Login

@@ -185,6 +185,11 @@ Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
             'as'   => 'edit_profile',
             'uses' => 'Settings\AccountController@edit_profile',
         ]);
+
+        Route::post('/account/delete', [
+            'as'   => 'delete',
+            'uses' => 'Settings\AccountController@delete',
+        ])
     });
 
     /*
@@ -199,7 +204,7 @@ Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
     });
 
     /*
-     * Safety
+     * Network
      */
     Route::group(['as' => 'network.'], function () {
         Route::get('/network', [
@@ -379,64 +384,62 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], functi
      */
     Route::group(['as' => 'pending.', 'prefix' => 'pending'], function () {
         Route::post('/', [
-            'as' => 'store',
+            'as'   => 'store',
             'uses' => 'Api\PendingController@store',
         ]);
 
         Route::delete('/{user}', [
-            'as' => 'delete',
+            'as'   => 'delete',
             'uses' => 'Api\PendingController@delete',
         ]);
     });
 
-        /*
-         * Blocked
-         */
-        Route::group(['as' => 'blocked.', 'prefix' => 'blocked'], function () {
-            Route::post('/', [
-                'as'   => 'store',
-                'uses' => 'Api\BlockedController@store',
-            ]);
-
-            Route::delete('/{user}', [
-                'as'   => 'delete',
-                'uses' => 'Api\BlockedController@delete',
-            ]);
-
-        });
-
-        /*
-         * User Recommendation
-         */
-        Route::group(['as' => 'user_recommendation.', 'prefix' => 'user_recommendation'], function () {
-            Route::post('/', [
-                'as'   => 'store',
-                'uses' => 'Api\UserRecommendationController@store',
-            ]);
-
-            Route::post('/{user}', [
-                'as'   => 'delete',
-                'uses' => 'Api\UserRecommendationController@delete',
-            ]);
-        });
-
-        Route::get('post/{post}/image/{image}', [
-            'as'   => 'post.image.',
-            'uses' => 'Api\ImageController@post',
+    /*
+     * Blocked
+     */
+    Route::group(['as' => 'blocked.', 'prefix' => 'blocked'], function () {
+        Route::post('/', [
+            'as'   => 'store',
+            'uses' => 'Api\BlockedController@store',
         ]);
 
-        Route::get('user/{user}/image/{image}', [
-            'as'   => 'user.image.',
-            'uses' => 'Api\ImageController@user',
+        Route::delete('/{user}', [
+            'as'   => 'delete',
+            'uses' => 'Api\BlockedController@delete',
         ]);
-
-        /*
-         * Search
-         */
-        Route::get('search/{query}', [
-            'as'   => 'display',
-            'uses' => 'Api\SearchController@display',
-        ]);
-
 
     });
+
+    /*
+     * User Recommendation
+     */
+    Route::group(['as' => 'user_recommendation.', 'prefix' => 'user_recommendation'], function () {
+        Route::post('/', [
+            'as'   => 'store',
+            'uses' => 'Api\UserRecommendationController@store',
+        ]);
+
+        Route::post('/{user}', [
+            'as'   => 'delete',
+            'uses' => 'Api\UserRecommendationController@delete',
+        ]);
+    });
+
+    Route::get('post/{post}/image/{image}', [
+        'as'   => 'post.image.',
+        'uses' => 'Api\ImageController@post',
+    ]);
+
+    Route::get('user/{user}/image/{image}', [
+        'as'   => 'user.image.',
+        'uses' => 'Api\ImageController@user',
+    ]);
+
+    /*
+     * Search
+     */
+    Route::get('search/{query}', [
+        'as'   => 'display',
+        'uses' => 'Api\SearchController@display',
+    ]);
+});

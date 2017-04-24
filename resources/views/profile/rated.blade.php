@@ -1,4 +1,4 @@
-@extends('profile.layout', ['user' => $user, 'active' => 'rated'])
+@extends('profile.layout', ['user' => $user, 'active' => 'rated', 'isFollowing' => $isFollowing])
 
 @section('content')
     <div class="row">
