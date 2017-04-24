@@ -18,11 +18,20 @@ class AccountController extends Controller {
     }
 
     public function edit_profile(Request $request) {
+        $this->validate($request,
+            ['name'     => 'required|max:255',
+            'email'    => 'required|email|max:255',
+            'password' => 'min:6|confirmed']);
+
         $user = Auth::user();
 
         $user->name = $request->name;
         $user->email = $request->email;
         $user->is_private = $request->private == "private" ? 1 : 0;
+
+        if (!empty($request->password)) {
+            $user->password = bcrypt($request->password);
+        }
 
         $user->save();
 
