@@ -1,5 +1,5 @@
 @php($abusive = Auth::user() && ($post->content->reports->count() || Auth::user()->settings['abuse_rating']->value < $post->content->abuse_score))
-<div id="post-{{ $post->id }}" class="post">
+<div id="post-{{ $post->id }}" class="post" data-url="{{ route('post.view', [$post->user->username, $post->id]) }}">
     <div class="media-left">
         <a href="#">
             <img class="media-object avatar author-photo" src="{{ $post->user->photo }}"

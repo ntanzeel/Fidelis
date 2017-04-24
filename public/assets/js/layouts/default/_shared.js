@@ -24,8 +24,11 @@ $('.btn-toggle-block').on('click', function () {
     });
 });
 
-$('.content-panel').on('click', '.action-vote', function (event) {
+$('.content-panel').on('click', '.post', function (event) {
+    window.location.href = $(this).data('url');
+}).on('click', '.action-vote', function (event) {
     event.preventDefault();
+    event.stopPropagation();
 
     var isLike = $(this).hasClass('action-like');
 
@@ -59,6 +62,7 @@ $('.content-panel').on('click', '.action-vote', function (event) {
     });
 }).on('click', '.action-flag', function (event) {
     event.preventDefault();
+    event.stopPropagation();
 
     var $button = $(this);
 
@@ -85,6 +89,7 @@ $('.content-panel').on('click', '.action-vote', function (event) {
     });
 }).on('click', '.action-delete', function (event) {
     event.preventDefault();
+    event.stopPropagation();
 
     var $button = $(this);
 
@@ -162,8 +167,10 @@ function ajaxPost($btn, $type) {
 
             var $emptyPanel = $('#recommendation-panel');
 
-            if($emptyPanel.children(':visible').length == 1) {
-                setTimeout(function() { $emptyPanel.append('You have no recommendations') }, 800);
+            if ($emptyPanel.children(':visible').length == 1) {
+                setTimeout(function () {
+                    $emptyPanel.append('You have no recommendations')
+                }, 800);
             }
         },
         error: function (response) {
@@ -171,7 +178,7 @@ function ajaxPost($btn, $type) {
     });
 }
 
-$('.anchor').on('click', '.edit-category', function(event){
+$('.anchor').on('click', '.edit-category', function (event) {
     event.preventDefault();
 
     var post = $(this).closest('.post').attr('id').split('-')[1];
@@ -185,19 +192,19 @@ $('.anchor').on('click', '.edit-category', function(event){
     var modal = $('#category-modal');
 
     modal.find('.current').first().removeClass('current');
-    modal.find(".category-item:contains('"+category+"')").first().find('a').addClass('current');
-    modal.attr('data-post',post);
+    modal.find(".category-item:contains('" + category + "')").first().find('a').addClass('current');
+    modal.attr('data-post', post);
     modal.modal();
 });
 
-$('.category-item').click(function(e) {
+$('.category-item').click(function (e) {
     e.preventDefault();
 
     $('#category-modal').find('.current').first().removeClass('current');
     $(this).find('a').addClass('current');
 });
 
-$('.btn-save-category').click(function(e) {
+$('.btn-save-category').click(function (e) {
     e.preventDefault();
 
     var modal = $('#category-modal');
@@ -221,7 +228,7 @@ $('.btn-save-category').click(function(e) {
                 $('#post-' + post).find('.category-link').html("<a id='edit-0' class='edit-category' href='#'><i class='fa fa-pencil'></i></a>No category");
             }
             else {
-                $('#post-' + post).find('.category-link').html("<a id='edit-"+category+"' class='edit-category' href='#'><i class='fa fa-pencil'></i></a><a href='"+discover+response['name']+"'>"+response['name']+"</a>");
+                $('#post-' + post).find('.category-link').html("<a id='edit-" + category + "' class='edit-category' href='#'><i class='fa fa-pencil'></i></a><a href='" + discover + response['name'] + "'>" + response['name'] + "</a>");
             }
         },
         error: function (response) {
