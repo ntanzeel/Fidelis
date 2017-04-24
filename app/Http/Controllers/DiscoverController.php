@@ -58,7 +58,7 @@ class DiscoverController extends Controller {
     public function category($category) {
         $tag = Tag::where('text', $category)->first();
 
-        if (!$tag && $category != 'Recommendations') {
+        if (!$tag) {
             return redirect()->route('discover.index');
         }
 

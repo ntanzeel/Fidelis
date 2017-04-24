@@ -8,12 +8,12 @@ import preprocess as p
 # Feature Engineering
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_selection import SelectPercentile, chi2
 
 # Models
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
 from sklearn.svm import SVC
-from sklearn.naive_bayes import GaussianNB
 
 # Pipeline
 from sklearn.pipeline import Pipeline
@@ -32,13 +32,17 @@ if __name__ == '__main__':
     data = data[data.Post.str.len() > 20].reset_index(drop=True) # Drop samples with text less than 20 characters long
 
     # Pipeline to create the model and create features
-    pipeline = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2))), ('tfidf', TfidfTransformer(use_idf=True)), ('clf', SGDClassifier(loss='hinge', penalty='l2', alpha=0.0001, n_iter=10, random_state=42))])
+    # clf = SGDClassifier(loss='hinge', penalty='l2', alpha=0.0001, n_iter=10, random_state=42)
+    # clf = MultinomialNB()
+    clf = SVC(C=5)
 
-    # Cross validation score
-    # print cross_val_score(pipeline, data.Post, data.Category.values, cv=10).mean()
+    pipeline = Pipeline([('vect', CountVectorizer(ngram_range=(1, 2))), ('tfidf', TfidfTransformer(use_idf=True)), ('clf', clf)])
 
     # Train the model on the data
     model = pipeline.fit(data.Post, data.Category.values)
 
+    # Cross validation score
+    print cross_val_score(pipeline, data.Post, data.Category.values, cv=10)
+
     # Export model
-    joblib.dump(model,'models/SGD.pkl')
+    joblib.dump(model,'models/SVM.pkl')
