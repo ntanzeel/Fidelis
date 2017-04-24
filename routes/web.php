@@ -185,6 +185,11 @@
                 'as'   => 'edit_profile',
                 'uses' => 'Settings\AccountController@edit_profile',
             ]);
+
+            Route::post('/account/delete', [
+                'as'   => 'delete',
+                'uses' => 'Settings\AccountController@delete',
+            ]);
         });
 
         /*
@@ -243,7 +248,7 @@
     /*
      * API
      */
-    Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], function () { 
+    Route::group(['as' => 'api.', 'prefix' => 'api', 'middleware' => 'ajax'], function () {
         /*
          * Posts
          */
@@ -279,7 +284,7 @@
             ]);
 
             Route::post('/categorise', [
-                'as'  => 'editcategory',
+                'as'   => 'editcategory',
                 'uses' => 'Api\PostController@editCategory',
             ]);
         });
@@ -410,7 +415,7 @@
          * Search
          */
         Route::get('search/{query}', [
-            'as' => 'display',
-            'uses' => 'Api\SearchController@display'
+            'as'   => 'display',
+            'uses' => 'Api\SearchController@display',
         ]);
     });

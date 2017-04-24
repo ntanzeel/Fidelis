@@ -93,6 +93,9 @@
             return $this->hasMany('App\Models\Post');
         }
 
+        public function comments() {
+            return $this->hasMany('App\Models\Comment');
+        }
 
         public function images() {
             return $this->hasManyThrough('App\Models\Image', 'App\Models\Post', 'user_id', 'post_id');
@@ -134,11 +137,20 @@
                 ->withTimestamps();
         }
 
+        public function votes() {
+            return $this->belongsToMany('App\Models\Comment', 'votes', 'user_id', 'comment_id');
+        }
+
         public function voted() {
             return Post::whereHas('content.votes', function ($query) {
                 $query->where('user_id', $this->id);
             });
         }
+
+        public function reported() {
+            return $this->belongsToMany('App\Models\Report', 'reports', 'user_id', 'comment_id');
+        }
+
 
         public function getSettingsAttribute() {
             if (!array_key_exists('settings', $this->relations)) {
