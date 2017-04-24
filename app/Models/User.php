@@ -114,6 +114,7 @@
 
         public function following() {
             return $this->belongsToMany('App\Models\User', 'followers', 'follower_id', 'following_id')
+                ->where('approved', 1)
                 ->whereNull('followers.deleted_at')
                 ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
                 ->withTimestamps();
@@ -132,6 +133,15 @@
 
         public function followers() {
             return $this->belongsToMany('App\Models\User', 'followers', 'following_id', 'follower_id')
+                ->where('approved', 1)
+                ->whereNull('followers.deleted_at')
+                ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
+                ->withTimestamps();
+        }
+
+        public function pendingFollowers() {
+            return $this->belongsToMany('App\Models\User', 'followers', 'following_id', 'follower_id')
+                ->where('approved', 0)
                 ->whereNull('followers.deleted_at')
                 ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
                 ->withTimestamps();

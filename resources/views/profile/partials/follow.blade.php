@@ -4,7 +4,7 @@
     <div class="btn-group {{ empty($dropdown) ? 'btn-group-justified' : '' }}">
         @if ($isFollowing)
             <a href="#" role="button" class="btn btn-danger btn-follow-toggle"
-               data-api="{{ route('api.follower.store')  }}"
+               data-api="{{ route('api.follower.delete', $user->id) }}"
                data-id="{{ $user->id }}"
                data-status="1">Unfollow</a>
         @else
