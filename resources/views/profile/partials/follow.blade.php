@@ -4,7 +4,7 @@
     <div class="btn-group {{ empty($dropdown) ? 'btn-group-justified' : '' }}">
         @if ($isFollowing)
             <a href="#" role="button" class="btn btn-danger btn-follow-toggle"
-               data-api="{{ route('api.follower.store')  }}"
+               data-api="{{ route('api.follower.delete', $user->id) }}"
                data-id="{{ $user->id }}"
                data-status="1">Unfollow</a>
         @else
@@ -33,7 +33,7 @@
         @endif
     </div>
 @elseif(Auth::user() && $user->id == Auth::user()->id)
-    <button class="btn btn-block btn-orange">Edit Profile</button>
+    <a class="btn btn-block btn-orange" href="{{ route('settings.account.index') }}">Edit Profile</a>
 @else
     <a href="{{ route('auth.login') }}" class="btn btn-block btn-primary">
         Login

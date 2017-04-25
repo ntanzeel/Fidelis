@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Validator;
+use Carbon\Carbon;
 
 class RegisterController extends Controller {
 
@@ -53,12 +54,16 @@ class RegisterController extends Controller {
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data) {
+        Validator::extend('age', function ($attribute, $value, $parameters) {
+            return Carbon::now()->diff(new Carbon($value))->y >= 13;
+        }, 'You must be at least 13 years old to register.');
+
         return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'username' => 'required|max:255:unique:users',
-            'password' => 'required|min:6|confirmed',
-            'dob'      => 'required|date',
+            'name'       => 'required|max:255',
+            'email'      => 'required|email|max:255|unique:users',
+            'username'   => 'required|max:255:unique:users',
+            'password'   => 'required|min:6|confirmed',
+            'dob'        => 'required|date|age',
             'read_terms' => 'required',
         ]);
     }

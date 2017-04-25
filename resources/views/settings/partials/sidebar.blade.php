@@ -5,6 +5,7 @@
             <li role="presentation"><a class="{{ $title == "Network Settings" ? 'active' : "" }}" href="{{ route('settings.network.index') }}">Network Settings</a></li>
             <li role="presentation"><a class="{{ $title == "Manage Subscriptions" ? 'active' : "" }}" href="{{ route('settings.subscriptions.index') }}">Manage Subscriptions</a></li>
             <li role="presentation"><a class="{{ $title == "Blocked Accounts" ? 'active' : "" }}" href="{{ route('settings.blocked.index') }}">Blocked Accounts</a></li>
+            <li role="presentation"><a class="{{ $title == "Pending Requests" ? 'active' : "" }}" href="{{ route('settings.pending.index') }}">Pending Requests</a></li>
         </ul>
     </div>
 </div>

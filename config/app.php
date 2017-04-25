@@ -180,6 +180,7 @@
             App\Providers\EventServiceProvider::class,
             App\Providers\RouteServiceProvider::class,
             App\Providers\ComposerServiceProvider::class,
+            App\Providers\SoftCascadeProvider::class,
 
         ],
 

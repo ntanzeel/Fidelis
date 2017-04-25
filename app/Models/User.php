@@ -93,6 +93,9 @@
             return $this->hasMany('App\Models\Post');
         }
 
+        public function comments() {
+            return $this->hasMany('App\Models\Comment');
+        }
 
         public function images() {
             return $this->hasManyThrough('App\Models\Image', 'App\Models\Post', 'user_id', 'post_id');
@@ -111,6 +114,7 @@
 
         public function following() {
             return $this->belongsToMany('App\Models\User', 'followers', 'follower_id', 'following_id')
+                ->where('approved', 1)
                 ->whereNull('followers.deleted_at')
                 ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
                 ->withTimestamps();
@@ -129,9 +133,22 @@
 
         public function followers() {
             return $this->belongsToMany('App\Models\User', 'followers', 'following_id', 'follower_id')
+                ->where('approved', 1)
                 ->whereNull('followers.deleted_at')
                 ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
                 ->withTimestamps();
+        }
+
+        public function pendingFollowers() {
+            return $this->belongsToMany('App\Models\User', 'followers', 'following_id', 'follower_id')
+                ->where('approved', 0)
+                ->whereNull('followers.deleted_at')
+                ->withPivot(['id', 'mutual', 'approved', 'deleted_at'])
+                ->withTimestamps();
+        }
+
+        public function votes() {
+            return $this->belongsToMany('App\Models\Comment', 'votes', 'user_id', 'comment_id');
         }
 
         public function voted() {
@@ -139,6 +156,11 @@
                 $query->where('user_id', $this->id);
             });
         }
+
+        public function reported() {
+            return $this->belongsToMany('App\Models\Report', 'reports', 'user_id', 'comment_id');
+        }
+
 
         public function getSettingsAttribute() {
             if (!array_key_exists('settings', $this->relations)) {
