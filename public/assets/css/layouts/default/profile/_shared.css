@@ -147,3 +147,18 @@ body {
 .profile-info {
     margin-bottom: 20px;
 }
+
+span.rating-label{
+    font-weight: bold;
+}
+
+span.rating-stars, span.rating-stars span {
+    display: block;
+    background: url('/assets/images/icons/stars.png') 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.rating-stars span {
+    background-position: 0 0;
+}

@@ -30,6 +30,11 @@ class SettingsSeeder extends DatabaseSeeder {
             'name' => 'Reputation',
             'value' => 0
         ]);
+        App\Models\Setting::create([
+            'user_id' => 1,
+            'name' => 'Reputation Display',
+            'value' => 'Number'
+        ]);
 
         App\Models\Setting::create([
             'user_id' => 2,
@@ -50,6 +55,11 @@ class SettingsSeeder extends DatabaseSeeder {
             'user_id' => 2,
             'name' => 'Reputation',
             'value' => 0
+        ]);
+        App\Models\Setting::create([
+            'user_id' => 2,
+            'name' => 'Reputation Display',
+            'value' => 'Number'
         ]);
 
         App\Models\Setting::create([
@@ -72,6 +82,11 @@ class SettingsSeeder extends DatabaseSeeder {
             'name' => 'Reputation',
             'value' => 0
         ]);
+        App\Models\Setting::create([
+            'user_id' => 3,
+            'name' => 'Reputation Display',
+            'value' => 'Number'
+        ]);
 
         App\Models\Setting::create([
             'user_id' => 4,
@@ -92,6 +107,11 @@ class SettingsSeeder extends DatabaseSeeder {
             'user_id' => 4,
             'name' => 'Reputation',
             'value' => 0
+        ]);
+        App\Models\Setting::create([
+            'user_id' => 4,
+            'name' => 'Reputation Display',
+            'value' => 'Number'
         ]);
 
         App\Models\Setting::create([
@@ -114,6 +134,11 @@ class SettingsSeeder extends DatabaseSeeder {
             'name' => 'Reputation',
             'value' => 0
         ]);
+        App\Models\Setting::create([
+            'user_id' => 5,
+            'name' => 'Reputation Display',
+            'value' => 'Number'
+        ]);
 
         App\Models\Setting::create([
             'user_id' => 6,
@@ -135,6 +160,11 @@ class SettingsSeeder extends DatabaseSeeder {
             'name' => 'Reputation',
             'value' => 0
         ]);
+        App\Models\Setting::create([
+            'user_id' => 6,
+            'name' => 'Reputation Display',
+            'value' => 'Number'
+        ]);
 
         App\Models\Setting::create([
             'user_id' => 7,
@@ -155,6 +185,11 @@ class SettingsSeeder extends DatabaseSeeder {
             'user_id' => 7,
             'name' => 'Reputation',
             'value' => 0
+        ]);
+        App\Models\Setting::create([
+            'user_id' => 7,
+            'name' => 'Reputation Display',
+            'value' => 'Number'
         ]);
     }
 }

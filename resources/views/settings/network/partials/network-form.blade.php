@@ -84,4 +84,17 @@
             @endif
         </div>
     </div>
+    <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+        <label for="reputation_display" class="col-md-2 control-label">Reputation Display</label>
+        <div class="row">
+            <div class="col-sm-1">
+                <input type="radio" name="reputation_display"
+                       value="Bar" {{ $settings['reputation_display']->value == 'Bar' ?  'checked' : ''}}><br>Bar
+            </div>
+            <div class="col-sm-1">
+                <input type="radio" name="reputation_display"
+                       value="Stars" {{ $settings['reputation_display']->value == 'Stars' ?  'checked' : ''}}>Stars
+            </div>
+        </div>
+    </div>
 </fieldset>

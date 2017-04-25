@@ -85,6 +85,19 @@
                         <p class="username">
                             <span>&commat;{{ $user->username }}</span>
                         </p>
+                        <p class="rating">
+                            @if(Auth::user() && Auth::user()->settings['reputation_display']->value == 'Bar')
+                                <span class="rating-label">Rating: {{ $user->reputation * 100 }}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow={{ $user->reputation * 100 }} aria-valuemin="0" aria-valuemax="100" style="width: {{ $user->reputation * 100 }}%;">
+                                        <span class="sr-only">60% Complete</span>
+                                    </div>
+                                </div>
+                            @elseif(Auth::user() && Auth::user()->settings['reputation_display']->value == 'Stars')
+                                <span class="rating-label">Rating: {{ $user->reputation * 100 }}</span>
+                                <span class="rating-stars">{{ $user->reputation * 5 }}</span>
+                            @endif
+                        </p>
                         <p class="about">
                             {{ $user->about }}
                         </p>
