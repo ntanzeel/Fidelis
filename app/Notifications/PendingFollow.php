@@ -54,7 +54,8 @@ class PendingFollow extends Notification {
     public function toArray($notifiable) {
         return [
             'from' => $this->user->id,
-            'text' => '@' . $this->user->username . ' has requested to followed you, Please check your settings.',
+            'text' => '@' . $this->user->username . ' has requested to followed you, Please check your 
+            <a class="mention-username" href="' . route('settings.pending.index') . '">settings</a>.',
         ];
     }
 }

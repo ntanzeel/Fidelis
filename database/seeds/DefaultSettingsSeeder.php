@@ -46,7 +46,7 @@ class DefaultSettingsSeeder extends Seeder {
             ],
             [
                 'name'       => 'reputation_display',
-                'value'      => 'Number',
+                'value'      => 'Bar',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
