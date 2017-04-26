@@ -23,3 +23,7 @@ body {
     color: #FF6631;
     border: 1px solid #FF6631;
 }
+
+.slider-handle {
+    background: #FF6631;
+}

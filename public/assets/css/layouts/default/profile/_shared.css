@@ -160,5 +160,10 @@ span.rating-stars, span.rating-stars span {
 }
 
 span.rating-stars span {
+    margin-top: 5px;
     background-position: 0 0;
+}
+
+.progress-bar {
+    background-color: #FF6631;
 }
