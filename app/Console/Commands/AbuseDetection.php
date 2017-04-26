@@ -12,7 +12,7 @@ class AbuseDetection extends Command {
      *
      * @var string
      */
-    protected $signature = 'script:abuse-detection';
+    protected $signature = 'script:abuse-detection {--reported}';
 
     /**
      * The console command description.
@@ -36,7 +36,14 @@ class AbuseDetection extends Command {
      * @return mixed
      */
     public function handle() {
-        $process = new Process('python "scripts\Abuse Detection\prediction.py"');
-        $process->run();
+        $process = new Process('cd scripts/Abuse\ Detection/; python prediction.py ' . ($this->option('reported') ? 'true' : 'false'));
+
+        if ($process->run() == 0) {
+            $this->info($process->getOutput());
+        } else {
+            $this->error($process->getErrorOutput());
+        }
+
+        return true;
     }
 }

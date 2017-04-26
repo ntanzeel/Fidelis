@@ -71,9 +71,9 @@ def updatePredictions(mysql, comments):
 
 def processComments(mysql, classifier, comments):
     if comments is not None:
-        print comments
         comments['score'] = getScores(comments.text.values, classifier)
         updatePredictions(mysql, comments)
+        print "All comments successfully processed."
     else:
         print "No comments to process."
 
