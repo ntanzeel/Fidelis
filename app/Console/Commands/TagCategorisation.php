@@ -5,21 +5,21 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
-class Recommendations extends Command {
+class TagCategorisation extends Command {
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'script:recommendations';
+    protected $signature = 'script:tag-categorisation';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This command will run the script that will generate content recommendations for Fidelis users';
+    protected $description = 'This command will run a script to automatically categorise tags';
 
     /**
      * Create a new command instance.
@@ -36,7 +36,7 @@ class Recommendations extends Command {
      * @return mixed
      */
     public function handle() {
-        $process = new Process('python scripts/Recommendation/recommendations.py');
+        $process = new Process('python scripts/Categorisation/predict.py');
 
         if ($process->run() == 0) {
             $this->info($process->getOutput());

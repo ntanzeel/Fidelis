@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel {
         'App\Console\Commands\AbuseDetection',
         'App\Console\Commands\PostReputation',
         'App\Console\Commands\UserReputation',
+        'App\Console\Commands\TagCategorisation',
         'App\Console\Commands\CleanRecommendations',
     ];
 
@@ -34,7 +35,8 @@ class Kernel extends ConsoleKernel {
         $schedule->command('script:user-reputation')->daily();
         $schedule->command('script:recommendation')->daily();
         $schedule->command('script:abuse-detection')->daily();
-        $schedule->command('clean:recommendation')->weekly();
+        $schedule->command('script:tag-categorisation')->daily();
+        //$schedule->command('clean:recommendation')->weekly();
     }
 
     /**
