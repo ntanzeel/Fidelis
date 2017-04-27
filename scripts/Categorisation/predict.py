@@ -48,3 +48,4 @@ if __name__ == "__main__":
                 conn.commit()
         curs.close()
         conn.close()
+        print "Successfully categorised tags."

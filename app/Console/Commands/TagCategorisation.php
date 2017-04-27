@@ -36,7 +36,7 @@ class TagCategorisation extends Command {
      * @return mixed
      */
     public function handle() {
-        $process = new Process('python scripts/Categorisation/predict.py');
+        $process = new Process('cd scripts/Categorisation/; python predict.py');
 
         if ($process->run() == 0) {
             $this->info($process->getOutput());
