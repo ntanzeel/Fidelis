@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-3 hidden-sm hidden-xs">
             @widget('profile', ['user' => $user])
-            @if(Auth::user())
+            @if (Auth::user())
                 @widget('users')
             @endif
         </div>
@@ -66,7 +66,13 @@
                         </ul>
                     </div>
                     <div class="add-comment padding-15">
-                        @include('posts.partials.reply')
+                        @if (Auth::user())
+                            @include('posts.partials.reply')
+                        @else
+                            Please <a class="btn-link-orange" href="{{ route('auth.login') }}">login</a> or <a
+                                    class="btn-link-orange" href="{{ route('auth.register') }}">register</a> to leave a
+                            reply.
+                        @endif
                     </div>
                 </div>
             </div>
