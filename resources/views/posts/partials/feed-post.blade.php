@@ -15,7 +15,7 @@
             <span class="time small color light">{{ $post->created_at->diffForHumans() }}</span>
             <div class='post-category'>
                 <span class="small color light category-link">
-                    @if(Auth::user()->id == $post->user->id)
+                    @if(Auth::user() && Auth::user()->id == $post->user->id)
                         <a id="edit-{{ $post->automaticTag->count() > 0 ? $post->automaticTag{0}->id : 0 }}" class='edit-category' href='#'><i class='fa fa-pencil'></i></a>
                     @endif
                     @if($post->automaticTag->count() == 0)
