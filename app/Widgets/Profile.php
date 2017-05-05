@@ -1,28 +1,26 @@
 <?php
 
-namespace App\Widgets;
+    namespace App\Widgets;
 
-use Arrilot\Widgets\AbstractWidget;
+    use Arrilot\Widgets\AbstractWidget;
 
-class Profile extends AbstractWidget
-{
-    /**
-     * The configuration array.
-     *
-     * @var array
-     */
-    protected $config = [];
+    class Profile extends AbstractWidget {
 
-    /**
-     * Treat this method as a controller action.
-     * Return view() or other content to display.
-     */
-    public function run()
-    {
-        //
+        /**
+         * The configuration array.
+         *
+         * @var array
+         */
+        protected $config = [];
 
-        return view("widgets.profile", [
-            'config' => $this->config,
-        ]);
+        /**
+         * Treat this method as a controller action.
+         * Return view() or other content to display.
+         */
+        public function run() {
+            return view("widgets.profile", [
+                'config' => $this->config,
+                'user'   => isset($this->config['user']) ? $this->config['user'] : \Auth::user(),
+            ]);
+        }
     }
-}

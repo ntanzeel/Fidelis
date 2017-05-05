@@ -3,8 +3,10 @@
 @section('content')
     <div class="row">
         <div class="col-md-3 hidden-sm hidden-xs">
-            @widget('profile')
-            @widget('users')
+            @widget('profile', ['user' => $user])
+            @if(Auth::user())
+                @widget('users')
+            @endif
         </div>
         <div class="col-md-6 col-sm-12 ">
             <div class="panel panel-default content-panel">
